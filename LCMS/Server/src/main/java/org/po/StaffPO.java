@@ -10,7 +10,7 @@ public class StaffPO implements Serializable{
 	public String name;
 	public String num;
 	public GENDER gender;
-	public Date birthday;
+	public myDate birthday;
 	public String location;
 	public String phone;
 	public String bankAccount;
@@ -21,7 +21,7 @@ public class StaffPO implements Serializable{
 		super();
 	}
 	
-	public StaffPO(String name,String num,GENDER gender,Date birthday,String location,String phone,String bankAccount,
+	public StaffPO(String name,String num,GENDER gender,myDate birthday,String location,String phone,String bankAccount,
 			WorkSpace workSpace,Payment payment,String ac,String password,STAFFROLE staffRole){
 		
 		this.name=name;
