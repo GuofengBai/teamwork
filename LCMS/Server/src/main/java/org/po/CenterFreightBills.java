@@ -1,8 +1,11 @@
 package org.po;
+
 import java.io.Serializable;
+
+
 public class CenterFreightBills extends BillsPO{
 	private String BillNum;
-	private int Date;
+	private myDate Date;
 	private String ContainerNum;
 	private String Means;
 	private String Name;
@@ -15,10 +18,10 @@ public class CenterFreightBills extends BillsPO{
 	public String getBillNum(){
 		return BillNum;
 	}
-	public void setDate(int t){
+	public void setDate(myDate t){
 		this.Date=t;
 	}
-	public int getDate(){
+	public myDate getDate(){
 		return Date;
 	}
 	public void setContainerNum(String s){

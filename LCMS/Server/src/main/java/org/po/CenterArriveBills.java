@@ -1,9 +1,12 @@
 package org.po;
+
 import java.io.Serializable;
+
+
 public class CenterArriveBills extends BillsPO{
 	private String BillNum;
 	private String CenterNum;
-	private int Date;
+	private myDate Date;
 	private String State;
 	public void setBillNum(String s){
 		this.BillNum=s;
@@ -17,10 +20,10 @@ public class CenterArriveBills extends BillsPO{
 	public String getCenterNum(){
 		return CenterNum;
 	}
-	public void setDate(int d){
+	public void setDate(myDate d){
 		this.Date=d;
 	}
-	public int getDate(){
+	public myDate getDate(){
 		return Date;
 	}
 	public void setState(String s){

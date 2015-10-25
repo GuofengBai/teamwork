@@ -1,14 +1,17 @@
 package org.po;
+
 import java.io.Serializable;
+
+
 public class HallColletcionBills extends BillsPO{
-	private int Date;
+	private myDate Date;
 	private int Cash;
 	private String name;
 	private long[] GoodsNum;
-	public void setDate(int t){
+	public void setDate(myDate t){
 		this.Date=t;
 	}
-	public int getDate(){
+	public myDate getDate(){
 		return Date;
 	}
 	public void setCash(int t){

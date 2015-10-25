@@ -1,8 +1,11 @@
 package org.po;
+
 import java.io.Serializable;
+
+
 public class OutstorageBills extends BillsPO{
 	private long GoodsNum;
-	private int Date;
+	private myDate Date;
 	private String FreightNum;
 	public void setGoodsNum(long l){
 		this.GoodsNum=l;
@@ -10,10 +13,10 @@ public class OutstorageBills extends BillsPO{
 	public long getGoodsNum(){
 		return GoodsNum;
 	}
-	public void setDate(int t){
+	public void setDate(myDate t){
 		this.Date=t;
 	}
-	public int getDate(){
+	public myDate getDate(){
 		return Date;
 	}
 	public void setFreightNum(String s){
