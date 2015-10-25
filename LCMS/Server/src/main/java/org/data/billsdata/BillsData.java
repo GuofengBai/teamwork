@@ -5,7 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 import org.dataservice.billsdataservice.BillsDataService;
 
-public class BillsData extends UnicastRemoteObject implements BillsDataService{
+public abstract class BillsData extends UnicastRemoteObject implements BillsDataService{
 
 	protected BillsData() throws RemoteException {
 		super();
