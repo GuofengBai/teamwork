@@ -1,6 +1,6 @@
 package org.po;
 
-public class Date {
+public class myDate {
 	
 	public int year;
 	public int month;
