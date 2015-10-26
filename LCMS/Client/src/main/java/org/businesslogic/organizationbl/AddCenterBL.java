@@ -10,4 +10,9 @@ public class AddCenterBL implements AddCenterBLService{
 		return false;
 	}
 
+	public boolean ManagerSetNewCitiesDistance(double[] distance) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

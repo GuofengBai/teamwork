@@ -10,4 +10,10 @@ public interface AddCenterBLService {
 	 */
 	public boolean AddCenterbl(String cityName, int HallNum,
 			double[] distanceToOtherCities);
+	/**
+	 * 启动设置新城市到其他城市间距离
+	 * @param distance 新城市到其他
+	 * @return 返回启动是否成功
+	 */
+	public boolean ManagerSetNewCitiesDistance(double[] distance);
 }
