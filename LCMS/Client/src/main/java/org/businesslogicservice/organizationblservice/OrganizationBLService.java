@@ -5,61 +5,17 @@ import org.po.DriverPO;
 import org.po.myDate;
 
 public interface OrganizationBLService {
-	/**
-	 * 启动新增中转中心
-	 * @param cityName城市
-	 * @param HallNum 中转中心编号
-	 * @param distanceToOtherCities 城市之间距离
-	 * @return 返回启动是否成功
-	 */
-	public boolean AddCenterbl(String cityName, int HallNum,
-			double[] distanceToOtherCities);
-	/**
-	 * 启动新增营业厅
-	 * @param city中转中心编号
-	 * @param CenterNum 营业厅编号
-	 * @param name 营业厅名称
-	 * @return 返回启动是否成功
-	 */
-	public boolean AddHallbl(int city, int CenterNum, String name);
-	/**
-	 * 启动删除营业厅
-	 * @param HallNum 营业厅编号
-	 * @return 返回启动是否成功
-	 */
-	public boolean DelHallbl(int HallNum);
+	
+	
+	
 	/**
 	 * 启动删除营业厅
 	 * @param city 中转中心编号
 	 * @return 返回启动是否成功
 	 */
 	public boolean DelCenterbl(int city);
-	/**
-	 * 启动新增车辆
-	 * @param carNum汽车编号
-	 * @param engineNum引擎编号
-	 * @param chassisNum底盘号
-	 * @param buyTime购买时间
-	 * @param serveTime服役时间
-	 * @number 车牌号
-	 * @return 返回启动是否成功
-	 */
-	public boolean HallAddCarbl(int carNum, int engineNum, int chassisNum,
-			myDate buyTime, myDate serveTime, String number);
-	/**
-	 * 启动新增司机
-	 * @param driverNum司机编号
-	 * @param name姓名
-	 * @param birthTime 出生时间
-	 * @param ID 身份证号
-	 * @param gender 性别
-	 * @aram  phoneNum 电话号码
-	 * @param licensePeriod 驾驶证期限
-	 * @return 返回启动是否成功
-	 */
-	public boolean HallAddDriverbl(int driverNum, String name,
-			myDate birthTime, String ID, boolean gender, String phoneNum,
-			int licensePeriod);
+	
+	
 	/**
 	 * 启动更改车辆信息
 	 * @param carNum 车辆编号
