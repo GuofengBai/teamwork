@@ -1,6 +1,7 @@
 package org.data.DataFactory;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 import org.dataservice.DataFactoryService.DataFactoryService;
 import org.dataservice.Impl.BillsDataServiceSerializableFileImpl;
@@ -11,7 +12,12 @@ import org.dataservice.organizationdataservice.OrganizationDataService;
 import org.dataservice.staffdataservice.StaffDataService;
 import org.dataservice.userdataservice.UserDataService;
 
-public class DataFactory implements DataFactoryService {
+public class DataFactory extends UnicastRemoteObject implements DataFactoryService {
+
+	public DataFactory() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public CommodityDataService getCommodityData() {
 		// TODO Auto-generated method stub
@@ -26,6 +32,7 @@ public class DataFactory implements DataFactoryService {
 		// TODO Auto-generated method stub
 		try {
 			BillsDataService data=new BillsDataServiceSerializableFileImpl();
+			return data;
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
