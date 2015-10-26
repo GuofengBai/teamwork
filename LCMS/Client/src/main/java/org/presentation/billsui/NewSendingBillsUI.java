@@ -23,24 +23,34 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
+import org.businesslogic.billsbl.NewSendingBillsBL;
+import org.businesslogicservice.billsblservice.NewSendingBillsBLService;
 import org.po.BOXSTYPE;
+import org.po.ResultMessage;
+import org.po.SENDSTYPE;
+import org.po.myDate;
 
 public class NewSendingBillsUI {
+	
+	NewSendingBillsBLService newSendingBills;
 
-	public static void main(String[] args) {
+	public void run() {
+		
+		newSendingBills=new NewSendingBillsBL();
 
 		final JComboBox<String> boxtype;
 		final JComboBox<String> sendtype;
 		JFrame jFrame = new JFrame("生成寄件单");
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		jFrame.setBounds(((int) dimension.getWidth() - 400) / 2,
-				((int) dimension.getHeight() - 300) / 2, 400, 300);
+				((int) dimension.getHeight() - 330) / 2, 400, 330);
 		jFrame.setResizable(false);
 		jFrame.setLayout(null);
 		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		boxtype = new JComboBox<String>();
 		sendtype = new JComboBox<String>();
+		final myDate Date =new myDate();
 		String[] box = { "纸袋", "木箱", "纸箱" };
 		String[] type = { "经济", "标准", "特快" };
 		if (box.length > 0) {
@@ -95,19 +105,23 @@ public class NewSendingBillsUI {
 		JLabel label5 = new JLabel("请输入收件人住址");
 		label5.setBounds(10, 130, 250, 30);
 		jFrame.add(label5);
+		
+		JLabel label8 = new JLabel("请输入寄件日期");
+		label8.setBounds(10, 160, 250, 30);
+		jFrame.add(label8);
 
 		JLabel label6 = new JLabel("请选择包装类型");
-		label6.setBounds(10, 160, 250, 30);
+		label6.setBounds(10, 190, 250, 30);
 		jFrame.add(label6);
 
 		JLabel label7 = new JLabel("请选择快递类型");
-		label7.setBounds(10, 190, 250, 30);
+		label7.setBounds(10, 220, 250, 30);
 		jFrame.add(label7);
 
-		boxtype.setBounds(120, 165, 260, 20);
+		boxtype.setBounds(120, 195, 260, 20);
 		jFrame.add(boxtype);
 		
-		sendtype.setBounds(120, 195, 260, 20);
+		sendtype.setBounds(120, 225, 260, 20);
 		jFrame.add(sendtype);
 
 		final JTextField text1 = new JTextField();
@@ -130,8 +144,20 @@ public class NewSendingBillsUI {
 		text5.setBounds(120, 135, 260, 20);
 		jFrame.add(text5);
 		
+		final JTextField text6 = new JTextField();
+		text6.setBounds(120, 165, 100, 20);
+		jFrame.add(text6);
+		
+		final JTextField text7 = new JTextField();
+		text7.setBounds(230, 165, 70, 20);
+		jFrame.add(text7);
+		
+		final JTextField text8 = new JTextField();
+		text8.setBounds(310, 165, 70, 20);
+		jFrame.add(text8);
+		
 		JButton buttonx = new JButton("显示价格");
-		buttonx.setBounds(10, 230, 180, 20);
+		buttonx.setBounds(10, 255, 180, 20);
 		buttonx.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {
@@ -143,14 +169,45 @@ public class NewSendingBillsUI {
 		jFrame.add(buttonx);
 
 		JButton button = new JButton("提交");
-		button.setBounds(200, 230, 180, 20);
+		button.setBounds(200, 255, 180, 20);
 		button.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				Date.year=Integer.parseInt(text6.getText());
+				Date.month=Integer.parseInt(text7.getText());
+				Date.day=Integer.parseInt(text8.getText());
+				
+				String selected1=(String) boxtype.getSelectedItem();
+				String selected2=(String) sendtype.getSelectedItem();
+				BOXSTYPE boxstype=BOXSTYPE.Paper;
+				SENDSTYPE sendstype=SENDSTYPE.SLOW;
+				if(selected1.equals("纸箱")){
+					boxstype=BOXSTYPE.Paper;
+				}
+				if(selected1.equals("纸袋")){
+					boxstype=BOXSTYPE.Bag;
+				}
+				if(selected1.equals("木箱")){
+					boxstype=BOXSTYPE.Box;
+				}
+				if(selected2.equals("经济")){
+					sendstype=SENDSTYPE.SLOW;
+				}
+				if(selected2.equals("标准")){
+					sendstype=SENDSTYPE.NORMAL;
+				}
+				if(selected2.equals("特快")){
+					sendstype=SENDSTYPE.FAST;
+				}
+				
+				
+				
+				ResultMessage message=newSendingBills.newSendingBill(Date, boxstype, sendstype,text2.getText(),
+						text3.getText(), text5.getText(), Long.parseLong(text1.getText()), text4.getText(), 100);
 				
 					JOptionPane.showMessageDialog(null, "寄件单生成", "提示", JOptionPane.INFORMATION_MESSAGE);
-				
-					JOptionPane.showMessageDialog(null, "错误", "提示", JOptionPane.ERROR_MESSAGE);
+					
+					
 				
 			}
 			

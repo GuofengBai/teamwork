@@ -20,6 +20,8 @@ public class RMIHelper {
             BillsDataService billsData = new BillsDataServiceSerializableFileImpl();
 
             Naming.rebind("billsData-service",billsData);
+            
+            System.out.println("server创建!");
 
         } catch (MalformedURLException e) {
             e.printStackTrace();

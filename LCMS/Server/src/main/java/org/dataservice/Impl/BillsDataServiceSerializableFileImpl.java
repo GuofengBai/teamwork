@@ -25,22 +25,22 @@ public class BillsDataServiceSerializableFileImpl extends UnicastRemoteObject im
 		// TODO Auto-generated constructor stub
 	}
 
-	public ResultMessage addBills(BillsPO po) {
+	public ResultMessage addBills(BillsPO po)throws RemoteException {
 		// TODO Auto-generated method stub
-		String fileName="SerializableData/"+po.type+".file";
+		String fileName="SerializableData/"+po.type.toString()+".file";
+		System.out.println(fileName);
 		try {
 			FileInputStream fis = new FileInputStream(fileName);
 	        BufferedInputStream bis = new BufferedInputStream(fis);  
 	        ObjectInputStream ois = new ObjectInputStream(bis);  
 	        billsList= (ArrayList<BillsPO>) ois.readObject();
-	        
-	        
-            billsList.add(po);
+	        billsList.add(po);
             FileOutputStream fos = new FileOutputStream(fileName);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(billsList);
             ois.close();
             oos.close();
+            System.out.println("添加成功！");
             String[] info={"add bills successfully!!"};
             return new ResultMessage(true,info);
 		} catch (FileNotFoundException e) {
@@ -57,17 +57,17 @@ public class BillsDataServiceSerializableFileImpl extends UnicastRemoteObject im
 		return null;
 	}
 
-	public ResultMessage findBills(int BillNum) {
+	public ResultMessage findBills(int BillNum)throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public ResultMessage deleteBills(int BillNum) {
+	public ResultMessage deleteBills(int BillNum)throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public ResultMessage updateBills(int BillNum, BillsPO po) {
+	public ResultMessage updateBills(int BillNum, BillsPO po)throws RemoteException{
 		// TODO Auto-generated method stub
 		return null;
 	}

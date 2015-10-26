@@ -16,6 +16,7 @@ public class RMIHelper {
         try {
             billsData=  (BillsDataService) Naming.lookup("rmi://" + IP + "/billsData-service");
 
+            System.out.println("client创建!");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (RemoteException e) {

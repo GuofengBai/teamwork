@@ -12,6 +12,29 @@ public class SendingBills extends BillsPO{
 	private String location;
 	private long GoodsNum;
 	private String name;
+	public EXPRESSSTATE expressState;
+	public double price;
+	
+	public SendingBills(){
+		super();
+	}
+	
+	public SendingBills(myDate Date, BOXSTYPE boxstype,
+			SENDSTYPE sendstype, String startplace, String endplace,
+			String location, long GoodsNum, String name,double price){
+		this.Date=Date;
+		this.boxstype=boxstype;
+		this.sendstype=sendstype;
+		this.startplace=startplace;
+		this.endplace=endplace;
+		this.location=location;
+		this.GoodsNum=GoodsNum;
+		this.name=name;
+		this.expressState=EXPRESSSTATE.LOCALHALL;
+		this.price=price;
+		this.type=BILLSTYPE.SB;
+	}
+	
 	public void setDate(myDate t){
 		this.Date=t;
 	}
@@ -59,5 +82,12 @@ public class SendingBills extends BillsPO{
 	}
 	public String getlocation(){
 		return location;
+	}
+	public void setExpressState(EXPRESSSTATE state){
+		expressState=state;
+	}
+	public EXPRESSSTATE getExpressState(){
+		return expressState;
+		
 	}
 }

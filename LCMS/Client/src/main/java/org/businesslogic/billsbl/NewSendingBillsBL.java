@@ -1,5 +1,7 @@
 package org.businesslogic.billsbl;
 
+import java.rmi.RemoteException;
+
 import org.Client.RMIHelper;
 import org.businesslogicservice.billsblservice.NewSendingBillsBLService;
 import org.dataservice.billsdataservice.BillsDataService;
@@ -17,10 +19,15 @@ public class NewSendingBillsBL implements NewSendingBillsBLService{
 			String location, long GoodsNum, String name,double price) {
 		// TODO Auto-generated method stub
 		BillsDataService billsData=RMIHelper.getBillsDataService();
-		billsData.addBills(new SendingBills(Date, boxstype,sendstype, startplace, endplace,
-				location, GoodsNum, name, price));
-		
-		return null;
+		ResultMessage message=null;
+		try {
+			message=billsData.addBills(new SendingBills(Date, boxstype,sendstype, startplace, endplace,
+					location, GoodsNum, name, price));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return message;
 	}
 
 	

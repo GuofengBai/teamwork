@@ -32,7 +32,7 @@ public class SendingBills extends BillsPO{
 		this.name=name;
 		this.expressState=EXPRESSSTATE.LOCALHALL;
 		this.price=price;
-		
+		this.type=BILLSTYPE.SB;
 	}
 	
 	public void setDate(myDate t){
