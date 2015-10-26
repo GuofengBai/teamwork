@@ -8,6 +8,6 @@ import org.po.myDate;
 public interface NewSendingBillsBLService {
 	
 	public ResultMessage newSendingBill(myDate Date,BOXSTYPE boxstype,SENDSTYPE sendstype,
-			String startplace,String endplace,String location,long GoodsNum,String name);
+			String startplace,String endplace,String location,long GoodsNum,String name,double price);
 	
 }

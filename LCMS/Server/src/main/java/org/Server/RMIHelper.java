@@ -8,6 +8,8 @@ import java.rmi.registry.LocateRegistry;
 
 import org.data.DataFactory.DataFactory;
 import org.dataservice.DataFactoryService.DataFactoryService;
+import org.dataservice.Impl.BillsDataServiceSerializableFileImpl;
+import org.dataservice.billsdataservice.BillsDataService;
 
 public class RMIHelper {
 
@@ -15,9 +17,9 @@ public class RMIHelper {
         try {
             LocateRegistry.createRegistry(1099);
 
-            DataFactoryService dataFactory = new DataFactory();
+            BillsDataService billsData = new BillsDataServiceSerializableFileImpl();
 
-            Naming.rebind("dataFactory-service", dataFactory);
+            Naming.rebind("billsData-service",billsData);
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
