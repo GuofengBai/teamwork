@@ -1,14 +1,7 @@
 package org.businesslogic.commoditybl;
 
 import org.businesslogicservice.commodityblservice.CommodityBLService;
-<<<<<<< HEAD
 import org.po.ComPO;
-
-public class CommodityBL implements CommodityBLService{
-	public ResultMessage addCom(ComPO po);
-	public ResultMessage delCom(ComPO po);
-	public ComPO findCom(long GoodsNum);
-=======
 import org.po.myDate;
 import org.vo.ComVO;
 
@@ -44,5 +37,4 @@ public class CommodityBL implements CommodityBLService{
 		return false;
 	}
 
->>>>>>> origin/master
 }
