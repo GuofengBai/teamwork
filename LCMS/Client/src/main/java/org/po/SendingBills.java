@@ -12,6 +12,8 @@ public class SendingBills extends BillsPO{
 	private String location;
 	private long GoodsNum;
 	private String name;
+	public EXPRESSSTATE expressState;
+	
 	public void setDate(myDate t){
 		this.Date=t;
 	}
@@ -59,5 +61,12 @@ public class SendingBills extends BillsPO{
 	}
 	public String getlocation(){
 		return location;
+	}
+	public void setExpressState(EXPRESSSTATE state){
+		expressState=state;
+	}
+	public EXPRESSSTATE getExpressState(){
+		return expressState;
+		
 	}
 }
