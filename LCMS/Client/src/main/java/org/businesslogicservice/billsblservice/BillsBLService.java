@@ -1,7 +1,9 @@
 package org.businesslogicservice.billsblservice;
 import java.io.Serializable;
 
+import org.po.BOXSTYPE;
 import org.po.ResultMessage;
+import org.po.SENDSTYPE;
 import org.po.myDate;
 
 public interface BillsBLService {
@@ -14,6 +16,6 @@ public interface BillsBLService {
 	public ResultMessage newHallDispatchBill(myDate date,long GoodsNum,String name);
 	public ResultMessage newHallColletcionBill(myDate date,int Cash,String name,long[] GoodsNum);
 	public ResultMessage newHallLoadingBill(myDate date,String HallNum,String TravelNum,String TrafficNum,String EndPlace,String name,long[] GoodsNum);
-	public ResultMessage newSendingBill(myDate date,long GoodsNum,String name);
+	public ResultMessage newSendingBill(myDate Date,BOXSTYPE boxstype,SENDSTYPE sendstype,String startplace,String endplace,String location,long GoodsNum,String name);
 	public ResultMessage newPayingBill(myDate date,long Cash,String name,String PayNum,String[] Item);
 }
