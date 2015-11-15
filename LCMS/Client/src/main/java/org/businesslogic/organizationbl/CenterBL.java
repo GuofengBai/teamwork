@@ -16,7 +16,7 @@ public class CenterBL implements CenterBLService{
 		return false;
 	}
 
-	public boolean DelCenterbl(int city) {
+	public boolean DelCenterbl(String city) {
 		// TODO Auto-generated method stub
 		return false;
 	}

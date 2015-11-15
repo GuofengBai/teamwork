@@ -9,13 +9,13 @@ public class CarPO implements Serializable {
 	private int carNum;// 车辆代号，3位城市+3位营业厅+3位
 	private int engineNum;// 发动机编号，随意
 	private int chassisNum;// 底盘号，随意
-	private int buyTime;// 购买时间
+	private myDate buyTime;// 购买时间
 
-	private int serveTime;// 服役时间
+	private myDate serveTime;// 服役时间
 	private String number;// 车牌号
 
-	public CarPO(int carNum, int engineNum, int chassisNum, int buyTime,
-			int serveTime, String number) {
+	public CarPO(int carNum, int engineNum, int chassisNum, myDate buyTime,
+			myDate serveTime, String number) {
 		this.carNum = carNum;
 		this.engineNum = engineNum;
 		this.chassisNum = chassisNum;
@@ -36,11 +36,11 @@ public class CarPO implements Serializable {
 		return chassisNum;
 	}
 
-	public int getbuyTime() {
+	public myDate getbuyTime() {
 		return buyTime;
 	}
 
-	public int getserveTime() {
+	public myDate getserveTime() {
 		return serveTime;
 	}
 
@@ -61,11 +61,11 @@ public class CarPO implements Serializable {
 		this.chassisNum = chassisNum;
 	}
 
-	public void setbuyTime(int buyTime) {
+	public void setbuyTime(myDate buyTime) {
 		this.buyTime = buyTime;
 	}
 
-	public void setserveTime(int serveTime) {
+	public void setserveTime(myDate serveTime) {
 		this.serveTime = serveTime;
 	}
 

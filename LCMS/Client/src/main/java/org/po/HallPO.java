@@ -7,17 +7,18 @@ public class HallPO implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private int HallNum;// 营业厅编号，三位城市+1位+三位编号
+	private String HallNum;// 营业厅编号，三位城市+1位+三位编号
 	private String cityName;// 城市名称
-	private double[] distanceToOtherCities;// 到其他城市的距离，数组长度为当前城市数
+	private String HallName;//营业厅名称
+	//private double[] distanceToOtherCities;// 到其他城市的距离，数组长度为当前城市数
 
-	public HallPO(int HallNum, String cityName, double[] distanceToOtherCities) {
+	public HallPO(String HallNum, String cityName, String HallName) {
 		this.HallNum = HallNum;
 		this.cityName = cityName;
-		this.distanceToOtherCities = distanceToOtherCities;
+		this.HallName = HallName;
 	}
 
-	public int getHallNum() {
+	public String getHallNum() {
 		return HallNum;
 	}
 
@@ -25,18 +26,22 @@ public class HallPO implements Serializable {
 		return cityName;
 	}
 
-	public double[] getdistanceToOtherCities() {
-		return distanceToOtherCities;
-	}
+	//public double[] getdistanceToOtherCities() {
+	//	return distanceToOtherCities;
+	//}
 
-	public void setHallNum(int HallNum) {
+	public void setHallNum(String HallNum) {
 		this.HallNum = HallNum;
 		// 不知道哪用
 	}
 
-	public void setdistanceToOtherCities(double[] distanceToOtherCities) {
-		this.distanceToOtherCities = distanceToOtherCities;
-		// 改变城市间距离时用
+	//public void setdistanceToOtherCities(double[] distanceToOtherCities) {
+	//	this.distanceToOtherCities = distanceToOtherCities;
+	//	// 改变城市间距离时用
+	//}
+	
+	public String getHallName(){
+		return HallName;
 	}
 	public void del(){
 		

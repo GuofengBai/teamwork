@@ -10,11 +10,11 @@ public interface HallBLService {
 	 * @param name 营业厅名称
 	 * @return 返回启动是否成功
 	 */
-	public HallPO AddHallbl(int city, int CenterNum, String name);
+	public HallPO AddHallbl(String city, String CenterNum, String name,String HallNum);
 	/**
 	 * 启动删除营业厅
 	 * @param HallNum 营业厅编号
 	 * @return 返回启动是否成功
 	 */
-	public boolean DelHallbl(int HallNum);
+	public boolean DelHallbl(String HallNum);
 }

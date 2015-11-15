@@ -8,13 +8,13 @@ public class DriverPO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int driverNum;
 	private String name;
-	private int birthTime;
+	private myDate birthTime;
 	private String ID;
 	private boolean gender;
 	private String phoneNum;
 	private int licensePeriod;
 
-	public DriverPO(int driverNum, String name, int birthTime, String ID,
+	public DriverPO(int driverNum, String name, myDate birthTime, String ID,
 			boolean gender, String phoneNum, int licensePeriod) {
 		this.driverNum = driverNum;
 		this.name = name;
@@ -29,7 +29,7 @@ public class DriverPO implements Serializable {
 		return driverNum;
 	}
 
-	public int getbirthTime() {
+	public myDate getbirthTime() {
 		return birthTime;
 	}
 
@@ -58,7 +58,7 @@ public class DriverPO implements Serializable {
 		// 本方法及以下方法在改变司机信息时使用
 	}
 
-	public void setdbirthTime(int birthTime) {
+	public void setdbirthTime(myDate birthTime) {
 		this.birthTime = birthTime;
 	}
 

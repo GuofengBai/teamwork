@@ -7,11 +7,11 @@ public class ComPO implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private long GoodsNum;// ���˵���
-	private int inDate;// �������
+	private myDate inDate;// �������
 	private String place;// Ŀ�ĵ�
 	private String LocationNum;// �����źżܺ�λ��
 
-	public ComPO(long GoodsNum, int inDate, String place, String LocationNum) {
+	public ComPO(long GoodsNum, myDate inDate, String place, String LocationNum) {
 		this.GoodsNum = GoodsNum;
 		this.inDate = inDate;
 		this.place = place;
@@ -26,7 +26,7 @@ public class ComPO implements Serializable {
 		return GoodsNum;
 	}
 
-	public int getinDate() {
+	public myDate getinDate() {
 		return inDate;
 	}
 
