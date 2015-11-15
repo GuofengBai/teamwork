@@ -5,7 +5,7 @@ import org.po.CenterPO;
 
 public class CenterBL implements CenterBLService{
 
-	public CenterPO AddCenterbl(String cityName, int HallNum,
+	public CenterPO AddCenterbl(String cityName, String CityNum,
 			double[] distanceToOtherCities) {
 		// TODO Auto-generated method stub
 		return null;

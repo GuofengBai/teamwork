@@ -6,11 +6,11 @@ public interface CenterBLService {
 	/**
 	 * 启动新增中转中心
 	 * @param cityName城市
-	 * @param HallNum 中转中心编号
+	 * @param CityNum 中转中心编号
 	 * @param distanceToOtherCities 城市之间距离
 	 * @return 返回启动是否成功
 	 */
-	public CenterPO AddCenterbl(String cityName, int HallNum,
+	public CenterPO AddCenterbl(String cityName, String CityNum,
 			double[] distanceToOtherCities);
 	/**
 	 * 启动设置新城市到其他城市间距离
