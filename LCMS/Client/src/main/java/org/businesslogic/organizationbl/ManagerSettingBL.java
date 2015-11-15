@@ -9,11 +9,6 @@ import org.businesslogicservice.organizationblservice.ManagerSettingBLService;
 
 public class ManagerSettingBL implements ManagerSettingBLService{
 	String[] cities={"北京","广州","上海","南京"};
-	public boolean ManagerSetCitiesDistance(int city1, int city2,
-			double distance) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	public boolean ManagerSetStdFee(double stdfee) {
 		// TODO Auto-generated method stub
@@ -30,6 +25,27 @@ public class ManagerSettingBL implements ManagerSettingBLService{
 	//	for(int i=0;i<cities.length;i++){
 	//		bw.write(cities[i]+" ");
 	//	}
+
+	public boolean ManagerSetCitiesDistance(String city1, String city2,
+			double distance) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public double getCitiesDistance(String city1, String city2) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public double getStdFee() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public double getVehFee(int veh) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 		
 	//}
 

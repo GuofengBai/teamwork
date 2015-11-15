@@ -8,7 +8,7 @@ public interface ManagerSettingBLService {
 	 * @param distance 城市间距离
 	 * @return 返回启动是否成功
 	 */
-	public boolean ManagerSetCitiesDistance(int city1,int city2,double distance);
+	public boolean ManagerSetCitiesDistance(String city1,String city2,double distance);
 	/**
 	 * 启动设置标准运费
 	 * @param stdfee 标准运费
@@ -22,4 +22,10 @@ public interface ManagerSettingBLService {
 	 * @return 返回启动是否成功
 	 */
 	public boolean ManagerSetVehFee(int veh, int fee);
+	
+	public double getCitiesDistance(String city1,String city2);
+	
+	public double getStdFee();
+	
+	public double getVehFee(int veh);
 }
