@@ -4,84 +4,163 @@ import java.io.Serializable;
 
 
 public class SendingBills extends BillsPO{
-	private myDate Date;
-	private BOXSTYPE boxstype;
-	private SENDSTYPE sendstype;
-	private String startplace;
-	private String endplace;
-	private String location;
-	private long GoodsNum;
-	private String name;
-	public EXPRESSSTATE expressState;
-	public double price;
+	private String SenderName;
+	private String ReceiverName;
+	private String SenderPhone;
+	private String ReceiverPhone;
+	private String SenderLocation;
+	private String ReceiverLocation;
+	private myDate date;
+	private String GoodsNum;
+	private BOXSTYPE boxtype;
+	private SENDSTYPE sendtype;
+	private String length;
+	private String width;
+	private String height;
+	private String weight;
+	private EXPRESSSTATE expressState;
+
 	
 	public SendingBills(){
 		super();
 	}
 	
-	public SendingBills(myDate Date, BOXSTYPE boxstype,
-			SENDSTYPE sendstype, String startplace, String endplace,
-			String location, long GoodsNum, String name,double price){
-		this.Date=Date;
-		this.boxstype=boxstype;
-		this.sendstype=sendstype;
-		this.startplace=startplace;
-		this.endplace=endplace;
-		this.location=location;
+	public SendingBills(String SenderName, String ReceiverName,
+			String SenderPhone, String ReceiverPhone, String 
+			SenderLocation, String ReceiverLocation, myDate date, 
+			String GoodsNum, BOXSTYPE boxtype, SENDSTYPE sendtype, 
+			String length, String width, String height, String weight){
+		
+		this.SenderName=SenderName;
+		
+		this.ReceiverName=ReceiverName;
+		
+		this.SenderPhone=SenderPhone;
+		
+		this.ReceiverPhone=ReceiverPhone;
+		
+		this.SenderLocation=SenderLocation;
+		
+		this.ReceiverLocation=ReceiverLocation;
+		
 		this.GoodsNum=GoodsNum;
-		this.name=name;
+		
+		this.date=date;
 		this.expressState=EXPRESSSTATE.LOCALHALL;
-		this.price=price;
 		this.type=BILLSTYPE.SB;
+		
+		this.boxtype=boxtype;
+		
+		this.sendtype=sendtype;
+		this.length=length;
+		this.width=width;
+		this.height=height;
+		this.weight=weight;
 	}
 	
-	public void setDate(myDate t){
-		this.Date=t;
+	public void setdate(myDate t){
+		this.date=t;
 	}
 	public myDate getDate(){
-		return Date;
+		return date;
 	}
-	public void setsendstype(SENDSTYPE t){
-		this.sendstype=t;
+	
+	
+	public void setsendtype(SENDSTYPE t){
+		this.sendtype=t;
 	}
 	public SENDSTYPE getsendstype(){
-		return sendstype;
+		return sendtype;
 	}
+	
+	
 	public void setboxstype(BOXSTYPE t){
-		this.boxstype=t;
+		this.boxtype=t;
 	}
 	public BOXSTYPE getboxstype(){
-		return boxstype;
+		return boxtype;
 	}
-	public void setGoodsNum(long l){
+	
+	
+	public void setGoodsNum(String l){
 		this.GoodsNum=l;
 	}
-	public long getGoodsNum(){
+	public String getGoodsNum(){
 		return GoodsNum;
 	}
-	public void setname(String s){
-		this.name=s;
+	
+	
+	public void setSenderName(String s){
+		this.SenderName=s;
 	}
-	public String getname(){
-		return name;
+	public String getSenderName(){
+		return SenderName;
 	}
-	public void setstartplace(String s){
-		this.startplace=s;
+	
+	
+	public void setReceiverName(String s){
+		this.ReceiverName=s;
 	}
-	public String getstartplace(){
-		return startplace;
+	public String getReceiverName(){
+		return ReceiverName;
 	}
-	public void setendplace(String s){
-		this.endplace=s;
+	
+	
+	public void setSenderPhone(String s){
+		this.SenderPhone=s;
 	}
-	public String getendplace(){
-		return endplace;
+	public String getSenderPhone(){
+		return SenderPhone;
 	}
-	public void setlocation(String s){
-		this.location=s;
+	public void setReceiverPhone(String s){
+		this.ReceiverPhone=s;
 	}
-	public String getlocation(){
-		return location;
+	public String getReceiverPhone(){
+		return ReceiverPhone;
+	}
+	
+	public void setSenderLocation(String s){
+		this.SenderLocation=s;
+	}
+	public String getSenderLocation(){
+		return SenderLocation;
+	}
+	
+	
+	public void setReceiverLocation(String s){
+		this.ReceiverLocation=s;
+	}
+	public String getReceiverLocation(){
+		return ReceiverLocation;
+	}
+	
+	
+	public void setlength(String s){
+		this.length=s;
+	}
+	public String getlength(){
+		return length;
+	}
+	
+	public void setwidth(String s){
+		this.width=s;
+	}
+	public String getwidth(){
+		return width;
+	}
+	
+	public void setheight(String s){
+		this.height=s;
+	}
+	public String getheight(){
+		return height;
+	}
+	
+	public void setweight(String s){
+		this.weight=s;
+	}
+	public String getweight(){
+		return weight;
 	}
 	public void setExpressState(EXPRESSSTATE state){
 		expressState=state;

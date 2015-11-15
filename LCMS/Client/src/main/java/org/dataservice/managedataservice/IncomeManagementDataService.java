@@ -1,8 +1,8 @@
 package org.dataservice.managedataservice;
 
-import org.po.HallColletcionBills;
+import org.po.HallColletionBills;
 import org.po.myDate;
 
 public interface IncomeManagementDataService {
-	public HallColletcionBills[] incomeSelectDS(myDate date,int hallnumber);
+	public HallColletionBills[] incomeSelectDS(myDate date,int hallnumber);
 }

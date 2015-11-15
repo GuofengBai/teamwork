@@ -3,7 +3,7 @@ package org.po;
 import java.io.Serializable;
 
 
-public class HallColletcionBills extends BillsPO{
+public class HallColletionBills extends BillsPO{
 	private myDate Date;
 	private int Cash;
 	private String name;

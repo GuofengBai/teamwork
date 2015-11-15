@@ -7,7 +7,12 @@ import org.po.myDate;
 
 public interface NewSendingBillsBLService {
 	
-	public ResultMessage newSendingBill(myDate Date,BOXSTYPE boxstype,SENDSTYPE sendstype,
-			String startplace,String endplace,String location,long GoodsNum,String name,double price);
+	public ResultMessage addSendingBills(String SenderName, String ReceiverName, 
+			String SenderPhone, String ReceiverPhone, String SenderLocation, 
+			String ReceiverLocation, myDate date, String GoodsNum, BOXSTYPE boxtype, 
+			SENDSTYPE sendtype, String length, String width, String height, String weight);
+	
+	public long getPrice(String SenderLocation, String ReceiverLocation, BOXSTYPE boxtype, 
+			SENDSTYPE sendtype, String length, String width, String height, String weight);
 	
 }

@@ -1,224 +1,194 @@
 package org.presentation.billsui;
-
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.util.List;
-import java.util.Vector;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
-import javax.swing.BoxLayout;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JButton;
 
-import org.businesslogic.billsbl.NewSendingBillsBL;
-import org.businesslogicservice.billsblservice.NewSendingBillsBLService;
-import org.po.BOXSTYPE;
-import org.po.ResultMessage;
-import org.po.SENDSTYPE;
-import org.po.myDate;
 
-public class NewSendingBillsUI {
-	
-	NewSendingBillsBLService newSendingBills;
+public class NewSendingBillsUI extends JPanel {
+	private JTextField RBL1;
+	private JTextField RBL2;
+	private JTextField RBL3;
+	private JTextField RBL4;
+	private JTextField RBL5;
+	private JTextField RBL6;
+	private JTextField newyear;
+	private JTextField newmonth;
+	private JTextField newday;
+	private JLabel label_7;
+	private JTextField goodsnumber;
+	private JLabel label_8;
+	private JTextField length;
+	private JTextField width;
+	private JTextField height;
+	private JTextField weight;
 
-	public void run() {
+	/**
+	 * Create the panel.
+	 */
+	public NewSendingBillsUI() {
+		setLayout(null);
 		
-		newSendingBills=new NewSendingBillsBL();
-
-		final JComboBox<String> boxtype;
-		final JComboBox<String> sendtype;
-		JFrame jFrame = new JFrame("生成寄件单");
-		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-		jFrame.setBounds(((int) dimension.getWidth() - 400) / 2,
-				((int) dimension.getHeight() - 330) / 2, 400, 330);
-		jFrame.setResizable(false);
-		jFrame.setLayout(null);
-		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		boxtype = new JComboBox<String>();
-		sendtype = new JComboBox<String>();
-		final myDate Date =new myDate();
-		String[] box = { "纸袋", "木箱", "纸箱" };
-		String[] type = { "经济", "标准", "特快" };
-		if (box.length > 0) {
-			for (int i = 0; i < box.length; i++) {
-				boxtype.addItem(box[i]);
-			}
-		}
-		boxtype.addItemListener(new ItemListener() {
-
-			public void itemStateChanged(ItemEvent e) {
-				// TODO Auto-generated method stub
-				if (e.getStateChange() == ItemEvent.SELECTED) {
-					String selected1 = (String) boxtype.getSelectedItem();
-					
-				}
-			}
-
-		});
-		if (type.length > 0) {
-			for (int i = 0; i < type.length; i++) {
-				sendtype.addItem(type[i]);
-			}
-		}
-		sendtype.addItemListener(new ItemListener() {
-
-			public void itemStateChanged(ItemEvent e) {
-				// TODO Auto-generated method stub
-				if (e.getStateChange() == ItemEvent.SELECTED) {
-					String selected2 = (String) sendtype.getSelectedItem();
-
-				}
-			}
-
-		});
-
-		JLabel label1 = new JLabel("请输入订单条形码");
-		label1.setBounds(10, 10, 250, 30);
-		jFrame.add(label1);
-
-		JLabel label2 = new JLabel("请输入寄件人城市");
-		label2.setBounds(10, 40, 250, 30);
-		jFrame.add(label2);
-
-		JLabel label3 = new JLabel("请输入收件人城市");
-		label3.setBounds(10, 70, 250, 30);
-		jFrame.add(label3);
-
-		JLabel label4 = new JLabel("请输入收件人姓名");
-		label4.setBounds(10, 100, 250, 30);
-		jFrame.add(label4);
-
-		JLabel label5 = new JLabel("请输入收件人住址");
-		label5.setBounds(10, 130, 250, 30);
-		jFrame.add(label5);
+		JLabel label = new JLabel("\u5BC4\u4EF6\u4EBA\u59D3\u540D");
+		label.setBounds(10, 10, 65, 15);
+		add(label);
 		
-		JLabel label8 = new JLabel("请输入寄件日期");
-		label8.setBounds(10, 160, 250, 30);
-		jFrame.add(label8);
-
-		JLabel label6 = new JLabel("请选择包装类型");
-		label6.setBounds(10, 190, 250, 30);
-		jFrame.add(label6);
-
-		JLabel label7 = new JLabel("请选择快递类型");
-		label7.setBounds(10, 220, 250, 30);
-		jFrame.add(label7);
-
-		boxtype.setBounds(120, 195, 260, 20);
-		jFrame.add(boxtype);
+		JLabel label_1 = new JLabel("\u5BC4\u4EF6\u4EBA\u7535\u8BDD");
+		label_1.setBounds(10, 35, 65, 15);
+		add(label_1);
 		
-		sendtype.setBounds(120, 225, 260, 20);
-		jFrame.add(sendtype);
-
-		final JTextField text1 = new JTextField();
-		text1.setBounds(120, 15, 260, 20);
-		jFrame.add(text1);
-
-		final JTextField text2 = new JTextField();
-		text2.setBounds(120, 45, 260, 20);
-		jFrame.add(text2);
-
-		final JTextField text3 = new JTextField();
-		text3.setBounds(120, 75, 260, 20);
-		jFrame.add(text3);
-
-		final JTextField text4 = new JTextField();
-		text4.setBounds(120, 105, 260, 20);
-		jFrame.add(text4);
-
-		final JTextField text5 = new JTextField();
-		text5.setBounds(120, 135, 260, 20);
-		jFrame.add(text5);
+		JLabel label_2 = new JLabel("\u5BC4\u4EF6\u4EBA\u4F4F\u5740");
+		label_2.setBounds(10, 60, 65, 15);
+		add(label_2);
 		
-		final JTextField text6 = new JTextField();
-		text6.setBounds(120, 165, 100, 20);
-		jFrame.add(text6);
+		JLabel label_3 = new JLabel("\u6536\u4EF6\u4EBA\u59D3\u540D");
+		label_3.setBounds(165, 10, 65, 15);
+		add(label_3);
 		
-		final JTextField text7 = new JTextField();
-		text7.setBounds(230, 165, 70, 20);
-		jFrame.add(text7);
+		JLabel label_4 = new JLabel("\u6536\u4EF6\u4EBA\u7535\u8BDD");
+		label_4.setBounds(165, 35, 65, 15);
+		add(label_4);
 		
-		final JTextField text8 = new JTextField();
-		text8.setBounds(310, 165, 70, 20);
-		jFrame.add(text8);
+		JLabel label_5 = new JLabel("\u6536\u4EF6\u4EBA\u4F4F\u5740");
+		label_5.setBounds(165, 60, 65, 15);
+		add(label_5);
 		
-		JButton buttonx = new JButton("显示价格");
-		buttonx.setBounds(10, 255, 180, 20);
-		buttonx.addActionListener(new ActionListener(){
+		RBL1 = new JTextField();
+		RBL1.setBounds(85, 7, 70, 21);
+		add(RBL1);
+		RBL1.setColumns(10);
+		
+		RBL2 = new JTextField();
+		RBL2.setColumns(10);
+		RBL2.setBounds(85, 32, 70, 21);
+		add(RBL2);
+		
+		RBL3 = new JTextField();
+		RBL3.setColumns(10);
+		RBL3.setBounds(85, 57, 70, 21);
+		add(RBL3);
+		
+		RBL4 = new JTextField();
+		RBL4.setColumns(10);
+		RBL4.setBounds(240, 7, 70, 21);
+		add(RBL4);
+		
+		RBL5 = new JTextField();
+		RBL5.setColumns(10);
+		RBL5.setBounds(240, 32, 70, 21);
+		add(RBL5);
+		
+		RBL6 = new JTextField();
+		RBL6.setColumns(10);
+		RBL6.setBounds(240, 57, 70, 21);
+		add(RBL6);
+		
+		JLabel label_6 = new JLabel("\u5BC4\u4EF6\u65E5\u671F");
+		label_6.setBounds(10, 85, 54, 15);
+		add(label_6);
+		
+		newyear = new JTextField();
+		newyear.setBounds(85, 82, 80, 21);
+		add(newyear);
+		newyear.setColumns(10);
+		
+		newmonth = new JTextField();
+		newmonth.setBounds(175, 82, 62, 21);
+		add(newmonth);
+		newmonth.setColumns(10);
+		
+		newday = new JTextField();
+		newday.setBounds(248, 82, 62, 21);
+		add(newday);
+		newday.setColumns(10);
+		
+		label_7 = new JLabel("\u6258\u8FD0\u5355\u53F7");
+		label_7.setBounds(10, 110, 54, 15);
+		add(label_7);
+		
+		goodsnumber = new JTextField();
+		goodsnumber.setBounds(85, 107, 225, 21);
+		add(goodsnumber);
+		goodsnumber.setColumns(10);
+		
+		label_8 = new JLabel("\u5FEB\u9012\u5F62\u5F0F");
+		label_8.setBounds(10, 135, 54, 15);
+		add(label_8);
+		
+		JComboBox sendtype = new JComboBox();
+		sendtype.setBounds(85, 132, 70, 21);
+		add(sendtype);
+		sendtype.addItem("经济");
+		sendtype.addItem("一般");
+		sendtype.addItem("特快");
+		
+		JLabel label_9 = new JLabel("\u5305\u88C5\u5F62\u5F0F");
+		label_9.setBounds(165, 135, 54, 15);
+		add(label_9);
+		
+		JComboBox boxtype = new JComboBox();
+		boxtype.setBounds(240, 132, 70, 21);
+		add(boxtype);
+		boxtype.addItem("纸袋");
+		boxtype.addItem("纸箱");
+		boxtype.addItem("木箱");
+		
+		JLabel label_10 = new JLabel("\u8D27\u7269\u5927\u5C0F\uFF08\u88C5\u7BB1\uFF09\u5355\u4F4D\uFF1A\u7C73");
+		label_10.setBounds(10, 160, 145, 15);
+		add(label_10);
+		
+		JLabel label_11 = new JLabel("\u957F");
+		label_11.setBounds(10, 185, 20, 15);
+		add(label_11);
+		
+		length = new JTextField();
+		length.setBounds(40, 182, 65, 21);
+		add(length);
+		length.setColumns(10);
+		
+		JLabel label_12 = new JLabel("\u5BBD");
+		label_12.setBounds(115, 185, 20, 15);
+		add(label_12);
+		
+		width = new JTextField();
+		width.setBounds(145, 182, 65, 21);
+		add(width);
+		width.setColumns(10);
+		
+		JLabel label_13 = new JLabel("\u9AD8");
+		label_13.setBounds(220, 185, 20, 15);
+		add(label_13);
+		
+		height = new JTextField();
+		height.setBounds(245, 182, 65, 21);
+		add(height);
+		height.setColumns(10);
+		
+		JLabel label_14 = new JLabel("\u8D27\u7269\u91CD\u91CF");
+		label_14.setBounds(10, 210, 54, 15);
+		add(label_14);
+		
+		weight = new JTextField();
+		weight.setBounds(74, 207, 66, 21);
+		add(weight);
+		weight.setColumns(10);
+		
+		JLabel lblKg = new JLabel("KG");
+		lblKg.setBounds(145, 210, 54, 15);
+		add(lblKg);
+		
+		JButton button = new JButton("\u8BA1\u7B97\u4EF7\u683C");
+		button.setBounds(10, 235, 93, 23);
+		add(button);
+		
+		JButton button_1 = new JButton("\u63D0\u4EA4");
+		button_1.setBounds(115, 264, 93, 23);
+		add(button_1);
+		
+		JLabel presentvalue = new JLabel("");
+		presentvalue.setBounds(122, 240, 182, 15);
+		add(presentvalue);
 
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "10086", "价格", JOptionPane.INFORMATION_MESSAGE);
-				
-			}
-			
-		});
-		jFrame.add(buttonx);
-
-		JButton button = new JButton("提交");
-		button.setBounds(200, 255, 180, 20);
-		button.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				Date.year=Integer.parseInt(text6.getText());
-				Date.month=Integer.parseInt(text7.getText());
-				Date.day=Integer.parseInt(text8.getText());
-				
-				String selected1=(String) boxtype.getSelectedItem();
-				String selected2=(String) sendtype.getSelectedItem();
-				BOXSTYPE boxstype=BOXSTYPE.Paper;
-				SENDSTYPE sendstype=SENDSTYPE.SLOW;
-				if(selected1.equals("纸箱")){
-					boxstype=BOXSTYPE.Paper;
-				}
-				if(selected1.equals("纸袋")){
-					boxstype=BOXSTYPE.Bag;
-				}
-				if(selected1.equals("木箱")){
-					boxstype=BOXSTYPE.Box;
-				}
-				if(selected2.equals("经济")){
-					sendstype=SENDSTYPE.SLOW;
-				}
-				if(selected2.equals("标准")){
-					sendstype=SENDSTYPE.NORMAL;
-				}
-				if(selected2.equals("特快")){
-					sendstype=SENDSTYPE.FAST;
-				}
-				
-				
-				
-				ResultMessage message=newSendingBills.newSendingBill(Date, boxstype, sendstype,text2.getText(),
-						text3.getText(), text5.getText(), Long.parseLong(text1.getText()), text4.getText(), 100);
-				
-					JOptionPane.showMessageDialog(null, "寄件单生成", "提示", JOptionPane.INFORMATION_MESSAGE);
-					
-					
-				
-			}
-			
-				
-
-				
-			
-		});
-		jFrame.add(button);
-
-		jFrame.setVisible(true);
 	}
-
 }

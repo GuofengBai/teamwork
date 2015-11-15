@@ -9,7 +9,7 @@ public class Client{
     {
     	RMIHelper.init();
     	NewSendingBillsUI newSendingBills=new NewSendingBillsUI();
-    	newSendingBills.run();
+
     	
     }
 }

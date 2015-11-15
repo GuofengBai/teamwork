@@ -1,7 +1,7 @@
 package org.businesslogic.managebl;
 
 import org.businesslogicservice.manageblservice.IncomeManagementService;
-import org.po.HallColletcionBills;
+import org.po.HallColletionBills;
 import org.po.myDate;
 
 public class IncomeManagementBLImpl implements IncomeManagementService {
@@ -11,7 +11,7 @@ public class IncomeManagementBLImpl implements IncomeManagementService {
 
 	}
 
-	public void incomeAdd(HallColletcionBills bill) {
+	public void incomeAdd(HallColletionBills bill) {
 		// TODO Auto-generated method stub
 
 	}

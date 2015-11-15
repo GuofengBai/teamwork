@@ -12,17 +12,20 @@ import org.po.SendingBills;
 import org.po.myDate;
 
 public class NewSendingBillsBL implements NewSendingBillsBLService{
-
-
-	public ResultMessage newSendingBill(myDate Date, BOXSTYPE boxstype,
-			SENDSTYPE sendstype, String startplace, String endplace,
-			String location, long GoodsNum, String name,double price) {
+	
+	
+	public ResultMessage addSendingBills(String SenderName, 
+			String ReceiverName, String SenderPhone, String 
+			ReceiverPhone, String SenderLocation, String 
+			ReceiverLocation, myDate date, String GoodsNum, 
+			BOXSTYPE boxtype, SENDSTYPE sendtype, String length, 
+			String width, String height, String weight) {
 		// TODO Auto-generated method stub
 		BillsDataService billsData=RMIHelper.getBillsDataService();
 		ResultMessage message=null;
 		try {
-			message=billsData.addBills(new SendingBills(Date, boxstype,sendstype, startplace, endplace,
-					location, GoodsNum, name, price));
+			message=billsData.addBills(new SendingBills(SenderName,ReceiverName,SenderPhone,ReceiverPhone,SenderLocation,
+					ReceiverLocation,date,GoodsNum,boxtype,sendtype,length,width,height,weight));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -30,5 +33,11 @@ public class NewSendingBillsBL implements NewSendingBillsBLService{
 		return message;
 	}
 
+	public long getPrice(String SenderLocation, String ReceiverLocation,
+			BOXSTYPE boxtype, SENDSTYPE sendtype, String length, String width,
+			String height, String weight) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }
