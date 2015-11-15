@@ -3,6 +3,7 @@ package org.businesslogic.billsbl;
 import java.rmi.RemoteException;
 
 import org.Client.RMIHelper;
+import org.businesslogic.organizationbl.ManagerSettingBL;
 import org.businesslogicservice.billsblservice.NewSendingBillsBLService;
 import org.dataservice.billsdataservice.BillsDataService;
 import org.po.BOXSTYPE;
@@ -42,7 +43,14 @@ public class NewSendingBillsBL implements NewSendingBillsBLService{
 		if(size>heavy){
 			heavy=size;
 		}
-		return 0;
-	}
-	
+		double canshu=1;
+		if(sendtype==SENDSTYPE.FAST){
+			canshu=25.0/23;
+		}else if(sendtype==SENDSTYPE.SLOW){
+			canshu=18.0/23;
+		}
+		ManagerSettingBL managerset = new ManagerSettingBL();
+		double price=managerset.getCitiesDistance(SenderLocation, ReceiverLocation)/1000*managerset.getStdFee()*canshu*heavy;
+		return (long)price;
+	}	
 }
