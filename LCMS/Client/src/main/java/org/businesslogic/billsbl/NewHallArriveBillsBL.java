@@ -1,10 +1,10 @@
 package org.businesslogic.billsbl;
 
 import org.businesslogicservice.billsblservice.NewHallArriveBillsBLService;
-import org.businesslogicservice.billsblservice.State;
-import org.businesslogicservice.billsblservice.theGoodState;
 import org.po.ResultMessage;
+import org.po.State;
 import org.po.myDate;
+import org.po.theGoodState;
 
 public class NewHallArriveBillsBL implements NewHallArriveBillsBLService{
 

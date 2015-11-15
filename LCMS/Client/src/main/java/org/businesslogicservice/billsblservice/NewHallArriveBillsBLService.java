@@ -1,7 +1,9 @@
 package org.businesslogicservice.billsblservice;
 
 import org.po.ResultMessage;
+import org.po.State;
 import org.po.myDate;
+import org.po.theGoodState;
 
 public interface NewHallArriveBillsBLService {
 	
