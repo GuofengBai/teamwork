@@ -1,13 +1,13 @@
 package org.vo;
 
-import org.po.STAFFROLE;
+import org.po.POSITION;
 
 public class UserVO {
 	
 	public String account;
 	private String password;
 	public StaffVO staff;                     //与此账号对应的员工
-	public STAFFROLE staffRole;               //职务
+	public POSITION staffRole;               //职务
 	
 	public UserVO(){
 		super();
@@ -37,11 +37,11 @@ public class UserVO {
 		return staff;
 	}
 	
-	public STAFFROLE getStaffRole(){
+	public POSITION getStaffRole(){
 		return staffRole;
 	}
 	
-	public boolean setStaffRole(STAFFROLE sr){
+	public boolean setStaffRole(POSITION sr){
 		staffRole=sr;
 		return true;
 	}

@@ -7,7 +7,7 @@ public class UserPO  implements Serializable{
 	public String account;
 	private String password;
 	public StaffPO staff;                     //与此账号对应的员工
-	public STAFFROLE staffRole;               //职务
+	public POSITION staffRole;               //职务
 	
 	public UserPO(){
 		super();
@@ -37,11 +37,11 @@ public class UserPO  implements Serializable{
 		return staff;
 	}
 	
-	public STAFFROLE getStaffRole(){
+	public POSITION getStaffRole(){
 		return staffRole;
 	}
 	
-	public boolean setStaffRole(STAFFROLE sr){
+	public boolean setStaffRole(POSITION sr){
 		staffRole=sr;
 		return true;
 	}

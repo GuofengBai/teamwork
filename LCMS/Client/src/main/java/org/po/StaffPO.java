@@ -6,7 +6,7 @@ public class StaffPO implements Serializable{
 	
 	
 	public UserPO user;
-	public STAFFROLE staffRole;
+	public POSITION staffRole;
 	public String name;
 	public String num;
 	public GENDER gender;
@@ -14,7 +14,7 @@ public class StaffPO implements Serializable{
 	public String location;
 	public String phone;
 	public String bankAccount;
-	public WorkSpace workSpace;
+	public WORKPLACE workSpace;
 	public Payment payment;
 	
 	public StaffPO(){
@@ -22,7 +22,7 @@ public class StaffPO implements Serializable{
 	}
 	
 	public StaffPO(String name,String num,GENDER gender,myDate birthday,String location,String phone,String bankAccount,
-			WorkSpace workSpace,Payment payment,String ac,String password,STAFFROLE staffRole){
+			WORKPLACE workSpace,Payment payment,String ac,String password,POSITION staffRole){
 		
 		this.name=name;
 		this.num=num;
