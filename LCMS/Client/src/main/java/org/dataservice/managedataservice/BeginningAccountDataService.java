@@ -3,10 +3,13 @@ package org.dataservice.managedataservice;
 import org.po.BeginAccountPO;
 
 public interface BeginningAccountDataService {
-	public BeginAccountPO getBeginningDS();
+	public void addBeginAccount (BeginAccountPO account);
 	
-	public void newBeginAccountDS(BeginAccountPO account);
+	public void Initialize(BeginAccountPO account);
 	
-	public void delBeginAccountDS(BeginAccountPO account);
+	public BeginAccountPO getBeginAccount();
+	
+	public void deleteAccount(BeginAccountPO account);
+	
 	
 }

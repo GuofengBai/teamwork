@@ -1,9 +1,9 @@
 package org.dataservice.managedataservice;
 
-import org.po.IncomeTableData;
+
 
 public interface IncomeTableDataService {
-	public IncomeTableData calculateDS();
+	public int getIncome();
 	
-	public void incomeTableOutputDS(IncomeTableData data);
+	public int getPayment ();
 }

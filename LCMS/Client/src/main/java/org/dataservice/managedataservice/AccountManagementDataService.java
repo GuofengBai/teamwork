@@ -3,11 +3,17 @@ package org.dataservice.managedataservice;
 import org.po.BankAccountPO;
 
 public interface AccountManagementDataService {
-	public void addBankAccountDS(String name);
+	public BankAccountPO[] getAccountList ();
 	
-	public void deleteBankAccountDS(String name);
+	public void addAccount(String name);
 	
-	public void getAllBankAccountDS();
+	public int calculate (String name);
 	
-	public BankAccountPO[] searchBankAccountDS (String name);
+	public void delAccount(String name);
+	
+	public void changeName(String name,String newname);
+	
+	public void changeBalance (String name,int change);
+	
+	public BankAccountPO[] search(String namepart);
 }
