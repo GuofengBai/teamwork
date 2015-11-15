@@ -37,6 +37,11 @@ public class NewSendingBillsBL implements NewSendingBillsBLService{
 			BOXSTYPE boxtype, SENDSTYPE sendtype, String length, String width,
 			String height, String weight) {
 		// TODO Auto-generated method stub
+		double size=Double.parseDouble(length)*Double.parseDouble(width)*Double.parseDouble(height)/5000;
+		double heavy=Double.parseDouble(weight);
+		if(size>heavy){
+			heavy=size;
+		}
 		return 0;
 	}
 	
