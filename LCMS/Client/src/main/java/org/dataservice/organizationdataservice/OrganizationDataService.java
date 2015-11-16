@@ -1,6 +1,7 @@
 package org.dataservice.organizationdataservice;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 import org.po.CarPO;
 import org.po.CityAndDistancePO;
@@ -91,13 +92,13 @@ public interface OrganizationDataService extends Remote {
 	 */
 	public CityAndDistancePO newCityDistance(String city,double[] distance);
 	
-	public StdFeePO ManagerSetStdFee(double stdfee);
+	public ResultMessage addStdFee(StdFeePO po);
 	
-	public VehFeePO ManagerSetVehFee(int veh, double fee);
+	public ResultMessage addVehFee(VehFeePO po);
 	
-	public double getCitiesDistance(String city1,String city2);
+	public CityAndDistancePO getCitiesDistance(String city1,String city2);
 	
-	public double getStdFee();
+	public StdFeePO getStdFee();
 	
-	public double getVehFee(int veh);
+	public VehFeePO getVehFee(int veh);
 }
