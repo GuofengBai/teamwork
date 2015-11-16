@@ -17,7 +17,7 @@ public class NewInstorageBillsBL implements NewInstorageBillsBLService {
 	public ResultMessage newInstorageBill(myDate date, String GoodsNum,
 			String Destination, String Location) {
 		// TODO Auto-generated method stub
-		BillsDataService bds=RMIHelper.getBillsDataService();
+		BillsDataService bds=RMIHelper.getDataFactory().getBillsData();
 		InstorageBills ib = new InstorageBills();
 		ib.setGoodsNum(GoodsNum);
 		ib.setDate(date);
