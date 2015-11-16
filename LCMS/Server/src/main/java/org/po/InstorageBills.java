@@ -4,14 +4,14 @@ import java.io.Serializable;
 
 
 public class InstorageBills extends BillsPO{
-	private long GoodsNum;
+	private String GoodsNum;
 	private myDate Date;
 	private String Place;
 	private String LocationNum;
-	public void setGoodsNum(long l){
+	public void setGoodsNum(String l){
 		this.GoodsNum=l;
 	}
-	public long getGoodsNum(){
+	public String getGoodsNum(){
 		return GoodsNum;
 	}
 	public void setDate(myDate t){

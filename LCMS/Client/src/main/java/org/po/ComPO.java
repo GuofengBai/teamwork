@@ -6,12 +6,12 @@ public class ComPO implements Serializable {
 	 * 序列化版本号
 	 */
 	private static final long serialVersionUID = 1L;
-	private long GoodsNum;// ���˵���
+	private String GoodsNum;// ���˵���
 	private myDate inDate;// �������
 	private String place;// Ŀ�ĵ�
 	private String LocationNum;// �����źżܺ�λ��
 
-	public ComPO(long GoodsNum, myDate inDate, String place, String LocationNum) {
+	public ComPO(String GoodsNum, myDate inDate, String place, String LocationNum) {
 		this.GoodsNum = GoodsNum;
 		this.inDate = inDate;
 		this.place = place;
@@ -22,7 +22,7 @@ public class ComPO implements Serializable {
 		super();
 	}
 
-	public long getGoodsNum() {
+	public String getGoodsNum() {
 		return GoodsNum;
 	}
 
@@ -44,7 +44,7 @@ public class ComPO implements Serializable {
 		// 库区调整使用
 	}
 
-	public void setGoodsNum(long GoodsNum) {
+	public void setGoodsNum(String GoodsNum) {
 		this.GoodsNum = GoodsNum;
 		// 不知道哪用，有可能用吧
 	}

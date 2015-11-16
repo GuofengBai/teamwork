@@ -19,5 +19,5 @@ public interface CommodityDataService extends Remote{
 	 * @param GoodsNum 托运单号
 	 * @return ResultMessage
 	 */
-	public ComPO findCom(long GoodsNum);
+	public ComPO findCom(String GoodsNum);
 }

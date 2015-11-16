@@ -24,9 +24,10 @@ public class CommodityData extends UnicastRemoteObject implements CommodityDataS
 		return null;
 	}
 
-	public ComPO findCom(long GoodsNum) {
+	public ComPO findCom(String GoodsNum) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 }
