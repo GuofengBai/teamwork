@@ -2,6 +2,7 @@ package org.businesslogic.billsbl;
 
 import java.rmi.RemoteException;
 
+import org.Client.MockManagerSettingBL;
 import org.Client.RMIHelper;
 import org.businesslogic.organizationbl.ManagerSettingBL;
 import org.businesslogicservice.billsblservice.NewSendingBillsBLService;
@@ -51,7 +52,7 @@ public class NewSendingBillsBL implements NewSendingBillsBLService{
 		}else if(sendtype==SENDSTYPE.SLOW){
 			canshu=18.0/23;
 		}
-		ManagerSettingBL managerset = new ManagerSettingBL();
+		MockManagerSettingBL managerset = new MockManagerSettingBL(900,1);
 		double price=managerset.getCitiesDistance(city1+"市", city2+"市")/1000*managerset.getStdFee()*canshu*heavy;
 		int baozhuang=1;
 		if(boxtype==BOXSTYPE.Paper){

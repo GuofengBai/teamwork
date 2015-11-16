@@ -11,6 +11,4 @@ public class UpdateExpressStateBL implements UpdateExpressStateBLSerivice{
 		return null;
 	}
 	
-	
-
 }

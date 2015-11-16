@@ -13,30 +13,35 @@ import org.dataservice.staffdataservice.StaffDataService;
 import org.dataservice.userdataservice.UserDataService;
 
 public class DataFactory extends UnicastRemoteObject implements DataFactoryService {
+	
+	CommodityDataService commodityData;
+	BillsDataService billsData;
+	UserDataService userData;
+	OrganizationDataService organizationData;
+	StaffDataService staffData;
+	ManageDataService manageData;
 
 	public DataFactory() throws RemoteException {
-		super();
 		// TODO Auto-generated constructor stub
+		super();
+		commodityData=null;
+		userData=null;
+		organizationData=null;
+		billsData=null;
+		staffData=null;
+		manageData=null;
+		
 	}
 
 	public CommodityDataService getCommodityData() {
-		// TODO Auto-generated method stub
-//		CommodityDataService data = new CommodityDataServiceTxtFileImpl();            //鍟嗗搧鏁版嵁鎿嶄綔txt瀹炵幇
-//		CommodityDataService data = new CommodityDataServiceSerializableFileImpl();   //鍟嗗搧鏁版嵁鎿嶄綔搴忓垪鍖栨枃浠跺疄鐜�
-//		CommodityDataService data = new CommodityDataServiceMysqlImpl();              //鍟嗗搧鏁版嵁鎿嶄綔Mysql瀹炵幇
-//		return data;
-		return null;
+        if(commodityData==null){
+        	commodityData=new CommodityData();
+        }
+		return commodityData;
 	}
 
 	public BillsDataService getBillsData() {
-		// TODO Auto-generated method stub
-		try {
-			BillsDataService data=new BillsDataServiceSerializableFileImpl();
-			return data;
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		return null;
 	}
 
@@ -47,17 +52,27 @@ public class DataFactory extends UnicastRemoteObject implements DataFactoryServi
 
 	public OrganizationDataService getOrganizationData() {
 		// TODO Auto-generated method stub
-		return null;
+		if(organizationData==null){
+			organizationData=new OrganizationData();
+		}
+		
+		return organizationData;
 	}
 
 	public StaffDataService getStaffData() {
 		// TODO Auto-generated method stub
-		return null;
+		if(staffData==null){
+			staffData=new StaffData();
+		}
+		return staffData;
 	}
 
 	public ManageDataService getManageData() {
 		// TODO Auto-generated method stub
-		return null;
+		if(manageData==null){
+			manageData=new ManageData();
+		}
+		return manageData;
 	}
 
 }

@@ -21,7 +21,7 @@ public interface ManagerSettingBLService {
 	 * @param fee 运费
 	 * @return 返回启动是否成功
 	 */
-	public boolean ManagerSetVehFee(int veh, int fee);
+	public boolean ManagerSetVehFee(int veh, double fee);
 	
 	public double getCitiesDistance(String city1,String city2);
 	

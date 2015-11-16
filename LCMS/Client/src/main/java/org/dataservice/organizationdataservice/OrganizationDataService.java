@@ -8,6 +8,8 @@ import org.po.HallPO;
 import org.po.CenterPO;
 import org.po.DriverPO;
 import org.po.ResultMessage;
+import org.po.StdFeePO;
+import org.po.VehFeePO;
 
 public interface OrganizationDataService extends Remote {
 	/**
@@ -88,4 +90,14 @@ public interface OrganizationDataService extends Remote {
 	 * @return DriverPO
 	 */
 	public CityAndDistancePO newCityDistance(String city,double[] distance);
+	
+	public StdFeePO ManagerSetStdFee(double stdfee);
+	
+	public VehFeePO ManagerSetVehFee(int veh, double fee);
+	
+	public double getCitiesDistance(String city1,String city2);
+	
+	public double getStdFee();
+	
+	public double getVehFee(int veh);
 }

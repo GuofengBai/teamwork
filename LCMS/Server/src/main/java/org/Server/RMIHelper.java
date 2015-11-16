@@ -17,9 +17,9 @@ public class RMIHelper {
         try {
             LocateRegistry.createRegistry(1099);
 
-            BillsDataService billsData = new BillsDataServiceSerializableFileImpl();
+            DataFactoryService data= new DataFactory();
 
-            Naming.rebind("billsData-service",billsData);
+            Naming.rebind("data-factory",data);
             
             System.out.println("server创建!");
 
