@@ -3,6 +3,7 @@ package org.dataservice.organizationdataservice;
 import java.rmi.Remote;
 
 import org.po.CarPO;
+import org.po.CityAndDistancePO;
 import org.po.HallPO;
 import org.po.CenterPO;
 import org.po.DriverPO;
@@ -18,7 +19,7 @@ public interface OrganizationDataService extends Remote {
 	 * 删除HallPO
 	 * @return ResultMessage
 	 */
-	public ResultMessage delHall(int HallNum);
+	public ResultMessage delHall(String HallNum);
 	/**
 	 * 添加CenterPO
 	 * @return ResultMessage
@@ -28,19 +29,19 @@ public interface OrganizationDataService extends Remote {
 	 * 删除CenterPO
 	 * @return ResultMessage
 	 */
-	public ResultMessage delCenter(int CenterNum);
+	public ResultMessage delCenter(String CenterNum);
 	/**
 	 * 查找HallPO
 	 * @param HallNum 营业厅编号
 	 * @return HallPO
 	 */
-	public HallPO findHall(int HallNum);
+	public HallPO findHall(String HallNum);
 	/**
 	 * 查找CenterPO
 	 * @param CenterNum 中转中心编号
 	 * @return CenterPO
 	 */
-	public CenterPO findCenter(int CenterNum);
+	public CenterPO findCenter(String CenterNum);
 	/**
 	 * 添加CarPO
 	 * @return ResultMessage
@@ -73,5 +74,19 @@ public interface OrganizationDataService extends Remote {
 	 * @return DriverPO
 	 */
 	public DriverPO findDriver(int driverNum);
+	/**
+	 * 改变两个城市之间的距离
+	 * @param city1 城市1的区号
+	 * @param city2 城市2的区号
+	 * @param distance 距离
+	 * @return CityAndDistancePO
+	 */
+	public CityAndDistancePO SetCitiesDistance(String city1,String city2,double distance);
+	/**
+	 * 设置新城市到其他城市的距离
+	 * @param DriverNum 中转中心编号
+	 * @return DriverPO
+	 */
+	public CityAndDistancePO newCityDistance(String city,double[] distance);
 
 }

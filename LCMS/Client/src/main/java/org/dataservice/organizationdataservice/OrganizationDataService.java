@@ -3,10 +3,13 @@ package org.dataservice.organizationdataservice;
 import java.rmi.Remote;
 
 import org.po.CarPO;
+import org.po.CityAndDistancePO;
 import org.po.HallPO;
 import org.po.CenterPO;
 import org.po.DriverPO;
 import org.po.ResultMessage;
+import org.po.StdFeePO;
+import org.po.VehFeePO;
 
 public interface OrganizationDataService extends Remote {
 	/**
@@ -73,5 +76,28 @@ public interface OrganizationDataService extends Remote {
 	 * @return DriverPO
 	 */
 	public DriverPO findDriver(int driverNum);
-
+	/**
+	 * 改变两个城市之间的距离
+	 * @param city1 城市1的区号
+	 * @param city2 城市2的区号
+	 * @param distance 距离
+	 * @return CityAndDistancePO
+	 */
+	public CityAndDistancePO SetCitiesDistance(String city1,String city2,double distance);
+	/**
+	 * 设置新城市到其他城市的距离
+	 * @param DriverNum 中转中心编号
+	 * @return DriverPO
+	 */
+	public CityAndDistancePO newCityDistance(String city,double[] distance);
+	
+	public StdFeePO ManagerSetStdFee(double stdfee);
+	
+	public VehFeePO ManagerSetVehFee(int veh, double fee);
+	
+	public double getCitiesDistance(String city1,String city2);
+	
+	public double getStdFee();
+	
+	public double getVehFee(int veh);
 }
