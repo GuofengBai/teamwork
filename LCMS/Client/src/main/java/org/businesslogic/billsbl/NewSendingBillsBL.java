@@ -23,7 +23,7 @@ public class NewSendingBillsBL implements NewSendingBillsBLService{
 			BOXSTYPE boxtype, SENDSTYPE sendtype, String length, 
 			String width, String height, String weight) {
 		// TODO Auto-generated method stub
-		BillsDataService billsData=RMIHelper..getDataFactory().getBillsData();
+		BillsDataService billsData=RMIHelper.getDataFactory().getBillsData();
 		ResultMessage message=null;
 		try {
 			message=billsData.addBills(new SendingBills(SenderName,ReceiverName,SenderPhone,ReceiverPhone,SenderLocation,
@@ -52,10 +52,8 @@ public class NewSendingBillsBL implements NewSendingBillsBLService{
 		}else if(sendtype==SENDSTYPE.SLOW){
 			canshu=18.0/23;
 		}
-		//测试用代码
-		//ManagerSettingBL managerset = new ManagerSettingBL();
-		MockManagerSettingBL managerset = new MockManagerSettingBL(900,1);
-		double price=managerset.getCitiesDistance(city1+"市", city2+"市")/1000*managerset.getStdFee()*canshu*heavy;
+		ManagerSettingBL managerset = new ManagerSettingBL();
+		double price=managerset.getCitiesDistance(city1[0]+"市", city2[0]+"市")/1000*managerset.getStdFee()*canshu*heavy;
 		int baozhuang=1;
 		if(boxtype==BOXSTYPE.Paper){
 			baozhuang=5;

@@ -1,5 +1,6 @@
 package org.businesslogicservice.organizationblservice;
 
+import org.po.ResultMessage;
 import org.po.StdFeePO;
 import org.po.VehFeePO;
 
@@ -25,7 +26,7 @@ public interface ManagerSettingBLService {
 	 *            标准运费
 	 * @return 返回启动是否成功
 	 */
-	public StdFeePO ManagerSetStdFee(double stdfee);
+	public ResultMessage ManagerSetStdFee(double stdfee);
 
 	public VehFeePO ManagerSetVehFee(int veh, double fee);
 

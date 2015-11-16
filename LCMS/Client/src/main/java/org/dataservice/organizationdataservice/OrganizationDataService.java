@@ -96,7 +96,7 @@ public interface OrganizationDataService extends Remote {
 	
 	public ResultMessage addVehFee(VehFeePO po);
 	
-	public CityAndDistancePO getCitiesDistance(String city1,String city2);
+	public double getCitiesDistance(String city1,String city2);
 	
 	public StdFeePO getStdFee();
 	

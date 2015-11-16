@@ -9,8 +9,8 @@ import java.rmi.RemoteException;
 import org.Client.RMIHelper;
 import org.businesslogicservice.organizationblservice.ManagerSettingBLService;
 import org.dataservice.organizationdataservice.OrganizationDataService;
+import org.po.CityAndDistancePO;
 import org.po.ResultMessage;
-import org.po.SendingBills;
 import org.po.StdFeePO;
 import org.po.VehFeePO;
 
@@ -20,12 +20,7 @@ public class ManagerSettingBL implements ManagerSettingBLService{
 	public ResultMessage ManagerSetStdFee(double stdfee) {
 		OrganizationDataService setStdFee = RMIHelper.getDataFactory().getOrganizationData();
 		ResultMessage end=null;
-		try {
-			end=setStdFee.addStdFee(new StdFeePO(stdfee));
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		end=setStdFee.addStdFee(new StdFeePO(stdfee));
 		return end;
 	}
 
@@ -47,8 +42,22 @@ public class ManagerSettingBL implements ManagerSettingBLService{
 	}
 
 	public double getCitiesDistance(String city1, String city2) {
-		// TODO Auto-generated method stub
-		return 900;
+		CityAndDistancePO po = new CityAndDistancePO();
+		String[] str={"北京市","上海市","广州市","南京市"};
+		double[][] dis={{30,1064.7,1888.8,900},{1064.7,30,1213,266},{1888.8,1213,30,1132},{900,266,1132,30}};
+		po.cities=str;
+		po.distance=dis;
+		int a=0,b=0;
+		for(int i=0;i<po.cities.length;i++){
+			if(po.cities[i].equals(city1))
+				a=i;
+			if(po.cities[i].equals(city2))
+				b=i;
+			System.out.println(a);
+			System.out.println(b);
+		}
+		System.out.println(po.distance[a][b]);
+		return po.distance[a][b];		
 	}
 
 	public double getStdFee() {

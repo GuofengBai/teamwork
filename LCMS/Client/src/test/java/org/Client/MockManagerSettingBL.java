@@ -2,6 +2,8 @@ package org.Client;
 
 import org.businesslogic.organizationbl.ManagerSettingBL;
 import org.businesslogicservice.organizationblservice.ManagerSettingBLService;
+import org.po.ResultMessage;
+import org.po.VehFeePO;
 
 
 
@@ -17,9 +19,9 @@ public class MockManagerSettingBL implements ManagerSettingBLService{
 		// TODO Auto-generated method stub
 		return false;
 	}
-	public boolean ManagerSetStdFee(double stdfee) {
+	public ResultMessage ManagerSetStdFee(double stdfee) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 	public double getCitiesDistance(String city1, String city2) {
 		// TODO Auto-generated method stub
@@ -33,9 +35,9 @@ public class MockManagerSettingBL implements ManagerSettingBLService{
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	public boolean ManagerSetVehFee(int veh, double fee) {
+	public VehFeePO ManagerSetVehFee(int veh, double fee) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 	
 }
