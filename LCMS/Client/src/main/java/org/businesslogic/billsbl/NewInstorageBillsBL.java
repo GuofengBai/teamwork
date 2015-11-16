@@ -2,6 +2,7 @@ package org.businesslogic.billsbl;
 
 import java.rmi.RemoteException;
 
+import org.Client.MockBillsDataService;
 import org.Client.MockCommodityInAndOutBL;
 import org.Client.RMIHelper;
 import org.businesslogic.commoditybl.CommodityInAndOutBL;
@@ -18,7 +19,8 @@ public class NewInstorageBillsBL implements NewInstorageBillsBLService {
 	public ResultMessage newInstorageBill(myDate date, String GoodsNum,
 			String Destination, String Location) {
 		// TODO Auto-generated method stub
-		BillsDataService bds=RMIHelper.getDataFactory().getBillsData();
+		//BillsDataService bds=RMIHelper.getDataFactory().getBillsData();
+		MockBillsDataService mbds=new MockBillsDataService();
 		InstorageBills ib = new InstorageBills();
 		ib.setGoodsNum(GoodsNum);
 		ib.setDate(date);
@@ -27,7 +29,7 @@ public class NewInstorageBillsBL implements NewInstorageBillsBLService {
 		ResultMessage rm =null;
 		String[] result=null;
 		try {
-			if(bds.addBills(ib).success){
+			if(mbds.addBills(ib).success){
 				return rm=new ResultMessage(true,result);
 			}
 		} catch (RemoteException e) {
