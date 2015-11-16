@@ -7,7 +7,7 @@ public interface AccountManagementDataService {
 	
 	public void addAccount(String name);
 	
-	public int calculate (String name);
+	public int getBalance(String name);
 	
 	public void delAccount(String name);
 	
