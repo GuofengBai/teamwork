@@ -14,7 +14,9 @@ public class getPriceTest {
 	public void test(){
 		NewSendingBillsBL bills = new NewSendingBillsBL();
 		long price=bills.getPrice("北京", "南京", BOXSTYPE.Bag, SENDSTYPE.NORMAL, 200+"", 50+"", 50+"", 3+"");
-		System.out.println(price);
 		assertEquals(91,price);
+		
+		price=bills.getPrice("广州", "上海", BOXSTYPE.Box, SENDSTYPE.FAST, 10+"", 10+"", 10+"", 10+"");
+		assertEquals(23,price);
 	}
 }

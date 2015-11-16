@@ -43,10 +43,12 @@ public class ManagerSettingBL implements ManagerSettingBLService{
 
 	public double getCitiesDistance(String city1, String city2) {
 		CityAndDistancePO po = new CityAndDistancePO();
+		/*测试代码*/		
 		String[] str={"北京市","上海市","广州市","南京市"};
 		double[][] dis={{30,1064.7,1888.8,900},{1064.7,30,1213,266},{1888.8,1213,30,1132},{900,266,1132,30}};
 		po.cities=str;
 		po.distance=dis;
+		/*测试代码*/
 		int a=0,b=0;
 		for(int i=0;i<po.cities.length;i++){
 			if(po.cities[i].equals(city1))
@@ -56,7 +58,6 @@ public class ManagerSettingBL implements ManagerSettingBLService{
 			System.out.println(a);
 			System.out.println(b);
 		}
-		System.out.println(po.distance[a][b]);
 		return po.distance[a][b];		
 	}
 
