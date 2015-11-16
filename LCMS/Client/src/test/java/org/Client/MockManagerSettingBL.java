@@ -21,10 +21,6 @@ public class MockManagerSettingBL implements ManagerSettingBLService{
 		// TODO Auto-generated method stub
 		return false;
 	}
-	public boolean ManagerSetVehFee(int veh, int fee) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 	public double getCitiesDistance(String city1, String city2) {
 		// TODO Auto-generated method stub
 		return distance;
@@ -36,6 +32,10 @@ public class MockManagerSettingBL implements ManagerSettingBLService{
 	public double getVehFee(int veh) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	public boolean ManagerSetVehFee(int veh, double fee) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

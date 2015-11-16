@@ -15,7 +15,7 @@ public class ManagerSettingBL implements ManagerSettingBLService{
 		return false;
 	}
 
-	public boolean ManagerSetVehFee(int veh, int fee) {
+	public boolean ManagerSetVehFee(int veh, double fee) {
 		// TODO Auto-generated method stub
 		return false;
 	}
