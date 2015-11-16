@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import org.dataservice.billsdataservice.BillsDataService;
 import org.po.BillsPO;
 import org.po.ResultMessage;
+import org.po.myDate;
 
 public class BillsDataServiceSerializableFileImpl extends UnicastRemoteObject implements BillsDataService{
 
@@ -57,19 +58,47 @@ public class BillsDataServiceSerializableFileImpl extends UnicastRemoteObject im
 		return null;
 	}
 
-	public ResultMessage findBills(int BillNum)throws RemoteException {
+	public BillsPO findBills(int BillNum) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public ResultMessage deleteBills(int BillNum)throws RemoteException {
+	public ResultMessage deleteBills(int BillNum) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public ResultMessage updateBills(int BillNum, BillsPO po)throws RemoteException{
+	public ResultMessage updateBills(int BillNum, BillsPO bill)
+			throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public ResultMessage examine(int BillNum) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public long getUnexaminedBillsNum() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public ArrayList<BillsPO> getUnexaminedBills() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<BillsPO> getByDate(myDate date1, myDate date2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ResultMessage save() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 }
