@@ -10,11 +10,11 @@ import org.dataservice.billsdataservice.BillsDataService;
 
 public class RMIHelper {
     private static final String IP = "localhost";//Can be read from config file
-    private static BillsDataService billsData;
+    private static DataFactoryService dataFactory;
 
     public static void init() {
         try {
-            billsData=  (BillsDataService) Naming.lookup("rmi://" + IP + "/billsData-service");
+            dataFactory=(DataFactoryService)Naming.lookup("rmi://" + IP + "/data-factory");
 
             System.out.println("client创建!");
         } catch (MalformedURLException e) {
@@ -26,7 +26,7 @@ public class RMIHelper {
         }
     }
 
-    public static BillsDataService getBillsDataService() {
+    public static DataFactoryService getDataFactory() {
         return billsData;
     }
 }
