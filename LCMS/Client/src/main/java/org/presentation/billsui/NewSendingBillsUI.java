@@ -7,12 +7,12 @@ import javax.swing.JButton;
 
 
 public class NewSendingBillsUI extends JPanel {
-	private JTextField RBL1;
-	private JTextField RBL2;
-	private JTextField RBL3;
-	private JTextField RBL4;
-	private JTextField RBL5;
-	private JTextField RBL6;
+	private JTextField sendername;
+	private JTextField senderphone;
+	private JTextField senderlocation;
+	private JTextField receivername;
+	private JTextField receiverphone;
+	private JTextField receicerlocation;
 	private JTextField newyear;
 	private JTextField newmonth;
 	private JTextField newday;
@@ -54,35 +54,35 @@ public class NewSendingBillsUI extends JPanel {
 		label_5.setBounds(165, 60, 65, 15);
 		add(label_5);
 		
-		RBL1 = new JTextField();
-		RBL1.setBounds(85, 7, 70, 21);
-		add(RBL1);
-		RBL1.setColumns(10);
+		sendername = new JTextField();
+		sendername.setBounds(85, 7, 70, 21);
+		add(sendername);
+		sendername.setColumns(10);
 		
-		RBL2 = new JTextField();
-		RBL2.setColumns(10);
-		RBL2.setBounds(85, 32, 70, 21);
-		add(RBL2);
+		senderphone = new JTextField();
+		senderphone.setColumns(10);
+		senderphone.setBounds(85, 32, 70, 21);
+		add(senderphone);
 		
-		RBL3 = new JTextField();
-		RBL3.setColumns(10);
-		RBL3.setBounds(85, 57, 70, 21);
-		add(RBL3);
+		senderlocation = new JTextField();
+		senderlocation.setColumns(10);
+		senderlocation.setBounds(85, 57, 70, 21);
+		add(senderlocation);
 		
-		RBL4 = new JTextField();
-		RBL4.setColumns(10);
-		RBL4.setBounds(240, 7, 70, 21);
-		add(RBL4);
+		receivername = new JTextField();
+		receivername.setColumns(10);
+		receivername.setBounds(240, 7, 70, 21);
+		add(receivername);
 		
-		RBL5 = new JTextField();
-		RBL5.setColumns(10);
-		RBL5.setBounds(240, 32, 70, 21);
-		add(RBL5);
+		receiverphone = new JTextField();
+		receiverphone.setColumns(10);
+		receiverphone.setBounds(240, 32, 70, 21);
+		add(receiverphone);
 		
-		RBL6 = new JTextField();
-		RBL6.setColumns(10);
-		RBL6.setBounds(240, 57, 70, 21);
-		add(RBL6);
+		receicerlocation = new JTextField();
+		receicerlocation.setColumns(10);
+		receicerlocation.setBounds(240, 57, 70, 21);
+		add(receicerlocation);
 		
 		JLabel label_6 = new JLabel("\u5BC4\u4EF6\u65E5\u671F");
 		label_6.setBounds(10, 85, 54, 15);
@@ -178,13 +178,13 @@ public class NewSendingBillsUI extends JPanel {
 		lblKg.setBounds(145, 210, 54, 15);
 		add(lblKg);
 		
-		JButton button = new JButton("\u8BA1\u7B97\u4EF7\u683C");
-		button.setBounds(10, 235, 93, 23);
-		add(button);
+		JButton getprice = new JButton("\u8BA1\u7B97\u4EF7\u683C");
+		getprice.setBounds(10, 235, 93, 23);
+		add(getprice);
 		
-		JButton button_1 = new JButton("\u63D0\u4EA4");
-		button_1.setBounds(115, 264, 93, 23);
-		add(button_1);
+		JButton submit = new JButton("\u63D0\u4EA4");
+		submit.setBounds(115, 264, 93, 23);
+		add(submit);
 		
 		JLabel presentvalue = new JLabel("");
 		presentvalue.setBounds(122, 240, 182, 15);

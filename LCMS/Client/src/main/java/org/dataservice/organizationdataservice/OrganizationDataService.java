@@ -88,4 +88,5 @@ public interface OrganizationDataService extends Remote {
 	 * @return DriverPO
 	 */
 	public CityAndDistancePO newCityDistance(String city,double[] distance);
+	
 }
