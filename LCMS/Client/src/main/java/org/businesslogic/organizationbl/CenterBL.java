@@ -11,7 +11,7 @@ public class CenterBL implements CenterBLService{
 		return null;
 	}
 
-	public boolean ManagerSetNewCitiesDistance(double[] distance) {
+	public boolean ManagerSetNewCitiesDistance(String city,double[] distance) {
 		// TODO Auto-generated method stub
 		return false;
 	}

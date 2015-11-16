@@ -17,7 +17,7 @@ public interface CenterBLService {
 	 * @param distance 新城市到其他
 	 * @return 返回启动是否成功
 	 */
-	public boolean ManagerSetNewCitiesDistance(double[] distance);
+	public boolean ManagerSetNewCitiesDistance(String city,double[] distance);
 	/**
 	 * 启动删除中转中心
 	 * @param city 中转中心编号
