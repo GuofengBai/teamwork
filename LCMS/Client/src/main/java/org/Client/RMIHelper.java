@@ -28,11 +28,7 @@ public class RMIHelper {
     }
 
     public static DataFactoryService getDataFactory() {
-        return billsData;
+        return dataFactory;
     }
 
-	public static CommodityDataService getCommodityDataService() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
