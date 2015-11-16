@@ -10,5 +10,6 @@ public interface NewInstorageBillsBLService {
 
 	public ComPO addGoods(String GoodsNum,myDate inDate, String place, String LocationNum);
 	
-	public ComPO deleteGoods(String GoodsNum);
+	public ComPO deleteGoods(String GoodsNum, myDate inDate, String place,
+			String LocationNum);
 }

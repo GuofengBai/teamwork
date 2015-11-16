@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
+import org.Client.RMIHelper;
 import org.businesslogicservice.organizationblservice.ManagerSettingBLService;
 import org.dataservice.organizationdataservice.OrganizationDataService;
 import org.po.ResultMessage;

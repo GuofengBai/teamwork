@@ -2,6 +2,7 @@ package org.businesslogic.billsbl;
 
 import java.rmi.RemoteException;
 
+import org.Client.MockCommodityInAndOutBL;
 import org.Client.RMIHelper;
 import org.businesslogic.commoditybl.CommodityInAndOutBL;
 import org.businesslogicservice.billsblservice.NewInstorageBillsBLService;
@@ -39,11 +40,24 @@ public class NewInstorageBillsBL implements NewInstorageBillsBLService {
 	public ComPO addGoods(String GoodsNum, myDate inDate, String place,
 			String LocationNum) {
 		// TODO Auto-generated method stub
+		MockCommodityInAndOutBL mciaobl=new MockCommodityInAndOutBL();
+		CommodityInAndOutBL ciaobl=new CommodityInAndOutBL();
+		ComPO po=new ComPO(GoodsNum,inDate,place,LocationNum);
+		if(mciaobl.Commodityin(po)){
+			return po;
+		}
 		return null;
 	}
 
-	public ComPO deleteGoods(String GoodsNum) {
+	public ComPO deleteGoods(String GoodsNum, myDate inDate, String place,
+			String LocationNum) {
 		// TODO Auto-generated method stub
+		MockCommodityInAndOutBL mciaobl=new MockCommodityInAndOutBL();
+		CommodityInAndOutBL ciaobl=new CommodityInAndOutBL();
+		ComPO po=new ComPO(GoodsNum,inDate,place,LocationNum);
+		if(mciaobl.Commodityout(po)){
+			return po;
+		}
 		return null;
 	}
 
