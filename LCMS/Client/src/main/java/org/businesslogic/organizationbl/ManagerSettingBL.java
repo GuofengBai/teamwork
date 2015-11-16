@@ -34,12 +34,12 @@ public class ManagerSettingBL implements ManagerSettingBLService{
 
 	public double getCitiesDistance(String city1, String city2) {
 		// TODO Auto-generated method stub
-		return 0;
+		return 900;
 	}
 
 	public double getStdFee() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
 
 	public double getVehFee(int veh) {

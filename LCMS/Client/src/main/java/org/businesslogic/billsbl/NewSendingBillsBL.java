@@ -38,6 +38,8 @@ public class NewSendingBillsBL implements NewSendingBillsBLService{
 			BOXSTYPE boxtype, SENDSTYPE sendtype, String length, String width,
 			String height, String weight) {
 		// TODO Auto-generated method stub
+		String[] city1 = SenderLocation.split("市");
+		String[] city2 = ReceiverLocation.split("市");
 		double size=Double.parseDouble(length)*Double.parseDouble(width)*Double.parseDouble(height)/5000;
 		double heavy=Double.parseDouble(weight);
 		if(size>heavy){
@@ -50,7 +52,14 @@ public class NewSendingBillsBL implements NewSendingBillsBLService{
 			canshu=18.0/23;
 		}
 		ManagerSettingBL managerset = new ManagerSettingBL();
-		double price=managerset.getCitiesDistance(SenderLocation, ReceiverLocation)/1000*managerset.getStdFee()*canshu*heavy;
+		double price=managerset.getCitiesDistance(city1+"市", city2+"市")/1000*managerset.getStdFee()*canshu*heavy;
+		int baozhuang=1;
+		if(boxtype==BOXSTYPE.Paper){
+			baozhuang=5;
+		}else if(boxtype==BOXSTYPE.Box){
+			baozhuang=10;
+		}
+		price=price+baozhuang;		
 		return (long)price;
 	}	
 }
