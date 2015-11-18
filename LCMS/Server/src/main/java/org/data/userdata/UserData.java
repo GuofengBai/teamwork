@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 import org.dataservice.userdataservice.UserDataService;
 import org.po.ResultMessage;
+import org.po.UserPO;
 
 public class UserData extends UnicastRemoteObject implements UserDataService{
 
@@ -13,7 +14,7 @@ public class UserData extends UnicastRemoteObject implements UserDataService{
 		// TODO Auto-generated constructor stub
 	}
 
-	public ResultMessage login(long id, String password) {
+	public ResultMessage insert(UserPO po) {
 		// TODO Auto-generated method stub
 		return null;
 	}
