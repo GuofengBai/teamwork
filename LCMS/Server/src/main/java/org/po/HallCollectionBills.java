@@ -3,7 +3,12 @@ package org.po;
 import java.io.Serializable;
 
 
+<<<<<<< HEAD:LCMS/Server/src/main/java/org/po/HallColletcionBills.java
 public class HallColletcionBills extends BillsPO{
+=======
+public class HallCollectionBills extends BillsPO{
+	private myDate Date;
+>>>>>>> origin/master:LCMS/Server/src/main/java/org/po/HallCollectionBills.java
 	private int Cash;
 	private String name;
 	private String[] GoodsNum;
