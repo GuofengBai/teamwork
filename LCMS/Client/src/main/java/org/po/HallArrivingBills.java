@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 
 public class HallArrivingBills extends BillsPO{
-	private myDate Date;
-	private String FreightNum;
 	private String StartPlace;
 	private String State;
 	public void setDate(myDate t){
@@ -15,10 +13,10 @@ public class HallArrivingBills extends BillsPO{
 		return Date;
 	}
 	public void setFreightNum(String s){
-		this.FreightNum=s;
+		this.idNum=s;
 	}
 	public String getFreightNum(){
-		return FreightNum;
+		return this.idNum;
 	}
 	public void setStartPlace(String s){
 		this.StartPlace=s;

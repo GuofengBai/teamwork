@@ -4,19 +4,18 @@ import java.io.Serializable;
 
 
 public class CenterFreightBills extends BillsPO{
-	private String BillNum;
 	private myDate Date;
 	private String ContainerNum;
 	private String Means;
 	private String Name;
 	private String StartPlace;
 	private String EndPlace;
-	private long[] GoodsNum;	
+	private String[] GoodsNum;	
 	public void setBillNum(String s){
-		this.BillNum=s;
+		this.idNum=s;
 	}
 	public String getBillNum(){
-		return BillNum;
+		return this.idNum;
 	}
 	public void setDate(myDate t){
 		this.Date=t;
@@ -54,10 +53,10 @@ public class CenterFreightBills extends BillsPO{
 	public String getEndPlace(){
 		return EndPlace;
 	}
-	public void setGoodsNum(long[] l){
+	public void setGoodsNum(String[] l){
 		this.GoodsNum=l;
 	}
-	public long[] getGoodsNum(){
-		return GoodsNum;
+	public String[] getGoodsNum(){
+		return this.GoodsNum;
 	}
 }

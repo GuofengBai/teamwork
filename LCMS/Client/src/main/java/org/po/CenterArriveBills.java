@@ -4,15 +4,13 @@ import java.io.Serializable;
 
 
 public class CenterArriveBills extends BillsPO{
-	private String BillNum;
 	private String CenterNum;
-	private myDate Date;
 	private String State;
 	public void setBillNum(String s){
-		this.BillNum=s;
+		this.idNum=s;
 	}
 	public String getBillNum(){
-		return BillNum;
+		return idNum;
 	}
 	public void setCenterNum(String s){
 		this.CenterNum=s;

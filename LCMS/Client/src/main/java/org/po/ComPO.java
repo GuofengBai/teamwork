@@ -10,12 +10,14 @@ public class ComPO implements Serializable {
 	private myDate inDate;// �������
 	private String place;// Ŀ�ĵ�
 	private String LocationNum;// �����źżܺ�λ��
+	private String area;
 
-	public ComPO(String GoodsNum, myDate inDate, String place, String LocationNum) {
+	public ComPO(String GoodsNum, myDate inDate, String place, String LocationNum,String area) {
 		this.GoodsNum = GoodsNum;
 		this.inDate = inDate;
 		this.place = place;
 		this.LocationNum = LocationNum;
+		this.area=area;
 	}
 
 	public ComPO() {
@@ -48,7 +50,8 @@ public class ComPO implements Serializable {
 		this.GoodsNum = GoodsNum;
 		// 不知道哪用，有可能用吧
 	}
-	public void del(){
-		
+	
+	public String getArea(){
+		return this.area;
 	}
 }

@@ -4,13 +4,11 @@ import java.io.Serializable;
 
 
 public class SendingBills extends BillsPO{
-	private myDate Date;
 	private BOXSTYPE boxstype;
 	private SENDSTYPE sendstype;
 	private String startplace;
 	private String endplace;
 	private String location;
-	private long GoodsNum;
 	private String name;
 	public EXPRESSSTATE expressState;
 	public double price;
@@ -21,14 +19,14 @@ public class SendingBills extends BillsPO{
 	
 	public SendingBills(myDate Date, BOXSTYPE boxstype,
 			SENDSTYPE sendstype, String startplace, String endplace,
-			String location, long GoodsNum, String name,double price){
+			String location,String idNum, String name,double price){
 		this.Date=Date;
 		this.boxstype=boxstype;
 		this.sendstype=sendstype;
 		this.startplace=startplace;
 		this.endplace=endplace;
 		this.location=location;
-		this.GoodsNum=GoodsNum;
+		this.idNum=idNum;
 		this.name=name;
 		this.expressState=EXPRESSSTATE.LOCALHALL;
 		this.price=price;
@@ -53,11 +51,11 @@ public class SendingBills extends BillsPO{
 	public BOXSTYPE getboxstype(){
 		return boxstype;
 	}
-	public void setGoodsNum(long l){
-		this.GoodsNum=l;
+	public void setGoodsNum(String idNum){
+		this.idNum=idNum;
 	}
-	public long getGoodsNum(){
-		return GoodsNum;
+	public String getGoodsNum(){
+		return this.idNum;
 	}
 	public void setname(String s){
 		this.name=s;

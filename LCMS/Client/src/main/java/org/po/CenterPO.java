@@ -18,8 +18,8 @@ public class CenterPO implements Serializable {
 
 	public String getCity() {
 		/*
-		 * if(city==025) return "南京"; else if (city==010) return "北京"; else
-		 * if(city==021) return "上海"; else if(city==020) return "广州"; else return
+		 * sif(city==25) return "南京"; else if (city==10) return "北京"; else
+		 * if(city==21) return "上海"; else if(city==20) return "广州"; else return
 		 * "新城市";
 		 */
 		return city;

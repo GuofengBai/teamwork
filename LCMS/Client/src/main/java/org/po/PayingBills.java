@@ -4,10 +4,8 @@ import java.io.Serializable;
 
 
 public class PayingBills extends BillsPO{
-	private myDate Date;
 	private long Cash;
 	private String name;
-	private String PayNum;
 	private String[] Item;
 	public void setDate(myDate t){
 		this.Date=t;
@@ -28,10 +26,10 @@ public class PayingBills extends BillsPO{
 		return name;
 	}
 	public void setPayNum(String s){
-		this.PayNum=s;
+		this.idNum=s;
 	}
 	public String getPayNum(){
-		return PayNum;
+		return this.idNum;
 	}
 	public void setItem(String[] s){
 		this.Item=s;

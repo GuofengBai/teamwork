@@ -4,13 +4,22 @@ import java.io.Serializable;
 
 
 public class HallLoadingBills extends BillsPO{
-	private myDate Date;
 	private String HallNum;
-	private String TravelNum;
 	private String TrafficNum;
 	private String EndPlace;
 	private String name;
-	private long[] GoodsNum;
+	private String[] GoodsNum;
+	
+	public HallLoadingBills(myDate t,String id,String hn,String tn,String ep,String name,String[] gs){
+		this.Date=t;
+		this.idNum=id;
+		this.HallNum=hn;
+		this.TrafficNum=tn;
+		this.EndPlace=ep;
+		this.name=name;
+		this.GoodsNum=gs;
+	}
+	
 	public void setDate(myDate t){
 		this.Date=t;
 	}
@@ -24,10 +33,10 @@ public class HallLoadingBills extends BillsPO{
 		return HallNum;
 	}
 	public void setTravelNum(String s){
-		this.TravelNum=s;
+		this.idNum=s;
 	}
 	public String getTravelNum(){
-		return TravelNum;
+		return this.idNum;
 	}
 	public void setTrafficNum(String s){
 		this.TrafficNum=s;
@@ -47,10 +56,10 @@ public class HallLoadingBills extends BillsPO{
 	public String getname(){
 		return name;
 	}
-	public void setGoodsNum(long[] l){
+	public void setGoodsNum(String[] l){
 		this.GoodsNum=l;
 	}
-	public long[] getGoodsNum(){
+	public String[] getGoodsNum(){
 		return GoodsNum;
 	}
 

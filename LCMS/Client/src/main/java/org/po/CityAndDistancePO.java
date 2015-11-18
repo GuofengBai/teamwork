@@ -16,13 +16,13 @@ public class CityAndDistancePO implements Serializable{
 	
 	public double[][] distance;
 	
-	/*public CityAndDistancePO(){
+	public CityAndDistancePO(){
 		super();
 		String fileName="SerializableData/CityAndDistance.file";
 		try {
 			FileInputStream fis = new FileInputStream(fileName);
 	        BufferedInputStream bis = new BufferedInputStream(fis);  
-	        ObjectInputStream ois = new ObjectInputStream(bis); 
+	        ObjectInputStream ois = new ObjectInputStream(bis);  
 	        cities= (String[]) ois.readObject();
 	        distance=(double[][]) ois.readObject();
 	        ois.close();
@@ -55,6 +55,6 @@ public class CityAndDistancePO implements Serializable{
 			e.printStackTrace();
 		}
 		return false;
-	}*/
+	}
 
 }

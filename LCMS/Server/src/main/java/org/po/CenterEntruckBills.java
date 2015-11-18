@@ -4,17 +4,16 @@ import java.io.Serializable;
 
 
 public class CenterEntruckBills extends BillsPO{
-	private String TravelNum;
 	private myDate Date;
 	private String TrafficNum;
 	private String HallNum;
 	private String Name;
-	private long[] GoodsNum;
+	private String[] GoodsNum;
 	public void setTravelNum(String s){
-		this.TravelNum=s;
+		this.idNum=s;
 	}
 	public String getTravelNum(){
-		return TravelNum;
+		return this.idNum;
 	}
 	public void setDate(myDate t){
 		this.Date=t;
@@ -40,10 +39,10 @@ public class CenterEntruckBills extends BillsPO{
 	public String getName(){
 		return Name;
 	}
-	public void setGoodsNum(long[] l){
+	public void setGoodsNum(String[] l){
 		this.GoodsNum=l;
 	}
-	public long[] getGoodsNum(){
+	public String[] getGoodsNum(){
 		return GoodsNum;
 	}
 }
