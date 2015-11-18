@@ -3,11 +3,18 @@ package org.po;
 import java.io.Serializable;
 
 
-public class HallCollectionBills extends BillsPO{
-	private myDate Date;
+public class HallColletcionBills extends BillsPO{
 	private int Cash;
 	private String name;
-	private long[] GoodsNum;
+	private String[] GoodsNum;
+	
+	public HallColletcionBills(myDate t,String s,int c,String name,String[] g){
+		this.Date=t;
+		this.idNum=s;
+		Cash=c;
+		this.name=name;
+		GoodsNum=g;
+	}
 	public void setDate(myDate t){
 		this.Date=t;
 	}
@@ -26,10 +33,10 @@ public class HallCollectionBills extends BillsPO{
 	public String getname(){
 		return name;
 	}
-	public void setGoodsNum(long[] l){
+	public void setGoodsNum(String[] l){
 		this.GoodsNum=l;
 	}
-	public long[] getGoodsNum(){
+	public String[] getGoodsNum(){
 		return GoodsNum;
 	}
 
