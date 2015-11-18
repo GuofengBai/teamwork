@@ -159,5 +159,7 @@ public class CommodityData extends UnicastRemoteObject implements
 
 		return null;
 	}
-
+	//public ArrayList<ComPO> (myDate start,myDate end){
+	//	
+	//}
 }
