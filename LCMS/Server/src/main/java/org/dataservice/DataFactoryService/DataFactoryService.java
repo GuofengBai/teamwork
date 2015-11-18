@@ -13,7 +13,7 @@ public interface DataFactoryService extends Remote{
 
 	public CommodityDataService getCommodityData();
 	
-	public BillsDataService getBillsData();
+	public BillsDataFactoryService getBillsDataFactory();
 	
 	public UserDataService getUserData();
 	

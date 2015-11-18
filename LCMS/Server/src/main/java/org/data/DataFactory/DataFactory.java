@@ -3,6 +3,11 @@ package org.data.DataFactory;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import org.data.commoditydata.CommodityData;
+import org.data.managedata.ManageData;
+import org.data.organizationdata.OrganizationData;
+import org.data.staffdata.StaffData;
+import org.dataservice.DataFactoryService.BillsDataFactoryService;
 import org.dataservice.DataFactoryService.DataFactoryService;
 import org.dataservice.Impl.BillsDataServiceSerializableFileImpl;
 import org.dataservice.billsdataservice.BillsDataService;
@@ -15,7 +20,7 @@ import org.dataservice.userdataservice.UserDataService;
 public class DataFactory extends UnicastRemoteObject implements DataFactoryService {
 	
 	CommodityDataService commodityData;
-	BillsDataService billsData;
+	BillsDataFactoryService billsDataFactory;
 	UserDataService userData;
 	OrganizationDataService organizationData;
 	StaffDataService staffData;
@@ -27,7 +32,7 @@ public class DataFactory extends UnicastRemoteObject implements DataFactoryServi
 		commodityData=null;
 		userData=null;
 		organizationData=null;
-		billsData=null;
+		billsDataFactory=null;
 		staffData=null;
 		manageData=null;
 		
@@ -35,14 +40,14 @@ public class DataFactory extends UnicastRemoteObject implements DataFactoryServi
 
 	public CommodityDataService getCommodityData() {
         if(commodityData==null){
-        	commodityData=new CommodityData();
+        	try {
+				commodityData=new CommodityData();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
 		return commodityData;
-	}
-
-	public BillsDataService getBillsData() {
-		
-		return null;
 	}
 
 	public UserDataService getUserData() {
@@ -53,7 +58,12 @@ public class DataFactory extends UnicastRemoteObject implements DataFactoryServi
 	public OrganizationDataService getOrganizationData() {
 		// TODO Auto-generated method stub
 		if(organizationData==null){
-			organizationData=new OrganizationData();
+			try {
+				organizationData=new OrganizationData();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		return organizationData;
@@ -62,7 +72,12 @@ public class DataFactory extends UnicastRemoteObject implements DataFactoryServi
 	public StaffDataService getStaffData() {
 		// TODO Auto-generated method stub
 		if(staffData==null){
-			staffData=new StaffData();
+			try {
+				staffData=new StaffData();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return staffData;
 	}
@@ -70,9 +85,27 @@ public class DataFactory extends UnicastRemoteObject implements DataFactoryServi
 	public ManageDataService getManageData() {
 		// TODO Auto-generated method stub
 		if(manageData==null){
-			manageData=new ManageData();
+			try {
+				manageData=new ManageData();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return manageData;
+	}
+
+	public BillsDataFactoryService getBillsDataFactory() {
+		// TODO Auto-generated method stub
+		if(billsDataFactory==null){
+			try {
+				billsDataFactory=new BillsDataFactory();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return billsDataFactory;
 	}
 
 }
