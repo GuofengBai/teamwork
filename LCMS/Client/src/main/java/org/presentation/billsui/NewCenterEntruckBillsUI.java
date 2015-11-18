@@ -1,4 +1,8 @@
 package org.presentation.billsui;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -6,9 +10,13 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JComboBox;
+
+import org.vo.StateListVO;
 
 
 public class NewCenterEntruckBillsUI extends JPanel {
+	public ArrayList<StateListVO> list = new ArrayList<StateListVO>();
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -18,8 +26,8 @@ public class NewCenterEntruckBillsUI extends JPanel {
 	private JTextField textField_6;
 	private JTextField textField_7;
 	private JButton button;
-	private JButton button_1;
-	private JTextField textField_8;
+	private JButton addState;
+	private JTextField goodNum;
 	private JLabel label_7;
 	private JScrollPane scrollPane;
 	private JTable table;
@@ -104,17 +112,34 @@ public class NewCenterEntruckBillsUI extends JPanel {
 		add(label_6);
 		
 		button = new JButton("\u5220\u9664");
-		button.setBounds(252, 141, 56, 23);
+		button.setBounds(146, 178, 125, 23);
 		add(button);
 		
-		button_1 = new JButton("\u6DFB\u52A0");
-		button_1.setBounds(191, 141, 56, 23);
-		add(button_1);
+		final JComboBox goodState = new JComboBox();
+		goodState.setBounds(205, 142, 66, 21);
+		add(goodState);
+		goodState.addItem("完整");
+		goodState.addItem("损坏");
+		goodState.addItem("丢失");
 		
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
-		textField_8.setBounds(68, 142, 120, 21);
-		add(textField_8);
+		
+		addState = new JButton("\u6DFB\u52A0");
+		addState.setBounds(10, 178, 119, 23);
+		add(addState);
+		addState.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				StateListVO vo = new StateListVO(goodNum.getText(),goodState.getSelectedItem().toString());
+				list.add(vo);
+			}
+			
+		});
+		
+		goodNum = new JTextField();
+		goodNum.setColumns(10);
+		goodNum.setBounds(68, 142, 120, 21);
+		add(goodNum);
 		
 		label_7 = new JLabel("\u6258\u8FD0\u5355\u53F7");
 		label_7.setBounds(10, 145, 54, 15);
@@ -139,14 +164,15 @@ public class NewCenterEntruckBillsUI extends JPanel {
 
 		
 		scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(10, 174, 267, 78);
+		scrollPane.setBounds(10, 211, 267, 78);
 		add(scrollPane);
 		
 		button_2 = new JButton("\u63D0\u4EA4");
-		button_2.setBounds(107, 267, 93, 23);
+		button_2.setBounds(107, 299, 93, 23);
 		add(button_2);
 		
 		
+		
+		
 	}
-
 }

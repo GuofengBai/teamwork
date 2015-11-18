@@ -1,8 +1,14 @@
 package org.businesslogic.billsbl;
 
+import java.rmi.RemoteException;
+
+import org.Client.RMIHelper;
 import org.businesslogicservice.billsblservice.NewCenterArriveBillsBLService;
 import org.businesslogicservice.billsblservice.NewCenterEntruckBillsBLService;
+import org.dataservice.billsdataservice.BillsDataService;
+import org.po.CenterEntruckBills;
 import org.po.ResultMessage;
+import org.po.SendingBills;
 import org.po.myDate;
 
 public class NewCenterEntruckBillsBL implements NewCenterEntruckBillsBLService{
@@ -11,7 +17,15 @@ public class NewCenterEntruckBillsBL implements NewCenterEntruckBillsBLService{
 			String HallNum, String Vehicle, String DriverName,
 			String ScouterName) {
 		// TODO Auto-generated method stub
-		return null;
+		BillsDataService billsData=RMIHelper.getDataFactory().getBillsData();
+		ResultMessage message=null;
+		try {
+			message=billsData.addBills(new CenterEntruckBills());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return message;
 	}
 
 	public String addGoods(String GoodsNum) {

@@ -1,9 +1,17 @@
 package org.presentation.billsui;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+
+import org.businesslogic.billsbl.NewSendingBillsBL;
+import org.po.BOXSTYPE;
+import org.po.SENDSTYPE;
+import org.po.myDate;
 
 
 public class NewSendingBillsUI extends JPanel {
@@ -12,7 +20,7 @@ public class NewSendingBillsUI extends JPanel {
 	private JTextField senderlocation;
 	private JTextField receivername;
 	private JTextField receiverphone;
-	private JTextField receicerlocation;
+	private JTextField receiverlocation;
 	private JTextField newyear;
 	private JTextField newmonth;
 	private JTextField newday;
@@ -23,6 +31,7 @@ public class NewSendingBillsUI extends JPanel {
 	private JTextField width;
 	private JTextField height;
 	private JTextField weight;
+	private JTextField presentvalue;
 
 	/**
 	 * Create the panel.
@@ -79,10 +88,10 @@ public class NewSendingBillsUI extends JPanel {
 		receiverphone.setBounds(240, 32, 70, 21);
 		add(receiverphone);
 		
-		receicerlocation = new JTextField();
-		receicerlocation.setColumns(10);
-		receicerlocation.setBounds(240, 57, 70, 21);
-		add(receicerlocation);
+		receiverlocation = new JTextField();
+		receiverlocation.setColumns(10);
+		receiverlocation.setBounds(240, 57, 70, 21);
+		add(receiverlocation);
 		
 		JLabel label_6 = new JLabel("\u5BC4\u4EF6\u65E5\u671F");
 		label_6.setBounds(10, 85, 54, 15);
@@ -116,7 +125,7 @@ public class NewSendingBillsUI extends JPanel {
 		label_8.setBounds(10, 135, 54, 15);
 		add(label_8);
 		
-		JComboBox sendtype = new JComboBox();
+		final JComboBox sendtype = new JComboBox();
 		sendtype.setBounds(85, 132, 70, 21);
 		add(sendtype);
 		sendtype.addItem("经济");
@@ -127,15 +136,15 @@ public class NewSendingBillsUI extends JPanel {
 		label_9.setBounds(165, 135, 54, 15);
 		add(label_9);
 		
-		JComboBox boxtype = new JComboBox();
+		final JComboBox boxtype = new JComboBox();
 		boxtype.setBounds(240, 132, 70, 21);
 		add(boxtype);
 		boxtype.addItem("纸袋");
 		boxtype.addItem("纸箱");
 		boxtype.addItem("木箱");
 		
-		JLabel label_10 = new JLabel("\u8D27\u7269\u5927\u5C0F\uFF08\u88C5\u7BB1\uFF09\u5355\u4F4D\uFF1A\u7C73");
-		label_10.setBounds(10, 160, 145, 15);
+		JLabel label_10 = new JLabel("货物大小（装箱）单位：厘米");
+		label_10.setBounds(10, 160, 189, 15);
 		add(label_10);
 		
 		JLabel label_11 = new JLabel("\u957F");
@@ -178,17 +187,67 @@ public class NewSendingBillsUI extends JPanel {
 		lblKg.setBounds(145, 210, 54, 15);
 		add(lblKg);
 		
+		presentvalue = new JTextField();
+		presentvalue.setBounds(122, 235, 182, 23);
+		add(presentvalue);
+		presentvalue.setColumns(10);
+		
 		JButton getprice = new JButton("\u8BA1\u7B97\u4EF7\u683C");
 		getprice.setBounds(10, 235, 93, 23);
 		add(getprice);
 		
+		getprice.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				NewSendingBillsBL bl = new NewSendingBillsBL();
+				BOXSTYPE box = BOXSTYPE.Bag;
+				SENDSTYPE send = SENDSTYPE.SLOW;
+				if(boxtype.getSelectedItem().equals("纸箱")){
+					box = BOXSTYPE.Paper;
+				}else if(boxtype.getSelectedItem().equals("木箱")){
+					box = BOXSTYPE.Box;
+				}
+				if(sendtype.getSelectedItem().equals("一般")){
+					send = SENDSTYPE.NORMAL;
+				}else if(sendtype.getSelectedItem().equals("特快")){
+					send = SENDSTYPE.FAST;
+				}
+				long price = bl.getPrice(senderlocation.getText(), receiverlocation.getText(),box, send, length.getText(), width.getText(), height.getText(), weight.getText());
+				presentvalue.setText(String.valueOf(price));
+			}
+			
+		});
+		
 		JButton submit = new JButton("\u63D0\u4EA4");
 		submit.setBounds(115, 264, 93, 23);
 		add(submit);
-		
-		JLabel presentvalue = new JLabel("");
-		presentvalue.setBounds(122, 240, 182, 15);
-		add(presentvalue);
+		submit.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				NewSendingBillsBL bl2 = new NewSendingBillsBL();
+				BOXSTYPE box = BOXSTYPE.Bag;
+				SENDSTYPE send = SENDSTYPE.SLOW;
+				if(boxtype.getSelectedItem().equals("纸箱")){
+					box = BOXSTYPE.Paper;
+				}else if(boxtype.getSelectedItem().equals("木箱")){
+					box = BOXSTYPE.Box;
+				}
+				if(sendtype.getSelectedItem().equals("一般")){
+					send = SENDSTYPE.NORMAL;
+				}else if(sendtype.getSelectedItem().equals("特快")){
+					send = SENDSTYPE.FAST;
+				}
+				myDate date = new myDate();
+				date.year=Integer.parseInt(newyear.getText());
+				date.month=Integer.parseInt(newmonth.getText());
+				date.day=Integer.parseInt(newday.getText());
+				bl2.addSendingBills(sendername.getText(), receivername.getText(), senderphone.getText(), receiverphone.getText(), senderlocation.getText(), receiverlocation.getText(), date, goodsnumber.getText(), box, send, length.getText(), width.getText(), height.getText(), weight.getText());
+				
+			}
+			
+		});
 
 	}
 }
