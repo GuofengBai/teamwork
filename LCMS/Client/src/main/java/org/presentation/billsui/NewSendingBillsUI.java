@@ -239,10 +239,7 @@ public class NewSendingBillsUI extends JPanel {
 				}else if(sendtype.getSelectedItem().equals("特快")){
 					send = SENDSTYPE.FAST;
 				}
-				myDate date = new myDate();
-				date.year=Integer.parseInt(newyear.getText());
-				date.month=Integer.parseInt(newmonth.getText());
-				date.day=Integer.parseInt(newday.getText());
+				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
 				bl2.addSendingBills(sendername.getText(), receivername.getText(), senderphone.getText(), receiverphone.getText(), senderlocation.getText(), receiverlocation.getText(), date, goodsnumber.getText(), box, send, length.getText(), width.getText(), height.getText(), weight.getText());
 				
 			}
