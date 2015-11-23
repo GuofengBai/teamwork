@@ -7,6 +7,7 @@ import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ScrollPaneConstants;
 
@@ -18,12 +19,15 @@ import java.util.Vector;
 
 import javax.swing.Box;
 
+import org.vo.StateListVO;
+
 
 public class NewCenterArriveBillsUI extends JPanel {
 	private JTextField newyear;
 	private JTextField CABNum;
 	private JTextField newday;
 	private JTextField newmonth;
+	private DefaultTableModel model;
 	private JTable table;
 	private JTextField GoodNum;
 	DefaultTableModel intmodel=new DefaultTableModel();
@@ -70,14 +74,21 @@ public class NewCenterArriveBillsUI extends JPanel {
 		vnum.add("���˵���");
 		vnum.add("��Ʒ״̬");
 		
-		table.getColumnModel().getColumn(0).setPreferredWidth(216);
-		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(19, 138, 249, 112);
-		add(scrollPane);
+		Vector<StateListVO> vo = new Vector<StateListVO>();
+		Vector<String> str = new Vector<String>();
+		str.add("货物单号");
+		str.add("货物状态");
+		model = new DefaultTableModel(vo,str);
+		table = new JTable(model){
+			private static final long serialVersionUID = 1L;
+
+			public boolean isCellEditable(int row, int column){
+				return false;
+			}
+		};
+		table.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);;
+		table.setFillsViewportHeight(true);
 		
-	
-		table.setBounds(78, 88, 208, 256);
 		
 		JLabel label = new JLabel("\u6258\u8FD0\u5355\u53F7");
 		label.setBounds(19, 87, 54, 15);
@@ -92,12 +103,12 @@ public class NewCenterArriveBillsUI extends JPanel {
 		lblNewLabel_2.setBounds(19, 112, 54, 15);
 		add(lblNewLabel_2);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(94, 109, 66, 21);
-		add(comboBox);
-		comboBox.addItem("完整");
-		comboBox.addItem("丢失");
-		comboBox.addItem("损坏");
+		final JComboBox State = new JComboBox();
+		State.setBounds(94, 109, 66, 21);
+		add(State);
+		State.addItem("完整");
+		State.addItem("丢失");
+		State.addItem("损坏");
 		
 		JButton AddGood = new JButton("\u6DFB\u52A0\u8D27\u7269");
 		AddGood.setBounds(175, 108, 93, 23);
@@ -106,7 +117,11 @@ public class NewCenterArriveBillsUI extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				String num = GoodNum.getText();
+				String state = State.getSelectedItem().toString();
+				StateListVO item = new StateListVO(num,state);
+				model.addRow(item);
+				GoodNum.setText("");				
 			}
 			
 		});
@@ -120,9 +135,23 @@ public class NewCenterArriveBillsUI extends JPanel {
 		add(CenterNum);
 		CenterNum.setColumns(10);
 		
-		JButton ShowTheList = new JButton("显示");
-		ShowTheList.setBounds(197, 83, 71, 23);
-		add(ShowTheList);
+		JButton delete = new JButton("删除");
+		delete.setBounds(197, 83, 71, 23);
+		add(delete);
+		delete.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int dex = table.getSelectedRow();
+				model.removeRow(dex);
+				
+			}
+			
+		});
+		
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setBounds(19, 137, 249, 110);
+		add(scrollPane);
 		AddGood.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {

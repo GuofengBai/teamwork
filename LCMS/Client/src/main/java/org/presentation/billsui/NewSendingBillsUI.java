@@ -31,7 +31,7 @@ public class NewSendingBillsUI extends JPanel {
 	private JTextField width;
 	private JTextField height;
 	private JTextField weight;
-	private JTextField presentvalue;
+	private JLabel presentvalue;
 
 	/**
 	 * Create the panel.
@@ -187,10 +187,9 @@ public class NewSendingBillsUI extends JPanel {
 		lblKg.setBounds(145, 210, 54, 15);
 		add(lblKg);
 		
-		presentvalue = new JTextField();
+		presentvalue = new JLabel();
 		presentvalue.setBounds(122, 235, 182, 23);
 		add(presentvalue);
-		presentvalue.setColumns(10);
 		
 		JButton getprice = new JButton("\u8BA1\u7B97\u4EF7\u683C");
 		getprice.setBounds(10, 235, 93, 23);
@@ -214,7 +213,7 @@ public class NewSendingBillsUI extends JPanel {
 					send = SENDSTYPE.FAST;
 				}
 				long price = bl.getPrice(senderlocation.getText(), receiverlocation.getText(),box, send, length.getText(), width.getText(), height.getText(), weight.getText());
-				presentvalue.setText(String.valueOf(price));
+				presentvalue.setText(String.valueOf(price+"元"));
 			}
 			
 		});

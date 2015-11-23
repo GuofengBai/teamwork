@@ -1,11 +1,12 @@
 package org.vo;
 
-public class StateListVO {
-	public String GoodsNum;
-	public String goodState;
+import java.util.Vector;
+
+public class StateListVO extends Vector<String>{
+	private static final long serialVersionUID = 1L;
 	public StateListVO(String GoodsNum,String goodState){
-		this.GoodsNum=GoodsNum;
-		this.goodState=goodState;
+		this.add(GoodsNum);
+		this.add(goodState);
 	}
 
 }
