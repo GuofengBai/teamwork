@@ -38,6 +38,11 @@ public class StaffPO implements Serializable{
 		
 	}
 	
+	public String[] getInfo(){
+		String[] info={staffRole.toString(),name,num,workSpace.toString()};
+		return info;
+	}
+	
 	
 	
 	
