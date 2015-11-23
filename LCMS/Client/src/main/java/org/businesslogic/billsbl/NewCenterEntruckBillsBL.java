@@ -17,7 +17,7 @@ public class NewCenterEntruckBillsBL implements NewCenterEntruckBillsBLService{
 			String HallNum, String Vehicle, String DriverName,
 			String ScouterName) {
 		// TODO Auto-generated method stub
-		BillsDataService billsData=RMIHelper.getDataFactory().getBillsData();
+		BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory()
 		ResultMessage message=null;
 		try {
 			message=billsData.addBills(new CenterEntruckBills());

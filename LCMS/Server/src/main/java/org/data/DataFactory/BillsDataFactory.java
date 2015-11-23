@@ -6,6 +6,8 @@ import java.rmi.server.UnicastRemoteObject;
 import org.data.billsdata.NewSendingBillsData;
 import org.dataservice.DataFactoryService.BillsDataFactoryService;
 import org.dataservice.billsdataservice.NewCenterArriveBillsDataService;
+import org.dataservice.billsdataservice.NewCenterEntruckBillsDataService;
+import org.dataservice.billsdataservice.NewCenterFreightBillsDataService;
 import org.dataservice.billsdataservice.NewHallArriveBillsDataService;
 import org.dataservice.billsdataservice.NewHallCollectBillsDataService;
 import org.dataservice.billsdataservice.NewHallDispatchBillsDataService;
@@ -19,6 +21,8 @@ public class BillsDataFactory  extends UnicastRemoteObject implements BillsDataF
 
 	public NewSendingBillsDataService newSendingBillsData;
 	public NewCenterArriveBillsDataService newCenterArriveBillsData;
+	public NewCenterEntruckBillsDataService newCenterEntruckBillsData;
+	public NewCenterFreightBillsDataService newCenterFreightBillsData;
 	public NewHallArriveBillsDataService newHallArriveBillsData;
 	public NewHallCollectBillsDataService newHallCollectBillsData;
 	public NewHallDispatchBillsDataService newHallDispatchBillsData;
@@ -36,6 +40,7 @@ public class BillsDataFactory  extends UnicastRemoteObject implements BillsDataF
 		
 		newSendingBillsData=null;
 		newCenterArriveBillsData=null;
+		newCenterEntruckBillsData=null;
 		newHallArriveBillsData=null;
 		newHallCollectBillsData=null;
 		newHallDispatchBillsData=null;
@@ -60,6 +65,15 @@ public class BillsDataFactory  extends UnicastRemoteObject implements BillsDataF
 
 	public NewCenterArriveBillsDataService getNewCenterArriveBillsData() {
 		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public NewCenterEntruckBillsDataService getNewCenterEntruckBillsData() {
+		return null;
+		
+	}
+	
+	public NewCenterFreightBillsDataService getNewCenterFreightBillsData() {
 		return null;
 	}
 

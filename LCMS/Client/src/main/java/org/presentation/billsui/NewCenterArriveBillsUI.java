@@ -15,10 +15,13 @@ import java.awt.Label;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.Box;
 
+import org.businesslogic.billsbl.NewCenterArriveBillsBL;
+import org.po.myDate;
 import org.vo.StateListVO;
 
 
@@ -32,6 +35,7 @@ public class NewCenterArriveBillsUI extends JPanel {
 	private JTextField GoodNum;
 	DefaultTableModel intmodel=new DefaultTableModel();
 	private JTextField CenterNum;
+	private ArrayList<StateListVO> statevo;
 
 	/**
 	 * Create the panel.
@@ -70,6 +74,18 @@ public class NewCenterArriveBillsUI extends JPanel {
 		JButton Submit = new JButton("\u63D0\u4EA4");
 		Submit.setBounds(100, 260, 93, 23);
 		add(Submit);
+		Submit.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				NewCenterArriveBillsBL bl = new NewCenterArriveBillsBL();
+				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
+				bl.addCenterArriveBills(date, CABNum.getText(), CenterNum.getText(), statevo);
+			}
+			
+		});
+		
+		
 		Vector<String> vnum = new Vector<String>();
 		vnum.add("���˵���");
 		vnum.add("��Ʒ״̬");
@@ -121,7 +137,9 @@ public class NewCenterArriveBillsUI extends JPanel {
 				String state = State.getSelectedItem().toString();
 				StateListVO item = new StateListVO(num,state);
 				model.addRow(item);
-				GoodNum.setText("");				
+				GoodNum.setText("");
+				statevo.add(item);
+				
 			}
 			
 		});
@@ -143,7 +161,9 @@ public class NewCenterArriveBillsUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				int dex = table.getSelectedRow();
+				statevo.remove(dex);
 				model.removeRow(dex);
+				
 				
 			}
 			
@@ -152,16 +172,6 @@ public class NewCenterArriveBillsUI extends JPanel {
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(19, 137, 249, 110);
 		add(scrollPane);
-		AddGood.addActionListener(new ActionListener(){
-
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-				
-				
-			}
-			
-		});
 			
 		}
 	}
