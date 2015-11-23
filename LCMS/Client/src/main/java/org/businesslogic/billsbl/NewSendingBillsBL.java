@@ -23,7 +23,7 @@ public class NewSendingBillsBL implements NewSendingBillsBLService{
 			BOXSTYPE boxtype, SENDSTYPE sendtype, String length, 
 			String width, String height, String weight) {
 		// TODO Auto-generated method stub
-		BillsDataService billsData=RMIHelper.getDataFactory().getBillsData();
+		BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewSendingBillsData();
 		ResultMessage message=null;
 		try {
 			message=billsData.addBills(new SendingBills(SenderName,ReceiverName,SenderPhone,ReceiverPhone,SenderLocation,
