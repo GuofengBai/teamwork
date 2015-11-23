@@ -1,6 +1,7 @@
 package org.po;
 
 import java.io.Serializable;
+import java.util.Vector;
 
 public class StaffPO implements Serializable{
 	
@@ -38,8 +39,12 @@ public class StaffPO implements Serializable{
 		
 	}
 	
-	public String[] getInfo(){
-		String[] info={staffRole.toString(),name,num,workSpace.toString()};
+	public Vector<String> getInfo(){
+		Vector<String> info=new Vector<String>();
+		info.add(staffRole.toString());
+		info.add(name);
+		info.add(num);
+		info.add(workSpace.toString());
 		return info;
 	}
 	

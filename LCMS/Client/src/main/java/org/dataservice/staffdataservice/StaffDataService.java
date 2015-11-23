@@ -19,6 +19,6 @@ public ResultMessage add(StaffPO po);
 	
 	public ArrayList<StaffPO> getAll();
 	
-	public Vector<String[]> getAllStaffInfo();
+	public Vector<Vector<String>> getAllStaffInfo();
 
 }

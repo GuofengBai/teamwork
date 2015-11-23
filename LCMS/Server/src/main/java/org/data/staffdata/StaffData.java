@@ -115,8 +115,8 @@ public class StaffData extends UnicastRemoteObject implements StaffDataService{
 		return null;
 	}
 
-	public Vector<String[]> getAllStaffInfo() {
-		Vector<String[]> allInfo=new Vector<String[]>();
+	public Vector<Vector<String>> getAllStaffInfo() {
+		Vector<Vector<String>> allInfo=new Vector<Vector<String>>();
 		for(StaffPO po:staffList){
 			allInfo.add(po.getInfo());
 		}
