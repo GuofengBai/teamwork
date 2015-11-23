@@ -16,7 +16,21 @@ public class CenterArriveBills extends BillsPO{
 		this.CenterNum=CenterNum;
 		this.date=date;
 		this.FreightNum=FreightNum;
-		this.vo=vo;
-		
+		this.vo=vo;		
+	}
+	public String getCenterNum(){
+		return CenterNum;
+	}
+	
+	public myDate getdate(){
+		return date;
+	}
+	
+	public String getFreightNum(){
+		return FreightNum;
+	}
+	
+	public ArrayList<StateListVO> getvo(){
+		return vo;
 	}
 }

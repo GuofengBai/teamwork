@@ -69,6 +69,7 @@ public class BillsDataFactory  extends UnicastRemoteObject implements BillsDataF
 	}
 	
 	public NewCenterEntruckBillsDataService getNewCenterEntruckBillsData() {
+		
 		return null;
 		
 	}

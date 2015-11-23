@@ -2,7 +2,10 @@ package org.dataservice.DataFactoryService;
 
 import java.rmi.Remote;
 
+import org.dataservice.billsdataservice.BillsDataService;
 import org.dataservice.billsdataservice.NewCenterArriveBillsDataService;
+import org.dataservice.billsdataservice.NewCenterEntruckBillsDataService;
+import org.dataservice.billsdataservice.NewCenterFreightBillsDataService;
 import org.dataservice.billsdataservice.NewHallArriveBillsDataService;
 import org.dataservice.billsdataservice.NewHallCollectBillsDataService;
 import org.dataservice.billsdataservice.NewHallDispatchBillsDataService;
@@ -18,6 +21,10 @@ public interface BillsDataFactoryService extends Remote{
 	
 	public NewCenterArriveBillsDataService getNewCenterArriveBillsData();
 	
+	public NewCenterEntruckBillsDataService getNewCenterEntruckBillsData();
+	
+	public NewCenterFreightBillsDataService getNewCenterFreightBillsData();
+	
 	public NewHallArriveBillsDataService getNewHallArriveBillsData();
 	
 	public NewHallCollectBillsDataService getNewHallCollectBillsData();
@@ -31,6 +38,7 @@ public interface BillsDataFactoryService extends Remote{
 	public NewOutstorageBillsDataService getNewOutstorageBillsData();
 	
 	public NewPayingBillsDataService getNewPayingBillsData();
+
 	
 
 }
