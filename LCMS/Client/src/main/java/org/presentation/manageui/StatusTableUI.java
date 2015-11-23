@@ -14,10 +14,10 @@ import javax.swing.table.DefaultTableModel;
 public class StatusTableUI {
 
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTable table;
-	private JTable table_1;
+	private JTextField beginDateField;
+	private JTextField endDateField;
+	private JTable incomeBillTable;
+	private JTable PayingBillTable;
 
 	/**
 	 * Launch the application.
@@ -56,9 +56,9 @@ public class StatusTableUI {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JButton button = new JButton("\u8FD4\u56DE");
-		button.setBounds(331, 379, 93, 23);
-		panel.add(button);
+		JButton backButton = new JButton("\u8FD4\u56DE");
+		backButton.setBounds(331, 379, 93, 23);
+		panel.add(backButton);
 		
 		JLabel label = new JLabel("\u7ECF\u8425\u60C5\u51B5\u8868");
 		label.setBounds(184, 10, 66, 15);
@@ -72,18 +72,18 @@ public class StatusTableUI {
 		label_2.setBounds(227, 50, 54, 15);
 		panel.add(label_2);
 		
-		textField = new JTextField();
-		textField.setBounds(121, 47, 66, 21);
-		panel.add(textField);
-		textField.setColumns(10);
+		beginDateField = new JTextField();
+		beginDateField.setBounds(121, 47, 66, 21);
+		panel.add(beginDateField);
+		beginDateField.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(303, 47, 66, 21);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
+		endDateField = new JTextField();
+		endDateField.setBounds(303, 47, 66, 21);
+		panel.add(endDateField);
+		endDateField.setColumns(10);
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
+		incomeBillTable = new JTable();
+		incomeBillTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
 				{null, null},
@@ -93,23 +93,23 @@ public class StatusTableUI {
 				"\u65E5\u671F", "\u91D1\u989D"
 			}
 		));
-		table.setBounds(56, 96, 325, 95);
+		incomeBillTable.setBounds(56, 96, 325, 95);
 		//panel.add(table);
 		
 		JLabel lblNewLabel = new JLabel("\u6536\u6B3E\u5355");
-		lblNewLabel.setBounds(57, 71, 54, 15);
+		lblNewLabel.setBounds(57, 105, 54, 15);
 		panel.add(lblNewLabel);
 		
-		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(57, 96, 325, 95);
+		JScrollPane scrollPane = new JScrollPane(incomeBillTable);
+		scrollPane.setBounds(57, 130, 325, 95);
 		panel.add(scrollPane);
 		
 		JLabel label_3 = new JLabel("\u4ED8\u6B3E\u5355");
 		label_3.setBounds(57, 235, 54, 15);
 		panel.add(label_3);
 		
-		table_1 = new JTable();
-		table_1.setModel(new DefaultTableModel(
+		PayingBillTable = new JTable();
+		PayingBillTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
 				{null, null},
@@ -120,11 +120,15 @@ public class StatusTableUI {
 				"\u65E5\u671F", "\u91D1\u989D"
 			}
 		));
-		table_1.setBounds(57, 270, 325, 99);
+		PayingBillTable.setBounds(57, 270, 325, 99);
 		//panel.add(table_1);
 		
-		JScrollPane scrollPane_1 = new JScrollPane(table_1);
+		JScrollPane scrollPane_1 = new JScrollPane(PayingBillTable);
 		scrollPane_1.setBounds(56, 270, 326, 99);
 		panel.add(scrollPane_1);
+		
+		JButton Searchbutton = new JButton("搜索");
+		Searchbutton.setBounds(168, 75, 93, 23);
+		panel.add(Searchbutton);
 	}
 }

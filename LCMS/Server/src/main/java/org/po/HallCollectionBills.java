@@ -3,12 +3,12 @@ package org.po;
 import java.io.Serializable;
 
 
-public class HallColletcionBills extends BillsPO{
+public class HallCollectionBills extends BillsPO{
 	private int Cash;
 	private String name;
 	private String[] GoodsNum;
 	
-	public HallColletcionBills(myDate t,String s,int c,String name,String[] g){
+	public HallCollectionBills(myDate t,String s,int c,String name,String[] g){
 		this.Date=t;
 		this.idNum=s;
 		Cash=c;

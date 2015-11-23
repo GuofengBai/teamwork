@@ -1,5 +1,7 @@
 package org.presentation.manageui;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,9 +17,9 @@ public class AccountManageUI {
 
 	private JFrame frame;
 	private JTable table;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTable table_1;
+	private JTextField accountNameField;
+	private JTextField namepartField;
+	private JTable searchTable;
 
 	/**
 	 * Launch the application.
@@ -83,13 +85,15 @@ public class AccountManageUI {
 		scrollPane.setBounds(40, 75, 346, 91);
 		panel.add(scrollPane);
 		
-		JButton button = new JButton("\u8FD4\u56DE");
-		button.setBounds(293, 529, 93, 23);
-		panel.add(button);
+		JButton backButton = new JButton("\u8FD4\u56DE");
+		backButton.setBounds(293, 529, 93, 23);
+		panel.add(backButton);
+		backButton.addActionListener(new addButtonListener());
 		
-		JButton btnNewButton = new JButton("\u5220\u9664");
-		btnNewButton.setBounds(40, 176, 93, 23);
-		panel.add(btnNewButton);
+		JButton deleteButton = new JButton("\u5220\u9664");
+		deleteButton.setBounds(40, 176, 93, 23);
+		panel.add(deleteButton);
+		deleteButton.addActionListener(new deleteButtonListener());
 		
 		JLabel label_2 = new JLabel("\u65B0\u5EFA\u8D26\u6237");
 		label_2.setBounds(173, 209, 54, 15);
@@ -99,31 +103,32 @@ public class AccountManageUI {
 		label_3.setBounds(40, 253, 54, 15);
 		panel.add(label_3);
 		
-		textField = new JTextField();
-		textField.setBounds(104, 250, 123, 21);
-		panel.add(textField);
-		textField.setColumns(10);
+		accountNameField = new JTextField();
+		accountNameField.setBounds(104, 250, 123, 21);
+		panel.add(accountNameField);
+		accountNameField.setColumns(10);
 		
-		JButton button_1 = new JButton("\u6DFB\u52A0");
-		button_1.setBounds(263, 249, 93, 23);
-		panel.add(button_1);
+		JButton addButton = new JButton("\u6DFB\u52A0");
+		addButton.setBounds(263, 249, 93, 23);
+		panel.add(addButton);
+		addButton.addActionListener(new addButtonListener());
 		
 		JLabel label_4 = new JLabel("\u5173\u952E\u5B57\u67E5\u627E");
 		label_4.setBounds(161, 295, 76, 15);
 		panel.add(label_4);
 		
-		textField_1 = new JTextField();
-		textField_1.setText("\u8BF7\u8F93\u5165\u5173\u952E\u5B57");
-		textField_1.setBounds(83, 327, 123, 21);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
+		namepartField = new JTextField();
+		namepartField.setText("\u8BF7\u8F93\u5165\u5173\u952E\u5B57");
+		namepartField.setBounds(83, 327, 123, 21);
+		panel.add(namepartField);
+		namepartField.setColumns(10);
 		
-		JButton button_2 = new JButton("\u67E5\u627E");
-		button_2.setBounds(263, 326, 93, 23);
-		panel.add(button_2);
+		JButton searchButton = new JButton("\u67E5\u627E");
+		searchButton.setBounds(263, 326, 93, 23);
+		panel.add(searchButton);
 		
-		table_1 = new JTable();
-		table_1.setModel(new DefaultTableModel(
+		searchTable = new JTable();
+		searchTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
 				{null, null},
@@ -133,12 +138,52 @@ public class AccountManageUI {
 				"\u540D\u79F0", "\u4F59\u989D"
 			}
 		));
-		table_1.setBounds(52, 389, 304, 106);
+		searchTable.setBounds(52, 389, 304, 106);
 		//panel.add(table_1);
 		
-		JScrollPane scrollPane_1 = new JScrollPane(table_1);
+		JScrollPane scrollPane_1 = new JScrollPane(searchTable);
 		scrollPane_1.setBounds(52, 389, 304, 130);
 		panel.add(scrollPane_1);
+	}
+	
+	
+	class addButtonListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			String name=accountNameField.getText();
+			
+			
+		}
+		
+	}
+	
+	class deleteButtonListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+	
+	class searchButtonListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			String namepart=namepartField.getText();
+			
+		}
+		
+	}
+	
+	class backButtonListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
 	}
 
 }

@@ -79,7 +79,7 @@ public class BeginAccountUI {
 		//panel.add(table);
 		
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(37, 75, 321, 87);
+		scrollPane.setBounds(37, 75, 362, 87);
 		panel.add(scrollPane);
 		
 		JButton newBill = new JButton("\u65B0\u5EFA");
