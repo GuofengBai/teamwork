@@ -14,52 +14,28 @@ import java.util.ArrayList;
 import org.dataservice.userdataservice.UserDataService;
 import org.po.ComPO;
 import org.po.ResultMessage;
+import org.po.StaffPO;
 import org.po.UserPO;
 
 public class UserData extends UnicastRemoteObject implements UserDataService {
 
 	public ArrayList<UserPO> UserList;
+	public String role;
 
-	protected UserData() throws RemoteException {
+	public UserData() throws RemoteException {
 		super();
+		init();
 		// TODO Auto-generated constructor stub
 	}
 
-	public ResultMessage insert(UserPO po) {
+	private void init() {
 		// TODO Auto-generated method stub
 		String fileName = "SerializableData/User.file";
-		System.out.println(fileName);
-		try {
-			UserList.add(po);
-			FileOutputStream fos = new FileOutputStream(fileName);
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(UserList);
-			oos.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		ResultMessage re = new ResultMessage(true, null);
-		return re;
-	}
-
-	public ResultMessage find(UserPO po) {
-		// TODO Auto-generated method stub
-		String fileName = "SerializableData/User.file";
-		System.out.println(fileName);
 		FileInputStream fis;
-		ObjectInputStream ois = null;
-		ResultMessage re;
-		String[] su = { " login success", "correct." };
-		String[] fa = { " login fail", "wrong" };
-		int i = 0;
 		try {
 			fis = new FileInputStream(fileName);
 			BufferedInputStream bis = new BufferedInputStream(fis);
-			ois = new ObjectInputStream(bis);
+			ObjectInputStream ois = new ObjectInputStream(bis);
 			UserList = (ArrayList<UserPO>) ois.readObject();
 			ois.close();
 		} catch (FileNotFoundException e) {
@@ -72,31 +48,48 @@ public class UserData extends UnicastRemoteObject implements UserDataService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		FileOutputStream fos;
-		for (UserPO po1 : UserList) {
-			if (po1.getAccount().equals(po.getAccount())
-					&& po1.getPassword().equals(po.getPassword())) {
-				try {
-					fos = new FileOutputStream(fileName);
-					ObjectOutputStream oos = new ObjectOutputStream(fos);
-					oos.writeObject(UserList);
-					ois.close();
-					oos.close();
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				return re = new ResultMessage(true, su);
 
-			} else {
-				return re = new ResultMessage(false, fa);
-			}
+	}
+
+	public ResultMessage insert(UserPO po) {
+		// TODO Auto-generated method stub
+
+		UserList.add(po);
+		save();
+		ResultMessage re = new ResultMessage(true, null);
+		return re;
+	}
+
+	public UserPO find(String account,String password) {
+        for(UserPO po:UserList){
+        	if(po.getAccount().equals(account)&&po.getPassword().equals(password)){
+        		return po;
+        	}
+        	else 
+        		return new UserPO("登录错误","密码错误",new StaffPO());
+        }
+        return new UserPO("用户名不存在","用户名不存在",new StaffPO());
+	}
+
+	public ResultMessage save() {
+		String fileName = "SerializableData/User.file";
+		try {
+			FileOutputStream fos = new FileOutputStream(fileName);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(UserList);
+			oos.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
 		return null;
 	}
 
+	private void setRole(StaffPO staff) {
+		String re = String.valueOf(staff.staffRole);
+		this.role = re;
+	}
 }

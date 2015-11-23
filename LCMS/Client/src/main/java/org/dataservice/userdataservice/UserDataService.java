@@ -17,5 +17,5 @@ public interface UserDataService extends Remote{
 	 * @param po
 	 * @return 查找结果
 	 */
-	public ResultMessage find(UserPO po);
+	public UserPO find(String account,String password);
 }

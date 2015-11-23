@@ -1,6 +1,7 @@
 package org.dataservice.commoditydataservice;
 
 import java.rmi.Remote;
+import java.util.ArrayList;
 
 import org.po.ComPO;
 import org.po.ResultMessage;
@@ -20,4 +21,5 @@ public interface CommodityDataService extends Remote{
 	 * @return ResultMessage
 	 */
 	public ComPO findCom(String GoodsNum);
+	public ArrayList<ComPO> getAllCom();
 }

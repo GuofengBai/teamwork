@@ -1,6 +1,7 @@
 package org.data.commoditydata;
 
 import java.io.BufferedInputStream;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -15,6 +16,7 @@ import org.dataservice.commoditydataservice.CommodityDataService;
 import org.po.BillsPO;
 import org.po.ComPO;
 import org.po.ResultMessage;
+import org.po.myDate;
 
 public class CommodityData extends UnicastRemoteObject implements
 		CommodityDataService {
@@ -159,7 +161,9 @@ public class CommodityData extends UnicastRemoteObject implements
 
 		return null;
 	}
-	//public ArrayList<ComPO> (myDate start,myDate end){
-	//	
-	//}
+	public ArrayList<ComPO> getAllCom(){
+		
+		
+		return ComList;
+	}
 }

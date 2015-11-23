@@ -1,6 +1,7 @@
 package org.businesslogic.blFactory;
 
 import org.businesslogic.billsbl.NewSendingBillsBL;
+import org.businesslogic.commoditybl.CheckCommodityBL;
 import org.businesslogic.commoditybl.CommodityBL;
 import org.businesslogic.managebl.ManageBL;
 import org.businesslogic.organizationbl.OrganizationBL;
@@ -12,6 +13,7 @@ import org.businesslogicservice.manageblservice.ManageBLService;
 import org.businesslogicservice.organizationblservice.OrganizationBLService;
 import org.businesslogicservice.staffblservice.StaffBLService;
 import org.businesslogicservice.userblservice.UserBLService;
+import org.businesslogicservice.commodityblservice.CheckCommodityBLService;
 
 public class BLFactory {
 	
@@ -26,6 +28,7 @@ public class BLFactory {
 	public static UserBLService userBL;
 	
 	public static NewSendingBillsBLService newSendingBillsBL;
+	public static CheckCommodityBLService checkcommodityBL;
 	
 	public static void init(){
 		commodityBL=null;
@@ -88,6 +91,14 @@ public class BLFactory {
 		}
 		
 		return newSendingBillsBL;
+	}
+
+	public static CheckCommodityBLService getCheckCommodityBL() {
+		// TODO Auto-generated method stub
+		if(checkcommodityBL==null){
+			checkcommodityBL=new CheckCommodityBL();
+		}
+		return checkcommodityBL;
 	}
     
     
