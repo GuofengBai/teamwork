@@ -8,6 +8,12 @@ public class BankAccountPO implements Serializable{
 	
 	public BankAccountPO(String name){
 		this.name=name;
+		this.balance=0;
+	}
+	
+	public BankAccountPO(String name,int balance){
+		this.name=name;
+		this.balance=balance;
 	}
 	
 	public void setBalance(int balance){
@@ -25,6 +31,5 @@ public class BankAccountPO implements Serializable{
 	public int getBalance(){
 		return balance;
 	}
-	
 	
 }

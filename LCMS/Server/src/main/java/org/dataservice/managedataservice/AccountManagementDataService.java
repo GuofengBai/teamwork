@@ -1,19 +1,24 @@
 package org.dataservice.managedataservice;
 
-import org.po.BankAccountPO;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
 
-public interface AccountManagementDataService {
-	public BankAccountPO[] getAccountList ();
+import org.po.BankAccountPO;
+import org.po.ResultMessage;
+
+public interface AccountManagementDataService extends Remote{
+	public ArrayList<BankAccountPO> getAccountList () throws RemoteException;
 	
-	public void addAccount(String name);
+	public ResultMessage addAccount(BankAccountPO account) throws RemoteException;
 	
-	public int getBalance(String name);
+	public int getBalance(String name) throws RemoteException;
 	
-	public void delAccount(String name);
+	public ResultMessage delAccount(String name) throws RemoteException;
 	
-	public void changeName(String name,String newname);
+	public ResultMessage changeName(String name,String newname) throws RemoteException;
 	
-	public void changeBalance (String name,int change);
+	public ResultMessage changeBalance (String name,int change) throws RemoteException;
 	
-	public BankAccountPO[] search(String namepart);
+	public ArrayList<BankAccountPO> search(String namepart) throws RemoteException;
 }
