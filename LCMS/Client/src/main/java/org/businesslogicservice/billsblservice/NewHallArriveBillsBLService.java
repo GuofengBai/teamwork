@@ -1,15 +1,14 @@
 package org.businesslogicservice.billsblservice;
 
+import java.util.ArrayList;
+
 import org.po.ResultMessage;
 import org.po.State;
 import org.po.myDate;
 import org.po.theGoodState;
+import org.vo.StateListVO;
 
 public interface NewHallArriveBillsBLService {
-	
-	public ResultMessage createHallArriveBills(myDate date, String StartPlace, String EntruckNum);
-
-	public theGoodState changeGoodState(theGoodState goodstate, State state);
-	
-	public ResultMessage newHallArriveBills();
+		
+	public ResultMessage addHallArriveBills(myDate date,String startPlace,String entruckNum ,ArrayList<StateListVO> list);
 }

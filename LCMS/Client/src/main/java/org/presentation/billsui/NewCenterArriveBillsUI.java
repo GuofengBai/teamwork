@@ -33,7 +33,6 @@ public class NewCenterArriveBillsUI extends JPanel {
 	private DefaultTableModel model;
 	private JTable table;
 	private JTextField GoodNum;
-	DefaultTableModel intmodel=new DefaultTableModel();
 	private JTextField CenterNum;
 	private ArrayList<StateListVO> statevo;
 
@@ -84,11 +83,6 @@ public class NewCenterArriveBillsUI extends JPanel {
 			}
 			
 		});
-		
-		
-		Vector<String> vnum = new Vector<String>();
-		vnum.add("���˵���");
-		vnum.add("��Ʒ״̬");
 		
 		Vector<StateListVO> vo = new Vector<StateListVO>();
 		Vector<String> str = new Vector<String>();
