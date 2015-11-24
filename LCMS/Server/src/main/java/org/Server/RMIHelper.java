@@ -16,8 +16,12 @@ public class RMIHelper {
     public static void init() {
         try {
             LocateRegistry.createRegistry(1099);
+            
+            System.out.println("OK");
 
             DataFactoryService data= new DataFactory();
+            
+            System.out.println("OK");
 
             Naming.rebind("data-factory",data);
             

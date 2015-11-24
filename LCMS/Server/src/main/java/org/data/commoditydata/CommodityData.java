@@ -1,7 +1,6 @@
 package org.data.commoditydata;
 
 import java.io.BufferedInputStream;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -16,6 +15,7 @@ import org.dataservice.commoditydataservice.CommodityDataService;
 import org.po.BillsPO;
 import org.po.ComPO;
 import org.po.ResultMessage;
+import org.po.StaffPO;
 import org.po.myDate;
 
 public class CommodityData extends UnicastRemoteObject implements
@@ -23,21 +23,47 @@ public class CommodityData extends UnicastRemoteObject implements
 
 	public ArrayList<ComPO> ComList;
 
-	protected CommodityData() throws RemoteException {
+	public CommodityData() throws RemoteException {
 		super();
+		init();
 		// TODO Auto-generated constructor stub
+	}
+	public void init(){
+		
+			String fileName="SerializableData/Com.file";
+			FileInputStream fis;
+			try {
+				fis = new FileInputStream(fileName);
+				BufferedInputStream bis = new BufferedInputStream(fis);  
+		        ObjectInputStream ois = new ObjectInputStream(bis); 
+		        ComList=(ArrayList<ComPO>)ois.readObject();
+		        ois.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        
+		
 	}
 
 	public ResultMessage addCom(ComPO po) {
-		// TODO Auto-generated method stub
-		String fileName = "SerializableData/Com.file";
-		System.out.println(fileName);
+		ComList.add(po);
+		save();
+		return new ResultMessage(true,null);
+	}
+	public void save(){
+		String fileName="SerializableData/Com.file";
 		try {
-			ComList.add(po);
-			FileOutputStream fos = new FileOutputStream(fileName);
+            FileOutputStream fos = new FileOutputStream(fileName);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(ComList);
-			oos.close();
+            oos.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -45,120 +71,34 @@ public class CommodityData extends UnicastRemoteObject implements
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		ResultMessage re = new ResultMessage(true, null);
-		return re;
+	
+	
 	}
 
 	public ResultMessage delCom(ComPO po) {
-		// TODO Auto-generated method stub
-		String fileName = "SerializableData/Com.file";
-		System.out.println(fileName);
-		FileInputStream fis;
-		ObjectInputStream ois = null;
-		int i = 0;
-		try {
-			fis = new FileInputStream(fileName);
-			BufferedInputStream bis = new BufferedInputStream(fis);
-			ois = new ObjectInputStream(bis);
-			ComList = (ArrayList<ComPO>) ois.readObject();
-			ois.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		ResultMessage re;
-		String[] info = { "Success!", "delete." };
-		FileOutputStream fos;
-		for (ComPO ppo : ComList) {
-			if (ppo.getGoodsNum() == po.getGoodsNum()) {
-				ComList.remove(ppo);
-				try {
-					fos = new FileOutputStream(fileName);
-					ObjectOutputStream oos = new ObjectOutputStream(fos);
-					oos.writeObject(ComList);
-					ois.close();
-					oos.close();
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				return re = new ResultMessage(true, info);
-			} else {
-				try {
-					fos = new FileOutputStream(fileName);
-					ObjectOutputStream oos = new ObjectOutputStream(fos);
-					oos.writeObject(ComList);
-					ois.close();
-					oos.close();
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
+		for(ComPO p:ComList){
+			if(p.getGoodsNum().equals(po.getGoodsNum())){
+				ComList.remove(p);
+				ComList.add(po);
+				save();
+				String[] info={"更新信息成功"};
+				ResultMessage ms=new ResultMessage(true,info);
+				return ms;
 			}
 		}
-		String[] infof = { "failed", "no find" };
-		return re = new ResultMessage(false, infof);
+		ResultMessage ms;
+		String[] infof = { "删除失败", "没有找到货物项" };
+		return ms = new ResultMessage(false, infof);
 
 	}
 
 	@SuppressWarnings("unchecked")
 	public ComPO findCom(String GoodsNum) {
-		// TODO Auto-generated method stub
-		String fileName = "SerializableData/Com.file";
-		System.out.println(fileName);
-		FileInputStream fis;
-		ObjectInputStream ois = null;
-		int i = 0;
-		try {
-			fis = new FileInputStream(fileName);
-			BufferedInputStream bis = new BufferedInputStream(fis);
-			ois = new ObjectInputStream(bis);
-			ComList = (ArrayList<ComPO>) ois.readObject();
-			ois.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		FileOutputStream fos;
-		for (ComPO po : ComList) {
-			if (po.getGoodsNum() == GoodsNum) {
-				try {
-					fos = new FileOutputStream(fileName);
-					ObjectOutputStream oos = new ObjectOutputStream(fos);
-					oos.writeObject(ComList);
-					ois.close();
-					oos.close();
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				return po;
-
-			}
-		}
-
+        for(ComPO po:ComList){
+        	if(po.getGoodsNum().equals(GoodsNum)){
+        		return po;
+        	}
+        }
 		return null;
 	}
 	public ArrayList<ComPO> getAllCom(){
@@ -166,4 +106,5 @@ public class CommodityData extends UnicastRemoteObject implements
 		
 		return ComList;
 	}
+
 }

@@ -30,6 +30,7 @@ public class DataFactory extends UnicastRemoteObject implements DataFactoryServi
 	public DataFactory() throws RemoteException {
 		// TODO Auto-generated constructor stub
 		super();
+		System.out.println("OK");
 		commodityData=null;
 		userData=null;
 		organizationData=null;
@@ -66,19 +67,19 @@ public class DataFactory extends UnicastRemoteObject implements DataFactoryServi
 	}
 
 
-	public OrganizationDataService getOrganizationData() {
+//	public OrganizationDataService getOrganizationData() {
 		// TODO Auto-generated method stub
-		if(organizationData==null){
-			try {
-				organizationData=new OrganizationData();
-			} catch (RemoteException e) {
+	//	if(organizationData==null){
+		//	try {
+			//	organizationData=new OrganizationData();
+			//} catch (RemoteException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+		//		e.printStackTrace();
+		//	}
+		//}
 		
-		return organizationData;
-	}
+	//	return organizationData;
+	//}
 
 	public StaffDataService getStaffData() {
 		// TODO Auto-generated method stub

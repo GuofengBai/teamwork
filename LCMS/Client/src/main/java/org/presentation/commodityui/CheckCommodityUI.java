@@ -1,6 +1,7 @@
 package org.presentation.commodityui;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.ListSelectionModel;
 
 import java.awt.Button;
 
@@ -24,12 +25,15 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Vector;
 
 import javax.swing.table.DefaultTableColumnModel;
 
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.commodityblservice.CheckCommodityBLService;
+import org.po.myDate;
 import org.vo.ComVO;
 
 
@@ -38,7 +42,20 @@ public class CheckCommodityUI extends JPanel {
 	CheckCommodityBLService cbs;
 	private DefaultTableModel model;
 
-	
+	public void addItem(){
+		Date date = new Date();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+		String curdate = simpleDateFormat.format(date);
+		int year = Integer.parseInt(curdate.substring(0, 4));
+		int month=Integer.parseInt(curdate.substring(4, 6));
+		int day=Integer.parseInt(curdate.substring(6, 8));
+		myDate today=new myDate(year,month,day);
+		cbs.startCheckCommodity(today);
+		Vector<ComVO> vData=cbs.checkCommodityInf();
+		
+		model.addRow(vData);
+	}
+
 	public void initTable(){
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -54,11 +71,20 @@ public class CheckCommodityUI extends JPanel {
 		vColumns.add("排号");
 		vColumns.add("架号");
 		vColumns.add("位号");
-		Vector<ComVO> vData = cbs.checkCommodityInf();
+		Vector<ComVO> vData = new Vector<ComVO>();
+
+			
+
 		model=new DefaultTableModel(vData,vColumns);
 		table=new JTable(model){
-			
+			private static final long serialVersionUID = 1L;
+
+			public boolean isCellEditable(int row, int column){
+				return false;
+			}
 		};
+		model.addRow(vData);
+		table.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.getViewport().add(table);
 		table.setFillsViewportHeight(true);
 		this.add(scrollPane);
@@ -70,12 +96,12 @@ public class CheckCommodityUI extends JPanel {
 	public CheckCommodityUI() {
 		cbs=BLFactory.getCheckCommodityBL();
 		setLayout(null);
-		
+		initTable();
 		JLabel label = new JLabel("\u5E93\u5B58\u76D8\u70B9");
 		label.setBounds(222, 30, 74, 25);
 		add(label);
 		
-		table = new JTable();
+		/*table = new JTable();
 		table.setFillsViewportHeight(true);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -108,17 +134,24 @@ public class CheckCommodityUI extends JPanel {
 		scrollPane.setViewportBorder(UIManager.getBorder("Menu.border"));
 		scrollPane.setToolTipText("");
 		scrollPane.setBounds(53, 82, 482, 218);
-		add(scrollPane);
+		add(scrollPane);*/
 		
 		JButton btnNewButton = new JButton("返回");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			//跳转
+				System.exit(0);
 			}
 		});
 		btnNewButton.setBounds(422, 328, 113, 27);
 		add(btnNewButton);
 		
 		JButton button = new JButton("开始");
+		button.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				addItem();
+			}
+		});
 		button.setBounds(422, 29, 113, 27);
 		add(button);
 		

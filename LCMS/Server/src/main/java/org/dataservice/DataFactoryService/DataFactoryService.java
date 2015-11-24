@@ -17,7 +17,7 @@ public interface DataFactoryService extends Remote{
 	
 	public UserDataService getUserData();
 	
-	public OrganizationDataService getOrganizationData();
+//	public OrganizationDataService getOrganizationData();
 	
 	public StaffDataService getStaffData();
 	

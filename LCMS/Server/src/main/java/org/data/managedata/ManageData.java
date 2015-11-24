@@ -7,7 +7,7 @@ import org.dataservice.managedataservice.ManageDataService;
 
 public class ManageData extends UnicastRemoteObject implements ManageDataService{
 
-	protected ManageData() throws RemoteException {
+	public ManageData() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}

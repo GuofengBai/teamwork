@@ -13,7 +13,7 @@ import org.po.ResultMessage;
 
 public class OrganizationData extends UnicastRemoteObject implements OrganizationDataService{
 
-	protected OrganizationData() throws RemoteException {
+	public OrganizationData() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
