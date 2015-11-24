@@ -1,5 +1,7 @@
 package org.presentation.manageui;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -56,9 +58,11 @@ public class BeginAccountUI {
 		label.setBounds(185, 10, 54, 15);
 		panel.add(label);
 		
-		JButton back = new JButton("\u8FD4\u56DE");
-		back.setBounds(306, 229, 93, 23);
-		panel.add(back);
+		JButton backButton = new JButton("\u8FD4\u56DE");
+		backButton.setBounds(306, 229, 93, 23);
+		panel.add(backButton);
+		backButton.addActionListener(new backButtonListener());
+		
 		
 		JLabel label_1 = new JLabel("\u671F\u521D\u8D26\u5355\u5217\u8868");
 		label_1.setBounds(37, 50, 84, 15);
@@ -82,13 +86,43 @@ public class BeginAccountUI {
 		scrollPane.setBounds(37, 75, 362, 87);
 		panel.add(scrollPane);
 		
-		JButton newBill = new JButton("\u65B0\u5EFA");
-		newBill.setBounds(37, 185, 93, 23);
-		panel.add(newBill);
+		JButton addButton = new JButton("\u65B0\u5EFA");
+		addButton.setBounds(37, 185, 93, 23);
+		panel.add(addButton);
+		addButton.addActionListener(new addButtonListener());
 		
-		JButton delete = new JButton("\u5220\u9664");
-		delete.setBounds(165, 185, 93, 23);
-		panel.add(delete);
+		JButton deleteButton = new JButton("\u5220\u9664");
+		deleteButton.setBounds(165, 185, 93, 23);
+		panel.add(deleteButton);
+		deleteButton.addActionListener(new deleteButtonListener());
+		
 	}
+	
+	class addButtonListener implements ActionListener{
 
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+	
+	class deleteButtonListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+	
+	class backButtonListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+	
 }
