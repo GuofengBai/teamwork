@@ -35,12 +35,14 @@ import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.commodityblservice.CheckCommodityBLService;
 import org.po.myDate;
 import org.vo.ComVO;
+import org.vo.CommodityVO;
 
 
 public class CheckCommodityUI extends JPanel {
 	private JTable table;
 	CheckCommodityBLService cbs;
 	private DefaultTableModel model;
+	Vector<CommodityVO> cvo;
 
 	public void addItem(){
 		Date date = new Date();
@@ -52,8 +54,11 @@ public class CheckCommodityUI extends JPanel {
 		myDate today=new myDate(year,month,day);
 		cbs.startCheckCommodity(today);
 		Vector<ComVO> vData=cbs.checkCommodityInf();
-		
-		model.addRow(vData);
+		for(ComVO vo:vData){
+			CommodityVO vo1=new CommodityVO(vo.getGoodsNum(),vo.getDate(),vo.getplace(),vo.getLocation(),vo.getarea());
+			cvo.add(vo1);
+		}
+		//model.addRow(cvo);
 	}
 
 	public void initTable(){
@@ -71,11 +76,11 @@ public class CheckCommodityUI extends JPanel {
 		vColumns.add("排号");
 		vColumns.add("架号");
 		vColumns.add("位号");
-		Vector<ComVO> vData = new Vector<ComVO>();
+		Vector<CommodityVO> vData = new Vector<CommodityVO>();
 
 			
 
-		model=new DefaultTableModel(vData,vColumns);
+		model=new DefaultTableModel(cvo,vColumns);
 		table=new JTable(model){
 			private static final long serialVersionUID = 1L;
 
@@ -83,7 +88,7 @@ public class CheckCommodityUI extends JPanel {
 				return false;
 			}
 		};
-		model.addRow(vData);
+		model.addRow(cvo);
 		table.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.getViewport().add(table);
 		table.setFillsViewportHeight(true);

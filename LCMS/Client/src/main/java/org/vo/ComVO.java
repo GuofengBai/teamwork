@@ -16,4 +16,19 @@ public class ComVO {
 		this.LocationNum = LocationNum;
 		this.area=area;
 	}
+	public String getGoodsNum(){
+		return GoodsNum;
+	}
+	public myDate getDate(){
+		return inDate;
+	}
+	public String getplace(){
+		return place;
+	}
+	public String getLocation(){
+		return LocationNum;
+	}
+	public String getarea(){
+		return area;
+	}
 }
