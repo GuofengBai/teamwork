@@ -8,5 +8,12 @@ public class StateListVO extends Vector<String>{
 		this.add(GoodsNum);
 		this.add(goodState);
 	}
+	public String getNum(){
+		return this.get(0);
+	}
+	
+	public String getState(){
+		return this.get(1);
+	}
 
 }

@@ -34,7 +34,7 @@ public class NewCenterArriveBillsUI extends JPanel {
 	private JTable table;
 	private JTextField GoodNum;
 	private JTextField CenterNum;
-	private ArrayList<StateListVO> statevo;
+	ArrayList<StateListVO> statevo = new ArrayList<StateListVO>();
 
 	/**
 	 * Create the panel.
@@ -130,9 +130,9 @@ public class NewCenterArriveBillsUI extends JPanel {
 				String num = GoodNum.getText();
 				String state = State.getSelectedItem().toString();
 				StateListVO item = new StateListVO(num,state);
+				statevo.add(item);				
 				model.addRow(item);
 				GoodNum.setText("");
-				statevo.add(item);
 				
 			}
 			

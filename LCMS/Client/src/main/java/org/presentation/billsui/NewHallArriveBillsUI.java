@@ -29,7 +29,7 @@ public class NewHallArriveBillsUI extends JPanel {
 	private JTextField entruckNum;
 	private JTable table;
 	private JTextField goodNum;
-	private ArrayList<StateListVO> list;
+	private ArrayList<StateListVO> list= new ArrayList<StateListVO>();
 	private DefaultTableModel model;
 
 	/**

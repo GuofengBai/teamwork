@@ -45,7 +45,7 @@ public class NewCenterFreightBillsUI extends JPanel {
 	private JTable table;
 	private JScrollPane scrollPane;
 	DefaultTableModel model;
-	private ArrayList<StateListVO> list;
+	private ArrayList<StateListVO> list= new ArrayList<StateListVO>();
 	private JComboBox goodState;
 	private JComboBox SendType;
 	private JTextField price;

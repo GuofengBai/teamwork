@@ -1,43 +1,34 @@
 package org.po;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+
+import org.vo.StateListVO;
 
 
 public class HallCollectionBills extends BillsPO{
-	private int Cash;
+	private myDate date;
 	private String name;
-	private String[] GoodsNum;
-	
-	public HallCollectionBills(myDate t,String s,int c,String name,String[] g){
-		this.Date=t;
-		this.idNum=s;
-		Cash=c;
+	private String total;
+	private ArrayList<StateListVO> list;
+	public HallCollectionBills(myDate date, String name, String total, ArrayList<StateListVO> list){
+		this.date=date;
 		this.name=name;
-		GoodsNum=g;
+		this.total=total;
+		this.list=list;
 	}
-	public void setDate(myDate t){
-		this.Date=t;
+	public myDate getdate(){
+		return date;
 	}
-	public myDate getDate(){
-		return Date;
-	}
-	public void setCash(int t){
-		this.Cash=t;
-	}
-	public int getCash(){
-		return Cash;
-	}
-	public void setname(String s){
-		this.name=s;
+	
+	public String gettotal(){
+		return total;
 	}
 	public String getname(){
 		return name;
 	}
-	public void setGoodsNum(String[] l){
-		this.GoodsNum=l;
-	}
-	public String[] getGoodsNum(){
-		return GoodsNum;
+	public ArrayList<StateListVO> getlist(){
+		return list;
 	}
 
 }

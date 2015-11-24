@@ -1,14 +1,14 @@
 package org.businesslogicservice.billsblservice;
 
+import java.util.ArrayList;
+
 import org.po.ResultMessage;
 import org.po.myDate;
+import org.vo.StateListVO;
 
 public interface NewHallCollectBillsBLService {
 	
-	public ResultMessage newHallColletcionBill(myDate date, String name);
+	public ResultMessage addHallCollectionBills(myDate date, String name, String total, ArrayList<StateListVO> list);
 	
-	public String addGoods(String GoodsNum, double Cash);
-	
-	public String deleteGoodsCash(String GoodsNum);
 
 }
