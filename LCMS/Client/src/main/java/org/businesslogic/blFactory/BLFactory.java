@@ -3,12 +3,14 @@ package org.businesslogic.blFactory;
 import org.businesslogic.billsbl.NewSendingBillsBL;
 import org.businesslogic.commoditybl.CheckCommodityBL;
 import org.businesslogic.commoditybl.CommodityBL;
+import org.businesslogic.commoditybl.DistrictChangeBL;
 import org.businesslogic.managebl.ManageBL;
 import org.businesslogic.organizationbl.OrganizationBL;
 import org.businesslogic.staffbl.StaffBL;
 import org.businesslogic.userbl.UserBL;
 import org.businesslogicservice.billsblservice.NewSendingBillsBLService;
 import org.businesslogicservice.commodityblservice.CommodityBLService;
+import org.businesslogicservice.commodityblservice.DistrictChangeBLService;
 import org.businesslogicservice.manageblservice.ManageBLService;
 import org.businesslogicservice.organizationblservice.OrganizationBLService;
 import org.businesslogicservice.staffblservice.StaffBLService;
@@ -29,6 +31,7 @@ public class BLFactory {
 	
 	public static NewSendingBillsBLService newSendingBillsBL;
 	public static CheckCommodityBLService checkcommodityBL;
+	public static DistrictChangeBLService districtchangeBL;
 	
 	public static void init(){
 		commodityBL=null;
@@ -100,6 +103,12 @@ public class BLFactory {
 		}
 		return checkcommodityBL;
 	}
+	public static DistrictChangeBLService getDistrictChangeBL() {
+		// TODO Auto-generated method stub
+		if(districtchangeBL==null){
+			districtchangeBL=new DistrictChangeBL();
+		}
+		return districtchangeBL;
     
-    
+	}
 }
