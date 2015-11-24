@@ -48,7 +48,7 @@ public class NewCenterFreightBillsUI extends JPanel {
 	private ArrayList<StateListVO> list;
 	private JComboBox goodState;
 	private JComboBox SendType;
-	private JLabel price;
+	private JTextField price;
 
 	/**
 	 * Create the panel.
@@ -209,10 +209,6 @@ public class NewCenterFreightBillsUI extends JPanel {
 			
 		});
 		
-		price = new JLabel("");
-		price.setBounds(113, 282, 54, 15);
-		add(price);
-		
 		JButton submit = new JButton("\u63D0\u4EA4");
 		submit.setBounds(113, 307, 93, 23);
 		add(submit);
@@ -220,9 +216,15 @@ public class NewCenterFreightBillsUI extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				SENDSTYPE send = SENDSTYPE.NORMAL;
+				if(SendType.getSelectedItem().equals("铁运")){
+					send = SENDSTYPE.SLOW;
+				}else if(SendType.getSelectedItem().equals("空运")){
+					send = SENDSTYPE.FAST;
+				}
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
 				NewCenterFreightBillsBL bl = new NewCenterFreightBillsBL();
-				bl.addCenterFreightBills(date, freightNum.getText(), , startPlace.getText(), endPlace.getText(), caseNum.getText(), personName.getText());
+				bl.addCenterFreightBills(date, freightNum.getText(), craftNum.getText(), startPlace.getText(), endPlace.getText(), caseNum.getText(), personName.getText(),Long.parseLong(price.getText()),send,list);
 			}
 			
 		});
@@ -240,6 +242,11 @@ public class NewCenterFreightBillsUI extends JPanel {
 		SendType.addItem("汽运");
 		SendType.addItem("铁运");
 		SendType.addItem("空运");
+		
+		price = new JTextField();
+		price.setBounds(113, 279, 66, 21);
+		add(price);
+		price.setColumns(10);
 
 	}
 }
