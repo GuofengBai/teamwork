@@ -61,7 +61,7 @@ public class DistrictChangeUI extends JPanel {
 		});
 		// 添加下拉框
 		JPanel supplierPanel = new JPanel();
-		ComBox.setBounds(62, 76, 82, 25);
+		supplierPanel.setBounds(62, 56, 82, 25);
 		JLabel supplierLabel = new JLabel("仓库：");
 		supplierPanel.add(supplierLabel);
 		supplierPanel.add(ComBox);
@@ -71,6 +71,7 @@ public class DistrictChangeUI extends JPanel {
 		ComBox = new JComboBox<String>();
 		// 获得供应商列表
 		// 初始化下拉框选项
+		list = cbs.getArea();
 		if (list.size() > 0) {
 			for (int i = 0; i < list.size(); i++) {
 				ComBox.addItem(list.get(i));
@@ -87,7 +88,7 @@ public class DistrictChangeUI extends JPanel {
 		});
 		// 添加下拉框
 		JPanel supplierPanel = new JPanel();
-		ComBox.setBounds(245, 76, 82, 25);
+		supplierPanel.setBounds(245, 56, 82, 25);
 		JLabel supplierLabel = new JLabel("仓库：");
 		supplierPanel.add(supplierLabel);
 		supplierPanel.add(ComBox);
@@ -100,7 +101,7 @@ public class DistrictChangeUI extends JPanel {
 				.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setViewportBorder(UIManager.getBorder("Menu.border"));
 		scrollPane.setToolTipText("");
-		scrollPane.setBounds(53, 82, 482, 218);
+		scrollPane.setBounds(105, 114, 482, 218);
 		Vector<String> vColumns = new Vector<String>();
 		vColumns.add("货运编号");
 		vColumns.add("入库日期");
@@ -113,6 +114,8 @@ public class DistrictChangeUI extends JPanel {
 		Vector<CommodityVO> vData = new Vector<CommodityVO>();
 
 		model = new DefaultTableModel(cvo, vColumns);
+		model.addRow(cvo);
+		this.add(scrollPane);
 		table = new JTable(model) {
 			private static final long serialVersionUID = 1L;
 
@@ -120,12 +123,10 @@ public class DistrictChangeUI extends JPanel {
 				return false;
 			}
 		};
-		model.addRow(cvo);
+		scrollPane.setViewportView(table);
 		table.getSelectionModel().setSelectionMode(
 				ListSelectionModel.SINGLE_SELECTION);
-		scrollPane.getViewport().add(table);
 		table.setFillsViewportHeight(true);
-		this.add(scrollPane);
 	}
 
 	public DistrictChangeUI() {
@@ -133,17 +134,18 @@ public class DistrictChangeUI extends JPanel {
 		cbs = BLFactory.getDistrictChangeBL();
 		initDistrictSelecter();
 		initTable();
+		initToSelecter();
 		setLayout(null);
 
 		JLabel label = new JLabel("库区调整");
 		label.setBounds(222, 30, 74, 25);
 		add(label);
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(
-				new String[] { "仓库1", "仓库2" }));
-		comboBox.setBounds(62, 76, 82, 25);
-		add(comboBox);
+		//JComboBox comboBox = new JComboBox();
+		//comboBox.setModel(new DefaultComboBoxModel(
+		//		new String[] { "仓库1", "仓库2" }));
+		//comboBox.setBounds(62, 76, 82, 25);
+		//add(comboBox);
 
 		JLabel label_1 = new JLabel("移至");
 		label_1.setBounds(177, 79, 72, 18);
@@ -158,7 +160,7 @@ public class DistrictChangeUI extends JPanel {
 		add(label_3);
 
 		JButton button = new JButton("返回");
-		button.setBounds(422, 328, 113, 27);
+		button.setBounds(453, 363, 113, 27);
 		add(button);
 
 	}
