@@ -7,11 +7,11 @@ import org.po.ComPO;
 import org.po.CommodityPO;
 
 public class CommodityInAndOutBL implements CommodityInAndOutBLService {
+	CommodityDataService cds = RMIHelper.getDataFactory().getCommodityData();
 
 	public boolean Commodityin(ComPO po) {
 		// TODO Auto-generated method stub
-		CommodityDataService cds = RMIHelper.getDataFactory()
-				.getCommodityData();
+
 		if (cds.addCom(po).success)
 			return true;
 		else
@@ -20,8 +20,6 @@ public class CommodityInAndOutBL implements CommodityInAndOutBLService {
 
 	public boolean Commodityout(ComPO po) {
 		// TODO Auto-generated method stub
-		CommodityDataService cds = RMIHelper.getDataFactory()
-				.getCommodityData();
 		if (cds.delCom(po).success) {
 			return true;
 		} else

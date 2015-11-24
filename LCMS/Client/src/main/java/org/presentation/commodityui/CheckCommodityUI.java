@@ -1,4 +1,5 @@
 package org.presentation.commodityui;
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.ListSelectionModel;
@@ -37,33 +38,32 @@ import org.po.myDate;
 import org.vo.ComVO;
 import org.vo.CommodityVO;
 
-
 public class CheckCommodityUI extends JPanel {
 	private JTable table;
 	CheckCommodityBLService cbs;
 	private DefaultTableModel model;
 	Vector<CommodityVO> cvo;
 
-	public void addItem(){
+	public void addItem() {
 		Date date = new Date();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
 		String curdate = simpleDateFormat.format(date);
 		int year = Integer.parseInt(curdate.substring(0, 4));
-		int month=Integer.parseInt(curdate.substring(4, 6));
-		int day=Integer.parseInt(curdate.substring(6, 8));
-		myDate today=new myDate(year,month,day);
+		int month = Integer.parseInt(curdate.substring(4, 6));
+		int day = Integer.parseInt(curdate.substring(6, 8));
+		myDate today = new myDate(year, month, day);
 		cbs.startCheckCommodity(today);
-		Vector<ComVO> vData=cbs.checkCommodityInf();
-		for(ComVO vo:vData){
-			CommodityVO vo1=new CommodityVO(vo.getGoodsNum(),vo.getDate(),vo.getplace(),vo.getLocation(),vo.getarea());
-			cvo.add(vo1);
+		cvo = cbs.checkCommodityInf();
+		for (CommodityVO vo : cvo) {
+			model.addRow(vo);
 		}
 		//model.addRow(cvo);
 	}
 
-	public void initTable(){
+	public void initTable() {
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane
+				.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setViewportBorder(UIManager.getBorder("Menu.border"));
 		scrollPane.setToolTipText("");
 		scrollPane.setBounds(53, 82, 482, 218);
@@ -78,18 +78,17 @@ public class CheckCommodityUI extends JPanel {
 		vColumns.add("位号");
 		Vector<CommodityVO> vData = new Vector<CommodityVO>();
 
-			
-
-		model=new DefaultTableModel(cvo,vColumns);
-		table=new JTable(model){
+		model = new DefaultTableModel(cvo, vColumns);
+		table = new JTable(model) {
 			private static final long serialVersionUID = 1L;
 
-			public boolean isCellEditable(int row, int column){
+			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
 		};
 		model.addRow(cvo);
-		table.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.getSelectionModel().setSelectionMode(
+				ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.getViewport().add(table);
 		table.setFillsViewportHeight(true);
 		this.add(scrollPane);
@@ -99,68 +98,55 @@ public class CheckCommodityUI extends JPanel {
 	 * Create the panel.
 	 */
 	public CheckCommodityUI() {
-		cbs=BLFactory.getCheckCommodityBL();
+		cbs = BLFactory.getCheckCommodityBL();
 		setLayout(null);
 		initTable();
 		JLabel label = new JLabel("\u5E93\u5B58\u76D8\u70B9");
 		label.setBounds(222, 30, 74, 25);
 		add(label);
-		
-		/*table = new JTable();
-		table.setFillsViewportHeight(true);
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-			},
-			new String[] {
-				"\u5FEB\u9012\u7F16\u53F7", "\u5165\u5E93\u65E5\u671F", "\u76EE\u7684\u5730", "\u533A\u53F7\u6392\u53F7\u67B6\u53F7\u4F4D\u53F7"
-			}
-		));
-		table.getColumnModel().getColumn(0).setPreferredWidth(180);
-		table.getColumnModel().getColumn(3).setPreferredWidth(150);
-		table.setBounds(105, 93, 319, 218);
-		//add(table);
-		
-		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setViewportBorder(UIManager.getBorder("Menu.border"));
-		scrollPane.setToolTipText("");
-		scrollPane.setBounds(53, 82, 482, 218);
-		add(scrollPane);*/
-		
+
+		/*
+		 * table = new JTable(); table.setFillsViewportHeight(true);
+		 * table.setModel(new DefaultTableModel( new Object[][] { {null, null,
+		 * null, null}, {null, null, null, null}, {null, null, null, null},
+		 * {null, null, null, null}, {null, null, null, null}, {null, null,
+		 * null, null}, {null, null, null, null}, {null, null, null, null},
+		 * {null, null, null, null}, {null, null, null, null}, {null, null,
+		 * null, null}, {null, null, null, null}, {null, null, null, null},
+		 * {null, null, null, null}, }, new String[] {
+		 * "\u5FEB\u9012\u7F16\u53F7", "\u5165\u5E93\u65E5\u671F",
+		 * "\u76EE\u7684\u5730",
+		 * "\u533A\u53F7\u6392\u53F7\u67B6\u53F7\u4F4D\u53F7" } ));
+		 * table.getColumnModel().getColumn(0).setPreferredWidth(180);
+		 * table.getColumnModel().getColumn(3).setPreferredWidth(150);
+		 * table.setBounds(105, 93, 319, 218); //add(table);
+		 * 
+		 * JScrollPane scrollPane = new JScrollPane(table);
+		 * scrollPane.setVerticalScrollBarPolicy
+		 * (ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		 * scrollPane.setViewportBorder(UIManager.getBorder("Menu.border"));
+		 * scrollPane.setToolTipText(""); scrollPane.setBounds(53, 82, 482,
+		 * 218); add(scrollPane);
+		 */
+
 		JButton btnNewButton = new JButton("返回");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			//跳转
+				// 跳转
 				System.exit(0);
 			}
 		});
 		btnNewButton.setBounds(422, 328, 113, 27);
 		add(btnNewButton);
-		
+
 		JButton button = new JButton("开始");
-		button.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				addItem();
 			}
 		});
 		button.setBounds(422, 29, 113, 27);
 		add(button);
-		
-
 
 	}
 }
