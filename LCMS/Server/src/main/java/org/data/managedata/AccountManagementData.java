@@ -50,10 +50,11 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 		
 		try {
 			ObjectInputStream is = new ObjectInputStream(new FileInputStream("SerializableData/BankAccount.file"));
-			ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("SerializableData/BankAccount.file"));
+			
 			
 			list=new ArrayList<BankAccountPO>();
 			list=(ArrayList<BankAccountPO>) is.readObject();
+			
 			is.close();
 			
 			if(list.isEmpty()||list==null){
@@ -70,8 +71,10 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 			if(nameExist){
 				String[] info={"Failed","The name already exists."};
 				 message=new ResultMessage(false,info);
+				
 			}else{
 				list.add(account);
+				ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("SerializableData/BankAccount.file"));
 				os.writeObject(list);
 				os.close();
 				String[] info={"Success","Account saved"};
@@ -106,7 +109,7 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 		ResultMessage message=new ResultMessage(false,infotemp);
 		try {
 			ObjectInputStream is = new ObjectInputStream(new FileInputStream("SerializableData/BankAccount.file"));
-			ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("SerializableData/BankAccount.file"));
+			
 			list=(ArrayList<BankAccountPO>) is.readObject();
 			is.close();
 			
@@ -127,9 +130,11 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 			}
 			
 			if(nameExist=true){
+				ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("SerializableData/BankAccount.file"));
 				os.writeObject(list);
+				os.close();
 			}
-			os.close();
+			
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -160,7 +165,7 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 		ResultMessage message=new ResultMessage(false,infotemp);
 		try {
 			ObjectInputStream is = new ObjectInputStream(new FileInputStream("SerializableData/BankAccount.file"));
-			ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("SerializableData/BankAccount.file"));
+			
 			list=(ArrayList<BankAccountPO>) is.readObject();
 			is.close();
 			
@@ -170,6 +175,12 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 					accountTemp.setName(newname);
 					break;
 				}
+			}
+			
+			if(nameExist){
+				ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("SerializableData/BankAccount.file"));
+				os.writeObject(list);
+				os.close();
 			}
 			
 		} catch (FileNotFoundException e) {
@@ -201,7 +212,7 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 		ResultMessage message=new ResultMessage(false,infotemp);
 		try {
 			ObjectInputStream is = new ObjectInputStream(new FileInputStream("SerializableData/BankAccount.file"));
-			ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("SerializableData/BankAccount.file"));
+			
 			list=(ArrayList<BankAccountPO>) is.readObject();
 			is.close();
 			
@@ -212,6 +223,12 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 					accountTemp.setBalance(balancetemp+change);
 					break;
 				}
+			}
+			
+			if(nameExist){
+				ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("SerializableData/BankAccount.file"));
+				os.writeObject(list);
+				os.close();
 			}
 			
 		} catch (FileNotFoundException e) {

@@ -1,5 +1,7 @@
 package org.presentation.manageui;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -48,9 +50,10 @@ public class IncomeTableUI {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JButton button = new JButton("\u8FD4\u56DE");
-		button.setBounds(315, 229, 93, 23);
-		panel.add(button);
+		JButton backButton = new JButton("\u8FD4\u56DE");
+		backButton.setBounds(315, 229, 93, 23);
+		panel.add(backButton);
+		backButton.addActionListener(new backButtonListener());
 		
 		JLabel label = new JLabel("\u6210\u672C\u6536\u76CA\u8868");
 		label.setBounds(182, 10, 74, 15);
@@ -79,6 +82,15 @@ public class IncomeTableUI {
 		JLabel label_6 = new JLabel("\u5229\u6DA6");
 		label_6.setBounds(293, 105, 54, 15);
 		panel.add(label_6);
+	}
+	
+	class backButtonListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
 	}
 
 }

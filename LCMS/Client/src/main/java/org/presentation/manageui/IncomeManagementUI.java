@@ -1,5 +1,7 @@
 package org.presentation.manageui;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -95,13 +97,37 @@ public class IncomeManagementUI {
 		scrollPane.setBounds(48, 113, 321, 101);
 		panel.add(scrollPane);
 		
-		JButton search = new JButton("\u641C\u7D22");
-		search.setBounds(159, 76, 93, 23);
-		panel.add(search);
+		JButton searchButton = new JButton("\u641C\u7D22");
+		searchButton.setBounds(159, 76, 93, 23);
+		panel.add(searchButton);
+		searchButton.addActionListener(new searchButtonListener());
 		
-		JButton back = new JButton("\u8FD4\u56DE");
-		back.setBounds(275, 229, 93, 23);
-		panel.add(back);
+		JButton backButton = new JButton("\u8FD4\u56DE");
+		backButton.setBounds(275, 229, 93, 23);
+		panel.add(backButton);
+		backButton.addActionListener(new backButtonListener());
+		
+	}
+	
+	class searchButtonListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			String date=searchDate.getText();
+			String hall=searchHall.getText();
+			
+			
+		}
+		
+	}
+	
+	class backButtonListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
 	}
 
 }

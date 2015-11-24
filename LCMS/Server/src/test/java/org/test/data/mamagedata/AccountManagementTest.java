@@ -14,6 +14,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.po.BankAccountPO;
+import org.po.ResultMessage;
 
 public class AccountManagementTest {
 
@@ -29,24 +30,13 @@ public class AccountManagementTest {
 	public void test() throws RemoteException {
 		AccountManagementData amd=new AccountManagementData();
 		
-		try {
-			ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("SerializableData/BankAccount.file"));
-			ArrayList <BankAccountPO> temp=new ArrayList <BankAccountPO>();
-			BankAccountPO test0=new BankAccountPO("12312322",10000);
-			temp.add(test0);
-			os.writeObject(temp);
-			os.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		
 		BankAccountPO test1=new BankAccountPO("12345678",10000);
-		amd.addAccount(test1);
+		ResultMessage message=amd.addAccount(test1);
 		
+		System.out.println(message.info[0]);
+		System.out.println(message.info[1]);
 	}
 
 }

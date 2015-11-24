@@ -32,9 +32,6 @@ public class BeginAccountData extends UnicastRemoteObject implements BeginAccoun
 		
 		try {
 			ObjectInputStream is = new ObjectInputStream(new FileInputStream("SerializableData/BeginAccount.file"));
-			ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("SerializableData/BeginAccount.file"));
-			ObjectOutputStream os2 = new ObjectOutputStream(new FileOutputStream("SerializableData/BeginInfo.file"));
-			
 			list=new ArrayList<BeginAccountPO>();
 			list=(ArrayList<BeginAccountPO>) is.readObject();
 			is.close();
@@ -55,9 +52,12 @@ public class BeginAccountData extends UnicastRemoteObject implements BeginAccoun
 				 message=new ResultMessage(false,info);
 			}else{
 				list.add(account);
+				ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("SerializableData/BeginAccount.file"));
 				os.writeObject(list);
-				os2.writeObject(account);
 				os.close();
+				
+				ObjectOutputStream os2 = new ObjectOutputStream(new FileOutputStream("SerializableData/BeginInfo.file"));
+				os2.writeObject(account);
 				os2.close();
 				String[] info={"Success","Account saved"};
 				message=new ResultMessage(true,info);
@@ -135,7 +135,6 @@ public class BeginAccountData extends UnicastRemoteObject implements BeginAccoun
 		ResultMessage message=new ResultMessage(false,infotemp);
 		try {
 			ObjectInputStream is = new ObjectInputStream(new FileInputStream("SerializableData/BeginAccount.file"));
-			ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("SerializableData/BeginAccount.file"));
 			list=(ArrayList<BeginAccountPO>) is.readObject();
 			is.close();
 			
@@ -156,9 +155,11 @@ public class BeginAccountData extends UnicastRemoteObject implements BeginAccoun
 			}
 			
 			if(nameExist=true){
+				ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("SerializableData/BeginAccount.file"));
 				os.writeObject(list);
+				os.close();
 			}
-			os.close();
+			
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

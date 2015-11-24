@@ -52,33 +52,33 @@ public class FinacialStaffView {
 		label.setBounds(182, 10, 54, 15);
 		panel.add(label);
 		
-		JButton button = new JButton("\u8FD4\u56DE");
-		button.setBounds(302, 229, 93, 23);
-		panel.add(button);
+		JButton backButton = new JButton("\u8FD4\u56DE");
+		backButton.setBounds(302, 229, 93, 23);
+		panel.add(backButton);
 		
-		JButton button_1 = new JButton("\u7ED3\u7B97\u7BA1\u7406");
-		button_1.setBounds(75, 69, 93, 23);
-		panel.add(button_1);
+		JButton incomeButton = new JButton("\u7ED3\u7B97\u7BA1\u7406");
+		incomeButton.setBounds(75, 69, 93, 23);
+		panel.add(incomeButton);
 		
-		JButton btnNewButton = new JButton("\u6210\u672C\u7BA1\u7406");
-		btnNewButton.setBounds(240, 69, 93, 23);
-		panel.add(btnNewButton);
+		JButton paymentButton = new JButton("\u6210\u672C\u7BA1\u7406");
+		paymentButton.setBounds(240, 69, 93, 23);
+		panel.add(paymentButton);
 		
-		JButton button_2 = new JButton("\u671F\u521D\u5EFA\u8D26");
-		button_2.setBounds(75, 123, 93, 23);
-		panel.add(button_2);
+		JButton beginaccoutButton = new JButton("\u671F\u521D\u5EFA\u8D26");
+		beginaccoutButton.setBounds(75, 123, 93, 23);
+		panel.add(beginaccoutButton);
 		
-		JButton button_3 = new JButton("\u8D26\u6237\u7BA1\u7406");
-		button_3.setBounds(240, 123, 93, 23);
-		panel.add(button_3);
+		JButton accountButton = new JButton("\u8D26\u6237\u7BA1\u7406");
+		accountButton.setBounds(240, 123, 93, 23);
+		panel.add(accountButton);
 		
-		JButton btnNewButton_1 = new JButton("\u6210\u672C\u6536\u76CA\u8868");
-		btnNewButton_1.setBounds(75, 177, 93, 23);
-		panel.add(btnNewButton_1);
+		JButton earningButton = new JButton("\u6210\u672C\u6536\u76CA\u8868");
+		earningButton.setBounds(75, 177, 93, 23);
+		panel.add(earningButton);
 		
-		JButton button_4 = new JButton("\u7ECF\u8425\u60C5\u51B5\u8868");
-		button_4.setBounds(240, 177, 93, 23);
-		panel.add(button_4);
+		JButton statusButton = new JButton("\u7ECF\u8425\u60C5\u51B5\u8868");
+		statusButton.setBounds(240, 177, 93, 23);
+		panel.add(statusButton);
 	}
 
 }

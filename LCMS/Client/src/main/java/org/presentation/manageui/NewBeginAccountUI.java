@@ -13,12 +13,12 @@ import javax.swing.JTextField;
 public class NewBeginAccountUI {
 
 	private JFrame frame;
-	private JTextField organization;
-	private JTextField carNum;
-	private JTextField presonNum;
-	private JTextField storage;
-	private JTextField name;
-	private JTextField balance;
+	private JTextField organizationField;
+	private JTextField carNumField;
+	private JTextField presonNumField;
+	private JTextField storageField;
+	private JTextField nameField;
+	private JTextField balanceField;
 
 	/**
 	 * Launch the application.
@@ -61,17 +61,17 @@ public class NewBeginAccountUI {
 		label.setBounds(172, 10, 78, 15);
 		panel.add(label);
 		
-		JButton save = new JButton("\u786E\u5B9A");
-		save.addActionListener(new ActionListener() {
+		JButton saveButton = new JButton("\u786E\u5B9A");
+		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		save.setBounds(101, 229, 93, 23);
-		panel.add(save);
+		saveButton.setBounds(101, 229, 93, 23);
+		panel.add(saveButton);
 		
-		JButton cancel = new JButton("\u53D6\u6D88");
-		cancel.setBounds(240, 229, 93, 23);
-		panel.add(cancel);
+		JButton cancelButton = new JButton("\u53D6\u6D88");
+		cancelButton.setBounds(240, 229, 93, 23);
+		panel.add(cancelButton);
 		
 		JLabel label_1 = new JLabel("\u673A\u6784");
 		label_1.setBounds(48, 43, 54, 15);
@@ -101,35 +101,35 @@ public class NewBeginAccountUI {
 		label_5.setBounds(231, 159, 54, 15);
 		panel.add(label_5);
 		
-		organization = new JTextField();
-		organization.setBounds(101, 40, 66, 21);
-		panel.add(organization);
-		organization.setColumns(10);
+		organizationField = new JTextField();
+		organizationField.setBounds(101, 40, 66, 21);
+		panel.add(organizationField);
+		organizationField.setColumns(10);
 		
-		carNum = new JTextField();
-		carNum.setBounds(101, 75, 66, 21);
-		panel.add(carNum);
-		carNum.setColumns(10);
+		carNumField = new JTextField();
+		carNumField.setBounds(101, 75, 66, 21);
+		panel.add(carNumField);
+		carNumField.setColumns(10);
 		
-		presonNum = new JTextField();
-		presonNum.setBounds(267, 40, 66, 21);
-		panel.add(presonNum);
-		presonNum.setColumns(10);
+		presonNumField = new JTextField();
+		presonNumField.setBounds(267, 40, 66, 21);
+		panel.add(presonNumField);
+		presonNumField.setColumns(10);
 		
-		storage = new JTextField();
-		storage.setBounds(267, 75, 66, 21);
-		panel.add(storage);
-		storage.setColumns(10);
+		storageField = new JTextField();
+		storageField.setBounds(267, 75, 66, 21);
+		panel.add(storageField);
+		storageField.setColumns(10);
 		
-		name = new JTextField();
-		name.setBounds(101, 156, 66, 21);
-		panel.add(name);
-		name.setColumns(10);
+		nameField = new JTextField();
+		nameField.setBounds(101, 156, 66, 21);
+		panel.add(nameField);
+		nameField.setColumns(10);
 		
-		balance = new JTextField();
-		balance.setBounds(267, 156, 66, 21);
-		panel.add(balance);
-		balance.setColumns(10);
+		balanceField = new JTextField();
+		balanceField.setBounds(267, 156, 66, 21);
+		panel.add(balanceField);
+		balanceField.setColumns(10);
 	}
 
 }
