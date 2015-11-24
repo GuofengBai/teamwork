@@ -50,7 +50,7 @@ public class BillsDataFactory  extends UnicastRemoteObject implements BillsDataF
 		newPayingBillsData=null;
 	}
 
-	public NewSendingBillsDataService getNewSendingBillsData() {
+	public NewSendingBillsDataService getNewSendingBillsData() throws RemoteException{
 		// TODO Auto-generated method stub
 		if(newSendingBillsData==null){
 			try {
@@ -63,52 +63,52 @@ public class BillsDataFactory  extends UnicastRemoteObject implements BillsDataF
 		return null;
 	}
 
-	public NewCenterArriveBillsDataService getNewCenterArriveBillsData() {
+	public NewCenterArriveBillsDataService getNewCenterArriveBillsData() throws RemoteException{
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
-	public NewCenterEntruckBillsDataService getNewCenterEntruckBillsData() {
+	public NewCenterEntruckBillsDataService getNewCenterEntruckBillsData() throws RemoteException{
 		
 		return null;
 		
 	}
 	
-	public NewCenterFreightBillsDataService getNewCenterFreightBillsData() {
+	public NewCenterFreightBillsDataService getNewCenterFreightBillsData() throws RemoteException{
 		return null;
 	}
 
-	public NewHallArriveBillsDataService getNewHallArriveBillsData() {
+	public NewHallArriveBillsDataService getNewHallArriveBillsData() throws RemoteException{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public NewHallCollectBillsDataService getNewHallCollectBillsData() {
+	public NewHallCollectBillsDataService getNewHallCollectBillsData() throws RemoteException{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public NewHallDispatchBillsDataService getNewHallDispatchBillsData() {
+	public NewHallDispatchBillsDataService getNewHallDispatchBillsData() throws RemoteException{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public NewHallEntruckBillsDataService getNewHallEntruckBillsData() {
+	public NewHallEntruckBillsDataService getNewHallEntruckBillsData() throws RemoteException{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public NewInstorageBillsDataService getNewInstorageBillsData() {
+	public NewInstorageBillsDataService getNewInstorageBillsData() throws RemoteException{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public NewOutstorageBillsDataService getNewOutstorageBillsData() {
+	public NewOutstorageBillsDataService getNewOutstorageBillsData() throws RemoteException{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public NewPayingBillsDataService getNewPayingBillsData() {
+	public NewPayingBillsDataService getNewPayingBillsData() throws RemoteException{
 		// TODO Auto-generated method stub
 		return null;
 	}

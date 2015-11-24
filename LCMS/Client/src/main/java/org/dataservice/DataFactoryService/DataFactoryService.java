@@ -1,6 +1,7 @@
 package org.dataservice.DataFactoryService;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 import org.dataservice.billsdataservice.BillsDataService;
 import org.dataservice.commoditydataservice.CommodityDataService;
@@ -11,16 +12,16 @@ import org.dataservice.userdataservice.UserDataService;
 
 public interface DataFactoryService extends Remote{
 
-	public CommodityDataService getCommodityData();
+	public CommodityDataService getCommodityData()throws RemoteException;
 	
-	public BillsDataFactoryService getBillsDataFactory();
+	public BillsDataFactoryService getBillsDataFactory()throws RemoteException;
 	
-	public UserDataService getUserData();
+	public UserDataService getUserData()throws RemoteException;
 	
-	public OrganizationDataService getOrganizationData();
+	public OrganizationDataService getOrganizationData()throws RemoteException;
 	
-	public StaffDataService getStaffData();
+	public StaffDataService getStaffData()throws RemoteException;
 	
-	public ManageDataService getManageData();
+	public ManageDataFactoryService getManageDataFactory()throws RemoteException;
 	
 }

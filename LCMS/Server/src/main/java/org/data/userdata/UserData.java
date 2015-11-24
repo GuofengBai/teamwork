@@ -51,7 +51,7 @@ public class UserData extends UnicastRemoteObject implements UserDataService {
 
 	}
 
-	public ResultMessage insert(UserPO po) {
+	public ResultMessage insert(UserPO po) throws RemoteException{
 		// TODO Auto-generated method stub
 
 		UserList.add(po);
@@ -60,7 +60,7 @@ public class UserData extends UnicastRemoteObject implements UserDataService {
 		return re;
 	}
 
-	public UserPO find(String account,String password) {
+	public UserPO find(String account,String password) throws RemoteException{
         for(UserPO po:UserList){
         	if(po.getAccount().equals(account)&&po.getPassword().equals(password)){
         		return po;
@@ -71,7 +71,7 @@ public class UserData extends UnicastRemoteObject implements UserDataService {
         return new UserPO("用户名不存在","用户名不存在",new StaffPO());
 	}
 
-	public ResultMessage save() {
+	private ResultMessage save() {
 		String fileName = "SerializableData/User.file";
 		try {
 			FileOutputStream fos = new FileOutputStream(fileName);
@@ -88,7 +88,7 @@ public class UserData extends UnicastRemoteObject implements UserDataService {
 		return null;
 	}
 
-	private void setRole(StaffPO staff) {
+	private void setRole(StaffPO staff){
 		String re = String.valueOf(staff.staffRole);
 		this.role = re;
 	}

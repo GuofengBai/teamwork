@@ -10,6 +10,7 @@ import org.data.staffdata.StaffData;
 import org.data.userdata.UserData;
 import org.dataservice.DataFactoryService.BillsDataFactoryService;
 import org.dataservice.DataFactoryService.DataFactoryService;
+import org.dataservice.DataFactoryService.ManageDataFactoryService;
 import org.dataservice.Impl.BillsDataServiceSerializableFileImpl;
 import org.dataservice.billsdataservice.BillsDataService;
 import org.dataservice.commoditydataservice.CommodityDataService;
@@ -25,10 +26,9 @@ public class DataFactory extends UnicastRemoteObject implements DataFactoryServi
 	UserDataService userData;
 	OrganizationDataService organizationData;
 	StaffDataService staffData;
-	ManageDataService manageData;
+	ManageDataFactoryService manageDataFactory;
 
-	public DataFactory() throws RemoteException {
-		// TODO Auto-generated constructor stub
+	public DataFactory() throws RemoteException{
 		super();
 		System.out.println("OK");
 		commodityData=null;
@@ -36,11 +36,11 @@ public class DataFactory extends UnicastRemoteObject implements DataFactoryServi
 		organizationData=null;
 		billsDataFactory=null;
 		staffData=null;
-		manageData=null;
+		manageDataFactory=null;
 		
 	}
 
-	public CommodityDataService getCommodityData() {
+	public CommodityDataService getCommodityData() throws RemoteException{
         if(commodityData==null){
         	try {
 				commodityData=new CommodityData();
@@ -53,7 +53,7 @@ public class DataFactory extends UnicastRemoteObject implements DataFactoryServi
 	}
 
 
-	public UserDataService getUserData() {
+	public UserDataService getUserData() throws RemoteException{
 		// TODO Auto-generated method stub
 		if (userData == null) {
 			try {
@@ -67,21 +67,21 @@ public class DataFactory extends UnicastRemoteObject implements DataFactoryServi
 	}
 
 
-//	public OrganizationDataService getOrganizationData() {
-		// TODO Auto-generated method stub
-	//	if(organizationData==null){
-		//	try {
-			//	organizationData=new OrganizationData();
-			//} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-		//		e.printStackTrace();
-		//	}
-		//}
-		
-	//	return organizationData;
-	//}
+	public OrganizationDataService getOrganizationData() throws RemoteException{
 
-	public StaffDataService getStaffData() {
+		if(organizationData==null){
+			try {
+				organizationData=new OrganizationData();
+			} catch (RemoteException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		
+		return organizationData;
+	}
+
+	public StaffDataService getStaffData() throws RemoteException{
 		// TODO Auto-generated method stub
 		if(staffData==null){
 			try {
@@ -94,20 +94,20 @@ public class DataFactory extends UnicastRemoteObject implements DataFactoryServi
 		return staffData;
 	}
 
-	public ManageDataService getManageData() {
+	public ManageDataFactoryService getManageDataFactory() throws RemoteException{
 		// TODO Auto-generated method stub
-		if(manageData==null){
+		if(manageDataFactory==null){
 			try {
-				manageData=new ManageData();
+				manageDataFactory=new ManageDataFactory();
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		return manageData;
+		return manageDataFactory;
 	}
 
-	public BillsDataFactoryService getBillsDataFactory() {
+	public BillsDataFactoryService getBillsDataFactory() throws RemoteException{
 		// TODO Auto-generated method stub
 		if(billsDataFactory==null){
 			try {
@@ -119,6 +119,7 @@ public class DataFactory extends UnicastRemoteObject implements DataFactoryServi
 		}
 		return billsDataFactory;
 	}
+
 
 }
 

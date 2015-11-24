@@ -1,6 +1,7 @@
 package org.dataservice.DataFactoryService;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 import org.dataservice.billsdataservice.NewCenterArriveBillsDataService;
 import org.dataservice.billsdataservice.NewCenterEntruckBillsDataService;
@@ -16,27 +17,27 @@ import org.dataservice.billsdataservice.NewSendingBillsDataService;
 
 public interface BillsDataFactoryService extends Remote{
 	
-	public NewSendingBillsDataService getNewSendingBillsData();
+	public NewSendingBillsDataService getNewSendingBillsData()throws RemoteException;
 	
-	public NewCenterArriveBillsDataService getNewCenterArriveBillsData();
+	public NewCenterArriveBillsDataService getNewCenterArriveBillsData()throws RemoteException;
 	
-	public NewCenterEntruckBillsDataService getNewCenterEntruckBillsData();
+	public NewCenterEntruckBillsDataService getNewCenterEntruckBillsData()throws RemoteException;
 	
-	public NewCenterFreightBillsDataService getNewCenterFreightBillsData();
+	public NewCenterFreightBillsDataService getNewCenterFreightBillsData()throws RemoteException;
 	
-	public NewHallArriveBillsDataService getNewHallArriveBillsData();
+	public NewHallArriveBillsDataService getNewHallArriveBillsData()throws RemoteException;
 	
-	public NewHallCollectBillsDataService getNewHallCollectBillsData();
+	public NewHallCollectBillsDataService getNewHallCollectBillsData()throws RemoteException;
 	
-	public NewHallDispatchBillsDataService getNewHallDispatchBillsData();
+	public NewHallDispatchBillsDataService getNewHallDispatchBillsData()throws RemoteException;
 	
-	public NewHallEntruckBillsDataService getNewHallEntruckBillsData();
+	public NewHallEntruckBillsDataService getNewHallEntruckBillsData()throws RemoteException;
 	
-	public NewInstorageBillsDataService getNewInstorageBillsData();
+	public NewInstorageBillsDataService getNewInstorageBillsData()throws RemoteException;
 	
-	public NewOutstorageBillsDataService getNewOutstorageBillsData();
+	public NewOutstorageBillsDataService getNewOutstorageBillsData()throws RemoteException;
 	
-	public NewPayingBillsDataService getNewPayingBillsData();
+	public NewPayingBillsDataService getNewPayingBillsData()throws RemoteException;
 	
 
 }

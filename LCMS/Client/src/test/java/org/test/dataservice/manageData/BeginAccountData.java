@@ -1,9 +1,9 @@
 package org.test.dataservice.manageData;
 
-import org.dataservice.managedataservice.BeginningAccountDataService;
+import org.dataservice.managedataservice.BeginAccountDataService;
 import org.po.BeginAccountPO;
 
-public class BeginAccountData implements BeginningAccountDataService {
+public class BeginAccountData implements BeginAccountDataService {
 
 	public void addBeginAccount(BeginAccountPO account) {
 		// TODO Auto-generated method stub

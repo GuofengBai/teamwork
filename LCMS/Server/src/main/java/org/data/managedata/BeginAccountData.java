@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import org.dataservice.managedataservice.BeginAccountDataService;
@@ -14,7 +15,13 @@ import org.po.BankAccountPO;
 import org.po.BeginAccountPO;
 import org.po.ResultMessage;
 
-public class BeginAccountData implements BeginAccountDataService {
+public class BeginAccountData extends UnicastRemoteObject implements BeginAccountDataService {
+	
+	public BeginAccountData() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	private ArrayList<BeginAccountPO> list;
 	
 	public ResultMessage addBeginAccount(BeginAccountPO account) throws RemoteException{

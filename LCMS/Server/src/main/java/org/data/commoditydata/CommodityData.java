@@ -28,7 +28,7 @@ public class CommodityData extends UnicastRemoteObject implements
 		init();
 		// TODO Auto-generated constructor stub
 	}
-	public void init(){
+	private void init(){
 		
 			String fileName="SerializableData/Com.file";
 			FileInputStream fis;
@@ -52,12 +52,12 @@ public class CommodityData extends UnicastRemoteObject implements
 		
 	}
 
-	public ResultMessage addCom(ComPO po) {
+	public ResultMessage addCom(ComPO po) throws RemoteException{
 		ComList.add(po);
 		save();
 		return new ResultMessage(true,null);
 	}
-	public void save(){
+	private void save(){
 		String fileName="SerializableData/Com.file";
 		try {
             FileOutputStream fos = new FileOutputStream(fileName);
@@ -75,7 +75,7 @@ public class CommodityData extends UnicastRemoteObject implements
 	
 	}
 
-	public ResultMessage delCom(ComPO po) {
+	public ResultMessage delCom(ComPO po) throws RemoteException{
 		for(ComPO p:ComList){
 			if(p.getGoodsNum().equals(po.getGoodsNum())){
 				ComList.remove(p);
@@ -93,7 +93,7 @@ public class CommodityData extends UnicastRemoteObject implements
 	}
 
 	@SuppressWarnings("unchecked")
-	public ComPO findCom(String GoodsNum) {
+	public ComPO findCom(String GoodsNum) throws RemoteException{
         for(ComPO po:ComList){
         	if(po.getGoodsNum().equals(GoodsNum)){
         		return po;
@@ -101,7 +101,8 @@ public class CommodityData extends UnicastRemoteObject implements
         }
 		return null;
 	}
-	public ArrayList<ComPO> getAllCom(){
+	
+	public ArrayList<ComPO> getAllCom()throws RemoteException{
 		
 		
 		return ComList;

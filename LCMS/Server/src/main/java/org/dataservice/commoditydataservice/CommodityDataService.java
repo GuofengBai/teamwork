@@ -1,6 +1,7 @@
 package org.dataservice.commoditydataservice;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import org.po.ComPO;
@@ -9,17 +10,17 @@ import org.po.ResultMessage;
 
 public interface CommodityDataService extends Remote{
 
-	public ResultMessage addCom(ComPO po);
+	public ResultMessage addCom(ComPO po)throws RemoteException;
      /**
 	 * 删除ComPO
 	 * @return ResultMessage
 	 */
-	public ResultMessage delCom(ComPO po);
+	public ResultMessage delCom(ComPO po)throws RemoteException;
 	/**
 	 * 查找DriverPO
 	 * @param GoodsNum 托运单号
 	 * @return ResultMessage
 	 */
-	public ComPO findCom(String GoodsNum);
-	public ArrayList<ComPO> getAllCom();
+	public ComPO findCom(String GoodsNum)throws RemoteException;
+	public ArrayList<ComPO> getAllCom()throws RemoteException;
 }

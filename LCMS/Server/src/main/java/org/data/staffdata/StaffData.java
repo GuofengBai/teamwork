@@ -47,13 +47,13 @@ public class StaffData extends UnicastRemoteObject implements StaffDataService{
         
 	}
 
-	public ResultMessage add(StaffPO po) {
+	public ResultMessage add(StaffPO po) throws RemoteException{
 		staffList.add(po);
 		save();
 		return null;
 	}
 
-	public ResultMessage remove(String num) {
+	public ResultMessage remove(String num) throws RemoteException{
 		for(StaffPO po:staffList){
 			if(po.num.equals(num)){
 				staffList.remove(po);
@@ -68,7 +68,7 @@ public class StaffData extends UnicastRemoteObject implements StaffDataService{
 		return ms;
 	}
 
-	public ResultMessage update(StaffPO po) {
+	public ResultMessage update(StaffPO po) throws RemoteException{
 		for(StaffPO p:staffList){
 			if(p.num.equals(po.num)){
 				staffList.remove(p);
@@ -84,7 +84,7 @@ public class StaffData extends UnicastRemoteObject implements StaffDataService{
 		return ms;
 	}
 
-	public StaffPO find(String num) {
+	public StaffPO find(String num) throws RemoteException{
         for(StaffPO po:staffList){
         	if(po.num.equals(num)){
         		return po;
@@ -93,12 +93,12 @@ public class StaffData extends UnicastRemoteObject implements StaffDataService{
 		return null;
 	}
 
-	public ArrayList<StaffPO> getAll() {
+	public ArrayList<StaffPO> getAll() throws RemoteException{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public ResultMessage save(){
+	private ResultMessage save(){
 		String fileName="SerializableData/Staff.file";
 		try {
             FileOutputStream fos = new FileOutputStream(fileName);
@@ -115,7 +115,7 @@ public class StaffData extends UnicastRemoteObject implements StaffDataService{
 		return null;
 	}
 
-	public Vector<Vector<String>> getAllStaffInfo() {
+	public Vector<Vector<String>> getAllStaffInfo() throws RemoteException{
 		Vector<Vector<String>> allInfo=new Vector<Vector<String>>();
 		for(StaffPO po:staffList){
 			allInfo.add(po.getInfo());
