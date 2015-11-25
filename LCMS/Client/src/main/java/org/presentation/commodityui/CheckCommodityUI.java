@@ -44,6 +44,7 @@ public class CheckCommodityUI extends JPanel {
 	CheckCommodityBLService cbs;
 	private DefaultTableModel model;
 	Vector<CommodityVO> cvo;
+	private String centerNum;
 
 	public void addItem() throws RemoteException {
 		Date date = new Date();
@@ -54,7 +55,7 @@ public class CheckCommodityUI extends JPanel {
 		int day = Integer.parseInt(curdate.substring(6, 8));
 		myDate today = new myDate(year, month, day);
 		cbs.startCheckCommodity(today);
-		cvo = cbs.checkCommodityInf();
+		cvo = cbs.checkCommodityInf(centerNum);
 		for (CommodityVO vo : cvo) {
 			model.addRow(vo);
 		}
@@ -77,6 +78,7 @@ public class CheckCommodityUI extends JPanel {
 		vColumns.add("排号");
 		vColumns.add("架号");
 		vColumns.add("位号");
+		vColumns.add("中转中心编号");
 		Vector<CommodityVO> vData = new Vector<CommodityVO>();
 
 		model = new DefaultTableModel(cvo, vColumns);
@@ -98,7 +100,8 @@ public class CheckCommodityUI extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public CheckCommodityUI() {
+	public CheckCommodityUI(String centerNum) {
+		this.centerNum=centerNum;
 		cbs = BLFactory.getCheckCommodityBL();
 		setLayout(null);
 		initTable();

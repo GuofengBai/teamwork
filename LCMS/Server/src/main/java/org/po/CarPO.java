@@ -6,16 +6,16 @@ public class CarPO implements Serializable {
 	 * 序列化版本号
 	 */
 	private static final long serialVersionUID = 1L;
-	private int carNum;// 车辆代号，3位城市+3位营业厅+3位
-	private int engineNum;// 发动机编号，随意
-	private int chassisNum;// 底盘号，随意
-	private int buyTime;// 购买时间
+	private String carNum;// 车辆代号，3位城市+3位营业厅+3位
+	private String engineNum;// 发动机编号，随意
+	private String chassisNum;// 底盘号，随意
+	private myDate buyTime;// 购买时间
 
-	private int serveTime;// 服役时间
+	private myDate serveTime;// 服役时间
 	private String number;// 车牌号
 
-	public CarPO(int carNum, int engineNum, int chassisNum, int buyTime,
-			int serveTime, String number) {
+	public CarPO(String carNum, String engineNum, String chassisNum, myDate buyTime,
+			myDate serveTime, String number) {
 		this.carNum = carNum;
 		this.engineNum = engineNum;
 		this.chassisNum = chassisNum;
@@ -24,23 +24,23 @@ public class CarPO implements Serializable {
 		this.number = number;
 	}
 
-	public int getcarNum() {
+	public String getcarNum() {
 		return carNum;
 	}
 
-	public int getengineNum() {
+	public String getengineNum() {
 		return engineNum;
 	}
 
-	public int getchassisNum() {
+	public String getchassisNum() {
 		return chassisNum;
 	}
 
-	public int getbuyTime() {
+	public myDate getbuyTime() {
 		return buyTime;
 	}
 
-	public int getserveTime() {
+	public myDate getserveTime() {
 		return serveTime;
 	}
 
@@ -48,24 +48,24 @@ public class CarPO implements Serializable {
 		return number;
 	}
 
-	public void setcarNum(int carNum) {
+	public void setcarNum(String carNum) {
 		this.carNum = carNum;
 		// 本方法及以下方法在改变车辆信息时使用
 	}
 
-	public void setengineNum(int engineNum) {
+	public void setengineNum(String engineNum) {
 		this.engineNum = engineNum;
 	}
 
-	public void setchassisNum(int chassisNum) {
+	public void setchassisNum(String chassisNum) {
 		this.chassisNum = chassisNum;
 	}
 
-	public void setbuyTime(int buyTime) {
+	public void setbuyTime(myDate buyTime) {
 		this.buyTime = buyTime;
 	}
 
-	public void setserveTime(int serveTime) {
+	public void setserveTime(myDate serveTime) {
 		this.serveTime = serveTime;
 	}
 

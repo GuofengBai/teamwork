@@ -32,9 +32,11 @@ public class DistrictChangeUI extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTable table;
+	private JTable table1;
+	private JTable table2;
 	DistrictChangeBLService cbs;
-	private DefaultTableModel model;
+	private DefaultTableModel model1;
+	private DefaultTableModel model2;
 	Vector<CommodityVO> cvo1;
 	Vector<CommodityVO> cvo2;
 	private JComboBox<String> ComBox1;
@@ -127,24 +129,25 @@ public class DistrictChangeUI extends JPanel {
 		vColumns.add("排号");
 		vColumns.add("架号");
 		vColumns.add("位号");
+		vColumns.add("中转中心编号");
 		Vector<CommodityVO> vData = new Vector<CommodityVO>();
 
-		model = new DefaultTableModel(cvo1, vColumns);
+		model1 = new DefaultTableModel(cvo1, vColumns);
 		for (CommodityVO vo : cvo1) {
-			model.addRow(vo);
+			model1.addRow(vo);
 		}
 		this.add(scrollPane);
-		table = new JTable(model) {
+		table1 = new JTable(model1) {
 			private static final long serialVersionUID = 1L;
 
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
 		};
-		scrollPane.setViewportView(table);
-		table.getSelectionModel().setSelectionMode(
+		scrollPane.setViewportView(table1);
+		table1.getSelectionModel().setSelectionMode(
 				ListSelectionModel.SINGLE_SELECTION);
-		table.setFillsViewportHeight(true);
+		table1.setFillsViewportHeight(true);
 	}
 
 	public void initToTable() {
@@ -163,31 +166,34 @@ public class DistrictChangeUI extends JPanel {
 		vColumns.add("排号");
 		vColumns.add("架号");
 		vColumns.add("位号");
+		vColumns.add("中转中心编号");
 		Vector<CommodityVO> vData = new Vector<CommodityVO>();
 
-		model = new DefaultTableModel(cvo2, vColumns);
+		model2 = new DefaultTableModel(cvo2, vColumns);
 		for (CommodityVO vo : cvo2) {
-			model.addRow(vo);
+			model2.addRow(vo);
 		}
 		this.add(scrollPane);
-		table = new JTable(model) {
+		table2 = new JTable(model2) {
 			private static final long serialVersionUID = 1L;
 
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
 		};
-		scrollPane.setViewportView(table);
-		table.getSelectionModel().setSelectionMode(
+		scrollPane.setViewportView(table2);
+		table2.getSelectionModel().setSelectionMode(
 				ListSelectionModel.SINGLE_SELECTION);
-		table.setFillsViewportHeight(true);
+		table2.setFillsViewportHeight(true);
 	}
 	protected void changeItem() throws RemoteException {
-		int index = table.getSelectedRow();
-		if(index == -1){
+		int index = table1.getSelectedRow();
+		int index2=table2.getSelectedRow();
+		if(index == -1||index2==-1){
 			JOptionPane.showMessageDialog(null, "请选中一个商品！","", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
+		table1.remove(index);
 		cbs.change(selected1, selected2,index);
 	}
 

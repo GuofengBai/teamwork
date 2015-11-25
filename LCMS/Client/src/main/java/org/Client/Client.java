@@ -17,7 +17,7 @@ public class Client{
     	RMIHelper.init();
     	NewSendingBillsUI newSendingBills=new NewSendingBillsUI();
     	UserUI u=new UserUI();
-    	CheckCommodityUI c=new CheckCommodityUI();
+    	DistrictChangeUI c=new DistrictChangeUI();
     	JFrame f=new JFrame();
     	f.add(c);
     	f.setSize(700, 700);

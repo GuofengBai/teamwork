@@ -15,28 +15,34 @@ import org.vo.ComVO;
 import org.vo.CommodityVO;
 
 public class CheckCommodityBL implements CheckCommodityBLService {
-	Vector<CommodityVO> comlist=new Vector<CommodityVO>();
+	Vector<CommodityVO> comlist;
 	ArrayList<ComPO> list;
-	
+
 	public boolean startCheckCommodity(myDate time) throws RemoteException {
 		// TODO Auto-generated method stub
-		CommodityDataService cds =RMIHelper.getDataFactory().getCommodityData();
+		CommodityDataService cds = RMIHelper.getDataFactory()
+				.getCommodityData();
 		Date date = new Date();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
 		String curdate = simpleDateFormat.format(date);
 		int year = Integer.parseInt(curdate.substring(0, 4));
-		int month=Integer.parseInt(curdate.substring(4, 6));
-		int day=Integer.parseInt(curdate.substring(6, 8));
-		myDate today=new myDate(year,month,day);
-		list=cds.getAllCom();
+		int month = Integer.parseInt(curdate.substring(4, 6));
+		int day = Integer.parseInt(curdate.substring(6, 8));
+		myDate today = new myDate(year, month, day);
+		list = cds.getAllCom();
 		return false;
 	}
 
-	public Vector<CommodityVO> checkCommodityInf() {
+	public Vector<CommodityVO> checkCommodityInf(String centerNum) {
 		// TODO Auto-generated method stub
-
-		for(ComPO po:list){
-			ComVO obj=new ComVO(po.getGoodsNum(),po.getinDate(),po.getplace(),po.LocationNum(),po.getArea());
+		comlist = new Vector<CommodityVO>();
+		for (ComPO po : list) {
+			if (po.getcenterNum().equals(centerNum)) {
+				CommodityVO obj = new CommodityVO(po.getGoodsNum(),
+						po.getinDate(), po.getplace(), po.LocationNum(),
+						po.getArea(), po.getcenterNum());
+				comlist.add(obj);
+			}
 		}
 		return comlist;
 	}

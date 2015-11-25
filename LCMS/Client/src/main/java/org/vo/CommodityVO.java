@@ -7,10 +7,11 @@ import org.po.myDate;
 public class CommodityVO extends Vector<String> {
 
 	public CommodityVO(String GoodsNum, myDate inDate, String place,
-			String LocationNum, String area,String city) {
+			String LocationNum, String area, String city) {
 		this.add(GoodsNum);
-		this.add(String.valueOf(inDate.year) +"/"+ String.valueOf(inDate.month)
-				+ "/"+String.valueOf(inDate.day));
+		this.add(String.valueOf(inDate.year) + "/"
+				+ String.valueOf(inDate.month) + "/"
+				+ String.valueOf(inDate.day));
 		this.add(place);
 		this.add(area);
 		this.add(LocationNum.substring(0, 1));
@@ -23,25 +24,28 @@ public class CommodityVO extends Vector<String> {
 	public String getGoodsNum() {
 		return this.get(0);
 	}
-	public String getyear(){
+
+	public String getyear() {
 		String year;
 		String[] temp;
-		temp=this.get(1).split("/");
-		year=temp[0];
+		temp = this.get(1).split("/");
+		year = temp[0];
 		return year;
 	}
-	public String getmonth(){
+
+	public String getmonth() {
 		String month;
 		String[] temp;
-		temp=this.get(1).split("/");
-		month=temp[1];
+		temp = this.get(1).split("/");
+		month = temp[1];
 		return month;
 	}
-	public String getday(){
+
+	public String getday() {
 		String day;
 		String[] temp;
-		temp=this.get(1).split("/");
-		day=temp[2];
+		temp = this.get(1).split("/");
+		day = temp[2];
 		return day;
 	}
 
@@ -55,13 +59,30 @@ public class CommodityVO extends Vector<String> {
 	}
 
 	public String getLocation() {
-		return this.get(4)+this.get(5)+this.get(6)+this.get(7);
+		return this.get(4) + this.get(5) + this.get(6) + this.get(7);
+	}
+
+	public String getQU() {
+		return this.get(4);
+	}
+
+	public String getPAI() {
+		return this.get(5);
+	}
+
+	public String getJIA() {
+		return this.get(6);
+	}
+
+	public String getWEI() {
+		return this.get(7);
 	}
 
 	public String getarea() {
 		return this.get(3);
 	}
-	public String getcity(){
+
+	public String getcity() {
 		return this.get(8);
 	}
 }

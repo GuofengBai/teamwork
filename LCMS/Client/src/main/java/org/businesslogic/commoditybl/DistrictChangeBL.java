@@ -43,7 +43,7 @@ public class DistrictChangeBL implements DistrictChangeBLService {
 			if (po.getArea().equals(from))
 				vdata1.addElement(vo = new CommodityVO(po.getGoodsNum(), po
 						.getinDate(), po.getplace(), po.LocationNum(), po
-						.getArea(),po.getcity()));
+						.getArea(),po.getcenterNum()));
 		}
 		return vdata1;
 	}
@@ -53,7 +53,7 @@ public class DistrictChangeBL implements DistrictChangeBLService {
 		try {
 			po=cds.findCom(vo.getGoodsNum());
 			cds.delCom(po);
-			po1=new ComPO(vo.getGoodsNum(),po.getinDate(),vo.getplace(),vo.getLocation(),vo.getarea(),po.getcity());
+			po1=new ComPO(vo.getGoodsNum(),po.getinDate(),vo.getplace(),vo.getLocation(),vo.getarea(),po.getcenterNum());
 			cds.addCom(po1);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -81,14 +81,15 @@ public class DistrictChangeBL implements DistrictChangeBLService {
 		CommodityDataService cds = RMIHelper.getDataFactory().getCommodityData();
 		ArrayList<ComPO> list = cds.getAllCom();
 		vdata2=new Vector<CommodityVO>();
+		String location;
 		for (ComPO po : list) {
 			CommodityVO vo;
 			for(int quhao=0;quhao<QU;quhao++){
 				for(int paihao=0;paihao<PAI;paihao++){
 					for(int jiahao=0;jiahao<JIA;jiahao++){
 						for(int weihao=0;weihao<WEI;weihao++){
-							if(!po.getGoodsNum().equals(String.valueOf(quhao)+String.valueOf(paihao)+String.valueOf(jiahao)+String.valueOf(weihao))){
-								vdata2.add(vo=new CommodityVO(po.getGoodsNum(),po.getinDate(),po.getplace(),po.LocationNum(),po.getArea(),po.getcity()));
+							if(!po.getGoodsNum().equals(location=String.valueOf(quhao)+String.valueOf(paihao)+String.valueOf(jiahao)+String.valueOf(weihao))){
+								vdata2.add(vo=new CommodityVO(" ",new myDate(0,0,0)," ",location," "," "));
 							}
 						}
 					}
