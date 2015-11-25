@@ -105,7 +105,7 @@ public class NewInstorageBillsUI extends JPanel {
 				String areavo = area.getSelectedItem().toString();
 				String centerNumvo = centerNum.getText();
 				ComPO cpo = new ComPO(goodNumvo,datepo,placevo,locationvo,areavo,centerNumvo);
-				CommodityVO cvo = new CommodityVO(goodNumvo,datepo,placevo,locationvo,areavo);
+				CommodityVO cvo = new CommodityVO(goodNumvo,datepo,placevo,locationvo,areavo,centerNumvo);
 				model.addRow(cvo);
 				comvo.add(cvo);
 				compo.add(cpo);
@@ -142,6 +142,7 @@ public class NewInstorageBillsUI extends JPanel {
 		str.add("排");
 		str.add("架");
 		str.add("位");
+		str.add("中转中心编号");
 		model = new DefaultTableModel(vo,str);;
 
 		
@@ -178,6 +179,7 @@ public class NewInstorageBillsUI extends JPanel {
 						e1.printStackTrace();
 					}
 				}
+				System.out.println("helloworld");
 			}
 			
 		});

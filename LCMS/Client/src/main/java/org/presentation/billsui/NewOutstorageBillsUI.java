@@ -2,12 +2,15 @@ package org.presentation.billsui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
@@ -28,6 +31,9 @@ public class NewOutstorageBillsUI extends JPanel {
 	private JButton submit;
 	private JLabel lblNewLabel_1;
 	private JTextField centerNum;
+	DefaultTableModel model;
+	private ArrayList<ComPO> compo = new ArrayList<ComPO>();
+	private ArrayList<CommodityVO> comvo = new ArrayList<CommodityVO>();
 
 	/**
 	 * Create the panel.
@@ -79,6 +85,7 @@ public class NewOutstorageBillsUI extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				CommodityDataService service=null;
+				ComPO cpo = null;
 				try {
 					service = RMIHelper.getDataFactory().getCommodityData();
 				} catch (RemoteException e1) {
@@ -86,11 +93,16 @@ public class NewOutstorageBillsUI extends JPanel {
 					e1.printStackTrace();
 				}
 				try {
-					ComPO compo = service.findCom(goodNum.getText());
+					cpo = service.findCom(goodNum.getText());
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				CommodityVO cvo = new CommodityVO(cpo.getGoodsNum(),cpo.getinDate(),cpo.getplace(),cpo.LocationNum(),cpo.getArea(),cpo.getcity());
+				model.addRow(cvo);
+				comvo.add(cvo);
+				compo.add(cpo);
+				goodNum.setText("");
 			}
 			
 		});
@@ -100,21 +112,27 @@ public class NewOutstorageBillsUI extends JPanel {
 		deleteGood.setBounds(113, 89, 93, 23);
 		add(deleteGood);
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-			},
-			new String[] {
-				"\u6258\u8FD0\u5355\u53F7", "\u5165\u5E93\u65E5\u671F", "\u76EE\u7684\u5730", "\u6446\u653E\u4F4D\u7F6E"
+		Vector<CommodityVO> vo = new Vector<CommodityVO>();
+		Vector<String> str = new Vector<String>();
+		str.add("货物单号");
+		str.add("日期");
+		str.add("目的地");
+		str.add("运输方式");
+		str.add("区");
+		str.add("排");
+		str.add("架");
+		str.add("位");
+		str.add("中转中心编号");
+		model = new DefaultTableModel(vo,str);;
+		table = new JTable(model){
+			private static final long serialVersionUID = 1L;
+
+			public boolean isCellEditable(int row, int column){
+				return false;
 			}
-		));
-		table.setBounds(10, 122, 261, 110);
+		};
+		table.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setFillsViewportHeight(true);
 		
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(10, 145, 261, 87);

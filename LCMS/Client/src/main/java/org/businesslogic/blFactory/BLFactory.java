@@ -1,5 +1,15 @@
 package org.businesslogic.blFactory;
 
+import org.businesslogic.billsbl.NewCenterArriveBillsBL;
+import org.businesslogic.billsbl.NewCenterEntruckBillsBL;
+import org.businesslogic.billsbl.NewCenterFreightBillsBL;
+import org.businesslogic.billsbl.NewHallCollectBillsBL;
+import org.businesslogic.billsbl.NewHallDispatchBillsBL;
+import org.businesslogic.billsbl.NewHallEntruckBillsBL;
+import org.businesslogic.billsbl.NewHallArriveBillsBL;
+import org.businesslogic.billsbl.NewInstorageBillsBL;
+import org.businesslogic.billsbl.NewOutstorageBillsBL;
+import org.businesslogic.billsbl.NewPayingBillsBL;
 import org.businesslogic.billsbl.NewSendingBillsBL;
 import org.businesslogic.commoditybl.CheckCommodityBL;
 import org.businesslogic.commoditybl.CommodityBL;
@@ -29,18 +39,18 @@ import org.businesslogicservice.userblservice.UserBLService;
 import org.businesslogicservice.commodityblservice.CheckCommodityBLService;
 
 public class BLFactory {
-	
+
 	public static CommodityBLService commodityBL;
 	public static CommodityInAndOutBLService commodityInAndOutBL;
-	
+
 	public static StaffBLService staffBL;
-	
+
 	public static OrganizationBLService organizationBL;
-	
+
 	public static ManageBLService manageBL;
-	
+
 	public static UserBLService userBL;
-	
+
 	public static NewSendingBillsBLService newSendingBillsBL;
 	public static NewCenterArriveBillsBLService newCenterArriveBillsBL;
 	public static NewCenterEntruckBillsBLService newCenterEntruckBillsBL;
@@ -54,83 +64,184 @@ public class BLFactory {
 	public static NewPayingBillsBLService newPayingBillsBL;
 	public static CheckCommodityBLService checkcommodityBL;
 	public static DistrictChangeBLService districtchangeBL;
-	
-	public static void init(){
-		commodityBL=null;
-		staffBL=null;
-		organizationBL=null;
-		manageBL=null;
-		userBL=null;
-		newSendingBillsBL=null;
+
+	public static void init() {
+		commodityBL = null;
+		staffBL = null;
+		organizationBL = null;
+		manageBL = null;
+		userBL = null;
+		newSendingBillsBL = null;
+		newCenterArriveBillsBL = null;
+		newCenterEntruckBillsBL = null;
+		newCenterFreightBillsBL = null;
+		newHallArriveBillsBL = null;
+		newHallCollectBillsBL = null;
+		newHallDispatchBillsBL = null;
+		newHallEntruckBillsBL = null;
+		newInstorageBillsBL = null;
+		newOutstorageBillsBL = null;
+		newPayingBillsBL = null;
 	}
-	
-	public static CommodityBLService getCommodityBL(){
-		
-		if(commodityBL==null){
-			commodityBL=new CommodityBL();
+
+	public static CommodityBLService getCommodityBL() {
+
+		if (commodityBL == null) {
+			commodityBL = new CommodityBL();
 		}
-		
+
 		return commodityBL;
 	}
 
-    public static StaffBLService getStaffBL(){
-		
-		if(staffBL==null){
-			staffBL=new StaffBL();
+	public static StaffBLService getStaffBL() {
+
+		if (staffBL == null) {
+			staffBL = new StaffBL();
 		}
-		
+
 		return staffBL;
 	}
-    
-    public static UserBLService getUserBL(){
-		
-		if(userBL==null){
-		    userBL=new UserBL();
+
+	public static UserBLService getUserBL() {
+
+		if (userBL == null) {
+			userBL = new UserBL();
 		}
-		
+
 		return userBL;
 	}
-    
-    public static ManageBLService getManageBL(){
-		
-		if(manageBL==null){
-		    manageBL=new ManageBL();
+
+	public static ManageBLService getManageBL() {
+
+		if (manageBL == null) {
+			manageBL = new ManageBL();
 		}
-		
+
 		return manageBL;
 	}
-    
-    public static OrganizationBLService getOrganizationBL(){
-		
-		if(organizationBL==null){
-		    organizationBL=new OrganizationBL();
+
+	public static OrganizationBLService getOrganizationBL() {
+
+		if (organizationBL == null) {
+			organizationBL = new OrganizationBL();
 		}
-		
+
 		return organizationBL;
 	}
-    
-    public static NewSendingBillsBLService getNewSendingBillsBL(){
-		
-		if(newSendingBillsBL==null){
-		    newSendingBillsBL=new NewSendingBillsBL();
+
+	public static NewSendingBillsBLService getNewSendingBillsBL() {
+
+		if (newSendingBillsBL == null) {
+			newSendingBillsBL = new NewSendingBillsBL();
 		}
-		
+
 		return newSendingBillsBL;
+	}
+
+	public static NewCenterArriveBillsBLService getNewCenterArriveBillsBL() {
+
+		if (newCenterArriveBillsBL == null) {
+			newCenterArriveBillsBL = new NewCenterArriveBillsBL();
+		}
+
+		return newCenterArriveBillsBL;
+	}
+	
+	public static NewCenterEntruckBillsBLService getNewCenterEntruckBillsBL() {
+
+		if (newCenterEntruckBillsBL == null) {
+			newCenterEntruckBillsBL = new NewCenterEntruckBillsBL();
+		}
+
+		return newCenterEntruckBillsBL;
+	}
+	
+	public static NewCenterFreightBillsBLService NewCenterFreightBillsBL() {
+
+		if (newCenterFreightBillsBL == null) {
+			newCenterFreightBillsBL = new NewCenterFreightBillsBL();
+		}
+
+		return newCenterFreightBillsBL;
+	}
+		
+	public static NewHallArriveBillsBLService NewHallArriveBillsBL() {
+
+		if (newHallArriveBillsBL == null) {
+			newHallArriveBillsBL = new NewHallArriveBillsBL();
+		}
+
+		return newHallArriveBillsBL;
+	}
+	
+	public static NewHallCollectBillsBLService getNewHallCollectBillsBL() {
+
+		if (newHallCollectBillsBL == null) {
+			newHallCollectBillsBL = new NewHallCollectBillsBL();
+		}
+
+		return newHallCollectBillsBL;
+	}
+	
+	public static NewHallDispatchBillsBLService getNewHallDispatchBillsBL() {
+
+		if (newHallDispatchBillsBL == null) {
+			newHallDispatchBillsBL = new NewHallDispatchBillsBL();
+		}
+
+		return newHallDispatchBillsBL;
+	}
+	
+	public static NewHallEntruckBillsBLService getNewHallEntruckBillsBL() {
+
+		if (newHallEntruckBillsBL == null) {
+			newHallEntruckBillsBL = new NewHallEntruckBillsBL();
+		}
+
+		return newHallEntruckBillsBL;
+	}
+	
+	public static NewInstorageBillsBLService getNewInstorageBillsBL() {
+
+		if (newInstorageBillsBL == null) {
+			newInstorageBillsBL = new NewInstorageBillsBL();
+		}
+
+		return newInstorageBillsBL;
+	}
+	
+	public static NewOutstorageBillsBLService getNewOutstorageBillsBL() {
+
+		if (newOutstorageBillsBL == null) {
+			newOutstorageBillsBL = new NewOutstorageBillsBL();
+		}
+
+		return newOutstorageBillsBL;
+	}
+	
+	public static NewPayingBillsBLService getNewPayingBillsBL() {
+
+		if (newPayingBillsBL == null) {
+			newPayingBillsBL = new NewPayingBillsBL();
+		}
+
+		return newPayingBillsBL;
 	}
 
 	public static CheckCommodityBLService getCheckCommodityBL() {
 		// TODO Auto-generated method stub
-		if(checkcommodityBL==null){
-			checkcommodityBL=new CheckCommodityBL();
+		if (checkcommodityBL == null) {
+			checkcommodityBL = new CheckCommodityBL();
 		}
 		return checkcommodityBL;
 	}
+
 	public static DistrictChangeBLService getDistrictChangeBL() {
 		// TODO Auto-generated method stub
-		if(districtchangeBL==null){
-			districtchangeBL=new DistrictChangeBL();
+		if (districtchangeBL == null) {
+			districtchangeBL = new DistrictChangeBL();
 		}
 		return districtchangeBL;
-    
+
 	}
 }
