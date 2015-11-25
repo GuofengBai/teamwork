@@ -1,5 +1,7 @@
 package org.businesslogic.userbl;
 
+import java.rmi.RemoteException;
+
 import org.Client.RMIHelper;
 import org.businesslogicservice.userblservice.UserBLService;
 import org.dataservice.userdataservice.UserDataService;
@@ -8,7 +10,7 @@ import org.po.UserPO;
 
 public class UserBL implements UserBLService {
 
-	public ResultMessage login(String id, String password) {
+	public ResultMessage login(String id, String password) throws RemoteException {
 		// TODO Auto-generated method stub
 		UserDataService uds = RMIHelper.getDataFactory().getUserData();
 		

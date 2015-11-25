@@ -34,10 +34,10 @@ public class CommodityVO extends Vector<String> {
 	}
 
 	public String getLocation() {
-		return this.get(3);
+		return this.get(4)+this.get(5)+this.get(6)+this.get(7);
 	}
 
 	public String getarea() {
-		return this.get(4);
+		return this.get(3);
 	}
 }

@@ -47,7 +47,7 @@ public class DistrictChangeBL implements DistrictChangeBLService {
 		try {
 			po=cds.findCom(vo.getGoodsNum());
 			cds.delCom(po);
-			po1=new ComPO(vo.getGoodsNum(),po.getinDate(),vo.getplace(),vo.getLocation(),vo.getarea());
+			po1=new ComPO(vo.getGoodsNum(),po.getinDate(),vo.getplace(),vo.getLocation(),vo.getarea(),po.getcity());
 			cds.addCom(po1);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

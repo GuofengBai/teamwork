@@ -6,8 +6,10 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import java.awt.HeadlessException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.rmi.RemoteException;
 
 import javax.swing.JPasswordField;
 
@@ -49,7 +51,15 @@ public class UserUI extends JPanel {
 		JButton btnNewButton = new JButton("登录");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				login();
+				try {
+					login();
+				} catch (HeadlessException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnNewButton.setBounds(218, 328, 113, 27);
@@ -70,7 +80,7 @@ public class UserUI extends JPanel {
 
 	}
 
-	private void login() {
+	private void login() throws HeadlessException, RemoteException {
 		String account = textField.getText();
 		char[] password = passwordField.getPassword();
 		String pw = String.valueOf(password);
