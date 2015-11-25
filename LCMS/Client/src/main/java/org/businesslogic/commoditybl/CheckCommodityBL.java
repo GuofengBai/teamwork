@@ -3,6 +3,7 @@ package org.businesslogic.commoditybl;
 import java.util.ArrayList;
 import java.util.Vector;
 import java.util.Date;
+import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 
 import org.Client.RMIHelper;
@@ -16,9 +17,10 @@ import org.vo.CommodityVO;
 public class CheckCommodityBL implements CheckCommodityBLService {
 	Vector<CommodityVO> comlist=new Vector<CommodityVO>();
 	ArrayList<ComPO> list;
-	CommodityDataService cds =RMIHelper.getDataFactory().getCommodityData();
-	public boolean startCheckCommodity(myDate time) {
+	
+	public boolean startCheckCommodity(myDate time) throws RemoteException {
 		// TODO Auto-generated method stub
+		CommodityDataService cds =RMIHelper.getDataFactory().getCommodityData();
 		Date date = new Date();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
 		String curdate = simpleDateFormat.format(date);
@@ -32,6 +34,7 @@ public class CheckCommodityBL implements CheckCommodityBLService {
 
 	public Vector<CommodityVO> checkCommodityInf() {
 		// TODO Auto-generated method stub
+
 		for(ComPO po:list){
 			ComVO obj=new ComVO(po.getGoodsNum(),po.getinDate(),po.getplace(),po.LocationNum(),po.getArea());
 		}

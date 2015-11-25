@@ -26,6 +26,7 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
@@ -44,7 +45,7 @@ public class CheckCommodityUI extends JPanel {
 	private DefaultTableModel model;
 	Vector<CommodityVO> cvo;
 
-	public void addItem() {
+	public void addItem() throws RemoteException {
 		Date date = new Date();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
 		String curdate = simpleDateFormat.format(date);
@@ -142,7 +143,12 @@ public class CheckCommodityUI extends JPanel {
 		JButton button = new JButton("开始");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				addItem();
+				try {
+					addItem();
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		button.setBounds(422, 29, 113, 27);

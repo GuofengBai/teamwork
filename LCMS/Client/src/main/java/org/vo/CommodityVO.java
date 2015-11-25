@@ -12,8 +12,12 @@ public class CommodityVO extends Vector<String> {
 		this.add(String.valueOf(inDate.year) + String.valueOf(inDate.month)
 				+ String.valueOf(inDate.day));
 		this.add(place);
-		this.add(LocationNum);
 		this.add(area);
+		this.add(LocationNum.substring(0, 2));
+		this.add(LocationNum.substring(2, 4));
+		this.add(LocationNum.substring(4, 6));
+		this.add(LocationNum.substring(6, 8));
+		
 	}
 
 	public String getGoodsNum() {
