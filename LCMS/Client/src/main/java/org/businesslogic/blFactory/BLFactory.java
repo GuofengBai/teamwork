@@ -156,7 +156,7 @@ public class BLFactory {
 		return newCenterEntruckBillsBL;
 	}
 	
-	public static NewCenterFreightBillsBLService NewCenterFreightBillsBL() {
+	public static NewCenterFreightBillsBLService getNewCenterFreightBillsBL() {
 
 		if (newCenterFreightBillsBL == null) {
 			newCenterFreightBillsBL = new NewCenterFreightBillsBL();
@@ -165,7 +165,7 @@ public class BLFactory {
 		return newCenterFreightBillsBL;
 	}
 		
-	public static NewHallArriveBillsBLService NewHallArriveBillsBL() {
+	public static NewHallArriveBillsBLService getNewHallArriveBillsBL() {
 
 		if (newHallArriveBillsBL == null) {
 			newHallArriveBillsBL = new NewHallArriveBillsBL();

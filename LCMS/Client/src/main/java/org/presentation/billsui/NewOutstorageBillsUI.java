@@ -98,7 +98,7 @@ public class NewOutstorageBillsUI extends JPanel {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				CommodityVO cvo = new CommodityVO(cpo.getGoodsNum(),cpo.getinDate(),cpo.getplace(),cpo.LocationNum(),cpo.getArea(),cpo.getcity());
+				CommodityVO cvo = new CommodityVO(cpo.getGoodsNum(),cpo.getinDate(),cpo.getplace(),cpo.LocationNum(),cpo.getArea(),cpo.getcenterNum());
 				model.addRow(cvo);
 				comvo.add(cvo);
 				compo.add(cpo);

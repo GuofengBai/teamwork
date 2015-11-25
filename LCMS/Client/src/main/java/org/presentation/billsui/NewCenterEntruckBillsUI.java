@@ -189,7 +189,7 @@ public class NewCenterEntruckBillsUI extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				NewCenterEntruckBillsBLService bl = BLFactory.newCenterEntruckBillsBL;
+				NewCenterEntruckBillsBLService bl = BLFactory.getNewCenterEntruckBillsBL();
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
 				bl.addCenterEntruckBills(date, entruckNum.getText(), hallNum.getText(), carNum.getText(), driverName.getText(), examerName.getText(), list );
 			}

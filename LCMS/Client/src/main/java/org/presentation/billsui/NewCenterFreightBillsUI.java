@@ -198,7 +198,7 @@ public class NewCenterFreightBillsUI extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				NewCenterFreightBillsBLService bl = BLFactory.newCenterFreightBillsBL;
+				NewCenterFreightBillsBLService bl = BLFactory.getNewCenterFreightBillsBL();
 				SENDSTYPE send = SENDSTYPE.NORMAL;
 				if(SendType.getSelectedItem().equals("铁运")){
 					send = SENDSTYPE.SLOW;
@@ -225,7 +225,7 @@ public class NewCenterFreightBillsUI extends JPanel {
 					send = SENDSTYPE.FAST;
 				}
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
-				NewCenterFreightBillsBLService bl = BLFactory.newCenterFreightBillsBL;
+				NewCenterFreightBillsBLService bl = BLFactory.getNewCenterFreightBillsBL();
 				bl.addCenterFreightBills(date, freightNum.getText(), craftNum.getText(), startPlace.getText(), endPlace.getText(), caseNum.getText(), personName.getText(),Long.parseLong(price.getText()),send,list);
 			}
 			

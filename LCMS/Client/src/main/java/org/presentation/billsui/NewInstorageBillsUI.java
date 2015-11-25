@@ -168,7 +168,7 @@ public class NewInstorageBillsUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
-				NewInstorageBillsBLService bl = BLFactory.newInstorageBillsBL;
+				NewInstorageBillsBLService bl = BLFactory.getNewInstorageBillsBL();
 				CommodityInAndOutBLService commodityInAndOutBL = BLFactory.commodityInAndOutBL;
 				bl.newInstorageBill(date, centerNum.getText(), comvo);
 				for(int i=0;i<compo.size();i++){
