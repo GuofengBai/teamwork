@@ -16,6 +16,8 @@ import javax.swing.JComboBox;
 
 import org.businesslogic.billsbl.NewCenterFreightBillsBL;
 import org.businesslogic.billsbl.NewHallEntruckBillsBL;
+import org.businesslogic.blFactory.BLFactory;
+import org.businesslogicservice.billsblservice.NewHallEntruckBillsBLService;
 import org.po.SENDSTYPE;
 import org.po.myDate;
 import org.vo.StateListVO;
@@ -175,7 +177,7 @@ public class NewHallEntruckBillsUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
-				NewHallEntruckBillsBL bl = new NewHallEntruckBillsBL();
+				NewHallEntruckBillsBLService bl = BLFactory.newHallEntruckBillsBL;
 				bl.addHallEntruckBills(date, entruckNum.getText(), hallNum.getText(), aimNum.getText(), carNum.getText(), driverName.getText(), list);
 			}
 			

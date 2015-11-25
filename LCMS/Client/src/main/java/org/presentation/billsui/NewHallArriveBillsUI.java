@@ -16,6 +16,8 @@ import javax.swing.JScrollPane;
 
 import org.businesslogic.billsbl.NewCenterFreightBillsBL;
 import org.businesslogic.billsbl.NewHallArriveBillsBL;
+import org.businesslogic.blFactory.BLFactory;
+import org.businesslogicservice.billsblservice.NewHallArriveBillsBLService;
 import org.po.SENDSTYPE;
 import org.po.myDate;
 import org.vo.StateListVO;
@@ -130,7 +132,7 @@ public class NewHallArriveBillsUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
-				NewHallArriveBillsBL bl = new NewHallArriveBillsBL();
+				NewHallArriveBillsBLService bl = BLFactory.newHallArriveBillsBL;
 				bl.addHallArriveBills(date,startPlace.getText(),entruckNum.getText(),list);
 			}
 			

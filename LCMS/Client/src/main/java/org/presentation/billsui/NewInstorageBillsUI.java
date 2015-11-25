@@ -1,6 +1,7 @@
 package org.presentation.billsui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -15,6 +16,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
 
 import org.businesslogic.blFactory.BLFactory;
+import org.businesslogicservice.billsblservice.NewInstorageBillsBLService;
+import org.businesslogicservice.commodityblservice.CommodityInAndOutBLService;
 import org.po.ComPO;
 import org.po.myDate;
 import org.vo.CommodityVO;
@@ -163,8 +166,18 @@ public class NewInstorageBillsUI extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				NewInstorageBillsBLService bl = BLFactory.getNewSendingBillsBL();
-				
+				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
+				NewInstorageBillsBLService bl = BLFactory.newInstorageBillsBL;
+				CommodityInAndOutBLService commodityInAndOutBL = BLFactory.commodityInAndOutBL;
+				bl.newInstorageBill(date, centerNum.getText(), comvo);
+				for(int i=0;i<compo.size();i++){
+					try {
+						commodityInAndOutBL.Commodityin(compo.get(i));
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
 			}
 			
 		});

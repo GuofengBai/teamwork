@@ -21,6 +21,8 @@ import java.util.Vector;
 import javax.swing.Box;
 
 import org.businesslogic.billsbl.NewCenterArriveBillsBL;
+import org.businesslogic.blFactory.BLFactory;
+import org.businesslogicservice.billsblservice.NewCenterArriveBillsBLService;
 import org.po.myDate;
 import org.vo.StateListVO;
 
@@ -77,7 +79,7 @@ public class NewCenterArriveBillsUI extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				NewCenterArriveBillsBL bl = new NewCenterArriveBillsBL();
+				NewCenterArriveBillsBLService bl = BLFactory.newCenterArriveBillsBL;
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
 				bl.addCenterArriveBills(date, CABNum.getText(), CenterNum.getText(), statevo);
 			}

@@ -1,6 +1,7 @@
 package org.businesslogic.billsbl;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import org.Client.MockBillsDataService;
 import org.Client.MockCommodityInAndOutBL;
@@ -10,57 +11,26 @@ import org.businesslogicservice.billsblservice.NewInstorageBillsBLService;
 import org.dataservice.billsdataservice.BillsDataService;
 import org.po.ComPO;
 import org.po.CommodityPO;
+import org.po.HallCollectionBills;
 import org.po.InstorageBills;
 import org.po.ResultMessage;
 import org.po.myDate;
+import org.vo.CommodityVO;
 
 public class NewInstorageBillsBL implements NewInstorageBillsBLService {
 
-	public ResultMessage newInstorageBill(myDate date, String GoodsNum,
-			String Destination, String Location) {
+	public ResultMessage newInstorageBill(myDate date, String centerNum, ArrayList<CommodityVO> list) {
 		// TODO Auto-generated method stub
 		//BillsDataService bds=RMIHelper.getDataFactory().getBillsData();
-		MockBillsDataService mbds=new MockBillsDataService();
-		InstorageBills ib = new InstorageBills();
-		ib.setGoodsNum(GoodsNum);
-		ib.setDate(date);
-		ib.setLocationNum(Location);
-		ib.setPlace(Destination);
-		ResultMessage rm =null;
-		String[] result=null;
+		ResultMessage message=null;
 		try {
-			if(mbds.addBills(ib).success){
-				return rm=new ResultMessage(true,result);
-			}
+			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewInstorageBillsData();
+			message=billsData.addBills(new InstorageBills(date, centerNum, list));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return rm;
-	}
-
-	public ComPO addGoods(String GoodsNum, myDate inDate, String place,
-			String LocationNum) {
-		// TODO Auto-generated method stub
-		MockCommodityInAndOutBL mciaobl=new MockCommodityInAndOutBL();
-		CommodityInAndOutBL ciaobl=new CommodityInAndOutBL();
-		ComPO po=new ComPO(GoodsNum,inDate,place,LocationNum);
-		if(mciaobl.Commodityin(po)){
-			return po;
-		}
-		return null;
-	}
-
-	public ComPO deleteGoods(String GoodsNum, myDate inDate, String place,
-			String LocationNum) {
-		// TODO Auto-generated method stub
-		MockCommodityInAndOutBL mciaobl=new MockCommodityInAndOutBL();
-		CommodityInAndOutBL ciaobl=new CommodityInAndOutBL();
-		ComPO po=new ComPO(GoodsNum,inDate,place,LocationNum);
-		if(mciaobl.Commodityout(po)){
-			return po;
-		}
-		return null;
+		return message;
 	}
 
 }

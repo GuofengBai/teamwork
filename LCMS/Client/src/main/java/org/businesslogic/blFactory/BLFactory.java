@@ -20,6 +20,7 @@ import org.businesslogicservice.billsblservice.NewOutstorageBillsBLService;
 import org.businesslogicservice.billsblservice.NewPayingBillsBLService;
 import org.businesslogicservice.billsblservice.NewSendingBillsBLService;
 import org.businesslogicservice.commodityblservice.CommodityBLService;
+import org.businesslogicservice.commodityblservice.CommodityInAndOutBLService;
 import org.businesslogicservice.commodityblservice.DistrictChangeBLService;
 import org.businesslogicservice.manageblservice.ManageBLService;
 import org.businesslogicservice.organizationblservice.OrganizationBLService;
@@ -30,6 +31,7 @@ import org.businesslogicservice.commodityblservice.CheckCommodityBLService;
 public class BLFactory {
 	
 	public static CommodityBLService commodityBL;
+	public static CommodityInAndOutBLService commodityInAndOutBL;
 	
 	public static StaffBLService staffBL;
 	

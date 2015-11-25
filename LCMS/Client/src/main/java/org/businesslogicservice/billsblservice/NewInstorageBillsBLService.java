@@ -1,15 +1,13 @@
 package org.businesslogicservice.billsblservice;
 
+import java.util.ArrayList;
+
 import org.po.ComPO;
 import org.po.ResultMessage;
 import org.po.myDate;
+import org.vo.CommodityVO;
 
 public interface NewInstorageBillsBLService {
 	
-	public ResultMessage newInstorageBill(myDate date, String GoodsNum, String Destination, String Location);
-
-	public ComPO addGoods(String GoodsNum,myDate inDate, String place, String LocationNum);
-	
-	public ComPO deleteGoods(String GoodsNum, myDate inDate, String place,
-			String LocationNum);
+	public ResultMessage newInstorageBill(myDate date, String centerNum, ArrayList<CommodityVO> list);
 }

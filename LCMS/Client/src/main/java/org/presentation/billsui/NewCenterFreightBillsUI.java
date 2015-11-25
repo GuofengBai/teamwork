@@ -18,6 +18,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
 
 import org.businesslogic.billsbl.NewCenterFreightBillsBL;
+import org.businesslogic.blFactory.BLFactory;
+import org.businesslogicservice.billsblservice.NewCenterFreightBillsBLService;
 import org.po.BOXSTYPE;
 import org.po.SENDSTYPE;
 import org.po.myDate;
@@ -196,7 +198,7 @@ public class NewCenterFreightBillsUI extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				NewCenterFreightBillsBL bl = new NewCenterFreightBillsBL();
+				NewCenterFreightBillsBLService bl = BLFactory.newCenterFreightBillsBL;
 				SENDSTYPE send = SENDSTYPE.NORMAL;
 				if(SendType.getSelectedItem().equals("铁运")){
 					send = SENDSTYPE.SLOW;
@@ -223,7 +225,7 @@ public class NewCenterFreightBillsUI extends JPanel {
 					send = SENDSTYPE.FAST;
 				}
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
-				NewCenterFreightBillsBL bl = new NewCenterFreightBillsBL();
+				NewCenterFreightBillsBLService bl = BLFactory.newCenterFreightBillsBL;
 				bl.addCenterFreightBills(date, freightNum.getText(), craftNum.getText(), startPlace.getText(), endPlace.getText(), caseNum.getText(), personName.getText(),Long.parseLong(price.getText()),send,list);
 			}
 			

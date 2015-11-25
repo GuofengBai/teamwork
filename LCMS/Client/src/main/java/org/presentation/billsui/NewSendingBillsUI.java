@@ -227,7 +227,7 @@ public class NewSendingBillsUI extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				NewSendingBillsBL bl2 = new NewSendingBillsBL();
+				NewSendingBillsBLService bl2 = BLFactory.getNewSendingBillsBL();
 				BOXSTYPE box = BOXSTYPE.Bag;
 				SENDSTYPE send = SENDSTYPE.SLOW;
 				if(boxtype.getSelectedItem().equals("纸箱")){
