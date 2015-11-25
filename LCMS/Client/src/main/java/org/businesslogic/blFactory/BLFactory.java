@@ -13,6 +13,7 @@ import org.businesslogic.billsbl.NewPayingBillsBL;
 import org.businesslogic.billsbl.NewSendingBillsBL;
 import org.businesslogic.commoditybl.CheckCommodityBL;
 import org.businesslogic.commoditybl.CommodityBL;
+import org.businesslogic.commoditybl.CommodityInAndOutBL;
 import org.businesslogic.commoditybl.DistrictChangeBL;
 import org.businesslogic.managebl.ManageBL;
 import org.businesslogic.organizationbl.OrganizationBL;
@@ -91,6 +92,15 @@ public class BLFactory {
 		}
 
 		return commodityBL;
+	}
+	
+	public static CommodityInAndOutBLService getCommodityInAndOutBL() {
+
+		if (commodityInAndOutBL == null) {
+			commodityInAndOutBL = new CommodityInAndOutBL();
+		}
+
+		return commodityInAndOutBL;
 	}
 
 	public static StaffBLService getStaffBL() {

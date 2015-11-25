@@ -15,6 +15,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
 import org.Client.RMIHelper;
+import org.businesslogic.blFactory.BLFactory;
+import org.businesslogicservice.billsblservice.NewInstorageBillsBLService;
+import org.businesslogicservice.billsblservice.NewOutstorageBillsBLService;
+import org.businesslogicservice.commodityblservice.CommodityInAndOutBLService;
 import org.dataservice.commoditydataservice.CommodityDataService;
 import org.po.ComPO;
 import org.po.myDate;
@@ -111,6 +115,17 @@ public class NewOutstorageBillsUI extends JPanel {
 		JButton deleteGood = new JButton("\u5220\u9664");
 		deleteGood.setBounds(113, 89, 93, 23);
 		add(deleteGood);
+		deleteGood.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int dex = table.getSelectedRow();
+				comvo.remove(dex);
+				compo.remove(dex);
+				model.removeRow(dex);
+			}
+			
+		});
 		
 		Vector<CommodityVO> vo = new Vector<CommodityVO>();
 		Vector<String> str = new Vector<String>();
@@ -140,7 +155,27 @@ public class NewOutstorageBillsUI extends JPanel {
 		
 		submit = new JButton("\u63D0\u4EA4");
 		submit.setBounds(94, 242, 93, 23);
-		add(submit);
+		add(submit);	
+		submit.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
+				NewOutstorageBillsBLService bl = BLFactory.getNewOutstorageBillsBL();
+				CommodityInAndOutBLService commodityInAndOutBL = BLFactory.getCommodityInAndOutBL();
+				bl.addOutstorageBills(date, centerNum.getText(), entruckNum.getText(), comvo);
+				for(int i=0;i<compo.size();i++){
+					try {
+						commodityInAndOutBL.Commodityin(compo.get(i));
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				System.out.println("helloworld");
+			}
+			
+		});
 		
 		lblNewLabel_1 = new JLabel("中转中心编号");
 		lblNewLabel_1.setBounds(10, 122, 78, 15);
