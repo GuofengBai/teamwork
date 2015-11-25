@@ -8,8 +8,9 @@ import org.po.ComPO;
 import org.vo.CommodityVO;
 
 public interface DistrictChangeBLService {
-	public ComPO change(String from,String to) throws RemoteException;
+	public void change(String from,String to,int index) throws RemoteException;
 	public Vector<CommodityVO> getDistrictCommodity(String from) throws RemoteException;
 	public void changeDistrict(CommodityVO vo) throws RemoteException;
 	public List<String> getArea() throws RemoteException;
+	public Vector<CommodityVO> getEmpty(String to) throws RemoteException;
 }

@@ -1,5 +1,6 @@
 package org.presentation.commodityui;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
@@ -39,11 +40,14 @@ public class DistrictChangeUI extends JPanel {
 	private JComboBox<String> ComBox1;
 	private JComboBox<String> ComBox2;
 	private List<String> list;
-	private String to;//移至另一个仓库
+	private String selected1;
+	private String selected2;
+	private String to;// 移至另一个仓库
 
 	/**
 	 * Create the panel.
-	 * @throws RemoteException 
+	 * 
+	 * @throws RemoteException
 	 */
 	private void initDistrictSelecter() throws RemoteException {
 		ComBox1 = new JComboBox<String>();
@@ -59,9 +63,9 @@ public class DistrictChangeUI extends JPanel {
 		ComBox1.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent evt) {
 				if (evt.getStateChange() == ItemEvent.SELECTED) {
-					String selected = (String) ComBox1.getSelectedItem();
+					selected1 = (String) ComBox1.getSelectedItem();
 					try {
-						cvo1 = cbs.getDistrictCommodity(selected);
+						cvo1 = cbs.getDistrictCommodity(selected1);
 					} catch (RemoteException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -70,10 +74,11 @@ public class DistrictChangeUI extends JPanel {
 			}
 		});
 		// 添加下拉框
-		
+
 		ComBox1.setBounds(62, 56, 82, 25);
 		this.add(ComBox1);
 	}
+
 	private void initToSelecter() throws RemoteException {
 		ComBox2 = new JComboBox<String>();
 		// 获得供应商列表
@@ -88,9 +93,9 @@ public class DistrictChangeUI extends JPanel {
 		ComBox2.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent evt) {
 				if (evt.getStateChange() == ItemEvent.SELECTED) {
-					String selected = (String) ComBox2.getSelectedItem();
+					selected2 = (String) ComBox2.getSelectedItem();
 					try {
-						cvo2 = cbs.getDistrictCommodity(selected);
+						cvo2 = cbs.getEmpty(selected2);
 					} catch (RemoteException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -99,11 +104,10 @@ public class DistrictChangeUI extends JPanel {
 			}
 		});
 		// 添加下拉框
-		
-		ComBox2.setBounds(471, 56, 82, 25);
+
+		ComBox2.setBounds(376, 56, 82, 25);
 		JLabel supplierLabel = new JLabel("仓库：");
-		
-	
+
 		this.add(ComBox2);
 	}
 
@@ -126,7 +130,9 @@ public class DistrictChangeUI extends JPanel {
 		Vector<CommodityVO> vData = new Vector<CommodityVO>();
 
 		model = new DefaultTableModel(cvo1, vColumns);
-		model.addRow(cvo1);
+		for (CommodityVO vo : cvo1) {
+			model.addRow(vo);
+		}
 		this.add(scrollPane);
 		table = new JTable(model) {
 			private static final long serialVersionUID = 1L;
@@ -140,6 +146,7 @@ public class DistrictChangeUI extends JPanel {
 				ListSelectionModel.SINGLE_SELECTION);
 		table.setFillsViewportHeight(true);
 	}
+
 	public void initToTable() {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane
@@ -159,7 +166,9 @@ public class DistrictChangeUI extends JPanel {
 		Vector<CommodityVO> vData = new Vector<CommodityVO>();
 
 		model = new DefaultTableModel(cvo2, vColumns);
-		model.addRow(cvo2);
+		for (CommodityVO vo : cvo2) {
+			model.addRow(vo);
+		}
 		this.add(scrollPane);
 		table = new JTable(model) {
 			private static final long serialVersionUID = 1L;
@@ -172,6 +181,14 @@ public class DistrictChangeUI extends JPanel {
 		table.getSelectionModel().setSelectionMode(
 				ListSelectionModel.SINGLE_SELECTION);
 		table.setFillsViewportHeight(true);
+	}
+	protected void changeItem() throws RemoteException {
+		int index = table.getSelectedRow();
+		if(index == -1){
+			JOptionPane.showMessageDialog(null, "请选中一个商品！","", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		cbs.change(selected1, selected2,index);
 	}
 
 	public DistrictChangeUI() throws RemoteException {
@@ -187,27 +204,41 @@ public class DistrictChangeUI extends JPanel {
 		label.setBounds(222, 30, 74, 25);
 		add(label);
 
-		//JComboBox comboBox = new JComboBox();
-		//comboBox.setModel(new DefaultComboBoxModel(
-		//		new String[] { "仓库1", "仓库2" }));
-		//comboBox.setBounds(62, 76, 82, 25);
-		//add(comboBox);
+		// JComboBox comboBox = new JComboBox();
+		// comboBox.setModel(new DefaultComboBoxModel(
+		// new String[] { "仓库1", "仓库2" }));
+		// comboBox.setBounds(62, 76, 82, 25);
+		// add(comboBox);
 
 		JLabel label_1 = new JLabel("移至");
 		label_1.setBounds(253, 68, 72, 18);
 		add(label_1);
 
 		JLabel label_2 = new JLabel("仓库已使用");
-		label_2.setBounds(595, 59, 82, 18);
+		label_2.setBounds(469, 59, 82, 18);
 		add(label_2);
 
 		JLabel label_3 = new JLabel("25%");
-		label_3.setBounds(710, 59, 72, 18);
+		label_3.setBounds(565, 59, 72, 18);
 		add(label_3);
 
 		JButton button = new JButton("返回");
 		button.setBounds(453, 363, 113, 27);
 		add(button);
+		
+		JButton btnNewButton = new JButton("确定");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					changeItem();
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton.setBounds(669, 55, 113, 27);
+		add(btnNewButton);
 
 	}
 }
