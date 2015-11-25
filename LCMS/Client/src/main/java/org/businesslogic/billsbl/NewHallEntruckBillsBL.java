@@ -1,23 +1,15 @@
 package org.businesslogic.billsbl;
 
+import java.util.ArrayList;
+
 import org.businesslogicservice.billsblservice.NewHallEntruckBillsBLService;
 import org.po.ResultMessage;
 import org.po.myDate;
+import org.vo.StateListVO;
 
 public class NewHallEntruckBillsBL implements NewHallEntruckBillsBLService{
-
-	public ResultMessage newHallEntruckBill(myDate date, String TrafficNum,
-			String HallNum, String DestyNum, String Drivername, String tramNum) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public String[] addGoods(String GoodsNum) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public String deleteGoods(String GoodsNum) {
+	public ResultMessage addHallEntruckBills(myDate date, String entruckNum,
+			String hallNum, String aimNum, String carNum, String driverName, ArrayList<StateListVO> list) {
 		// TODO Auto-generated method stub
 		return null;
 	}

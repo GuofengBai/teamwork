@@ -1,25 +1,41 @@
 package org.presentation.billsui;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Vector;
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JComboBox;
+
+import org.businesslogic.billsbl.NewCenterFreightBillsBL;
+import org.businesslogic.billsbl.NewHallEntruckBillsBL;
+import org.po.SENDSTYPE;
+import org.po.myDate;
+import org.vo.StateListVO;
 
 
 public class NewHallEntruckBillsUI extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
+	private JTextField newyear;
+	private JTextField newmonth;
+	private JTextField newday;
+	private JTextField entruckNum;
+	private JTextField hallNum;
+	private JTextField aimNum;
+	private JTextField carNum;
+	private JTextField driverName;
+	private JTextField goodNum;
 	private JTable table;
-	private JButton button_2;
+	private JButton submit;
+	DefaultTableModel model;
+	public ArrayList<StateListVO> list = new ArrayList<StateListVO>();
+	private JComboBox goodState;
 
 	/**
 	 * Create the panel.
@@ -31,105 +47,146 @@ public class NewHallEntruckBillsUI extends JPanel {
 		label.setBounds(10, 13, 48, 15);
 		add(label);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(63, 10, 66, 21);
-		add(textField);
+		newyear = new JTextField();
+		newyear.setColumns(10);
+		newyear.setBounds(63, 10, 66, 21);
+		add(newyear);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(134, 10, 66, 21);
-		add(textField_1);
+		newmonth = new JTextField();
+		newmonth.setColumns(10);
+		newmonth.setBounds(134, 10, 66, 21);
+		add(newmonth);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(205, 10, 66, 21);
-		add(textField_2);
+		newday = new JTextField();
+		newday.setColumns(10);
+		newday.setBounds(205, 10, 66, 21);
+		add(newday);
 		
 		JLabel label_1 = new JLabel("汽运编号");
 		label_1.setBounds(10, 41, 48, 15);
 		add(label_1);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(73, 38, 198, 21);
-		add(textField_3);
+		entruckNum = new JTextField();
+		entruckNum.setColumns(10);
+		entruckNum.setBounds(73, 38, 198, 21);
+		add(entruckNum);
 		
 		JLabel label_2 = new JLabel("营业厅编号");
 		label_2.setBounds(10, 66, 60, 15);
 		add(label_2);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(83, 63, 188, 21);
-		add(textField_4);
-		textField_4.setColumns(10);
+		hallNum = new JTextField();
+		hallNum.setBounds(83, 63, 188, 21);
+		add(hallNum);
+		hallNum.setColumns(10);
 		
 		JLabel label_3 = new JLabel("目的地编号");
 		label_3.setBounds(10, 91, 60, 15);
 		add(label_3);
 		
-		textField_5 = new JTextField();
-		textField_5.setBounds(83, 88, 188, 21);
-		add(textField_5);
-		textField_5.setColumns(10);
+		aimNum = new JTextField();
+		aimNum.setBounds(83, 88, 188, 21);
+		add(aimNum);
+		aimNum.setColumns(10);
 		
 		JLabel label_4 = new JLabel("车辆编号");
 		label_4.setBounds(10, 116, 54, 15);
 		add(label_4);
 		
-		textField_6 = new JTextField();
-		textField_6.setBounds(63, 113, 66, 21);
-		add(textField_6);
-		textField_6.setColumns(10);
+		carNum = new JTextField();
+		carNum.setBounds(63, 113, 66, 21);
+		add(carNum);
+		carNum.setColumns(10);
 		
 		JLabel label_5 = new JLabel("司机姓名");
 		label_5.setBounds(134, 116, 54, 15);
 		add(label_5);
 		
-		textField_7 = new JTextField();
-		textField_7.setBounds(198, 113, 73, 21);
-		add(textField_7);
-		textField_7.setColumns(10);
+		driverName = new JTextField();
+		driverName.setBounds(198, 113, 73, 21);
+		add(driverName);
+		driverName.setColumns(10);
 		
 		JLabel label_6 = new JLabel("托运单号");
 		label_6.setBounds(10, 141, 54, 15);
 		add(label_6);
 		
-		textField_8 = new JTextField();
-		textField_8.setBounds(63, 138, 208, 21);
-		add(textField_8);
-		textField_8.setColumns(10);
+		goodNum = new JTextField();
+		goodNum.setBounds(63, 138, 125, 21);
+		add(goodNum);
+		goodNum.setColumns(10);
 		
-		JButton button = new JButton("添加");
-		button.setBounds(122, 162, 66, 23);
-		add(button);
-		
-		JButton button_1 = new JButton("删除");
-		button_1.setBounds(198, 162, 73, 23);
-		add(button_1);
-		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null},
-				{null},
-				{null},
-				{null},
-			},
-			new String[] {
-				"\u6258\u8FD0\u5355\u53F7"
+		JButton addGood = new JButton("添加");
+		addGood.setBounds(122, 162, 66, 23);
+		add(addGood);
+		addGood.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String num = goodNum.getText();
+				String state = goodState.getSelectedItem().toString();
+				StateListVO item = new StateListVO(num,state);
+				model.addRow(item);
+				goodNum.setText("");
+				list.add(item);
+				
 			}
-		));
-		table.setBounds(10, 184, 261, 72);
+			
+		});
+		
+		JButton deleteGood = new JButton("删除");
+		deleteGood.setBounds(198, 162, 73, 23);
+		add(deleteGood);
+		deleteGood.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int dex = table.getSelectedRow();
+				list.remove(dex);
+				model.removeRow(dex);
+			}
+			
+		});
+		
+		Vector<StateListVO> vo = new Vector<StateListVO>();
+		Vector<String> str = new Vector<String>();
+		str.add("货物单号");
+		str.add("货物状态");
+		model = new DefaultTableModel(vo,str);
+		table = new JTable(model){
+			private static final long serialVersionUID = 1L;
+
+			public boolean isCellEditable(int row, int column){
+				return false;
+			}
+		};
+		table.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);;
+		table.setFillsViewportHeight(true);	
 		
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(10, 195, 261, 72);
 		add(scrollPane);
 		
-		button_2 = new JButton("提交");
-		button_2.setBounds(95, 277, 93, 23);
-		add(button_2);
+		submit = new JButton("提交");
+		submit.setBounds(95, 277, 93, 23);
+		add(submit);
+		submit.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
+				NewHallEntruckBillsBL bl = new NewHallEntruckBillsBL();
+				bl.addHallEntruckBills(date, entruckNum.getText(), hallNum.getText(), aimNum.getText(), carNum.getText(), driverName.getText(), list);
+			}
+			
+		});
+		
+		goodState = new JComboBox();
+		goodState.setBounds(198, 138, 73, 21);
+		add(goodState);
+		goodState.addItem("完整");
+		goodState.addItem("损坏");
+		goodState.addItem("丢失");
 
 	}
-
 }

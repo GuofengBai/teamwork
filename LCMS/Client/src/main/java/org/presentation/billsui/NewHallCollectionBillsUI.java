@@ -147,7 +147,7 @@ public class NewHallCollectionBillsUI extends JPanel {
 				// TODO Auto-generated method stub
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
 				NewHallCollectBillsBL bl = new NewHallCollectBillsBL();
-				bl.addHallColletcionBill(date, name.getText(),total.getText(),list);
+				bl.addHallCollectionBills(date, name.getText(),total.getText(),list);
 			}
 			
 		});
