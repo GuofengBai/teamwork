@@ -8,6 +8,16 @@ import org.businesslogic.managebl.ManageBL;
 import org.businesslogic.organizationbl.OrganizationBL;
 import org.businesslogic.staffbl.StaffBL;
 import org.businesslogic.userbl.UserBL;
+import org.businesslogicservice.billsblservice.NewCenterArriveBillsBLService;
+import org.businesslogicservice.billsblservice.NewCenterEntruckBillsBLService;
+import org.businesslogicservice.billsblservice.NewCenterFreightBillsBLService;
+import org.businesslogicservice.billsblservice.NewHallArriveBillsBLService;
+import org.businesslogicservice.billsblservice.NewHallCollectBillsBLService;
+import org.businesslogicservice.billsblservice.NewHallDispatchBillsBLService;
+import org.businesslogicservice.billsblservice.NewHallEntruckBillsBLService;
+import org.businesslogicservice.billsblservice.NewInstorageBillsBLService;
+import org.businesslogicservice.billsblservice.NewOutstorageBillsBLService;
+import org.businesslogicservice.billsblservice.NewPayingBillsBLService;
 import org.businesslogicservice.billsblservice.NewSendingBillsBLService;
 import org.businesslogicservice.commodityblservice.CommodityBLService;
 import org.businesslogicservice.commodityblservice.DistrictChangeBLService;
@@ -30,6 +40,16 @@ public class BLFactory {
 	public static UserBLService userBL;
 	
 	public static NewSendingBillsBLService newSendingBillsBL;
+	public static NewCenterArriveBillsBLService newCenterArriveBillsBL;
+	public static NewCenterEntruckBillsBLService newCenterEntruckBillsBL;
+	public static NewCenterFreightBillsBLService newCenterFreightBillsBL;
+	public static NewHallArriveBillsBLService newHallArriveBillsBL;
+	public static NewHallCollectBillsBLService newHallCollectBillsBL;
+	public static NewHallDispatchBillsBLService newHallDispatchBillsBL;
+	public static NewHallEntruckBillsBLService newHallEntruckBillsBL;
+	public static NewInstorageBillsBLService newInstorageBillsBL;
+	public static NewOutstorageBillsBLService newOutstorageBillsBL;
+	public static NewPayingBillsBLService newPayingBillsBL;
 	public static CheckCommodityBLService checkcommodityBL;
 	public static DistrictChangeBLService districtchangeBL;
 	

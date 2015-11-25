@@ -163,7 +163,7 @@ public class NewInstorageBillsUI extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				BLFactory bl = new BLFactory();
+				NewInstorageBillsBLService bl = BLFactory.getNewSendingBillsBL();
 				
 			}
 			
