@@ -11,15 +11,15 @@ public class ComPO implements Serializable {
 	private String place;// Ŀ�ĵ�
 	private String LocationNum;// �����źżܺ�λ��
 	private String area;
-	private String city;
+	private String centerNum;
 
-	public ComPO(String GoodsNum, myDate inDate, String place, String LocationNum,String area,String city) {
+	public ComPO(String GoodsNum, myDate inDate, String place, String LocationNum,String area,String centerNum) {
 		this.GoodsNum = GoodsNum;
 		this.inDate = inDate;
 		this.place = place;
 		this.LocationNum = LocationNum;
 		this.area=area;
-		this.city=city;
+		this.centerNum=centerNum;
 	}
 
 	public ComPO() {
@@ -56,7 +56,7 @@ public class ComPO implements Serializable {
 	public String getArea(){
 		return this.area;
 	}
-	public String getcity(){
-		return city;
+	public String getcenterNum(){
+		return centerNum;
 	}
 }
