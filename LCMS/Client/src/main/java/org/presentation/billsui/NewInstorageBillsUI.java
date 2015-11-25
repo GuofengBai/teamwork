@@ -94,13 +94,18 @@ public class NewInstorageBillsUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				String goodNumvo = goodNum.getText();
-				String datevo = newyear.getText()+"/"+newmonth.getText()+"/"+newday.getText();
 				myDate datepo = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
 				String placevo = place.getText();
 				String locationvo = location.getText();
 				String areavo = area.getSelectedItem().toString();
 				ComPO cpo = new ComPO(goodNumvo,datepo,placevo,locationvo,areavo);
-				CommodityVO cvo = new CommodityVO(goodNumvo,datevo,placevo,locationvo,areavo);
+				CommodityVO cvo = new CommodityVO(goodNumvo,datepo,placevo,locationvo,areavo);
+				model.addRow(cvo);
+				comvo.add(cvo);
+				compo.add(cpo);
+				location.setText("");
+				place.setText("");
+				goodNum.setText("");
 			}
 			
 		});
@@ -109,14 +114,28 @@ public class NewInstorageBillsUI extends JPanel {
 		JButton deleteGood = new JButton("\u5220\u9664");
 		deleteGood.setBounds(113, 113, 93, 23);
 		add(deleteGood);
+		deleteGood.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int dex = table.getSelectedRow();
+				comvo.remove(dex);
+				compo.remove(dex);
+				model.removeRow(dex);
+			}
+			
+		});
 		
 		Vector<CommodityVO> vo = new Vector<CommodityVO>();
 		Vector<String> str = new Vector<String>();
 		str.add("货物单号");
 		str.add("日期");
 		str.add("目的地");
-		str.add("位置");
-		str.add("区号");
+		str.add("运输方式");
+		str.add("区");
+		str.add("排");
+		str.add("架");
+		str.add("位");
 		model = new DefaultTableModel(vo,str);
 		table = new JTable(model){
 			private static final long serialVersionUID = 1L;
