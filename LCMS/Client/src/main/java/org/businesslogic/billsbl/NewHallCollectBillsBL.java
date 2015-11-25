@@ -16,9 +16,9 @@ public class NewHallCollectBillsBL implements NewHallCollectBillsBLService{
 
 	public ResultMessage addHallCollectionBills(myDate date, String name, String total, ArrayList<StateListVO> list) {
 		// TODO Auto-generated method stub
-		BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewHallCollectBillsData();
 		ResultMessage message=null;
 		try {
+			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewHallCollectBillsData();
 			message=billsData.addBills(new HallCollectionBills(date, name, total, list));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

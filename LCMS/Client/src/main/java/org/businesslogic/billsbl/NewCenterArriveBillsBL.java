@@ -15,15 +15,16 @@ import org.vo.StateListVO;
 public class NewCenterArriveBillsBL implements NewCenterArriveBillsBLService{
 
 	public ResultMessage addCenterArriveBills(myDate date, String FreightNum,
-			String CenterNum, ArrayList<StateListVO> vo) {
+			String CenterNum, ArrayList<StateListVO> vo){
 		// TODO Auto-generated method stub
-		BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewCenterArriveBillsData();
+		BillsDataService billsData;
 		ResultMessage message=null;
 		try {
+			billsData = RMIHelper.getDataFactory().getBillsDataFactory().getNewCenterArriveBillsData();
 			message=billsData.addBills(new CenterArriveBills(date,FreightNum,CenterNum,vo));
-		} catch (RemoteException e) {
+		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
 		return message;
 	}

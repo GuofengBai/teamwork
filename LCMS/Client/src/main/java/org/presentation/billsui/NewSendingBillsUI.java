@@ -9,6 +9,8 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 
 import org.businesslogic.billsbl.NewSendingBillsBL;
+import org.businesslogic.blFactory.BLFactory;
+import org.businesslogicservice.billsblservice.NewSendingBillsBLService;
 import org.po.BOXSTYPE;
 import org.po.SENDSTYPE;
 import org.po.myDate;
@@ -199,7 +201,7 @@ public class NewSendingBillsUI extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				NewSendingBillsBL bl = new NewSendingBillsBL();
+				NewSendingBillsBLService bl = BLFactory.getNewSendingBillsBL();
 				BOXSTYPE box = BOXSTYPE.Bag;
 				SENDSTYPE send = SENDSTYPE.SLOW;
 				if(boxtype.getSelectedItem().equals("纸箱")){

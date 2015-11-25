@@ -20,9 +20,9 @@ public class NewCenterEntruckBillsBL implements NewCenterEntruckBillsBLService{
 			String HallNum, String Vehicle, String DriverName,
 			String ScouterName, ArrayList<StateListVO> vo) {
 		// TODO Auto-generated method stub
-		BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewCenterEntruckBillsData();
 		ResultMessage message=null;
 		try {
+			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewCenterEntruckBillsData();
 			message=billsData.addBills(new CenterEntruckBills(date,TrafficNum,HallNum,Vehicle,DriverName,ScouterName,vo));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

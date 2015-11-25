@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
 
+import org.businesslogic.blFactory.BLFactory;
 import org.po.ComPO;
 import org.po.myDate;
 import org.vo.CommodityVO;
@@ -33,6 +34,7 @@ public class NewInstorageBillsUI extends JPanel {
 	DefaultTableModel model;
 	private ArrayList<ComPO> compo = new ArrayList<ComPO>();
 	private ArrayList<CommodityVO> comvo = new ArrayList<CommodityVO>();
+	private JTextField centerNum;
 
 	/**
 	 * Create the panel.
@@ -98,7 +100,8 @@ public class NewInstorageBillsUI extends JPanel {
 				String placevo = place.getText();
 				String locationvo = location.getText();
 				String areavo = area.getSelectedItem().toString();
-				ComPO cpo = new ComPO(goodNumvo,datepo,placevo,locationvo,areavo);
+				String centerNumvo = centerNum.getText();
+				ComPO cpo = new ComPO(goodNumvo,datepo,placevo,locationvo,areavo,centerNumvo);
 				CommodityVO cvo = new CommodityVO(goodNumvo,datepo,placevo,locationvo,areavo);
 				model.addRow(cvo);
 				comvo.add(cvo);
@@ -136,7 +139,12 @@ public class NewInstorageBillsUI extends JPanel {
 		str.add("排");
 		str.add("架");
 		str.add("位");
-		model = new DefaultTableModel(vo,str);
+		model = new DefaultTableModel(vo,str);;
+
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 176, 261, 79);
+		add(scrollPane);
 		table = new JTable(model){
 			private static final long serialVersionUID = 1L;
 
@@ -144,17 +152,22 @@ public class NewInstorageBillsUI extends JPanel {
 				return false;
 			}
 		};
-		table.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);;
+		scrollPane.setViewportView(table);
+		table.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setFillsViewportHeight(true);
-
-		
-		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(10, 147, 261, 79);
-		add(scrollPane);
 		
 		submit = new JButton("\u63D0\u4EA4");
-		submit.setBounds(107, 236, 93, 23);
+		submit.setBounds(113, 262, 93, 23);
 		add(submit);
+		submit.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				BLFactory bl = new BLFactory();
+				
+			}
+			
+		});
 		
 		area = new JComboBox();
 		area.setBounds(194, 60, 77, 21);
@@ -162,7 +175,15 @@ public class NewInstorageBillsUI extends JPanel {
 		area.addItem("汽运区");
 		area.addItem("铁运区");
 		area.addItem("空运区");
+		
+		JLabel lblNewLabel_1 = new JLabel("中转中心编号");
+		lblNewLabel_1.setBounds(10, 146, 82, 15);
+		add(lblNewLabel_1);
+		
+		centerNum = new JTextField();
+		centerNum.setBounds(102, 143, 169, 21);
+		add(centerNum);
+		centerNum.setColumns(10);
 
 	}
-
 }

@@ -21,9 +21,9 @@ public class NewCenterFreightBillsBL implements NewCenterFreightBillsBLService{
 			String tramNum, String StartPlace, String EndPlace, String caseNum,
 			String Scoutername, long price, SENDSTYPE send, ArrayList<StateListVO> vo) {
 		// TODO Auto-generated method stub
-		BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewCenterFreightBillsData();
 		ResultMessage message=null;
 		try {
+			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewCenterFreightBillsData();
 			message=billsData.addBills(new CenterFreightBills(date,FreightNum,
 					tramNum, StartPlace, EndPlace, caseNum,
 					Scoutername, price, send, vo));
