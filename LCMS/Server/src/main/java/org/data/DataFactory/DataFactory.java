@@ -3,6 +3,7 @@ package org.data.DataFactory;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import org.data.commoditydata.AlertLineData;
 import org.data.commoditydata.CommodityData;
 import org.data.managedata.ManageData;
 import org.data.organizationdata.OrganizationData;
@@ -13,6 +14,7 @@ import org.dataservice.DataFactoryService.DataFactoryService;
 import org.dataservice.DataFactoryService.ManageDataFactoryService;
 import org.dataservice.Impl.BillsDataServiceSerializableFileImpl;
 import org.dataservice.billsdataservice.BillsDataService;
+import org.dataservice.commoditydataservice.AlertLineDataService;
 import org.dataservice.commoditydataservice.CommodityDataService;
 import org.dataservice.managedataservice.ManageDataService;
 import org.dataservice.organizationdataservice.OrganizationDataService;
@@ -27,6 +29,7 @@ public class DataFactory extends UnicastRemoteObject implements DataFactoryServi
 	OrganizationDataService organizationData;
 	StaffDataService staffData;
 	ManageDataFactoryService manageDataFactory;
+	AlertLineDataService alertData;
 
 	public DataFactory() throws RemoteException{
 		super();
@@ -37,7 +40,7 @@ public class DataFactory extends UnicastRemoteObject implements DataFactoryServi
 		billsDataFactory=null;
 		staffData=null;
 		manageDataFactory=null;
-		
+		alertData=null;
 	}
 
 	public CommodityDataService getCommodityData() throws RemoteException{
@@ -50,6 +53,13 @@ public class DataFactory extends UnicastRemoteObject implements DataFactoryServi
 			}
         }
 		return commodityData;
+	}
+	public AlertLineDataService getAlertData() throws RemoteException{
+		if(alertData==null){
+			
+			alertData=new AlertLineData();
+		}
+		return alertData;
 	}
 
 

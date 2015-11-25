@@ -53,7 +53,13 @@ public class CommodityData extends UnicastRemoteObject implements
 	}
 
 	public ResultMessage addCom(ComPO po) throws RemoteException{
-		ComList.add(po);
+		String[] fa={"增加失败","已存在货运单号对应的货物"};
+		for(ComPO p:ComList){
+			if(p.getGoodsNum().equals(po.getGoodsNum())){
+				return new ResultMessage(false,fa);
+			}
+		}
+			ComList.add(po);
 		save();
 		return new ResultMessage(true,null);
 	}
@@ -79,7 +85,6 @@ public class CommodityData extends UnicastRemoteObject implements
 		for(ComPO p:ComList){
 			if(p.getGoodsNum().equals(po.getGoodsNum())){
 				ComList.remove(p);
-				ComList.add(po);
 				save();
 				String[] info={"更新信息成功"};
 				ResultMessage ms=new ResultMessage(true,info);

@@ -7,11 +7,13 @@ import javax.swing.JButton;
 
 public class SettingAlertUI extends JPanel {
 	private JTextField textField;
+	private String centerNum;
 
 	/**
 	 * Create the panel.
 	 */
-	public SettingAlertUI() {
+	public SettingAlertUI(String centerNum) {
+		this.centerNum=centerNum;
 		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("警报设置");

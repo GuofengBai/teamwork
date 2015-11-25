@@ -45,6 +45,7 @@ public class DistrictChangeUI extends JPanel {
 	private String selected1;
 	private String selected2;
 	private String to;// 移至另一个仓库
+	private String centerNum;
 
 	/**
 	 * Create the panel.
@@ -54,7 +55,7 @@ public class DistrictChangeUI extends JPanel {
 	private void initDistrictSelecter() throws RemoteException {
 		ComBox1 = new JComboBox<String>();
 		// 获得供应商列表
-		list = cbs.getArea();
+		list = cbs.getArea(centerNum);
 		// 初始化下拉框选项
 		if (list.size() > 0) {
 			for (int i = 0; i < list.size(); i++) {
@@ -67,7 +68,7 @@ public class DistrictChangeUI extends JPanel {
 				if (evt.getStateChange() == ItemEvent.SELECTED) {
 					selected1 = (String) ComBox1.getSelectedItem();
 					try {
-						cvo1 = cbs.getDistrictCommodity(selected1);
+						cvo1 = cbs.getDistrictCommodity(centerNum,selected1);
 					} catch (RemoteException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -85,7 +86,7 @@ public class DistrictChangeUI extends JPanel {
 		ComBox2 = new JComboBox<String>();
 		// 获得供应商列表
 		// 初始化下拉框选项
-		list = cbs.getArea();
+		list = cbs.getArea(centerNum);
 		if (list.size() > 0) {
 			for (int i = 0; i < list.size(); i++) {
 				ComBox2.addItem(list.get(i));
@@ -97,7 +98,7 @@ public class DistrictChangeUI extends JPanel {
 				if (evt.getStateChange() == ItemEvent.SELECTED) {
 					selected2 = (String) ComBox2.getSelectedItem();
 					try {
-						cvo2 = cbs.getEmpty(selected2);
+						cvo2 = cbs.getEmpty(centerNum,selected2);
 					} catch (RemoteException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -197,8 +198,8 @@ public class DistrictChangeUI extends JPanel {
 		cbs.change(selected1, selected2,index);
 	}
 
-	public DistrictChangeUI() throws RemoteException {
-
+	public DistrictChangeUI(String centerNum) throws RemoteException {
+		this.centerNum=centerNum;
 		cbs = BLFactory.getDistrictChangeBL();
 		initDistrictSelecter();
 		initSelecterTable();
