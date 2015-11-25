@@ -1,4 +1,8 @@
 package org.presentation.billsui;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -7,14 +11,26 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextArea;
 
+import org.Client.RMIHelper;
+import org.businesslogic.blFactory.BLFactory;
+import org.businesslogicservice.billsblservice.NewHallDispatchBillsBLService;
+import org.dataservice.billsdataservice.NewSendingBillsDataService;
+import org.po.SendingBills;
+import org.po.myDate;
+
 
 public class NewHallDispatchBillsUI extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTable table;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private JTextField newyear;
+	private JTextField newmonth;
+	private JTextField newday;
+	private JTextField goodNum;
+	private JTextField name;
+	private JLabel label_2;
+	private JLabel label_4;
+	private JLabel label_5;
+	private JLabel rname;
+	private JLabel rphone;
+	private JLabel rlocation;
 
 	/**
 	 * Create the panel.
@@ -26,62 +42,107 @@ public class NewHallDispatchBillsUI extends JPanel {
 		label.setBounds(10, 13, 60, 15);
 		add(label);
 		
-		textField = new JTextField();
-		textField.setBounds(75, 10, 66, 21);
-		textField.setColumns(10);
-		add(textField);
+		newyear = new JTextField();
+		newyear.setBounds(75, 10, 66, 21);
+		newyear.setColumns(10);
+		add(newyear);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(146, 10, 54, 21);
-		textField_1.setColumns(8);
-		add(textField_1);
+		newmonth = new JTextField();
+		newmonth.setBounds(146, 10, 54, 21);
+		newmonth.setColumns(8);
+		add(newmonth);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(205, 10, 54, 21);
-		textField_2.setColumns(8);
-		add(textField_2);
-		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null},
-			},
-			new String[] {
-				"New column", "New column", "New column", "New column"
-			}
-		));
-		table.setBounds(75, 63, 183, 33);
-		add(table);
+		newday = new JTextField();
+		newday.setBounds(205, 10, 54, 21);
+		newday.setColumns(8);
+		add(newday);
 		
 		JLabel label_1 = new JLabel("托运单号");
 		label_1.setBounds(10, 38, 54, 15);
 		add(label_1);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(75, 35, 93, 21);
-		add(textField_3);
-		textField_3.setColumns(10);
-		
-		JLabel label_2 = new JLabel("快递信息");
-		label_2.setBounds(10, 63, 54, 15);
-		add(label_2);
+		goodNum = new JTextField();
+		goodNum.setBounds(75, 35, 93, 21);
+		add(goodNum);
+		goodNum.setColumns(10);
 		
 		JLabel label_3 = new JLabel("快递员姓名");
-		label_3.setBounds(10, 110, 60, 15);
+		label_3.setBounds(10, 141, 60, 15);
 		add(label_3);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(85, 106, 174, 21);
-		add(textField_4);
-		textField_4.setColumns(10);
+		name = new JTextField();
+		name.setBounds(75, 138, 174, 21);
+		add(name);
+		name.setColumns(10);
 		
-		JButton button = new JButton("提交");
-		button.setBounds(95, 137, 93, 23);
-		add(button);
+		JButton submit = new JButton("提交");
+		submit.setBounds(85, 169, 93, 23);
+		add(submit);
+		submit.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				NewHallDispatchBillsBLService bl = BLFactory.getNewHallDispatchBillsBL();
+				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
+				bl.newHallDispatchBill(date, name.getText(), goodNum.getText());
+			}
+			
+		});
 		
-		JButton button_1 = new JButton("检索");
-		button_1.setBounds(178, 34, 81, 23);
-		add(button_1);
+		JButton search = new JButton("检索");
+		search.setBounds(178, 34, 81, 23);
+		add(search);
+		
+		label_2 = new JLabel("收件人姓名");
+		label_2.setBounds(10, 63, 60, 15);
+		add(label_2);
+		
+		label_4 = new JLabel("收件人电话");
+		label_4.setBounds(10, 85, 60, 15);
+		add(label_4);
+		
+		label_5 = new JLabel("收件人住址");
+		label_5.setBounds(10, 110, 60, 15);
+		add(label_5);
+		
+		rname = new JLabel("");
+		rname.setBounds(85, 63, 174, 15);
+		add(rname);
+		
+		rphone = new JLabel("");
+		rphone.setBounds(85, 85, 174, 15);
+		add(rphone);
+		
+		rlocation = new JLabel("");
+		rlocation.setBounds(85, 110, 174, 15);
+		add(rlocation);
+		search.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				NewSendingBillsDataService service=null;
+				SendingBills bill = null;
+				try {
+					service = RMIHelper.getDataFactory().getBillsDataFactory().getNewSendingBillsData();
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				try {
+					bill = (SendingBills) service.findBills(Integer.parseInt(goodNum.getText()));
+				} catch (NumberFormatException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				rname.setText(bill.getReceiverName());
+				rphone.setText(bill.getReceiverPhone());
+				rlocation.setText(bill.getReceiverLocation());				
+			}
+			
+		});
 
 	}
 }
