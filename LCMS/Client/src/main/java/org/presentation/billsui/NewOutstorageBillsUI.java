@@ -1,6 +1,7 @@
 package org.presentation.billsui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -10,6 +11,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
+import org.Client.RMIHelper;
+import org.dataservice.commoditydataservice.CommodityDataService;
 import org.po.ComPO;
 import org.po.myDate;
 import org.vo.CommodityVO;
@@ -75,8 +78,19 @@ public class NewOutstorageBillsUI extends JPanel {
 		addGood.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				CommodityDataService service=null;
+				try {
+					service = RMIHelper.getDataFactory().getCommodityData();
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				try {
+					ComPO compo = service.findCom(goodNum.getText());
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 			
 		});
