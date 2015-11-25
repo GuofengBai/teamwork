@@ -11,15 +11,10 @@ public class NewOutstorageBillsBL implements NewOutstorageBillsBLService{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	public ComPO addGoods(String GoodsNum) {
-		// TODO Auto-generated method stub
+	
+	public ComPO searchThePO(String goodNum){
 		return null;
 	}
 
-	public ComPO deleteGoods(String GoodsNum) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

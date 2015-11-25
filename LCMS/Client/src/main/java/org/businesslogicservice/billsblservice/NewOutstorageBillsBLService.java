@@ -6,10 +6,8 @@ import org.po.myDate;
 
 public interface NewOutstorageBillsBLService {
 	
-	public ResultMessage addOutstorageBills (myDate date, String GoodsNum);
+	public ResultMessage addOutstorageBills(myDate date, String GoodsNum);
 	
-	public ComPO addGoods(String GoodsNum);
-	
-	public ComPO deleteGoods(String GoodsNum);
+	public ComPO searchThePO(String goodNum);
 
 }
