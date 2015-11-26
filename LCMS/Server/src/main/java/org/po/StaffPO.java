@@ -6,7 +6,7 @@ import java.util.Vector;
 public class StaffPO implements Serializable{
 	
 	
-	public UserPO user;
+	public String user;
 	public STAFFROLE staffRole;
 	public String name;
 	public String num;
@@ -22,8 +22,7 @@ public class StaffPO implements Serializable{
 		super();
 	}
 	
-	public StaffPO(String name,String num,GENDER gender,myDate birthday,String location,String phone,String bankAccount,
-			WorkSpace workSpace,Payment payment,String ac,String password,STAFFROLE staffRole){
+	public StaffPO(STAFFROLE role,String name,String num,GENDER gender,myDate birthday,String location,String phone,String user,String bankAccount,WorkSpace space,Payment payment){
 		
 		this.name=name;
 		this.num=num;
@@ -32,10 +31,9 @@ public class StaffPO implements Serializable{
 		this.location=location;
 		this.phone=phone;
 		this.bankAccount=bankAccount;
-		this.workSpace=workSpace;
+		this.workSpace=space;
 		this.payment=payment;
-		this.user=new UserPO(ac,password,this);
-		
+		this.user=user;
 		
 	}
 	
