@@ -16,6 +16,7 @@ public class HallArrivingBills extends BillsPO{
 		this.StartPlace=StartPlace;
 		this.entruckNum=entruckNum;
 		this.list=list;
+		this.type=BILLSTYPE.HAB;
 	}
 	
 	public String getidNum(){

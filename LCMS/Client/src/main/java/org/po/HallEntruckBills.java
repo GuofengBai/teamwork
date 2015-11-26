@@ -22,6 +22,7 @@ public class HallEntruckBills extends BillsPO{
 		this.carNum=carNum;
 		this.driverName=driverName;
 		this.list=list;
+		this.type=BILLSTYPE.HEB;
 	}
 	public myDate getdate(){
 		return date;

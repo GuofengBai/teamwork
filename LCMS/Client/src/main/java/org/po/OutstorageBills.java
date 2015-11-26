@@ -15,6 +15,7 @@ public class OutstorageBills extends BillsPO{
 		this.centerNum=centerNum;
 		this.idNum=entruckNum;
 		this.list=list;
+		this.type=BILLSTYPE.OB;
 	}
 	public myDate getdate(){
 		return date;

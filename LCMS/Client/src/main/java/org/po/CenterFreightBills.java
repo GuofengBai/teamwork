@@ -28,6 +28,7 @@ public class CenterFreightBills extends BillsPO{
 		this.price=price;
 		this.send=send;
 		this.vo=vo;
+		this.type=BILLSTYPE.CFB;
 	}
 	public String getidNum(){
 		return idNum;

@@ -16,6 +16,7 @@ public class HallCollectionBills extends BillsPO{
 		this.name=name;
 		this.total=total;
 		this.list=list;
+		this.type=BILLSTYPE.HCB;
 	}
 	
 	public String getidNum(){

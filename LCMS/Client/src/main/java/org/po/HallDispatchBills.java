@@ -13,6 +13,7 @@ public class HallDispatchBills extends BillsPO{
 		this.goodNum=goodNum;
 		this.idNum=id;
 		this.name=name;
+		this.type=BILLSTYPE.HDB;
 	}
 	
 	public void setDate(myDate t){
