@@ -3,10 +3,12 @@ package org.po;
 import java.io.Serializable;
 import java.util.Vector;
 
+import org.vo.StaffVO;
+
 public class StaffPO implements Serializable{
 	
 	
-	public UserPO user;
+	public String user;
 	public STAFFROLE staffRole;
 	public String name;
 	public String num;
@@ -22,8 +24,7 @@ public class StaffPO implements Serializable{
 		super();
 	}
 	
-	public StaffPO(String name,String num,GENDER gender,myDate birthday,String location,String phone,String bankAccount,
-			WorkSpace workSpace,Payment payment,String ac,String password,STAFFROLE staffRole){
+	public StaffPO(STAFFROLE role,String name,String num,GENDER gender,myDate birthday,String location,String phone,String user,String bankAccount,WorkSpace space,Payment payment){
 		
 		this.name=name;
 		this.num=num;
@@ -32,11 +33,24 @@ public class StaffPO implements Serializable{
 		this.location=location;
 		this.phone=phone;
 		this.bankAccount=bankAccount;
-		this.workSpace=workSpace;
+		this.workSpace=space;
 		this.payment=payment;
-		this.user=new UserPO(ac,password,this);
+		this.user=user;
 		
-		
+	}
+	
+	public StaffPO(StaffVO vo){
+		super();
+		this.name=vo.name;
+		this.num=vo.num;
+		this.gender=vo.gender;
+		this.birthday=vo.birthday;
+		this.location=vo.location;
+		this.phone=vo.phone;
+		this.bankAccount=vo.bankAccount;
+		this.workSpace=vo.workSpace;
+		this.payment=vo.payment;
+		this.user=vo.user;
 	}
 	
 	public Vector<String> getInfo(){
