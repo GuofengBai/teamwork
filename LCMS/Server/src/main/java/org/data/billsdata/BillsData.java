@@ -1,5 +1,12 @@
 package org.data.billsdata;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -8,44 +15,123 @@ import org.dataservice.billsdataservice.BillsDataService;
 import org.po.BILLSTYPE;
 import org.po.BillsPO;
 import org.po.ResultMessage;
+import org.po.SendingBills;
 import org.po.myDate;
 
 public class BillsData extends UnicastRemoteObject implements BillsDataService{
+	
+	protected ArrayList<SendingBills> list;
+	protected long unExaminedNum;
+	protected ArrayList<SendingBills> unExaminedList;
+	protected String fileName;
 
-	public BillsData() throws RemoteException {
+	public BillsData(String fileName) throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
+		this.fileName=fileName;
+		try {
+			FileInputStream fis = new FileInputStream(fileName);
+	        BufferedInputStream bis = new BufferedInputStream(fis);  
+	        ObjectInputStream ois = new ObjectInputStream(bis);  
+	        list=(ArrayList<SendingBills>)ois.readObject();
+	        unExaminedNum=(Long) ois.readObject();
+	        unExaminedList=(ArrayList<SendingBills>)ois.readObject();
+	        ois.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	public ResultMessage addBills(BillsPO po) throws RemoteException {
-		// TODO Auto-generated method stub
+		if(!po.Examined){
+			unExaminedList.add((SendingBills) po);
+			unExaminedNum++;
+		}else{
+			list.add((SendingBills)po);
+		}
+	    save();
 		return null;
 	}
 
 	public BillsPO findBills(int BillNum) throws RemoteException {
-		// TODO Auto-generated method stub
+		for(SendingBills po:list){
+			if(po.idNum.equals(BillNum)){
+				return po;
+			}
+		}
+		
+		for(SendingBills po:unExaminedList){
+			if(po.idNum.equals(BillNum)){
+			    return po;
+			}
+		}
 		return null;
 	}
 
 	public ResultMessage deleteBills(int BillNum) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		for(SendingBills po:list){
+			if(po.idNum.equals(BillNum)){
+				list.remove(po);
+				save();
+				return new ResultMessage(true,null);
+			}
+		}
+		
+		for(SendingBills po:unExaminedList){
+			if(po.idNum.equals(BillNum)){
+				unExaminedList.remove(po);
+				save();
+				return new ResultMessage(true,null);
+			}
+		}
+		return new ResultMessage(false,null);
 	}
 
 	public ResultMessage updateBills(int BillNum, BillsPO bill)
 			throws RemoteException {
-		// TODO Auto-generated method stub
+		for(SendingBills po:list){
+			if(po.idNum.equals(BillNum)){
+				list.remove(po);
+				list.add((SendingBills) bill);
+				save();
+				return new ResultMessage(true,null);
+			}
+		}
+		
+		for(SendingBills po:unExaminedList){
+			if(po.idNum.equals(BillNum)){
+				unExaminedList.remove(po);
+				unExaminedList.add((SendingBills) bill);
+				save();
+				return new ResultMessage(true,null);
+			}
+		}
 		return null;
 	}
 
 	public ResultMessage examine(int BillNum) throws RemoteException {
-		// TODO Auto-generated method stub
+		for(SendingBills po:unExaminedList){
+			if(po.idNum.equals(BillNum)){
+				po.Examined=true;
+				unExaminedList.remove(po);
+				list.add(po);
+				unExaminedNum--;
+				save();
+				return new ResultMessage(true,null);
+			}
+		}
 		return null;
 	}
 
 	public long getUnexaminedBillsNum() {
-		// TODO Auto-generated method stub
-		return 0;
+		return unExaminedNum;
 	}
 
 	public ArrayList<BillsPO> getUnexaminedBills() {
@@ -59,7 +145,20 @@ public class BillsData extends UnicastRemoteObject implements BillsDataService{
 	}
 
 	public ResultMessage save() {
-		// TODO Auto-generated method stub
+		try {
+            FileOutputStream fos = new FileOutputStream(fileName);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(list);
+			oos.writeObject((Long)unExaminedNum);
+			oos.writeObject(unExaminedList);
+            oos.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
