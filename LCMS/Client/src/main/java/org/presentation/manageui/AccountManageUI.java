@@ -2,6 +2,7 @@ package org.presentation.manageui;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -12,6 +13,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
+import org.vo.BankAccountVO;
+
 
 public class AccountManageUI {
 
@@ -20,7 +23,12 @@ public class AccountManageUI {
 	private JTextField accountNameField;
 	private JTextField namepartField;
 	private JTable searchTable;
-
+	private JTextField newNameField;
+	
+	private Vector<BankAccountVO> tableContent;
+	
+	private Vector<BankAccountVO> searchtableContent;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -49,12 +57,12 @@ public class AccountManageUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 600);
+		frame.setBounds(100, 100, 450, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 434, 562);
+		panel.setBounds(0, 0, 434, 662);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -66,8 +74,15 @@ public class AccountManageUI {
 		label_1.setBounds(40, 49, 54, 15);
 		panel.add(label_1);
 		
+		
+		tableContent=new Vector<BankAccountVO>();
+		Vector<String> Column = new Vector<String>();
+		Column.add("名称");
+		Column.add("余额");
+		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
+		table.setModel(new DefaultTableModel(tableContent,Column));
+/**		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
 				{null, null},
@@ -78,6 +93,7 @@ public class AccountManageUI {
 				"\u540D\u79F0", "\u4F59\u989D"
 			}
 		));
+ */
 		table.setBounds(40, 74, 346, 92);
 		//panel.add(table);
 		
@@ -86,7 +102,7 @@ public class AccountManageUI {
 		panel.add(scrollPane);
 		
 		JButton backButton = new JButton("\u8FD4\u56DE");
-		backButton.setBounds(293, 529, 93, 23);
+		backButton.setBounds(293, 629, 93, 23);
 		panel.add(backButton);
 		backButton.addActionListener(new addButtonListener());
 		
@@ -96,39 +112,42 @@ public class AccountManageUI {
 		deleteButton.addActionListener(new deleteButtonListener());
 		
 		JLabel label_2 = new JLabel("\u65B0\u5EFA\u8D26\u6237");
-		label_2.setBounds(173, 209, 54, 15);
+		label_2.setBounds(171, 323, 54, 15);
 		panel.add(label_2);
 		
 		JLabel label_3 = new JLabel("\u8D26\u6237\u540D");
-		label_3.setBounds(40, 253, 54, 15);
+		label_3.setBounds(40, 365, 54, 15);
 		panel.add(label_3);
 		
 		accountNameField = new JTextField();
-		accountNameField.setBounds(104, 250, 123, 21);
+		accountNameField.setBounds(114, 362, 123, 21);
 		panel.add(accountNameField);
 		accountNameField.setColumns(10);
 		
 		JButton addButton = new JButton("\u6DFB\u52A0");
-		addButton.setBounds(263, 249, 93, 23);
+		addButton.setBounds(263, 361, 93, 23);
 		panel.add(addButton);
 		addButton.addActionListener(new addButtonListener());
 		
 		JLabel label_4 = new JLabel("\u5173\u952E\u5B57\u67E5\u627E");
-		label_4.setBounds(161, 295, 76, 15);
+		label_4.setBounds(171, 422, 76, 15);
 		panel.add(label_4);
 		
 		namepartField = new JTextField();
 		namepartField.setText("\u8BF7\u8F93\u5165\u5173\u952E\u5B57");
-		namepartField.setBounds(83, 327, 123, 21);
+		namepartField.setBounds(79, 447, 123, 21);
 		panel.add(namepartField);
 		namepartField.setColumns(10);
 		
 		JButton searchButton = new JButton("\u67E5\u627E");
-		searchButton.setBounds(263, 326, 93, 23);
+		searchButton.setBounds(263, 446, 93, 23);
 		panel.add(searchButton);
 		
+		searchtableContent=new Vector<BankAccountVO>();
+		
 		searchTable = new JTable();
-		searchTable.setModel(new DefaultTableModel(
+		searchTable.setModel(new DefaultTableModel(searchtableContent,Column));
+/**	searchTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
 				{null, null},
@@ -138,12 +157,31 @@ public class AccountManageUI {
 				"\u540D\u79F0", "\u4F59\u989D"
 			}
 		));
+*/
 		searchTable.setBounds(52, 389, 304, 106);
 		//panel.add(table_1);
 		
 		JScrollPane scrollPane_1 = new JScrollPane(searchTable);
-		scrollPane_1.setBounds(52, 389, 304, 130);
+		scrollPane_1.setBounds(52, 489, 304, 130);
 		panel.add(scrollPane_1);
+		
+		JLabel label_5 = new JLabel("修改账户名");
+		label_5.setBounds(171, 208, 66, 15);
+		panel.add(label_5);
+		
+		newNameField = new JTextField();
+		newNameField.setBounds(114, 250, 123, 21);
+		panel.add(newNameField);
+		newNameField.setColumns(10);
+		
+		JLabel label_6 = new JLabel("新账户名");
+		label_6.setBounds(40, 253, 54, 15);
+		panel.add(label_6);
+		
+		JButton changeButton = new JButton("修改");
+		changeButton.setBounds(263, 249, 93, 23);
+		panel.add(changeButton);
+		changeButton.addActionListener(new changeButtonListener());
 	}
 	
 	
@@ -159,6 +197,15 @@ public class AccountManageUI {
 	}
 	
 	class deleteButtonListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+	
+	class changeButtonListener implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
@@ -185,5 +232,4 @@ public class AccountManageUI {
 		}
 		
 	}
-
 }

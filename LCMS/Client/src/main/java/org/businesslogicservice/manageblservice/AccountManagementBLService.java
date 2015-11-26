@@ -1,10 +1,14 @@
 package org.businesslogicservice.manageblservice;
 
+import java.util.ArrayList;
+import java.util.Vector;
+
 import org.po.BankAccountPO;
 import org.po.UserPO;
+import org.vo.BankAccountVO;
 
 public interface AccountManagementBLService {
-	public BankAccountPO[] getAccountList ();
+	public Vector<BankAccountVO> getAccountList ();
 	
 	public void addAccount(String name);
 	
@@ -16,7 +20,7 @@ public interface AccountManagementBLService {
 	
 	public void changeBalance (String name,int change);
 	
-	public BankAccountPO[] accountSearch(String namepart);
+	public Vector<BankAccountVO> accountSearch(String namepart);
 	
 	public boolean check (UserPO user);
 }
