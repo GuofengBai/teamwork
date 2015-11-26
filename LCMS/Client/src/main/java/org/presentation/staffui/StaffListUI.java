@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.staffblservice.StaffBLService;
 import org.presentation.mainui.ViewController;
+import org.vo.StaffVO;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -98,7 +99,9 @@ public class StaffListUI extends JPanel{
 				if(arg0.getButton()==MouseEvent.BUTTON1&&arg0.getClickCount()==2){
 					int row =((JTable)arg0.getSource()).rowAtPoint(arg0.getPoint());
 					System.out.println("选中第"+(row+1)+"行");
-					StaffInfoUI next=new StaffInfoUI(temp,null);
+					StaffBLService staffBL=BLFactory.getStaffBL();
+					StaffVO vo=staffBL.findStaff((String)model.getValueAt(row, 2));
+					StaffInfoUI next=new StaffInfoUI(temp,vo);
 					ViewController.jumpToAnotherView(next);
 				}
 				

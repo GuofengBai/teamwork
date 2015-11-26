@@ -5,9 +5,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JTextField;
+
+import org.businesslogic.blFactory.BLFactory;
+import org.businesslogicservice.manageblservice.NewBeginAccountBLService;
+import org.po.ResultMessage;
 
 
 public class NewBeginAccountUI {
@@ -62,16 +68,14 @@ public class NewBeginAccountUI {
 		panel.add(label);
 		
 		JButton saveButton = new JButton("\u786E\u5B9A");
-		saveButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		saveButton.addActionListener(new saveButtonListener());
 		saveButton.setBounds(101, 229, 93, 23);
 		panel.add(saveButton);
 		
 		JButton cancelButton = new JButton("\u53D6\u6D88");
 		cancelButton.setBounds(240, 229, 93, 23);
 		panel.add(cancelButton);
+		cancelButton.addActionListener(new cancelButtonListener());
 		
 		JLabel label_1 = new JLabel("\u673A\u6784");
 		label_1.setBounds(48, 43, 54, 15);
@@ -131,5 +135,37 @@ public class NewBeginAccountUI {
 		panel.add(balanceField);
 		balanceField.setColumns(10);
 	}
+	
+	class saveButtonListener implements ActionListener{
 
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			String organization=organizationField.getText();
+			int people=Integer.parseInt(presonNumField.getText());
+			int car=Integer.parseInt(carNumField.getText());
+			int storage=Integer.parseInt(storageField.getText());
+			String accountName=nameField.getText();
+			int balance=Integer.parseInt(balanceField.getText());
+			
+			NewBeginAccountBLService nba=BLFactory.getNewBeginAccountBL();
+			ResultMessage message=nba.addBeginAccount(organization, people, car, storage, accountName, balance);
+			
+			if(message.success){
+				//页面跳转
+			}else{
+				
+			}
+			
+		}
+		
+	}
+	
+	class cancelButtonListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
 }
