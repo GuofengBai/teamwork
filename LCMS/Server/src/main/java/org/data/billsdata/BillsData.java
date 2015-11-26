@@ -20,9 +20,9 @@ import org.po.myDate;
 
 public class BillsData extends UnicastRemoteObject implements BillsDataService{
 	
-	protected ArrayList<SendingBills> list;
+	protected ArrayList<BillsPO> list;
 	protected long unExaminedNum;
-	protected ArrayList<SendingBills> unExaminedList;
+	protected ArrayList<BillsPO> unExaminedList;
 	protected String fileName;
 
 	public BillsData(String fileName) throws RemoteException {
@@ -32,9 +32,9 @@ public class BillsData extends UnicastRemoteObject implements BillsDataService{
 			FileInputStream fis = new FileInputStream(fileName);
 	        BufferedInputStream bis = new BufferedInputStream(fis);  
 	        ObjectInputStream ois = new ObjectInputStream(bis);  
-	        list=(ArrayList<SendingBills>)ois.readObject();
+	        list=(ArrayList<BillsPO>)ois.readObject();
 	        unExaminedNum=(Long) ois.readObject();
-	        unExaminedList=(ArrayList<SendingBills>)ois.readObject();
+	        unExaminedList=(ArrayList<BillsPO>)ois.readObject();
 	        ois.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -51,23 +51,23 @@ public class BillsData extends UnicastRemoteObject implements BillsDataService{
 
 	public ResultMessage addBills(BillsPO po) throws RemoteException {
 		if(!po.Examined){
-			unExaminedList.add((SendingBills) po);
+			unExaminedList.add( po);
 			unExaminedNum++;
 		}else{
-			list.add((SendingBills)po);
+			list.add(po);
 		}
 	    save();
 		return null;
 	}
 
-	public BillsPO findBills(int BillNum) throws RemoteException {
-		for(SendingBills po:list){
+	public BillsPO findBills(String BillNum) throws RemoteException {
+		for(BillsPO po:list){
 			if(po.idNum.equals(BillNum)){
 				return po;
 			}
 		}
 		
-		for(SendingBills po:unExaminedList){
+		for(BillsPO po:unExaminedList){
 			if(po.idNum.equals(BillNum)){
 			    return po;
 			}
@@ -75,8 +75,8 @@ public class BillsData extends UnicastRemoteObject implements BillsDataService{
 		return null;
 	}
 
-	public ResultMessage deleteBills(int BillNum) throws RemoteException {
-		for(SendingBills po:list){
+	public ResultMessage deleteBills(String BillNum) throws RemoteException {
+		for(BillsPO po:list){
 			if(po.idNum.equals(BillNum)){
 				list.remove(po);
 				save();
@@ -84,7 +84,7 @@ public class BillsData extends UnicastRemoteObject implements BillsDataService{
 			}
 		}
 		
-		for(SendingBills po:unExaminedList){
+		for(BillsPO po:unExaminedList){
 			if(po.idNum.equals(BillNum)){
 				unExaminedList.remove(po);
 				save();
@@ -94,9 +94,9 @@ public class BillsData extends UnicastRemoteObject implements BillsDataService{
 		return new ResultMessage(false,null);
 	}
 
-	public ResultMessage updateBills(int BillNum, BillsPO bill)
+	public ResultMessage updateBills(String BillNum, BillsPO bill)
 			throws RemoteException {
-		for(SendingBills po:list){
+		for(BillsPO po:list){
 			if(po.idNum.equals(BillNum)){
 				list.remove(po);
 				list.add((SendingBills) bill);
@@ -105,7 +105,7 @@ public class BillsData extends UnicastRemoteObject implements BillsDataService{
 			}
 		}
 		
-		for(SendingBills po:unExaminedList){
+		for(BillsPO po:unExaminedList){
 			if(po.idNum.equals(BillNum)){
 				unExaminedList.remove(po);
 				unExaminedList.add((SendingBills) bill);
@@ -116,8 +116,8 @@ public class BillsData extends UnicastRemoteObject implements BillsDataService{
 		return null;
 	}
 
-	public ResultMessage examine(int BillNum) throws RemoteException {
-		for(SendingBills po:unExaminedList){
+	public ResultMessage examine(String BillNum) throws RemoteException {
+		for(BillsPO po:unExaminedList){
 			if(po.idNum.equals(BillNum)){
 				po.Examined=true;
 				unExaminedList.remove(po);

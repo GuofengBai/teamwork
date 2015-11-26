@@ -25,20 +25,20 @@ public class NewSendingBillsData extends BillsData implements NewSendingBillsDat
 		super("SerializableData/SB.file");
 	}
 
-	 public ResultMessage updateExpressState(int BillNum,EXPRESSSTATE expressState) throws RemoteException{
+	 public ResultMessage updateExpressState(String BillNum,EXPRESSSTATE expressState) throws RemoteException{
 		
-		for(SendingBills po:list){
+		for(BillsPO po:list){
 			if(po.idNum.equals(BillNum)){
-				po.expressState=expressState;
+				((SendingBills)po).expressState=expressState;
 				save();
 				String[] info={"成功修改编号为"+BillNum+"的寄件单的货物状态"};
 				return new ResultMessage(true,info);
 			}
 		}
 		
-		for(SendingBills po:unExaminedList){
+		for(BillsPO po:unExaminedList){
 			if(po.idNum.equals(BillNum)){
-				po.expressState=expressState;
+				((SendingBills)po).expressState=expressState;
 				save();
 				String[] info={"成功修改编号为"+BillNum+"的寄件单的货物状态"};
 				return new ResultMessage(true,info);
@@ -49,16 +49,16 @@ public class NewSendingBillsData extends BillsData implements NewSendingBillsDat
 		return new ResultMessage(false,null);
 	}
 
-	public EXPRESSSTATE getExpressState(int BillNum) throws RemoteException{
-		for(SendingBills po:list){
+	public EXPRESSSTATE getExpressState(String BillNum) throws RemoteException{
+		for(BillsPO po:list){
 			if(po.idNum.equals(BillNum)){
-				return po.expressState;
+				return ((SendingBills)po).expressState;
 			}
 		}
 		
-		for(SendingBills po:unExaminedList){
+		for(BillsPO po:unExaminedList){
 			if(po.idNum.equals(BillNum)){
-			    return po.expressState;
+			    return ((SendingBills)po).expressState;
 			}
 		}
 		
