@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import org.Client.MockBillsDataService;
 import org.Client.MockCommodityInAndOutBL;
 import org.Client.RMIHelper;
+import org.businesslogic.blFactory.BLFactory;
 import org.businesslogic.commoditybl.CommodityInAndOutBL;
 import org.businesslogicservice.billsblservice.NewInstorageBillsBLService;
+import org.businesslogicservice.commodityblservice.CommodityInAndOutBLService;
 import org.dataservice.billsdataservice.BillsDataService;
 import org.po.ComPO;
 import org.po.CommodityPO;
@@ -31,6 +33,18 @@ public class NewInstorageBillsBL implements NewInstorageBillsBLService {
 			e.printStackTrace();
 		}
 		return message;
+	}
+	
+	public void addCommodity(ArrayList<ComPO> list){
+		CommodityInAndOutBLService commodityInAndOutBL = BLFactory.getCommodityInAndOutBL();			
+		for(int i=0;i<list.size();i++){
+			try {
+				commodityInAndOutBL.Commodityin(list.get(i));
+			} catch (RemoteException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
 	}
 
 }

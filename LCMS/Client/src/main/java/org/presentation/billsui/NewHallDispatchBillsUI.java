@@ -131,26 +131,12 @@ public class NewHallDispatchBillsUI extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				NewSendingBillsDataService service=null;
-				SendingBills bill = null;
-				try {
-					service = RMIHelper.getDataFactory().getBillsDataFactory().getNewSendingBillsData();
-				} catch (RemoteException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				try {
-					bill = (SendingBills) service.findBills(Integer.parseInt(goodNum.getText()));
-				} catch (NumberFormatException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (RemoteException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				rname.setText(bill.getReceiverName());
-				rphone.setText(bill.getReceiverPhone());
-				rlocation.setText(bill.getReceiverLocation());				
+				NewHallDispatchBillsBLService bl = BLFactory.getNewHallDispatchBillsBL();
+				String message = bl.searchTheGood(goodNum.getText());
+				String[] str = message.split(" ");
+				rname.setText(str[0]);
+				rphone.setText(str[1]);
+				rlocation.setText(str[2]);				
 			}
 			
 		});

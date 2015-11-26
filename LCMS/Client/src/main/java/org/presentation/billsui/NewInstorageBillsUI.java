@@ -171,17 +171,8 @@ public class NewInstorageBillsUI extends JPanel {
 				// TODO Auto-generated method stub
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
 				NewInstorageBillsBLService bl = BLFactory.getNewInstorageBillsBL();
-				CommodityInAndOutBLService commodityInAndOutBL = BLFactory.commodityInAndOutBL;
 				bl.newInstorageBill(date,idNum.getText(), centerNum.getText(), comvo);
-				for(int i=0;i<compo.size();i++){
-					try {
-						commodityInAndOutBL.Commodityin(compo.get(i));
-					} catch (RemoteException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				}
-				System.out.println("helloworld");
+				bl.addCommodity(compo);				
 			}
 			
 		});

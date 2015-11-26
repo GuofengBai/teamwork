@@ -88,21 +88,9 @@ public class NewOutstorageBillsUI extends JPanel {
 		addGood.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {
-				CommodityDataService service=null;
-				ComPO cpo = null;
-				try {
-					service = RMIHelper.getDataFactory().getCommodityData();
-				} catch (RemoteException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				try {
-					cpo = service.findCom(goodNum.getText());
-				} catch (RemoteException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				CommodityVO cvo = new CommodityVO(cpo.getGoodsNum(),cpo.getinDate(),cpo.getplace(),cpo.LocationNum(),cpo.getArea(),cpo.getcenterNum());
+				NewOutstorageBillsBLService bl = BLFactory.getNewOutstorageBillsBL();
+				CommodityVO cvo = bl.creatVO(goodNum.getText());
+				ComPO cpo =bl.creatPO(goodNum.getText());
 				model.addRow(cvo);
 				comvo.add(cvo);
 				compo.add(cpo);
@@ -162,17 +150,8 @@ public class NewOutstorageBillsUI extends JPanel {
 				// TODO Auto-generated method stub
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
 				NewOutstorageBillsBLService bl = BLFactory.getNewOutstorageBillsBL();
-				CommodityInAndOutBLService commodityInAndOutBL = BLFactory.getCommodityInAndOutBL();
 				bl.addOutstorageBills(date, centerNum.getText(), entruckNum.getText(), comvo);
-				for(int i=0;i<compo.size();i++){
-					try {
-						commodityInAndOutBL.Commodityin(compo.get(i));
-					} catch (RemoteException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				}
-				System.out.println("helloworld");
+				bl.deleteCommodity(compo);
 			}
 			
 		});
