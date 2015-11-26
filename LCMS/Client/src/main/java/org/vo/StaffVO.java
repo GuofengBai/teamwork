@@ -28,6 +28,7 @@ public class StaffVO {
 	
 	public StaffVO(STAFFROLE role,String name,String num,GENDER gender,myDate birthday,String location,String phone,String user,String bankAccount,WorkSpace space,Payment payment){
 		super();
+		this.staffRole=role;
 		this.name=name;
 		this.num=num;
 		this.gender=gender;
@@ -43,6 +44,7 @@ public class StaffVO {
 	
 	public StaffVO(StaffPO po){
 		super();
+		this.staffRole=po.staffRole;
 		this.name=po.name;
 		this.num=po.num;
 		this.gender=po.gender;

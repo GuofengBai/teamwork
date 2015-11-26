@@ -16,17 +16,6 @@ public class UserBL implements UserBLService {
 		
 		UserPO po = uds.find(id, password);
 		ResultMessage re;
-		// String[] su={"登陆成功","登陆成功"};
-		// String[] fa={"登录失败","密码错误"};
-		// String[] nofind={"登录失败","用户名不存在"};
-		// ResultMessage re1;
-		// if(id=="0001"&&password=="0001")
-		// re1=new ResultMessage(true,su);
-		// else if(id=="0001"&&password!="0001")
-		// re1=new ResultMessage(false,fa);
-		// else
-		// re1=new ResultMessage(false,nofind);
-		// System.out.println(re1.info[0]);
 		String[] su = { "登陆成功", "正确" };
 		String[] fa={"密码错误","请重新输入"};
 		String[] nofind={"用户名不存在","请重新输入"};
@@ -38,5 +27,9 @@ public class UserBL implements UserBLService {
 			re = new ResultMessage(true, su);
 		return re;
 	}
-
+	public UserPO getUser(String account,String password) throws RemoteException{
+		UserDataService uds = RMIHelper.getDataFactory().getUserData();
+		UserPO po=uds.find(account, password);
+		return po;
+	}
 }

@@ -1,5 +1,7 @@
 package org.businesslogic.blFactory;
 
+import java.rmi.RemoteException;
+
 import org.businesslogic.billsbl.NewCenterArriveBillsBL;
 import org.businesslogic.billsbl.NewCenterEntruckBillsBL;
 import org.businesslogic.billsbl.NewCenterFreightBillsBL;
@@ -15,6 +17,7 @@ import org.businesslogic.commoditybl.CheckCommodityBL;
 import org.businesslogic.commoditybl.CommodityBL;
 import org.businesslogic.commoditybl.CommodityInAndOutBL;
 import org.businesslogic.commoditybl.DistrictChangeBL;
+import org.businesslogic.commoditybl.SettingAlertBL;
 import org.businesslogic.managebl.AccountManagementBL;
 import org.businesslogic.managebl.BeginAccountBL;
 import org.businesslogic.managebl.IncomeManagementBL;
@@ -39,6 +42,7 @@ import org.businesslogicservice.billsblservice.NewSendingBillsBLService;
 import org.businesslogicservice.commodityblservice.CommodityBLService;
 import org.businesslogicservice.commodityblservice.CommodityInAndOutBLService;
 import org.businesslogicservice.commodityblservice.DistrictChangeBLService;
+import org.businesslogicservice.commodityblservice.SettingAlertBLService;
 import org.businesslogicservice.manageblservice.AccountManagementBLService;
 import org.businesslogicservice.manageblservice.BeginAccountBLService;
 import org.businesslogicservice.manageblservice.IncomeManagementBLService;
@@ -84,6 +88,7 @@ public class BLFactory {
 	public static IncomeTableBLService incomeTableBL;
 	public static NewBeginAccountBLService newBeginAccountBL;
 	public static StatusTableBLService statusTableBL;
+	public static SettingAlertBLService settingalertBL;
 
 	public static void init() {
 		commodityBL = null;
@@ -109,6 +114,7 @@ public class BLFactory {
 		incomeTableBL=null;
 		newBeginAccountBL=null;
 		statusTableBL=null;
+		settingalertBL=null;
 	}
 
 	public static CommodityBLService getCommodityBL() {
@@ -127,6 +133,14 @@ public class BLFactory {
 		}
 
 		return commodityInAndOutBL;
+	}
+	public static SettingAlertBLService getSettingAlertBL() throws RemoteException {
+
+		if (settingalertBL == null) {
+			settingalertBL = new SettingAlertBL();
+		}
+
+		return settingalertBL;
 	}
 
 	public static StaffBLService getStaffBL() {

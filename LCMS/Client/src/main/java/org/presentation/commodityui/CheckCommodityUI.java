@@ -33,11 +33,13 @@ import java.util.Vector;
 
 import javax.swing.table.DefaultTableColumnModel;
 
+import org.Client.CurrentStaff;
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.commodityblservice.CheckCommodityBLService;
 import org.po.myDate;
 import org.vo.ComVO;
 import org.vo.CommodityVO;
+import org.vo.StaffVO;
 
 public class CheckCommodityUI extends JPanel {
 	private JTable table;
@@ -45,6 +47,7 @@ public class CheckCommodityUI extends JPanel {
 	private DefaultTableModel model;
 	Vector<CommodityVO> cvo;
 	private String centerNum;
+	private StaffVO thisstaff;
 
 	public void addItem() throws RemoteException {
 		Date date = new Date();
@@ -100,8 +103,10 @@ public class CheckCommodityUI extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public CheckCommodityUI(String centerNum) {
-		this.centerNum=centerNum;
+	public CheckCommodityUI() {
+		thisstaff = CurrentStaff.getStaff();
+		if (thisstaff.workSpace.type.equals("中转中心"))
+			this.centerNum = thisstaff.workSpace.num;
 		cbs = BLFactory.getCheckCommodityBL();
 		setLayout(null);
 		initTable();
