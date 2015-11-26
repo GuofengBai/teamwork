@@ -14,6 +14,7 @@ public class HallDispatchBills extends BillsPO{
 		this.idNum=id;
 		this.name=name;
 		this.type=BILLSTYPE.HDB;
+		this.Examined=false;
 	}
 	
 	public void setDate(myDate t){

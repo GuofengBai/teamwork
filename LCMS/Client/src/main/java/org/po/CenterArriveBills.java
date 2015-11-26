@@ -16,6 +16,7 @@ public class CenterArriveBills extends BillsPO{
 		this.FreightNum=FreightNum;
 		this.vo=vo;
 		this.type=BILLSTYPE.CAB;
+		this.Examined=false;
 	}
 	public String getidNum(){
 		return idNum;

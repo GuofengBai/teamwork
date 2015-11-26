@@ -23,6 +23,7 @@ public class CenterEntruckBills extends BillsPO{
 		this.ScouterName=ScouterName;
 		this.vo=vo;
 		this.type=BILLSTYPE.CEB;
+		this.Examined=false;
 	}
 	public myDate getDate(){
 		return Date;

@@ -53,6 +53,7 @@ public class SendingBills extends BillsPO {
 		this.width = width;
 		this.height = height;
 		this.weight = weight;
+		this.Examined=false;
 	}
 	public void setdate(myDate t){
 		this.Date=t;

@@ -17,6 +17,7 @@ public class HallArrivingBills extends BillsPO{
 		this.entruckNum=entruckNum;
 		this.list=list;
 		this.type=BILLSTYPE.HAB;
+		this.Examined=false;
 	}
 	
 	public String getidNum(){

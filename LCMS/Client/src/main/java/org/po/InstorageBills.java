@@ -15,6 +15,7 @@ public class InstorageBills extends BillsPO{
 		this.centerNum=centerNum;
 		this.list=list;
 		this.type=BILLSTYPE.IB;
+		this.Examined=false;
 	}
 	
 	public String getidNum(){
