@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -26,8 +27,9 @@ public class AccountManageUI {
 	private JTextField newNameField;
 	
 	private Vector<BankAccountVO> tableContent;
-	
+	DefaultTableModel model;
 	private Vector<BankAccountVO> searchtableContent;
+	DefaultTableModel searchmodel;
 	
 	/**
 	 * Launch the application.
@@ -80,8 +82,17 @@ public class AccountManageUI {
 		Column.add("名称");
 		Column.add("余额");
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(tableContent,Column));
+		table = new JTable(){
+			private static final long serialVersionUID = 1L;
+
+			public boolean isCellEditable(int row, int column){
+				return false;
+			}
+		};
+		model=new DefaultTableModel(tableContent,Column);
+		table.setModel(model);
+		table.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);;
+		table.setFillsViewportHeight(true);
 /**		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
@@ -145,8 +156,17 @@ public class AccountManageUI {
 		
 		searchtableContent=new Vector<BankAccountVO>();
 		
-		searchTable = new JTable();
-		searchTable.setModel(new DefaultTableModel(searchtableContent,Column));
+		searchTable = new JTable(){
+			private static final long serialVersionUID = 1L;
+
+			public boolean isCellEditable(int row, int column){
+				return false;
+			}
+		};
+		searchmodel=new DefaultTableModel(searchtableContent,Column);
+		searchTable.setModel(searchmodel);
+		searchTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);;
+		searchTable.setFillsViewportHeight(true);
 /**	searchTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
@@ -190,7 +210,9 @@ public class AccountManageUI {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			String name=accountNameField.getText();
-			
+			BankAccountVO account=new BankAccountVO(name,0);
+			model.addRow(account);
+			accountNameField.setText("");
 			
 		}
 		
@@ -200,7 +222,8 @@ public class AccountManageUI {
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			
+			int dex=table.getSelectedRow();
+			model.removeRow(dex);
 		}
 		
 	}

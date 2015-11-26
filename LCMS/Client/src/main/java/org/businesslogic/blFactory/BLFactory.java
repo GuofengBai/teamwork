@@ -15,7 +15,13 @@ import org.businesslogic.commoditybl.CheckCommodityBL;
 import org.businesslogic.commoditybl.CommodityBL;
 import org.businesslogic.commoditybl.CommodityInAndOutBL;
 import org.businesslogic.commoditybl.DistrictChangeBL;
+import org.businesslogic.managebl.AccountManagementBL;
+import org.businesslogic.managebl.BeginAccountBL;
+import org.businesslogic.managebl.IncomeManagementBL;
+import org.businesslogic.managebl.IncomeTableBL;
 import org.businesslogic.managebl.ManageBL;
+import org.businesslogic.managebl.NewBeginAccountBL;
+import org.businesslogic.managebl.StatusTableBL;
 import org.businesslogic.organizationbl.OrganizationBL;
 import org.businesslogic.staffbl.StaffBL;
 import org.businesslogic.userbl.UserBL;
@@ -33,7 +39,13 @@ import org.businesslogicservice.billsblservice.NewSendingBillsBLService;
 import org.businesslogicservice.commodityblservice.CommodityBLService;
 import org.businesslogicservice.commodityblservice.CommodityInAndOutBLService;
 import org.businesslogicservice.commodityblservice.DistrictChangeBLService;
+import org.businesslogicservice.manageblservice.AccountManagementBLService;
+import org.businesslogicservice.manageblservice.BeginAccountBLService;
+import org.businesslogicservice.manageblservice.IncomeManagementBLService;
+import org.businesslogicservice.manageblservice.IncomeTableBLService;
 import org.businesslogicservice.manageblservice.ManageBLService;
+import org.businesslogicservice.manageblservice.NewBeginAccountBLService;
+import org.businesslogicservice.manageblservice.StatusTableBLService;
 import org.businesslogicservice.organizationblservice.OrganizationBLService;
 import org.businesslogicservice.staffblservice.StaffBLService;
 import org.businesslogicservice.userblservice.UserBLService;
@@ -65,6 +77,13 @@ public class BLFactory {
 	public static NewPayingBillsBLService newPayingBillsBL;
 	public static CheckCommodityBLService checkcommodityBL;
 	public static DistrictChangeBLService districtchangeBL;
+	
+	public static AccountManagementBLService accountManagementBL;
+	public static BeginAccountBLService beginAccountBL;
+	public static IncomeManagementBLService incomeManagementBL;
+	public static IncomeTableBLService incomeTableBL;
+	public static NewBeginAccountBLService newBeginAccountBL;
+	public static StatusTableBLService statusTableBL;
 
 	public static void init() {
 		commodityBL = null;
@@ -83,6 +102,13 @@ public class BLFactory {
 		newInstorageBillsBL = null;
 		newOutstorageBillsBL = null;
 		newPayingBillsBL = null;
+		
+		accountManagementBL=null;
+		beginAccountBL=null;
+		incomeManagementBL=null;
+		incomeTableBL=null;
+		newBeginAccountBL=null;
+		statusTableBL=null;
 	}
 
 	public static CommodityBLService getCommodityBL() {
@@ -254,4 +280,53 @@ public class BLFactory {
 		return districtchangeBL;
 
 	}
+	
+	public static AccountManagementBLService getAccountManagementBL(){
+		
+		if(accountManagementBL == null){
+			accountManagementBL=new AccountManagementBL();
+		}
+		return accountManagementBL;
+	}
+	
+	public static BeginAccountBLService getBeginAccountBL(){
+		
+		if(beginAccountBL == null){
+			beginAccountBL=new BeginAccountBL();
+		}
+		return beginAccountBL;
+	}
+	
+	public static IncomeManagementBLService getIncomeManagementBL(){
+	
+		if(incomeManagementBL == null){
+			incomeManagementBL=new IncomeManagementBL();
+		}
+	return incomeManagementBL;
+	}
+	
+	public static IncomeTableBLService getIncomeTableBL(){
+	
+		if(incomeTableBL == null){
+			incomeTableBL=new IncomeTableBL();
+		}
+		return incomeTableBL;
+	}
+	
+	public static NewBeginAccountBLService getNewBeginAccountBL(){
+	
+		if(newBeginAccountBL == null){
+			newBeginAccountBL=new NewBeginAccountBL();
+		}
+		return newBeginAccountBL;
+	}
+
+	public static StatusTableBLService getStatusTableBL(){
+	
+		if(statusTableBL == null){
+			statusTableBL=new StatusTableBL();
+		}
+		return statusTableBL;
+	}
+	
 }
