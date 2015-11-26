@@ -14,12 +14,12 @@ import org.vo.StateListVO;
 
 public class NewHallCollectBillsBL implements NewHallCollectBillsBLService{
 
-	public ResultMessage addHallCollectionBills(myDate date, String name, String total, ArrayList<StateListVO> list) {
+	public ResultMessage addHallCollectionBills(myDate date,String idNum, String name, String total, ArrayList<StateListVO> list) {
 		// TODO Auto-generated method stub
 		ResultMessage message=null;
 		try {
 			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewHallCollectBillsData();
-			message=billsData.addBills(new HallCollectionBills(date, name, total, list));
+			message=billsData.addBills(new HallCollectionBills(date, idNum, name, total, list));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

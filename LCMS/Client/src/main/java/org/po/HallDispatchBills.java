@@ -6,9 +6,11 @@ import java.io.Serializable;
 public class HallDispatchBills extends BillsPO{
 	
 	private String name;
+	private String goodNum;
 	
-	public HallDispatchBills(myDate t,String id,String name){
+	public HallDispatchBills(myDate t,String id,String goodNum,String name){
 		this.Date=t;
+		this.goodNum=goodNum;
 		this.idNum=id;
 		this.name=name;
 	}
@@ -19,10 +21,15 @@ public class HallDispatchBills extends BillsPO{
 	public myDate getDate(){
 		return Date;
 	}
-	public void setGoodsNum(String l){
+	
+	public String getgoodNum(){
+		return goodNum;
+	}
+	
+	public void setidNum(String l){
 		this.idNum=l;
 	}
-	public String getGoodsNum(){
+	public String getidNum(){
 		return this.idNum;
 	}
 	public void setname(String s){

@@ -7,8 +7,6 @@ import org.vo.StateListVO;
 
 
 public class CenterEntruckBills extends BillsPO{
-	private myDate Date;
-	private String TrafficNum;
 	private String HallNum;
 	private String Vehicle;
 	private String DriverName;
@@ -18,7 +16,7 @@ public class CenterEntruckBills extends BillsPO{
 			String HallNum, String Vehicle, String DriverName,
 			String ScouterName, ArrayList<StateListVO> vo){
 		this.Date=date;
-		this.TrafficNum=TrafficNum;
+		this.idNum=TrafficNum;
 		this.HallNum=HallNum;
 		this.Vehicle=Vehicle;
 		this.DriverName=DriverName;
@@ -28,8 +26,8 @@ public class CenterEntruckBills extends BillsPO{
 	public myDate getDate(){
 		return Date;
 	}
-	public String getTrafficNum(){
-		return TrafficNum;
+	public String getidNum(){
+		return idNum;
 	}
 	public String getHallNum(){
 		return HallNum;

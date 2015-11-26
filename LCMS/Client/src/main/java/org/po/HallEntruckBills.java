@@ -8,7 +8,6 @@ import org.vo.StateListVO;
 
 public class HallEntruckBills extends BillsPO{
 	private myDate date;
-	private String entruckNum;
 	private String hallNum;
 	private String aimNum;
 	private String carNum;
@@ -17,7 +16,7 @@ public class HallEntruckBills extends BillsPO{
 	public HallEntruckBills(myDate date, String entruckNum,
 			String hallNum, String aimNum, String carNum, String driverName, ArrayList<StateListVO> list){
 		this.date=date;
-		this.entruckNum=entruckNum;
+		this.idNum=entruckNum;
 		this.hallNum=hallNum;
 		this.aimNum=aimNum;
 		this.carNum=carNum;
@@ -28,8 +27,8 @@ public class HallEntruckBills extends BillsPO{
 		return date;
 	}
 	
-	public String getentruckNum(){
-		return entruckNum;
+	public String getidNum(){
+		return idNum;
 	}
 	
 	public String gethallNum(){

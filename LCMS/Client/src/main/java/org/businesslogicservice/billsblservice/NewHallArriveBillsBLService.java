@@ -10,5 +10,5 @@ import org.vo.StateListVO;
 
 public interface NewHallArriveBillsBLService {
 		
-	public ResultMessage addHallArriveBills(myDate date,String startPlace,String entruckNum ,ArrayList<StateListVO> list);
+	public ResultMessage addHallArriveBills(myDate date,String idNum, String startPlace,String entruckNum ,ArrayList<StateListVO> list);
 }

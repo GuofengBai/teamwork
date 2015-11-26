@@ -7,23 +7,21 @@ import org.vo.StateListVO;
 
 
 public class CenterArriveBills extends BillsPO{
-	private String CenterNum;
-	private myDate date;
 	private String FreightNum;
 	private ArrayList<StateListVO> vo;
 	public CenterArriveBills(myDate date, String FreightNum,
 			String CenterNum, ArrayList<StateListVO> vo){
-		this.CenterNum=CenterNum;
-		this.date=date;
+		this.idNum=CenterNum;
+		this.Date=date;
 		this.FreightNum=FreightNum;
 		this.vo=vo;		
 	}
-	public String getCenterNum(){
-		return CenterNum;
+	public String getidNum(){
+		return idNum;
 	}
 	
 	public myDate getdate(){
-		return date;
+		return Date;
 	}
 	
 	public String getFreightNum(){

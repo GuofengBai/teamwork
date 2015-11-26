@@ -33,6 +33,7 @@ public class NewHallArriveBillsUI extends JPanel {
 	private JTextField goodNum;
 	private ArrayList<StateListVO> list= new ArrayList<StateListVO>();
 	private DefaultTableModel model;
+	private JTextField idNum;
 
 	/**
 	 * Create the panel.
@@ -78,18 +79,18 @@ public class NewHallArriveBillsUI extends JPanel {
 		entruckNum.setColumns(10);
 		
 		JLabel label_3 = new JLabel("托运单号");
-		label_3.setBounds(10, 88, 54, 15);
+		label_3.setBounds(10, 116, 54, 15);
 		add(label_3);
 		
 		final JComboBox goodState = new JComboBox();
-		goodState.setBounds(199, 85, 60, 21);
+		goodState.setBounds(199, 113, 60, 21);
 		add(goodState);
 		goodState.addItem("完整");
 		goodState.addItem("丢失");
 		goodState.addItem("损坏");
 		
 		JButton addGood = new JButton("添加");
-		addGood.setBounds(10, 113, 93, 23);
+		addGood.setBounds(10, 141, 93, 23);
 		add(addGood);
 		addGood.addActionListener(new ActionListener(){
 
@@ -110,7 +111,10 @@ public class NewHallArriveBillsUI extends JPanel {
 		Vector<String> str = new Vector<String>();
 		str.add("货物单号");
 		str.add("货物状态");
-		model = new DefaultTableModel(vo,str);
+		model = new DefaultTableModel(vo,str);;
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 175, 251, 92);
+		add(scrollPane);
 		table = new JTable(model){
 			private static final long serialVersionUID = 1L;
 
@@ -118,14 +122,12 @@ public class NewHallArriveBillsUI extends JPanel {
 				return false;
 			}
 		};
-		table.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);;
+		scrollPane.setViewportView(table);
+		table.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setFillsViewportHeight(true);
-		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(10, 140, 251, 92);
-		add(scrollPane);
 		
 		JButton submit = new JButton("\u63D0\u4EA4");
-		submit.setBounds(92, 242, 93, 23);
+		submit.setBounds(96, 277, 93, 23);
 		add(submit);
 		submit.addActionListener(new ActionListener(){
 
@@ -133,19 +135,28 @@ public class NewHallArriveBillsUI extends JPanel {
 				// TODO Auto-generated method stub
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
 				NewHallArriveBillsBLService bl = BLFactory.getNewHallArriveBillsBL();
-				bl.addHallArriveBills(date,startPlace.getText(),entruckNum.getText(),list);
+				bl.addHallArriveBills(date,idNum.getText(),startPlace.getText(),entruckNum.getText(),list);
 			}
 			
 		});
 		
 		goodNum = new JTextField();
-		goodNum.setBounds(75, 85, 114, 21);
+		goodNum.setBounds(75, 113, 114, 21);
 		add(goodNum);
 		goodNum.setColumns(10);
 		
 		JButton deleteGood = new JButton("删除");
-		deleteGood.setBounds(113, 113, 93, 23);
+		deleteGood.setBounds(113, 141, 93, 23);
 		add(deleteGood);
+		
+		JLabel label_4 = new JLabel("到达单编号");
+		label_4.setBounds(10, 88, 60, 15);
+		add(label_4);
+		
+		idNum = new JTextField();
+		idNum.setBounds(75, 85, 184, 21);
+		add(idNum);
+		idNum.setColumns(10);
 		deleteGood.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {

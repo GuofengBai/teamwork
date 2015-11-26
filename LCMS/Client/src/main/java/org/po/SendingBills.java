@@ -9,8 +9,6 @@ public class SendingBills extends BillsPO {
 	private String ReceiverPhone;
 	private String SenderLocation;
 	private String ReceiverLocation;
-	private myDate date;
-	private String GoodsNum;
 	private BOXSTYPE boxtype;
 	private SENDSTYPE sendtype;
 	private String length;
@@ -41,9 +39,9 @@ public class SendingBills extends BillsPO {
 
 		this.ReceiverLocation = ReceiverLocation;
 
-		this.GoodsNum = GoodsNum;
+		this.idNum = GoodsNum;
 
-		this.date = date;
+		this.Date = date;
 		this.expressState = EXPRESSSTATE.LOCALHALL;
 
 		this.type = BILLSTYPE.SB;
@@ -57,10 +55,10 @@ public class SendingBills extends BillsPO {
 		this.weight = weight;
 	}
 	public void setdate(myDate t){
-		this.date=t;
+		this.Date=t;
 	}
 	public myDate getDate() {
-		return date;
+		return Date;
 	}
 
 	public void setsendtype(SENDSTYPE t){
@@ -76,12 +74,12 @@ public class SendingBills extends BillsPO {
 		return boxtype;
 	}
 
-	public void setGoodsNum(String l){
-		this.GoodsNum=l;
+	public void setidNum(String l){
+		this.idNum=l;
 	}
 
-	public String getGoodsNum(){
-		return GoodsNum;
+	public String getidNum(){
+		return idNum;
 	}
 
 	public void setSenderName(String s){
@@ -157,6 +155,10 @@ public class SendingBills extends BillsPO {
 		return weight;
 	}
 	public void setExpressState(EXPRESSSTATE state){
-		expressState=state;
+		this.expressState=state;
+	}
+	
+	public EXPRESSSTATE getState(){
+		return expressState;
 	}
 }

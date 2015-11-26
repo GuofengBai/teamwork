@@ -19,13 +19,13 @@ import org.vo.CommodityVO;
 
 public class NewInstorageBillsBL implements NewInstorageBillsBLService {
 
-	public ResultMessage newInstorageBill(myDate date, String centerNum, ArrayList<CommodityVO> list) {
+	public ResultMessage newInstorageBill(myDate date,String idNum, String centerNum, ArrayList<CommodityVO> list) {
 		// TODO Auto-generated method stub
 		//BillsDataService bds=RMIHelper.getDataFactory().getBillsData();
 		ResultMessage message=null;
 		try {
 			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewInstorageBillsData();
-			message=billsData.addBills(new InstorageBills(date, centerNum, list));
+			message=billsData.addBills(new InstorageBills(date,idNum, centerNum, list));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

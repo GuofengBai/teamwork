@@ -12,13 +12,13 @@ import org.po.myDate;
 
 public class NewHallDispatchBillsBL implements NewHallDispatchBillsBLService{
 
-	public ResultMessage newHallDispatchBill(myDate date, String name,
+	public ResultMessage newHallDispatchBill(myDate date,String idNum, String name,
 			String GoodsNum) {
 		// TODO Auto-generated method stub
 		ResultMessage message=null;
 		try {
 			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewHallDispatchBillsData();
-			message=billsData.addBills(new HallDispatchBills(date, name, GoodsNum));
+			message=billsData.addBills(new HallDispatchBills(date,idNum, name, GoodsNum));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

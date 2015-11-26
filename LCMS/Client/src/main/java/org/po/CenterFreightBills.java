@@ -7,8 +7,6 @@ import org.vo.StateListVO;
 
 
 public class CenterFreightBills extends BillsPO{
-	private myDate date;
-	private String FreightNum;
 	private String tramNum;
 	private String caseNum;
 	private String StartPlace;
@@ -20,8 +18,8 @@ public class CenterFreightBills extends BillsPO{
 	public CenterFreightBills(myDate date, String FreightNum,
 			String tramNum, String StartPlace, String EndPlace, String caseNum,
 			String Scoutername, long price, SENDSTYPE send, ArrayList<StateListVO> vo){
-		this.date=date;
-		this.FreightNum=FreightNum;
+		this.Date=date;
+		this.idNum=FreightNum;
 		this.tramNum=tramNum;
 		this.caseNum=caseNum;
 		this.StartPlace=StartPlace;
@@ -31,8 +29,8 @@ public class CenterFreightBills extends BillsPO{
 		this.send=send;
 		this.vo=vo;
 	}
-	public String getFreightNum(){
-		return FreightNum;
+	public String getidNum(){
+		return idNum;
 	}
 	public String gettramNum(){
 		return tramNum;
@@ -50,7 +48,7 @@ public class CenterFreightBills extends BillsPO{
 		return Scoutername;
 	}
 	public myDate getdate(){
-		return date;
+		return Date;
 	}
 	public long getprice(){
 		return price;

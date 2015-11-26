@@ -7,16 +7,20 @@ import org.vo.CommodityVO;
 
 
 public class InstorageBills extends BillsPO{
-	private myDate date;
 	private String centerNum;
 	private ArrayList<CommodityVO> list;
-	public InstorageBills(myDate date,String centerNum,ArrayList<CommodityVO> list){
-		this.date=date;
+	public InstorageBills(myDate date,String idNum,String centerNum,ArrayList<CommodityVO> list){
+		this.Date=date;
+		this.idNum=idNum;
 		this.centerNum=centerNum;
 		this.list=list;
 	}
+	
+	public String getidNum(){
+		return idNum;
+	}
 	public myDate getdate(){
-		return date;
+		return Date;
 	}
 	public String getcenterNum(){
 		return centerNum;

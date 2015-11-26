@@ -8,7 +8,7 @@ import org.vo.StateListVO;
 
 public interface NewHallCollectBillsBLService {
 	
-	public ResultMessage addHallCollectionBills(myDate date, String name, String total, ArrayList<StateListVO> list);
+	public ResultMessage addHallCollectionBills(myDate date,String idNum, String name, String total, ArrayList<StateListVO> list);
 	
 
 }

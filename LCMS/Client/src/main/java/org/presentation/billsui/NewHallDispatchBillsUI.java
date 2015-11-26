@@ -31,6 +31,8 @@ public class NewHallDispatchBillsUI extends JPanel {
 	private JLabel rname;
 	private JLabel rphone;
 	private JLabel rlocation;
+	private JLabel label_6;
+	private JTextField idNum;
 
 	/**
 	 * Create the panel.
@@ -76,7 +78,7 @@ public class NewHallDispatchBillsUI extends JPanel {
 		name.setColumns(10);
 		
 		JButton submit = new JButton("提交");
-		submit.setBounds(85, 169, 93, 23);
+		submit.setBounds(85, 194, 93, 23);
 		add(submit);
 		submit.addActionListener(new ActionListener(){
 
@@ -84,7 +86,7 @@ public class NewHallDispatchBillsUI extends JPanel {
 				// TODO Auto-generated method stub
 				NewHallDispatchBillsBLService bl = BLFactory.getNewHallDispatchBillsBL();
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
-				bl.newHallDispatchBill(date, name.getText(), goodNum.getText());
+				bl.newHallDispatchBill(date,idNum.getText(), name.getText(), goodNum.getText());
 			}
 			
 		});
@@ -116,6 +118,15 @@ public class NewHallDispatchBillsUI extends JPanel {
 		rlocation = new JLabel("");
 		rlocation.setBounds(85, 110, 174, 15);
 		add(rlocation);
+		
+		label_6 = new JLabel("派件单编号");
+		label_6.setBounds(10, 169, 60, 15);
+		add(label_6);
+		
+		idNum = new JTextField();
+		idNum.setBounds(75, 166, 174, 21);
+		add(idNum);
+		idNum.setColumns(10);
 		search.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {

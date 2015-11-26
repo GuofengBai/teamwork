@@ -64,7 +64,7 @@ public class NewOutstorageBillsUI extends JPanel {
 		newday.setBounds(205, 10, 66, 21);
 		add(newday);
 		
-		JLabel lblNewLabel = new JLabel("\u88C5\u8F66\u5355\u7F16\u53F7");
+		JLabel lblNewLabel = new JLabel("出库单编号");
 		lblNewLabel.setBounds(10, 38, 60, 15);
 		add(lblNewLabel);
 		

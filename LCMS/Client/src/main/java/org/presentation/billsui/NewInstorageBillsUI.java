@@ -38,6 +38,8 @@ public class NewInstorageBillsUI extends JPanel {
 	private ArrayList<ComPO> compo = new ArrayList<ComPO>();
 	private ArrayList<CommodityVO> comvo = new ArrayList<CommodityVO>();
 	private JTextField centerNum;
+	private JLabel label_3;
+	private JTextField idNum;
 
 	/**
 	 * Create the panel.
@@ -147,7 +149,7 @@ public class NewInstorageBillsUI extends JPanel {
 
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 176, 261, 79);
+		scrollPane.setBounds(10, 199, 261, 79);
 		add(scrollPane);
 		table = new JTable(model){
 			private static final long serialVersionUID = 1L;
@@ -161,7 +163,7 @@ public class NewInstorageBillsUI extends JPanel {
 		table.setFillsViewportHeight(true);
 		
 		submit = new JButton("\u63D0\u4EA4");
-		submit.setBounds(113, 262, 93, 23);
+		submit.setBounds(102, 288, 93, 23);
 		add(submit);
 		submit.addActionListener(new ActionListener(){
 
@@ -170,7 +172,7 @@ public class NewInstorageBillsUI extends JPanel {
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
 				NewInstorageBillsBLService bl = BLFactory.getNewInstorageBillsBL();
 				CommodityInAndOutBLService commodityInAndOutBL = BLFactory.commodityInAndOutBL;
-				bl.newInstorageBill(date, centerNum.getText(), comvo);
+				bl.newInstorageBill(date,idNum.getText(), centerNum.getText(), comvo);
 				for(int i=0;i<compo.size();i++){
 					try {
 						commodityInAndOutBL.Commodityin(compo.get(i));
@@ -199,6 +201,15 @@ public class NewInstorageBillsUI extends JPanel {
 		centerNum.setBounds(102, 143, 169, 21);
 		add(centerNum);
 		centerNum.setColumns(10);
+		
+		label_3 = new JLabel("入库单编号");
+		label_3.setBounds(10, 171, 66, 15);
+		add(label_3);
+		
+		idNum = new JTextField();
+		idNum.setBounds(86, 168, 185, 21);
+		add(idNum);
+		idNum.setColumns(10);
 
 	}
 }

@@ -140,7 +140,7 @@ public class NewCenterArriveBillsUI extends JPanel {
 			
 		});
 		
-		JLabel label_1 = new JLabel("\u4E2D\u8F6C\u4E2D\u5FC3\u7F16\u53F7");
+		JLabel label_1 = new JLabel("到达单编号");
 		label_1.setBounds(19, 59, 72, 15);
 		add(label_1);
 		

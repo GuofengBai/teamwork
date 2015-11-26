@@ -34,6 +34,8 @@ public class NewHallCollectionBillsUI extends JPanel {
 	DefaultTableModel model;
 	private ArrayList<StateListVO> list = new ArrayList<StateListVO>();
 	private JLabel total;
+	private JLabel label_4;
+	private JTextField idNum;
 
 	/**
 	 * Create the panel.
@@ -61,34 +63,34 @@ public class NewHallCollectionBillsUI extends JPanel {
 		add(newday);
 		
 		JLabel label_1 = new JLabel("收款金额");
-		label_1.setBounds(10, 63, 54, 15);
+		label_1.setBounds(10, 91, 54, 15);
 		add(label_1);
 		
 		name = new JTextField();
-		name.setBounds(75, 35, 184, 21);
+		name.setBounds(75, 63, 184, 21);
 		add(name);
 		name.setColumns(10);
 		
 		JLabel label_2 = new JLabel("快递员姓名");
-		label_2.setBounds(10, 38, 60, 15);
+		label_2.setBounds(10, 66, 60, 15);
 		add(label_2);
 		
 		pay = new JTextField();
-		pay.setBounds(75, 60, 184, 21);
+		pay.setBounds(75, 88, 184, 21);
 		add(pay);
 		pay.setColumns(10);
 		
 		JLabel label_3 = new JLabel("托运单号");
-		label_3.setBounds(10, 88, 54, 15);
+		label_3.setBounds(10, 116, 54, 15);
 		add(label_3);
 		
 		goodNum = new JTextField();
-		goodNum.setBounds(75, 85, 184, 21);
+		goodNum.setBounds(75, 113, 184, 21);
 		add(goodNum);
 		goodNum.setColumns(10);
 		
 		JButton addGood = new JButton("添加");
-		addGood.setBounds(135, 108, 60, 23);
+		addGood.setBounds(135, 136, 60, 23);
 		add(addGood);
 		addGood.addActionListener(new ActionListener(){
 
@@ -107,7 +109,7 @@ public class NewHallCollectionBillsUI extends JPanel {
 		});
 		
 		JButton deleteGood = new JButton("删除");
-		deleteGood.setBounds(199, 108, 60, 23);
+		deleteGood.setBounds(199, 136, 60, 23);
 		add(deleteGood);
 		deleteGood.addActionListener(new ActionListener(){
 
@@ -125,7 +127,11 @@ public class NewHallCollectionBillsUI extends JPanel {
 		Vector<String> str = new Vector<String>();
 		str.add("货物单号");
 		str.add("收款金额");
-		model = new DefaultTableModel(vo,str);
+		model = new DefaultTableModel(vo,str);;
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 168, 249, 88);
+		add(scrollPane);
 		table = new JTable(model){
 			private static final long serialVersionUID = 1L;
 
@@ -133,15 +139,12 @@ public class NewHallCollectionBillsUI extends JPanel {
 				return false;
 			}
 		};
-		table.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);;
+		scrollPane.setViewportView(table);
+		table.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setFillsViewportHeight(true);	
 		
-		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(10, 140, 249, 88);
-		add(scrollPane);
-		
 		submit = new JButton("提交");
-		submit.setBounds(90, 238, 93, 23);
+		submit.setBounds(90, 266, 93, 23);
 		add(submit);
 		submit.addActionListener(new ActionListener(){
 
@@ -149,18 +152,27 @@ public class NewHallCollectionBillsUI extends JPanel {
 				// TODO Auto-generated method stub
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
 				NewHallCollectBillsBLService bl = BLFactory.getNewHallCollectBillsBL();
-				bl.addHallCollectionBills(date, name.getText(),total.getText(),list);
+				bl.addHallCollectionBills(date,idNum.getText(), name.getText(),total.getText(),list);
 			}
 			
 		});
 		
 		JLabel lblNewLabel = new JLabel("总金额");
-		lblNewLabel.setBounds(10, 113, 45, 15);
+		lblNewLabel.setBounds(10, 141, 45, 15);
 		add(lblNewLabel);
 		
 		total = new JLabel("0");
-		total.setBounds(57, 113, 68, 18);
+		total.setBounds(57, 141, 68, 18);
 		add(total);
+		
+		label_4 = new JLabel("收款单号");
+		label_4.setBounds(10, 38, 54, 15);
+		add(label_4);
+		
+		idNum = new JTextField();
+		idNum.setBounds(75, 35, 184, 21);
+		add(idNum);
+		idNum.setColumns(10);
 
 	}
 }

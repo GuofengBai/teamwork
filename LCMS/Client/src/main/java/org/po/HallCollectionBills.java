@@ -7,18 +7,23 @@ import org.vo.StateListVO;
 
 
 public class HallCollectionBills extends BillsPO{
-	private myDate date;
 	private String name;
 	private String total;
 	private ArrayList<StateListVO> list;
-	public HallCollectionBills(myDate date, String name, String total, ArrayList<StateListVO> list){
-		this.date=date;
+	public HallCollectionBills(myDate date,String idNum, String name, String total, ArrayList<StateListVO> list){
+		this.Date=date;
+		this.idNum=idNum;
 		this.name=name;
 		this.total=total;
 		this.list=list;
 	}
+	
+	public String getidNum(){
+		return idNum;
+	}
+	
 	public myDate getdate(){
-		return date;
+		return Date;
 	}
 	
 	public String gettotal(){
