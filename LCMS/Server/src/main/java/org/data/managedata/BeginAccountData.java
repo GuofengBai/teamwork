@@ -139,14 +139,14 @@ public class BeginAccountData extends UnicastRemoteObject implements BeginAccoun
 			is.close();
 			
 			for(BeginAccountPO accountTemp:list){
-				if(accountTemp.getAccountName().equals(account.getAccountName())){
+				if(accountTemp.getAccountName().equals(account.getAccountName())&&accountTemp.getOrganization().equals(account.getOrganization())){
 					nameExist=true;
 					break;
 				}
 			}
 			
 			for(int i=0,len=list.size();i<len;i++){
-				if(list.get(i).getAccountName().equals(account.getAccountName())){
+				if(list.get(i).getAccountName().equals(account.getAccountName())&&list.get(i).getOrganization().equals(account.getOrganization())){
 					list.remove(i);
 					i--;
 					len--;

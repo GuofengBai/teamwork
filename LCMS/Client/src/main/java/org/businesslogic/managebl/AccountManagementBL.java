@@ -8,6 +8,7 @@ import org.Client.RMIHelper;
 import org.businesslogicservice.manageblservice.AccountManagementBLService;
 import org.dataservice.managedataservice.AccountManagementDataService;
 import org.po.BankAccountPO;
+import org.po.ResultMessage;
 import org.po.UserPO;
 import org.test.dataservice.manageData.AccountManagementData;
 import org.vo.BankAccountVO;
@@ -37,18 +38,21 @@ public class AccountManagementBL implements AccountManagementBLService{
 		return volist;
 	}
 
-	public void addAccount(String name) {
+	public ResultMessage addAccount(String name) {
 		// TODO Auto-generated method stub
+		String[] infotemp={"Failed","Exception"};
+		ResultMessage message=new ResultMessage(false,infotemp);
+		
 		AccountManagementDataService amd;
 		try {
 			amd = RMIHelper.getDataFactory().getManageDataFactory().getAccountManagementData();
 			BankAccountPO account=new BankAccountPO(name);
-			amd.addAccount(account);
+			message=amd.addAccount(account);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		return message;
 	}
 
 	public int getBalance(String name) {
@@ -58,37 +62,53 @@ public class AccountManagementBL implements AccountManagementBLService{
 		return amd.getBalance(name);
 	}
 
-	public void delAccount(String name) {
+	public ResultMessage delAccount(String name) {
 		// TODO Auto-generated method stub
+		String[] infotemp={"Failed","Exception"};
+		ResultMessage message=new ResultMessage(false,infotemp);
+		
 		AccountManagementDataService amd;
 		try {
 			amd = RMIHelper.getDataFactory().getManageDataFactory().getAccountManagementData();
-			amd.delAccount(name);
+			message=amd.delAccount(name);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return message;
+	}
+
+	public ResultMessage changeName(String name, String newname) {
+		// TODO Auto-generated method stub
+		String[] infotemp={"Failed","Exception"};
+		ResultMessage message=new ResultMessage(false,infotemp);
+		
+		AccountManagementDataService amd;
+		try {
+			amd = RMIHelper.getDataFactory().getManageDataFactory().getAccountManagementData();
+			message=amd.changeName(name, newname);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return message;
+	}
+
+	public ResultMessage changeBalance(String name, int change) {
+		// TODO Auto-generated method stub
+		String[] infotemp={"Failed","Exception"};
+		ResultMessage message=new ResultMessage(false,infotemp);
+		
+		AccountManagementDataService amd;
+		try {
+			amd = RMIHelper.getDataFactory().getManageDataFactory().getAccountManagementData();
+			message=amd.changeBalance(name, change);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-	}
-
-	public void changeName(String name, String newname) {
-		// TODO Auto-generated method stub
-		AccountManagementDataService amd;
-		try {
-			amd = RMIHelper.getDataFactory().getManageDataFactory().getAccountManagementData();
-			amd.changeName(name, newname);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
-
-	public void changeBalance(String name, int change) {
-		// TODO Auto-generated method stub
-		AccountManagementData amd=new AccountManagementData();
-		amd.changeBalance(name, change);
-		
+		return message;
 		
 	}
 

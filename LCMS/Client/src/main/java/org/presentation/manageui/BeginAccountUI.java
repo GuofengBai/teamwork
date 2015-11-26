@@ -2,6 +2,7 @@ package org.presentation.manageui;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -9,13 +10,24 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+
+import org.businesslogic.blFactory.BLFactory;
+import org.businesslogicservice.manageblservice.BeginAccountBLService;
+import org.po.BeginAccountPO;
+import org.po.ResultMessage;
+import org.vo.BankAccountVO;
+import org.vo.BeginAccountVO;
 
 
 public class BeginAccountUI {
 
 	private JFrame frame;
 	private JTable table;
+	
+	private Vector<BeginAccountVO> tableContent;
+	DefaultTableModel model;
 
 	/**
 	 * Launch the application.
@@ -68,7 +80,30 @@ public class BeginAccountUI {
 		label_1.setBounds(37, 50, 84, 15);
 		panel.add(label_1);
 		
-		table = new JTable();
+		Vector<String> column = new Vector<String>();
+		column.add("机构");
+		column.add("人员");
+		column.add("车辆");
+		column.add("库存");
+		column.add("银行账户");
+		column.add("余额");
+		
+//		BeginAccountBLService ba=BLFactory.getBeginAccountBL();
+		tableContent=new Vector<BeginAccountVO>();
+//		tableContent=ba.getBeginAccountList();
+		
+		table = new JTable(){
+			private static final long serialVersionUID = 1L;
+
+			public boolean isCellEditable(int row, int column){
+				return false;
+			}
+		};
+		model=new DefaultTableModel(tableContent,column);
+		table.setModel(model);
+		table.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setFillsViewportHeight(true);
+/*
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null, null},
@@ -76,9 +111,10 @@ public class BeginAccountUI {
 				{null, null, null, null, null, null},
 			},
 			new String[] {
-				"\u673A\u6784", "\u4EBA\u5458", "\u4EBA\u5458", "\u5E93\u5B58", "\u8D26\u6237\u540D\u79F0", "\u4F59\u989D"
+				"\u673A\u6784", "\u4EBA\u5458", "车辆", "\u5E93\u5B58", "\u8D26\u6237\u540D\u79F0", "\u4F59\u989D"
 			}
 		));
+*/
 		table.setBounds(37, 96, 321, 123);
 		//panel.add(table);
 		
@@ -111,6 +147,24 @@ public class BeginAccountUI {
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
+			int dex=table.getSelectedRow();
+			
+			String organization=(String) table.getModel().getValueAt(dex, 0);
+			int people=Integer.parseInt((String) table.getModel().getValueAt(dex, 1));
+			int car=Integer.parseInt((String) table.getModel().getValueAt(dex, 2));
+			int storage=Integer.parseInt((String) table.getModel().getValueAt(dex, 3));
+			String accountName=(String) table.getModel().getValueAt(dex, 4);
+			int balance=Integer.parseInt((String) table.getModel().getValueAt(dex, 5));
+			BeginAccountPO account=new BeginAccountPO(organization, people, car, storage, accountName, balance);
+			
+			BeginAccountBLService ba=BLFactory.getBeginAccountBL();
+			ResultMessage message=ba.deleteAccount(account);
+			
+			if(message.success){
+				model.removeRow(dex);
+			}else{
+				System.out.println(message.info);
+			}
 			
 		}
 		
