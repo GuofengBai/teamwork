@@ -20,7 +20,7 @@ import org.po.myDate;
 
 public class BillsData extends UnicastRemoteObject implements BillsDataService{
 	
-	protected ArrayList<BillsPO> list;
+	public ArrayList<BillsPO> list;
 	protected long unExaminedNum;
 	protected ArrayList<BillsPO> unExaminedList;
 	protected String fileName;

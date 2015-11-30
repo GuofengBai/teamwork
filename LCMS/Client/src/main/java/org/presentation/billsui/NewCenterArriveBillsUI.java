@@ -80,8 +80,13 @@ public class NewCenterArriveBillsUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				NewCenterArriveBillsBLService bl = BLFactory.getNewCenterArriveBillsBL();
+				String str="";
+				for(StateListVO vo:statevo){
+					str+=vo+" ";
+				}
+				String[] s=str.split(" ");
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
-				bl.addCenterArriveBills(date, CABNum.getText(), CenterNum.getText(), statevo);
+				bl.addCenterArriveBills(date, CABNum.getText(), CenterNum.getText(), s);
 			}
 			
 		});

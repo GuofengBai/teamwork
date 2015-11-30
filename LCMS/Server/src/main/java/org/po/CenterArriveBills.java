@@ -1,33 +1,35 @@
 package org.po;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+
 
 
 public class CenterArriveBills extends BillsPO{
-	private String CenterNum;
-	private String State;
-	public void setBillNum(String s){
-		this.idNum=s;
+	private String FreightNum;
+	private String[] vo;
+	public CenterArriveBills(myDate date, String FreightNum,
+			String CenterNum, String[] vo){
+		this.idNum=CenterNum;
+		this.Date=date;
+		this.FreightNum=FreightNum;
+		this.vo=vo;
+		this.type=BILLSTYPE.CAB;
+		this.Examined=false;
 	}
-	public String getBillNum(){
+	public String getidNum(){
 		return idNum;
 	}
-	public void setCenterNum(String s){
-		this.CenterNum=s;
-	}
-	public String getCenterNum(){
-		return CenterNum;
-	}
-	public void setDate(myDate d){
-		this.Date=d;
-	}
-	public myDate getDate(){
+	
+	public myDate getdate(){
 		return Date;
 	}
-	public void setState(String s){
-		this.State=s;
+	
+	public String getFreightNum(){
+		return FreightNum;
 	}
-	public String getState(){
-		return State;
-	}	
+	
+	public String[] getvo(){
+		return vo;
+	}
 }

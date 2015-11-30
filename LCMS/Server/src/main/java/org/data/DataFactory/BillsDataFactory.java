@@ -3,6 +3,7 @@ package org.data.DataFactory;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import org.data.billsdata.NewCenterArriveBillsData;
 import org.data.billsdata.NewSendingBillsData;
 import org.dataservice.DataFactoryService.BillsDataFactoryService;
 import org.dataservice.billsdataservice.NewCenterArriveBillsDataService;
@@ -65,7 +66,15 @@ public class BillsDataFactory  extends UnicastRemoteObject implements BillsDataF
 
 	public NewCenterArriveBillsDataService getNewCenterArriveBillsData() throws RemoteException{
 		// TODO Auto-generated method stub
-		return null;
+		if(newCenterArriveBillsData==null){
+			try {
+				newCenterArriveBillsData=new NewCenterArriveBillsData();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return newCenterArriveBillsData;
 	}
 	
 	public NewCenterEntruckBillsDataService getNewCenterEntruckBillsData() throws RemoteException{

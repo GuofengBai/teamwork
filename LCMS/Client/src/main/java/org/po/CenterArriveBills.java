@@ -8,9 +8,9 @@ import org.vo.StateListVO;
 
 public class CenterArriveBills extends BillsPO{
 	private String FreightNum;
-	private ArrayList<StateListVO> vo;
+	private String[] vo;
 	public CenterArriveBills(myDate date, String FreightNum,
-			String CenterNum, ArrayList<StateListVO> vo){
+			String CenterNum, String[] vo){
 		this.idNum=CenterNum;
 		this.Date=date;
 		this.FreightNum=FreightNum;
@@ -30,7 +30,7 @@ public class CenterArriveBills extends BillsPO{
 		return FreightNum;
 	}
 	
-	public ArrayList<StateListVO> getvo(){
+	public String[] getvo(){
 		return vo;
 	}
 }
