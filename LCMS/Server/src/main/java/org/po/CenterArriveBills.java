@@ -7,13 +7,13 @@ import java.util.ArrayList;
 
 public class CenterArriveBills extends BillsPO{
 	private String FreightNum;
-	private String[] vo;
+	private ArrayList<StateListPO> po;
 	public CenterArriveBills(myDate date, String FreightNum,
-			String CenterNum, String[] vo){
+			String CenterNum, ArrayList<StateListPO> po){
 		this.idNum=CenterNum;
 		this.Date=date;
 		this.FreightNum=FreightNum;
-		this.vo=vo;
+		this.po=po;
 		this.type=BILLSTYPE.CAB;
 		this.Examined=false;
 	}
@@ -29,7 +29,7 @@ public class CenterArriveBills extends BillsPO{
 		return FreightNum;
 	}
 	
-	public String[] getvo(){
-		return vo;
+	public ArrayList<StateListPO> getpo(){
+		return po;
 	}
 }

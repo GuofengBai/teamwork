@@ -8,13 +8,13 @@ import org.vo.StateListVO;
 
 public class CenterArriveBills extends BillsPO{
 	private String FreightNum;
-	private ArrayList<StateListVO> vo;
+	private ArrayList<StateListPO> po;
 	public CenterArriveBills(myDate date, String FreightNum,
-			String CenterNum, ArrayList<StateListVO> vo){
+			String CenterNum, ArrayList<StateListPO> po){
 		this.idNum=CenterNum;
 		this.Date=date;
 		this.FreightNum=FreightNum;
-		this.vo=vo;
+		this.po=po;
 		this.type=BILLSTYPE.CAB;
 		this.Examined=false;
 	}
@@ -30,7 +30,7 @@ public class CenterArriveBills extends BillsPO{
 		return FreightNum;
 	}
 	
-	public ArrayList<StateListVO> getvo(){
-		return vo;
+	public ArrayList<StateListPO> getpo(){
+		return po;
 	}
 }

@@ -12,12 +12,14 @@ import javax.swing.JFrame;
 
 import org.po.BillsPO;
 import org.po.CenterArriveBills;
+import org.po.StateListVO;
+import org.po.myDate;
 
 public class Text {
 	public static void main(String[] args) {
-		ArrayList<BillsPO> list=null;
+		ArrayList<BillsPO> list=new ArrayList<BillsPO>();
 		long unExaminedNum=0;
-		ArrayList<BillsPO> unExaminedList=null;
+		ArrayList<BillsPO> unExaminedList=new ArrayList<BillsPO>();
 		try {
             FileOutputStream fos = new FileOutputStream("SerializableData/CAB.file");
 			ObjectOutputStream oos = new ObjectOutputStream(fos);

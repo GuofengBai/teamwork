@@ -23,6 +23,7 @@ import javax.swing.Box;
 import org.businesslogic.billsbl.NewCenterArriveBillsBL;
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.billsblservice.NewCenterArriveBillsBLService;
+import org.po.StateListPO;
 import org.po.myDate;
 import org.vo.StateListVO;
 
@@ -36,7 +37,7 @@ public class NewCenterArriveBillsUI extends JPanel {
 	private JTable table;
 	private JTextField GoodNum;
 	private JTextField CenterNum;
-	ArrayList<StateListVO> statevo = new ArrayList<StateListVO>();
+	ArrayList<StateListPO> statepo = new ArrayList<StateListPO>();
 
 	/**
 	 * Create the panel.
@@ -81,7 +82,7 @@ public class NewCenterArriveBillsUI extends JPanel {
 				// TODO Auto-generated method stub
 				NewCenterArriveBillsBLService bl = BLFactory.getNewCenterArriveBillsBL();
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
-				bl.addCenterArriveBills(date, CABNum.getText(), CenterNum.getText(), statevo);
+				bl.addCenterArriveBills(date, CABNum.getText(), CenterNum.getText(), statepo);
 			}
 			
 		});
@@ -132,7 +133,8 @@ public class NewCenterArriveBillsUI extends JPanel {
 				String num = GoodNum.getText();
 				String state = State.getSelectedItem().toString();
 				StateListVO item = new StateListVO(num,state);
-				statevo.add(item);				
+				StateListPO po = new StateListPO(num,state);
+				statepo.add(po);				
 				model.addRow(item);
 				GoodNum.setText("");
 				
@@ -157,7 +159,7 @@ public class NewCenterArriveBillsUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				int dex = table.getSelectedRow();
-				statevo.remove(dex);
+				statepo.remove(dex);
 				model.removeRow(dex);
 				
 				
