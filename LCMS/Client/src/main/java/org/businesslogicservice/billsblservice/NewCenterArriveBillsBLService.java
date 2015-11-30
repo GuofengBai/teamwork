@@ -10,6 +10,6 @@ import org.po.myDate;
 import org.vo.StateListVO;
 
 public interface NewCenterArriveBillsBLService {
-	public ResultMessage addCenterArriveBills(myDate date, String FreightNum, String CenterNum, String[] vo);
+	public ResultMessage addCenterArriveBills(myDate date, String FreightNum, String CenterNum, ArrayList<StateListVO> vo);
 
 }

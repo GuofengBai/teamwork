@@ -16,7 +16,7 @@ import org.vo.StateListVO;
 public class NewCenterArriveBillsBL implements NewCenterArriveBillsBLService{
 
 	public ResultMessage addCenterArriveBills(myDate date, String FreightNum,
-			String CenterNum, String[] vo){
+			String CenterNum, ArrayList<StateListVO> vo){
 		// TODO Auto-generated method stub
 		BillsDataService billsData;
 		ResultMessage message=null;

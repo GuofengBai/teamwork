@@ -17,15 +17,11 @@ public class Client{
     public static void main(String[] args) throws RemoteException
     {
     	RMIHelper.init();
-<<<<<<< HEAD
  //   	NewSendingBillsUI newSendingBills=new NewSendingBillsUI();
 //    	UserUI u=new UserUI();
     	NewCenterArriveBillsUI c=new NewCenterArriveBillsUI();
-=======
     	NewSendingBillsUI newSendingBills=new NewSendingBillsUI();
     	UserUI u=new UserUI();
-    	SettingAlertUI c=new SettingAlertUI();
->>>>>>> origin/master
     	JFrame f=new JFrame();
     	f.add(c);
     	f.setSize(700, 700);
