@@ -20,7 +20,7 @@ import org.po.myDate;
 
 public class BillsData extends UnicastRemoteObject implements BillsDataService{
 	
-	public ArrayList<BillsPO> list;
+	protected ArrayList<BillsPO> list;
 	protected long unExaminedNum;
 	protected ArrayList<BillsPO> unExaminedList;
 	protected String fileName;
@@ -73,6 +73,10 @@ public class BillsData extends UnicastRemoteObject implements BillsDataService{
 			}
 		}
 		return null;
+	}
+	
+	public ArrayList<BillsPO> getList(){
+		return list;
 	}
 
 	public ResultMessage deleteBills(String BillNum) throws RemoteException {
