@@ -1,6 +1,9 @@
 package org.po;
 
-public class StateListPO {
+import java.io.Serializable;
+
+public class StateListPO implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private String GoodsNum;
 	private String goodState;
 	public StateListPO(String GoodsNum,String goodState){
