@@ -16,8 +16,13 @@ public class IncomeManagementData extends UnicastRemoteObject implements IncomeM
 	}
 
 	public ArrayList<HallCollectionBills> incomeSearch(myDate date,
-			int hallNumber) throws RemoteException{
+			String hallNumber) throws RemoteException{
 		// TODO Auto-generated method stub
+		
+		
+		
+		
+		
 		return null;
 	}
 

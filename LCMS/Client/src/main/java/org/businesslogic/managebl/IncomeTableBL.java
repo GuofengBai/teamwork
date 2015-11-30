@@ -18,12 +18,6 @@ public class IncomeTableBL implements IncomeTableBLService {
 		return itd.getPayment();
 	}
 
-	public int getEarning() {
-		// TODO Auto-generated method stub
-		IncomeTableBL itbl=new IncomeTableBL();
-		return itbl.getIncome()-itbl.getPayment();
-	}
-
 	
 
 }

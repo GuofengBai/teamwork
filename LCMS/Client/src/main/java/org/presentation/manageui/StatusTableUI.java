@@ -1,5 +1,8 @@
 package org.presentation.manageui;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,6 +13,12 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
+import org.businesslogic.blFactory.BLFactory;
+import org.businesslogicservice.manageblservice.StatusTableBLService;
+import org.po.myDate;
+import org.vo.IncomeBillVO;
+import org.vo.PayingBillVO;
+
 
 public class StatusTableUI {
 
@@ -18,7 +27,12 @@ public class StatusTableUI {
 	private JTextField endDateField;
 	private JTable incomeBillTable;
 	private JTable PayingBillTable;
-
+	
+	
+	DefaultTableModel incomemodel;
+	DefaultTableModel paymodel;
+	private Vector<IncomeBillVO> income;
+	private Vector<PayingBillVO> payment;
 	/**
 	 * Launch the application.
 	 */
@@ -59,6 +73,7 @@ public class StatusTableUI {
 		JButton backButton = new JButton("\u8FD4\u56DE");
 		backButton.setBounds(331, 379, 93, 23);
 		panel.add(backButton);
+		backButton.addActionListener(new backButtonListener());
 		
 		JLabel label = new JLabel("\u7ECF\u8425\u60C5\u51B5\u8868");
 		label.setBounds(184, 10, 66, 15);
@@ -82,7 +97,23 @@ public class StatusTableUI {
 		panel.add(endDateField);
 		endDateField.setColumns(10);
 		
-		incomeBillTable = new JTable();
+		Vector<String> incolumn = new Vector<String>();
+		incolumn.add("日期");
+		incolumn.add("金额");
+		incolumn.add("收款快递员");
+		
+		Vector<String> paycolumn = new Vector<String>();
+		paycolumn.add("日期");
+		paycolumn.add("金额");
+		paycolumn.add("收款快递员");
+		
+		incomeBillTable = new JTable(){
+			private static final long serialVersionUID = 1L;
+
+			public boolean isCellEditable(int row, int column){
+				return false;
+			}
+		};
 		incomeBillTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
@@ -108,7 +139,13 @@ public class StatusTableUI {
 		label_3.setBounds(57, 235, 54, 15);
 		panel.add(label_3);
 		
-		PayingBillTable = new JTable();
+		PayingBillTable = new JTable(){
+			private static final long serialVersionUID = 1L;
+
+			public boolean isCellEditable(int row, int column){
+				return false;
+			}
+		};
 		PayingBillTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
@@ -127,8 +164,43 @@ public class StatusTableUI {
 		scrollPane_1.setBounds(56, 270, 326, 99);
 		panel.add(scrollPane_1);
 		
-		JButton Searchbutton = new JButton("搜索");
-		Searchbutton.setBounds(168, 75, 93, 23);
-		panel.add(Searchbutton);
+		JButton searchButton = new JButton("搜索");
+		searchButton.setBounds(168, 75, 93, 23);
+		panel.add(searchButton);
+		searchButton.addActionListener(new searchButtonListener());
+	}
+	
+	class searchButtonListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			String beginDate=beginDateField.getText();
+			String endDate=endDateField.getText();
+			
+			myDate date1=new myDate(beginDate);
+			myDate date2=new myDate(endDate);
+			
+			StatusTableBLService st=BLFactory.getStatusTableBL();
+			income=st.searchIncomeBill(date1, date2);
+			payment=st.searchPayingBill(date1, date2);
+			
+			for(IncomeBillVO row:income){
+				incomemodel.addRow(row);
+			}
+			for(PayingBillVO row:payment){
+				paymodel.addRow(row);
+			}
+			
+		}
+		
+	}
+	
+	class backButtonListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
 	}
 }

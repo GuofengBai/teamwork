@@ -14,11 +14,17 @@ public class IncomeTableData extends UnicastRemoteObject implements IncomeTableD
 
 	public int getIncome() throws RemoteException{
 		// TODO Auto-generated method stub
+		int result=0;
+		
+		
 		return 0;
 	}
 
 	public int getPayment() throws RemoteException{
 		// TODO Auto-generated method stub
+		int result=0;
+		
+		
 		return 0;
 	}
 
