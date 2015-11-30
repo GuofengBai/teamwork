@@ -17,12 +17,13 @@ import javax.swing.JComboBox;
 import org.businesslogic.billsbl.NewCenterEntruckBillsBL;
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.billsblservice.NewCenterEntruckBillsBLService;
+import org.po.StateListPO;
 import org.po.myDate;
 import org.vo.StateListVO;
 
 
 public class NewCenterEntruckBillsUI extends JPanel {
-	public ArrayList<StateListVO> list = new ArrayList<StateListVO>();
+	ArrayList<StateListPO> list = new ArrayList<StateListPO>();
 	private JTextField newyear;
 	private JTextField newmonth;
 	private JTextField newday;
@@ -146,9 +147,10 @@ public class NewCenterEntruckBillsUI extends JPanel {
 				String num = goodNum.getText();
 				String state = goodState.getSelectedItem().toString();
 				StateListVO item = new StateListVO(num,state);
+				StateListPO po = new StateListPO(num,state);
 				model.addRow(item);
 				goodNum.setText("");
-				list.add(item);
+				list.add(po);
 				
 				
 			}

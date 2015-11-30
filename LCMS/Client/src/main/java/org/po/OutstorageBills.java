@@ -9,8 +9,8 @@ import org.vo.CommodityVO;
 public class OutstorageBills extends BillsPO{
 	private myDate date;
 	private String centerNum;
-	private ArrayList<CommodityVO> list;
-	public OutstorageBills(myDate date, String centerNum, String entruckNum, ArrayList<CommodityVO> list){
+	private ArrayList<ComPO> list;
+	public OutstorageBills(myDate date, String centerNum, String entruckNum, ArrayList<ComPO> list){
 		this.date=date;
 		this.centerNum=centerNum;
 		this.idNum=entruckNum;
@@ -29,7 +29,7 @@ public class OutstorageBills extends BillsPO{
 	public String getidNum(){
 		return idNum;
 	}
-	public ArrayList<CommodityVO> getlist(){
+	public ArrayList<ComPO> getlist(){
 		return list;
 	}
 

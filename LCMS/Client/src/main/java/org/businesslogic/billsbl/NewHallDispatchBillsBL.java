@@ -11,16 +11,16 @@ import org.po.HallDispatchBills;
 import org.po.ResultMessage;
 import org.po.SendingBills;
 import org.po.myDate;
+import org.vo.HDBVO;
 
 public class NewHallDispatchBillsBL implements NewHallDispatchBillsBLService{
 
-	public ResultMessage newHallDispatchBill(myDate date,String idNum, String name,
-			String GoodsNum) {
+	public ResultMessage newHallDispatchBill(HDBVO vo) {
 		// TODO Auto-generated method stub
 		ResultMessage message=null;
 		try {
 			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewHallDispatchBillsData();
-			message=billsData.addBills(new HallDispatchBills(date,idNum, name, GoodsNum));
+			message=billsData.addBills(new HallDispatchBills(vo.date,vo.idNum, vo.name, vo.GoodsNum));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

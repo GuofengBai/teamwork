@@ -9,8 +9,8 @@ import org.vo.StateListVO;
 public class HallCollectionBills extends BillsPO{
 	private String name;
 	private String total;
-	private ArrayList<StateListVO> list;
-	public HallCollectionBills(myDate date,String idNum, String name, String total, ArrayList<StateListVO> list){
+	private ArrayList<StateListPO> list;
+	public HallCollectionBills(myDate date,String idNum, String name, String total, ArrayList<StateListPO> list){
 		this.Date=date;
 		this.idNum=idNum;
 		this.name=name;
@@ -34,7 +34,7 @@ public class HallCollectionBills extends BillsPO{
 	public String getname(){
 		return name;
 	}
-	public ArrayList<StateListVO> getlist(){
+	public ArrayList<StateListPO> getlist(){
 		return list;
 	}
 

@@ -37,7 +37,7 @@ public class NewCenterArriveBillsUI extends JPanel {
 	private JTable table;
 	private JTextField GoodNum;
 	private JTextField CenterNum;
-	ArrayList<StateListPO> statepo = new ArrayList<StateListPO>();
+	ArrayList<StateListPO> list = new ArrayList<StateListPO>();
 
 	/**
 	 * Create the panel.
@@ -82,7 +82,7 @@ public class NewCenterArriveBillsUI extends JPanel {
 				// TODO Auto-generated method stub
 				NewCenterArriveBillsBLService bl = BLFactory.getNewCenterArriveBillsBL();
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
-				bl.addCenterArriveBills(date, CABNum.getText(), CenterNum.getText(), statepo);
+				bl.addCenterArriveBills(date, CABNum.getText(), CenterNum.getText(), list);
 			}
 			
 		});
@@ -134,7 +134,7 @@ public class NewCenterArriveBillsUI extends JPanel {
 				String state = State.getSelectedItem().toString();
 				StateListVO item = new StateListVO(num,state);
 				StateListPO po = new StateListPO(num,state);
-				statepo.add(po);				
+				list.add(po);				
 				model.addRow(item);
 				GoodNum.setText("");
 				
@@ -159,7 +159,7 @@ public class NewCenterArriveBillsUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				int dex = table.getSelectedRow();
-				statepo.remove(dex);
+				list.remove(dex);
 				model.removeRow(dex);
 				
 				

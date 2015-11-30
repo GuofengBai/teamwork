@@ -6,9 +6,10 @@ import org.po.ResultMessage;
 import org.po.State;
 import org.po.myDate;
 import org.po.theGoodState;
+import org.vo.HABVO;
 import org.vo.StateListVO;
 
 public interface NewHallArriveBillsBLService {
 		
-	public ResultMessage addHallArriveBills(myDate date,String idNum, String startPlace,String entruckNum ,ArrayList<StateListVO> list);
+	public ResultMessage addHallArriveBills(HABVO vo);
 }

@@ -12,18 +12,17 @@ import org.po.CenterEntruckBills;
 import org.po.ResultMessage;
 import org.po.SendingBills;
 import org.po.myDate;
+import org.vo.CEBVO;
 import org.vo.StateListVO;
 
 public class NewCenterEntruckBillsBL implements NewCenterEntruckBillsBLService{
 
-	public ResultMessage addCenterEntruckBills(myDate date, String TrafficNum,
-			String HallNum, String Vehicle, String DriverName,
-			String ScouterName, ArrayList<StateListVO> vo) {
+	public ResultMessage addCenterEntruckBills(CEBVO vo) {
 		// TODO Auto-generated method stub
 		ResultMessage message=null;
 		try {
 			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewCenterEntruckBillsData();
-			message=billsData.addBills(new CenterEntruckBills(date,TrafficNum,HallNum,Vehicle,DriverName,ScouterName,vo));
+			message=billsData.addBills(new CenterEntruckBills(vo.date,vo.TrafficNum,vo.HallNum,vo.Vehicle,vo.DriverName,vo.ScouterName,vo.po));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

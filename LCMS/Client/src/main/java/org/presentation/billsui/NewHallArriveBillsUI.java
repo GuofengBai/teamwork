@@ -19,6 +19,7 @@ import org.businesslogic.billsbl.NewHallArriveBillsBL;
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.billsblservice.NewHallArriveBillsBLService;
 import org.po.SENDSTYPE;
+import org.po.StateListPO;
 import org.po.myDate;
 import org.vo.StateListVO;
 
@@ -31,7 +32,7 @@ public class NewHallArriveBillsUI extends JPanel {
 	private JTextField entruckNum;
 	private JTable table;
 	private JTextField goodNum;
-	private ArrayList<StateListVO> list= new ArrayList<StateListVO>();
+	ArrayList<StateListPO> list = new ArrayList<StateListPO>();
 	private DefaultTableModel model;
 	private JTextField idNum;
 
@@ -99,9 +100,10 @@ public class NewHallArriveBillsUI extends JPanel {
 				String num = goodNum.getText();
 				String state = goodState.getSelectedItem().toString();
 				StateListVO item = new StateListVO(num,state);
+				StateListPO po = new StateListPO(num,state);
 				model.addRow(item);
 				goodNum.setText("");
-				list.add(item);
+				list.add(po);
 				
 			}
 			

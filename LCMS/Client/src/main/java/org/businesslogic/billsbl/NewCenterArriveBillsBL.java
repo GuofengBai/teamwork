@@ -12,12 +12,12 @@ import org.po.ResultMessage;
 import org.po.SendingBills;
 import org.po.StateListPO;
 import org.po.myDate;
+import org.vo.CABVO;
 import org.vo.StateListVO;
 
 public class NewCenterArriveBillsBL implements NewCenterArriveBillsBLService{
 
-	public ResultMessage addCenterArriveBills(myDate date, String FreightNum,
-			String CenterNum, ArrayList<StateListPO> po){
+	public ResultMessage addCenterArriveBills(CABVO vo){
 		// TODO Auto-generated method stub
 		BillsDataService billsData;
 		ResultMessage message=null;
@@ -26,7 +26,7 @@ public class NewCenterArriveBillsBL implements NewCenterArriveBillsBLService{
 			if(billsData==null){
 				System.out.println("获取失败");
 			}
-			message=billsData.addBills(new CenterArriveBills(date,FreightNum,CenterNum,po));
+			message=billsData.addBills(new CenterArriveBills(vo.date,vo.FreightNum,vo.CenterNum,vo.po));
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

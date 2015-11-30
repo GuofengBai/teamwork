@@ -14,10 +14,10 @@ public class CenterFreightBills extends BillsPO{
 	private String Scoutername;
 	private long price;
 	private SENDSTYPE send;
-	private ArrayList<StateListVO> vo;
+	private ArrayList<StateListPO> po;
 	public CenterFreightBills(myDate date, String FreightNum,
 			String tramNum, String StartPlace, String EndPlace, String caseNum,
-			String Scoutername, long price, SENDSTYPE send, ArrayList<StateListVO> vo){
+			String Scoutername, long price, SENDSTYPE send, ArrayList<StateListPO> po){
 		this.Date=date;
 		this.idNum=FreightNum;
 		this.tramNum=tramNum;
@@ -27,7 +27,7 @@ public class CenterFreightBills extends BillsPO{
 		this.Scoutername=Scoutername;
 		this.price=price;
 		this.send=send;
-		this.vo=vo;
+		this.po=po;
 		this.type=BILLSTYPE.CFB;
 		this.Examined=false;
 	}
@@ -58,7 +58,7 @@ public class CenterFreightBills extends BillsPO{
 	public SENDSTYPE getsend(){
 		return send;
 	}
-	public ArrayList<StateListVO> getvo(){
-		return vo;
+	public ArrayList<StateListPO> getpo(){
+		return po;
 	}
 }

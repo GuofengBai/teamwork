@@ -36,7 +36,6 @@ public class NewInstorageBillsUI extends JPanel {
 	private JComboBox area;
 	DefaultTableModel model;
 	private ArrayList<ComPO> compo = new ArrayList<ComPO>();
-	private ArrayList<CommodityVO> comvo = new ArrayList<CommodityVO>();
 	private JTextField centerNum;
 	private JLabel label_3;
 	private JTextField idNum;
@@ -109,7 +108,6 @@ public class NewInstorageBillsUI extends JPanel {
 				ComPO cpo = new ComPO(goodNumvo,datepo,placevo,locationvo,areavo,centerNumvo);
 				CommodityVO cvo = new CommodityVO(goodNumvo,datepo,placevo,locationvo,areavo,centerNumvo);
 				model.addRow(cvo);
-				comvo.add(cvo);
 				compo.add(cpo);
 				location.setText("");
 				place.setText("");
@@ -127,7 +125,6 @@ public class NewInstorageBillsUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				int dex = table.getSelectedRow();
-				comvo.remove(dex);
 				compo.remove(dex);
 				model.removeRow(dex);
 			}
@@ -171,7 +168,7 @@ public class NewInstorageBillsUI extends JPanel {
 				// TODO Auto-generated method stub
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
 				NewInstorageBillsBLService bl = BLFactory.getNewInstorageBillsBL();
-				bl.newInstorageBill(date,idNum.getText(), centerNum.getText(), comvo);
+				bl.newInstorageBill(date,idNum.getText(), centerNum.getText(), compo);
 				bl.addCommodity(compo);				
 			}
 			

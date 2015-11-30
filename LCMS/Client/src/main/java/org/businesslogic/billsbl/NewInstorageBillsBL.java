@@ -18,16 +18,17 @@ import org.po.InstorageBills;
 import org.po.ResultMessage;
 import org.po.myDate;
 import org.vo.CommodityVO;
+import org.vo.IBVO;
 
 public class NewInstorageBillsBL implements NewInstorageBillsBLService {
 
-	public ResultMessage newInstorageBill(myDate date,String idNum, String centerNum, ArrayList<CommodityVO> list) {
+	public ResultMessage newInstorageBill(IBVO vo) {
 		// TODO Auto-generated method stub
 		//BillsDataService bds=RMIHelper.getDataFactory().getBillsData();
 		ResultMessage message=null;
 		try {
 			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewInstorageBillsData();
-			message=billsData.addBills(new InstorageBills(date,idNum, centerNum, list));
+			message=billsData.addBills(new InstorageBills(vo.date,vo.idNum, vo.centerNum, vo.list));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

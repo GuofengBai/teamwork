@@ -10,16 +10,16 @@ import org.po.HallCollectionBills;
 import org.po.HallEntruckBills;
 import org.po.ResultMessage;
 import org.po.myDate;
+import org.vo.HEBVO;
 import org.vo.StateListVO;
 
 public class NewHallEntruckBillsBL implements NewHallEntruckBillsBLService{
-	public ResultMessage addHallEntruckBills(myDate date, String entruckNum,
-			String hallNum, String aimNum, String carNum, String driverName, ArrayList<StateListVO> list) {
+	public ResultMessage addHallEntruckBills(HEBVO vo) {
 		// TODO Auto-generated method stub
 		ResultMessage message=null;
 		try {
 			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewHallEntruckBillsData();
-			message=billsData.addBills(new HallEntruckBills(date, entruckNum, hallNum, aimNum, carNum, driverName, list));
+			message=billsData.addBills(new HallEntruckBills(vo.date, vo.entruckNum, vo.hallNum, vo.aimNum, vo.carNum, vo.driverName, vo.list));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -15,15 +15,16 @@ import org.po.OutstorageBills;
 import org.po.ResultMessage;
 import org.po.myDate;
 import org.vo.CommodityVO;
+import org.vo.OBVO;
 
 public class NewOutstorageBillsBL implements NewOutstorageBillsBLService{
 
-	public ResultMessage addOutstorageBills(myDate date, String centerNum, String entruckNum, ArrayList<CommodityVO> list) {
+	public ResultMessage addOutstorageBills(OBVO vo) {
 		// TODO Auto-generated method stub
 		ResultMessage message=null;
 		try {
 			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewOutstorageBillsData();
-			message=billsData.addBills(new OutstorageBills(date, centerNum, entruckNum, list));
+			message=billsData.addBills(new OutstorageBills(vo.date, vo.centerNum, vo.entruckNum, vo.list));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

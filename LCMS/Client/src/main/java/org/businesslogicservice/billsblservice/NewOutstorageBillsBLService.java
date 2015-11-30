@@ -6,10 +6,11 @@ import org.po.ComPO;
 import org.po.ResultMessage;
 import org.po.myDate;
 import org.vo.CommodityVO;
+import org.vo.OBVO;
 
 public interface NewOutstorageBillsBLService {
 	
-	public ResultMessage addOutstorageBills(myDate date, String centerNum, String entruckNum, ArrayList<CommodityVO> list);
+	public ResultMessage addOutstorageBills(OBVO vo);
 	
 	public void deleteCommodity(ArrayList<ComPO> list);
 	

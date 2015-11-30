@@ -14,6 +14,7 @@ import org.businesslogicservice.billsblservice.NewSendingBillsBLService;
 import org.po.BOXSTYPE;
 import org.po.SENDSTYPE;
 import org.po.myDate;
+import org.vo.SBVO;
 
 
 public class NewSendingBillsUI extends JPanel {
@@ -241,7 +242,8 @@ public class NewSendingBillsUI extends JPanel {
 					send = SENDSTYPE.FAST;
 				}
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
-				bl2.addSendingBills(sendername.getText(), receivername.getText(), senderphone.getText(), receiverphone.getText(), senderlocation.getText(), receiverlocation.getText(), date, goodsnumber.getText(), box, send, length.getText(), width.getText(), height.getText(), weight.getText());
+				SBVO bvo = new SBVO(sendername.getText(), receivername.getText(), senderphone.getText(), receiverphone.getText(), senderlocation.getText(), receiverlocation.getText(), date, goodsnumber.getText(), box, send, length.getText(), width.getText(), height.getText(), weight.getText());
+				bl2.addSendingBills(bvo);
 				
 			}
 			

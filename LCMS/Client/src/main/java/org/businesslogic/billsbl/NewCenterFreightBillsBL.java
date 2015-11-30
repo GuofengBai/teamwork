@@ -13,20 +13,19 @@ import org.po.ResultMessage;
 import org.po.SENDSTYPE;
 import org.po.SendingBills;
 import org.po.myDate;
+import org.vo.CFBVO;
 import org.vo.StateListVO;
 
 public class NewCenterFreightBillsBL implements NewCenterFreightBillsBLService{
 
-	public ResultMessage addCenterFreightBills(myDate date, String FreightNum,
-			String tramNum, String StartPlace, String EndPlace, String caseNum,
-			String Scoutername, long price, SENDSTYPE send, ArrayList<StateListVO> vo) {
+	public ResultMessage addCenterFreightBills(CFBVO vo) {
 		// TODO Auto-generated method stub
 		ResultMessage message=null;
 		try {
 			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewCenterFreightBillsData();
-			message=billsData.addBills(new CenterFreightBills(date,FreightNum,
-					tramNum, StartPlace, EndPlace, caseNum,
-					Scoutername, price, send, vo));
+			message=billsData.addBills(new CenterFreightBills(vo.date,vo.FreightNum,
+					vo.tramNum, vo.StartPlace, vo.EndPlace, vo.caseNum,
+					vo.Scoutername, vo.price, vo.send, vo.po));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

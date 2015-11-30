@@ -12,9 +12,9 @@ public class HallEntruckBills extends BillsPO{
 	private String aimNum;
 	private String carNum;
 	private String driverName;
-	private ArrayList<StateListVO> list;
+	private ArrayList<StateListPO> list;
 	public HallEntruckBills(myDate date, String entruckNum,
-			String hallNum, String aimNum, String carNum, String driverName, ArrayList<StateListVO> list){
+			String hallNum, String aimNum, String carNum, String driverName, ArrayList<StateListPO> list){
 		this.date=date;
 		this.idNum=entruckNum;
 		this.hallNum=hallNum;
@@ -49,7 +49,7 @@ public class HallEntruckBills extends BillsPO{
 		return driverName;
 	}
 	
-	public ArrayList<StateListVO> getlist (){
+	public ArrayList<StateListPO> getlist (){
 		return list ;
 	}
 	

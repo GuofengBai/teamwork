@@ -19,6 +19,7 @@ import org.businesslogic.billsbl.NewHallEntruckBillsBL;
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.billsblservice.NewHallEntruckBillsBLService;
 import org.po.SENDSTYPE;
+import org.po.StateListPO;
 import org.po.myDate;
 import org.vo.StateListVO;
 
@@ -36,7 +37,7 @@ public class NewHallEntruckBillsUI extends JPanel {
 	private JTable table;
 	private JButton submit;
 	DefaultTableModel model;
-	public ArrayList<StateListVO> list = new ArrayList<StateListVO>();
+	ArrayList<StateListPO> list = new ArrayList<StateListPO>();
 	private JComboBox goodState;
 
 	/**
@@ -128,9 +129,10 @@ public class NewHallEntruckBillsUI extends JPanel {
 				String num = goodNum.getText();
 				String state = goodState.getSelectedItem().toString();
 				StateListVO item = new StateListVO(num,state);
+				StateListPO po = new StateListPO(num,state);
 				model.addRow(item);
 				goodNum.setText("");
-				list.add(item);
+				list.add(po);
 				
 			}
 			

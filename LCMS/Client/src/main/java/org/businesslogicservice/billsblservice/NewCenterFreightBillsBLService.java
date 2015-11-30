@@ -5,12 +5,11 @@ import java.util.ArrayList;
 import org.po.ResultMessage;
 import org.po.SENDSTYPE;
 import org.po.myDate;
+import org.vo.CFBVO;
 import org.vo.StateListVO;
 
 public interface NewCenterFreightBillsBLService {
-	public ResultMessage addCenterFreightBills(myDate date, String FreightNum,
-			String tramNum, String StartPlace, String EndPlace, String caseNum,
-			String Scoutername, long price, SENDSTYPE send, ArrayList<StateListVO> vo);
+	public ResultMessage addCenterFreightBills(CFBVO vo);
 	public long getPrice(SENDSTYPE send, String StartPlace, String EndPlace);
 
 }

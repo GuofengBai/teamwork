@@ -22,6 +22,7 @@ import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.billsblservice.NewCenterFreightBillsBLService;
 import org.po.BOXSTYPE;
 import org.po.SENDSTYPE;
+import org.po.StateListPO;
 import org.po.myDate;
 import org.vo.StateListVO;
 
@@ -47,7 +48,7 @@ public class NewCenterFreightBillsUI extends JPanel {
 	private JTable table;
 	private JScrollPane scrollPane;
 	DefaultTableModel model;
-	private ArrayList<StateListVO> list= new ArrayList<StateListVO>();
+	ArrayList<StateListPO> list = new ArrayList<StateListPO>();
 	private JComboBox goodState;
 	private JComboBox SendType;
 	private JTextField price;
@@ -150,9 +151,10 @@ public class NewCenterFreightBillsUI extends JPanel {
 				String num = goodNum.getText();
 				String state = goodState.getSelectedItem().toString();
 				StateListVO item = new StateListVO(num,state);
+				StateListPO po = new StateListPO(num,state);
 				model.addRow(item);
 				goodNum.setText("");
-				list.add(item);
+				list.add(po);
 				
 			}
 			

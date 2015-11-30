@@ -18,6 +18,7 @@ import org.businesslogic.billsbl.NewHallCollectBillsBL;
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.billsblservice.NewHallCollectBillsBLService;
 import org.po.SENDSTYPE;
+import org.po.StateListPO;
 import org.po.myDate;
 import org.vo.StateListVO;
 
@@ -32,7 +33,7 @@ public class NewHallCollectionBillsUI extends JPanel {
 	private JTable table;
 	private JButton submit;
 	DefaultTableModel model;
-	private ArrayList<StateListVO> list = new ArrayList<StateListVO>();
+	ArrayList<StateListPO> list = new ArrayList<StateListPO>();
 	private JLabel total;
 	private JLabel label_4;
 	private JTextField idNum;
@@ -100,10 +101,11 @@ public class NewHallCollectionBillsUI extends JPanel {
 				String price = pay.getText();
 				total.setText(Integer.parseInt(total.getText())+Integer.parseInt(price)+"");
 				StateListVO item = new StateListVO(num,price);
+				StateListPO po = new StateListPO(num,price);
 				model.addRow(item);
 				goodNum.setText("");
 				pay.setText("");
-				list.add(item);				
+				list.add(po);				
 			}
 			
 		});

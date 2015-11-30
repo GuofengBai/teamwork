@@ -12,16 +12,17 @@ import org.po.ResultMessage;
 import org.po.State;
 import org.po.myDate;
 import org.po.theGoodState;
+import org.vo.HABVO;
 import org.vo.StateListVO;
 
 public class NewHallArriveBillsBL implements NewHallArriveBillsBLService{
 
-	public ResultMessage addHallArriveBills(myDate date,String idNum, String startPlace,String entruckNum ,ArrayList<StateListVO> list) {
+	public ResultMessage addHallArriveBills(HABVO vo) {
 		// TODO Auto-generated method stub
 		ResultMessage message=null;
 		try {
 			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewHallArriveBillsData();
-			message=billsData.addBills(new HallArrivingBills(date,idNum,startPlace,entruckNum,list));
+			message=billsData.addBills(new HallArrivingBills(vo.date,vo.idNum,vo.startPlace,vo.entruckNum,vo.list));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

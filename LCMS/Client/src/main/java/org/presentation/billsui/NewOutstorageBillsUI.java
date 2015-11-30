@@ -37,7 +37,6 @@ public class NewOutstorageBillsUI extends JPanel {
 	private JTextField centerNum;
 	DefaultTableModel model;
 	private ArrayList<ComPO> compo = new ArrayList<ComPO>();
-	private ArrayList<CommodityVO> comvo = new ArrayList<CommodityVO>();
 
 	/**
 	 * Create the panel.
@@ -92,7 +91,6 @@ public class NewOutstorageBillsUI extends JPanel {
 				CommodityVO cvo = bl.creatVO(goodNum.getText());
 				ComPO cpo =bl.creatPO(goodNum.getText());
 				model.addRow(cvo);
-				comvo.add(cvo);
 				compo.add(cpo);
 				goodNum.setText("");
 			}
@@ -108,7 +106,6 @@ public class NewOutstorageBillsUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				int dex = table.getSelectedRow();
-				comvo.remove(dex);
 				compo.remove(dex);
 				model.removeRow(dex);
 			}
@@ -150,7 +147,7 @@ public class NewOutstorageBillsUI extends JPanel {
 				// TODO Auto-generated method stub
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
 				NewOutstorageBillsBLService bl = BLFactory.getNewOutstorageBillsBL();
-				bl.addOutstorageBills(date, centerNum.getText(), entruckNum.getText(), comvo);
+				bl.addOutstorageBills(date, centerNum.getText(), entruckNum.getText(), compo);
 				bl.deleteCommodity(compo);
 			}
 			

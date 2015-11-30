@@ -12,22 +12,19 @@ import org.po.ResultMessage;
 import org.po.SENDSTYPE;
 import org.po.SendingBills;
 import org.po.myDate;
+import org.vo.SBVO;
 
 public class NewSendingBillsBL implements NewSendingBillsBLService{
 	
 	
-	public ResultMessage addSendingBills(String SenderName, 
-			String ReceiverName, String SenderPhone, String 
-			ReceiverPhone, String SenderLocation, String 
-			ReceiverLocation, myDate date, String GoodsNum, 
-			BOXSTYPE boxtype, SENDSTYPE sendtype, String length, 
-			String width, String height, String weight) {
+	public ResultMessage addSendingBills(SBVO vo) {
 		// TODO Auto-generated method stub
 		ResultMessage message=null;
 		try {
 			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewSendingBillsData();
-			message=billsData.addBills(new SendingBills(SenderName,ReceiverName,SenderPhone,ReceiverPhone,SenderLocation,
-					ReceiverLocation,date,GoodsNum,boxtype,sendtype,length,width,height,weight));
+			message=billsData.addBills(new SendingBills(vo.sendername,vo.receivername,vo.senderphone,vo.receiverphone,
+					vo.senderlocation,vo.receiverlocation,vo.date,vo.goodsnumber,vo.box,vo.send,vo.length,vo.width,
+					vo.height,vo.weight));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
