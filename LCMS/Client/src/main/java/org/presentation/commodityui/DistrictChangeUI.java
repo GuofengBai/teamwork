@@ -17,6 +17,7 @@ import org.Client.CurrentStaff;
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.commodityblservice.CheckCommodityBLService;
 import org.businesslogicservice.commodityblservice.DistrictChangeBLService;
+import org.po.ResultMessage;
 import org.vo.CommodityVO;
 import org.vo.StaffVO;
 
@@ -28,6 +29,8 @@ import java.awt.event.ItemListener;
 import java.rmi.RemoteException;
 import java.util.List;
 import java.util.Vector;
+
+import javax.swing.JTextField;
 
 public class DistrictChangeUI extends JPanel {
 	/**
@@ -49,6 +52,10 @@ public class DistrictChangeUI extends JPanel {
 	private String to;// 移至另一个仓库
 	private String centerNum;
 	private StaffVO thisstaff;
+	private JTextField QU;
+	private JTextField PAI;
+	private JTextField JIA;
+	private JTextField WEI;
 
 	/**
 	 * Create the panel.
@@ -100,18 +107,13 @@ public class DistrictChangeUI extends JPanel {
 			public void itemStateChanged(ItemEvent evt) {
 				if (evt.getStateChange() == ItemEvent.SELECTED) {
 					selected2 = (String) ComBox2.getSelectedItem();
-					try {
-						cvo2 = cbs.getEmpty(centerNum, selected2);
-					} catch (RemoteException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					
 				}
 			}
 		});
 		// 添加下拉框
 
-		ComBox2.setBounds(376, 56, 82, 25);
+		ComBox2.setBounds(375, 56, 82, 25);
 		JLabel supplierLabel = new JLabel("仓库：");
 
 		this.add(ComBox2);
@@ -154,7 +156,7 @@ public class DistrictChangeUI extends JPanel {
 		table1.setFillsViewportHeight(true);
 	}
 
-	public void initToTable() {
+/*	public void initToTable() {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane
 				.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -189,18 +191,84 @@ public class DistrictChangeUI extends JPanel {
 		table2.getSelectionModel().setSelectionMode(
 				ListSelectionModel.SINGLE_SELECTION);
 		table2.setFillsViewportHeight(true);
+	}*/
+
+	public void initTo() {
+		JLabel label_4 = new JLabel("区");
+		label_4.setBounds(460, 117, 72, 18);
+		add(label_4);
+
+		JLabel label_5 = new JLabel("排");
+		label_5.setBounds(460, 172, 72, 18);
+		add(label_5);
+
+		JLabel label_6 = new JLabel("架");
+		label_6.setBounds(460, 232, 72, 18);
+		add(label_6);
+
+		JLabel label_7 = new JLabel("位");
+		label_7.setBounds(460, 289, 72, 18);
+		add(label_7);
+
+		QU = new JTextField();
+		QU.setBounds(519, 114, 86, 24);
+		add(QU);
+		QU.setColumns(10);
+
+		PAI = new JTextField();
+		PAI.setBounds(519, 169, 86, 24);
+		add(PAI);
+		PAI.setColumns(10);
+
+		JIA = new JTextField();
+		JIA.setBounds(519, 229, 86, 24);
+		add(JIA);
+		JIA.setColumns(10);
+
+		WEI = new JTextField();
+		WEI.setBounds(519, 286, 86, 24);
+		add(WEI);
+		WEI.setColumns(10);
+
+		JLabel label_8 = new JLabel("区排架位各为1位整数");
+		label_8.setBounds(669, 289, 148, 18);
+		add(label_8);
 	}
 
 	protected void changeItem() throws RemoteException {
 		int index = table1.getSelectedRow();
-		int index2 = table2.getSelectedRow();
-		if (index == -1 || index2 == -1) {
-			JOptionPane.showMessageDialog(null, "请选中一个商品！", "",
+
+		if (index == -1) {
+			JOptionPane.showMessageDialog(null, "请选中一个货物！", "",
 					JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-		table1.remove(index);
-		cbs.change(selected1, selected2, index);
+		if (QU.getText() == null || PAI.getText() == null
+				|| JIA.getText() == null || WEI.getText() == null) {
+			JOptionPane.showMessageDialog(null, "请输入新的4位数字的位置号！", "",
+					JOptionPane.ERROR_MESSAGE);
+			return;
+		} else if (Integer.parseInt(QU.getText()) > 9
+				|| Integer.parseInt(QU.getText()) < 0
+				|| Integer.parseInt(PAI.getText()) > 9
+				|| Integer.parseInt(PAI.getText()) < 0
+				|| Integer.parseInt(JIA.getText()) > 9
+				|| Integer.parseInt(JIA.getText()) < 0
+				|| Integer.parseInt(WEI.getText()) > 9
+				|| Integer.parseInt(WEI.getText()) < 0) {
+			JOptionPane.showMessageDialog(null, "请输入正确的(4位数字)的位置号！", "",
+					JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		String location = QU.getText() + PAI.getText() + JIA.getText()
+				+ WEI.getText();
+		
+		ResultMessage re=cbs.change(selected1, selected2, index, location);
+		if(re.success)
+			table1.remove(index);
+		else
+			JOptionPane.showMessageDialog(null, re.info[0], re.info[1],
+					JOptionPane.ERROR_MESSAGE);
 	}
 
 	public DistrictChangeUI() throws RemoteException {
@@ -211,7 +279,7 @@ public class DistrictChangeUI extends JPanel {
 		initDistrictSelecter();
 		initSelecterTable();
 		initToSelecter();
-		initToTable();
+		initTo();
 		setLayout(null);
 
 		JLabel label = new JLabel("库区调整");
@@ -229,14 +297,19 @@ public class DistrictChangeUI extends JPanel {
 		add(label_1);
 
 		JLabel label_2 = new JLabel("仓库已使用");
-		label_2.setBounds(469, 59, 82, 18);
+		label_2.setBounds(487, 59, 82, 18);
 		add(label_2);
 
 		JLabel label_3 = new JLabel("25%");
-		label_3.setBounds(565, 59, 72, 18);
+		label_3.setBounds(583, 59, 72, 18);
 		add(label_3);
 
 		JButton button = new JButton("返回");
+		button.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				System.exit(0);//返回
+			}
+		});
 		button.setBounds(453, 363, 113, 27);
 		add(button);
 

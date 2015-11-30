@@ -18,7 +18,7 @@ public class CheckCommodityBL implements CheckCommodityBLService {
 	Vector<CommodityVO> comlist;
 	ArrayList<ComPO> list;
 
-	public boolean startCheckCommodity(myDate time) throws RemoteException {
+	public boolean startCheckCommodity(myDate time,String centerNum) throws RemoteException {
 		// TODO Auto-generated method stub
 		CommodityDataService cds = RMIHelper.getDataFactory()
 				.getCommodityData();
@@ -29,7 +29,7 @@ public class CheckCommodityBL implements CheckCommodityBLService {
 		int month = Integer.parseInt(curdate.substring(4, 6));
 		int day = Integer.parseInt(curdate.substring(6, 8));
 		myDate today = new myDate(year, month, day);
-		list = cds.getAllCom();
+		list = cds.getAllCom(centerNum);
 		return false;
 	}
 

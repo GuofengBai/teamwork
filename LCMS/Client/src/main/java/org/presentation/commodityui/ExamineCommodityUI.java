@@ -1,27 +1,43 @@
 package org.presentation.commodityui;
+import java.util.Vector;
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+
+import org.Client.CurrentStaff;
+import org.vo.CommodityVO;
+import org.vo.ExamineVO;
+import org.vo.StaffVO;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class ExamineCommodityUI extends JPanel {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTable table;
+	private String centerNum;
+	private StaffVO thisstaff;
+	private DefaultTableModel model1;
+	private JTable table1;
+	Vector<ExamineVO> evo;
 
 	/**
 	 * Create the panel.
 	 */
-	public ExamineCommodityUI() {
-		setLayout(null);
+	protected void addItem() {
+		// TODO Auto-generated method stub
 		
-		JLabel lblNewLabel = new JLabel("库存查看");
-		lblNewLabel.setBounds(249, 10, 74, 25);
-		add(lblNewLabel);
-		
+	}
+	public void initDate(){
 		JLabel label = new JLabel("开始日期");
 		label.setBounds(90, 47, 72, 18);
 		add(label);
@@ -39,33 +55,68 @@ public class ExamineCommodityUI extends JPanel {
 		textField_1.setBounds(210, 84, 154, 24);
 		add(textField_1);
 		textField_1.setColumns(10);
+	}
+	public void initTable(){
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane
+				.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setViewportBorder(UIManager.getBorder("Menu.border"));
+		scrollPane.setToolTipText("");
+		scrollPane.setBounds(90, 121, 482, 218);
+		Vector<String> vColumns = new Vector<String>();
+		vColumns.add("仓库");
+		vColumns.add("开始日期");
+		vColumns.add("结束日期");
+		vColumns.add("入库数量");
+		vColumns.add("出库数量");
+		vColumns.add("当前数量");
+
+		model1 = new DefaultTableModel(evo, vColumns);
+		this.add(scrollPane);
+		table = new JTable(model1) {
+			private static final long serialVersionUID = 1L;
+
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		scrollPane.setViewportView(table);
+		//model.addRow(cvo);
+		table.getSelectionModel().setSelectionMode(
+				ListSelectionModel.SINGLE_SELECTION);
+		table.setFillsViewportHeight(true);
+	}
+	public ExamineCommodityUI() {
+		thisstaff = CurrentStaff.getStaff();
+		if (thisstaff.workSpace.type.equals("中转中心"))
+			this.centerNum = thisstaff.workSpace.num;
+		initDate();
+		initTable();
+		setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("库存查看");
+		lblNewLabel.setBounds(249, 10, 74, 25);
+		add(lblNewLabel);
+		
+	
 		
 		JButton button = new JButton("查看");
-		button.setBounds(422, 137, 113, 27);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				addItem();
+			}
+		});
+		button.setBounds(329, 367, 113, 27);
 		add(button);
 		
 		JButton button_1 = new JButton("返回");
-		button_1.setBounds(422, 328, 113, 27);
+		button_1.setBounds(500, 367, 113, 27);
 		add(button_1);
 		
-		JLabel label_3 = new JLabel("航运区");
-		label_3.setBounds(90, 176, 54, 15);
-		add(label_3);
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-			},
-			new String[] {
-				"出库数量", "入库数量", "当前数量"
-			}
-		));
-		table.setBounds(172, 176, 196, 121);
-		add(table);
+		
+		
 
 	}
+	
 }

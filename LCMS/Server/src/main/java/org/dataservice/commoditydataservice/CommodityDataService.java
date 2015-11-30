@@ -22,5 +22,5 @@ public interface CommodityDataService extends Remote{
 	 * @return ResultMessage
 	 */
 	public ComPO findCom(String GoodsNum)throws RemoteException;
-	public ArrayList<ComPO> getAllCom()throws RemoteException;
+	public ArrayList<ComPO> getAllCom(String centerNum)throws RemoteException;
 }

@@ -22,11 +22,12 @@ public class CommodityInAndOutBL implements CommodityInAndOutBLService {
 		AlertLineDataService alds = RMIHelper.getDataFactory().getAlertData();
 		SettingAlertBLService sabs = BLFactory.getSettingAlertBL();
 		ResultMessage re;
+		int size=0;
 		String[] su = { "入库成功" };
-		String[] fa = { "入库失败货物量已经超过警戒线!" };
+		String[] fa = { "入库成功但是货物量已经超过警戒线!" };
 		String[] fai = { "入库失败" };
 		if (cds.addCom(po).success) {
-			int size = cds.getAllCom().size();
+			size = cds.getAllCom(po.getcenterNum()).size();
 			size++;
 			AlertPO apo = alds.find(po.getcenterNum());
 			AlertPO newapo = new AlertPO(po.getcenterNum(), size,
@@ -36,7 +37,9 @@ public class CommodityInAndOutBL implements CommodityInAndOutBLService {
 				alds.add(newapo);
 				return re = new ResultMessage(true, su);
 			} else {
-				return re = new ResultMessage(false, fa);
+				alds.del(apo);
+				alds.add(newapo);
+				return re = new ResultMessage(true, fa);
 			}
 		} else
 			return re = new ResultMessage(false, fai);
@@ -52,11 +55,13 @@ public class CommodityInAndOutBL implements CommodityInAndOutBLService {
 		String[] su = { "出库成功" };
 		String[] fa = { "出库失败" };
 		if (cds.delCom(po).success) {
-			int size = cds.getAllCom().size();
+			int size = cds.getAllCom(po.getcenterNum()).size();
 			size--;
 			AlertPO apo = alds.find(po.getcenterNum());
 			AlertPO newapo = new AlertPO(po.getcenterNum(), size,
 					apo.getalertline());
+			alds.del(apo);
+			alds.add(newapo);
 			return re = new ResultMessage(true, su);
 		} else
 			return re = new ResultMessage(false, fa);

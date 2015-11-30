@@ -57,7 +57,7 @@ public class CheckCommodityUI extends JPanel {
 		int month = Integer.parseInt(curdate.substring(4, 6));
 		int day = Integer.parseInt(curdate.substring(6, 8));
 		myDate today = new myDate(year, month, day);
-		cbs.startCheckCommodity(today);
+		cbs.startCheckCommodity(today,centerNum);
 		cvo = cbs.checkCommodityInf(centerNum);
 		for (CommodityVO vo : cvo) {
 			model.addRow(vo);
@@ -92,7 +92,7 @@ public class CheckCommodityUI extends JPanel {
 				return false;
 			}
 		};
-		model.addRow(cvo);
+		//model.addRow(cvo);
 		table.getSelectionModel().setSelectionMode(
 				ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.getViewport().add(table);

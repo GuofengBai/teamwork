@@ -4,7 +4,7 @@ public class AlertPO {
 	private String centerNum;
 	private int fullNumber=100000;
 	private int nowNumber;
-	private double alertline;
+	private double alertline;//0-1小数
 	public AlertPO(String centerNum,int nowNumber,double alertline){
 		this.centerNum=centerNum;
 		this.nowNumber=nowNumber;

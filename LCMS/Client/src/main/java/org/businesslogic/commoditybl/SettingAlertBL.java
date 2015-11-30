@@ -35,8 +35,8 @@ public class SettingAlertBL implements SettingAlertBLService {
 		AlertPO po = ads.find(centerNum);
 		ResultMessage re;
 		String[] alert = { "执行入库将超过警报线！" };
-		String[] su = null;
-		double nowline = (po.getnowNumber() / po.getfullNumber()) * 1.0;
+		String[] su = { "入库成功" };
+		double nowline = (po.getnowNumber() * 1.0 / po.getfullNumber() * 1.0) * 1.0;
 		double alertline = po.getalertline();
 		if (nowline > alertline) {
 			return re = new ResultMessage(false, alert);
