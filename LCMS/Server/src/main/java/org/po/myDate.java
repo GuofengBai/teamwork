@@ -32,19 +32,19 @@ public class myDate implements Serializable,Comparable<myDate>{
 	public int compareTo(myDate date) {
 
         if(year<date.year){
-        	return 1;
-        }else if(year>date.year){
         	return -1;
+        }else if(year>date.year){
+        	return 1;
         }else{
         	if(month<date.month){
-        		return 1;
-        	}else if(month>date.month){
         		return -1;
+        	}else if(month>date.month){
+        		return 1;
         	}else{
         		if(day<date.day){
-        			return 1;
-        		}else if(day>date.day){
         			return -1;
+        		}else if(day>date.day){
+        			return 1;
         		}else{
         			return 0;
         		}

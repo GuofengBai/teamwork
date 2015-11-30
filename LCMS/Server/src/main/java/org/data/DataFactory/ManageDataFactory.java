@@ -5,12 +5,14 @@ import java.rmi.server.UnicastRemoteObject;
 
 import org.data.managedata.AccountManagementData;
 import org.data.managedata.BeginAccountData;
+import org.data.managedata.CostManagementData;
 import org.data.managedata.IncomeManagementData;
 import org.data.managedata.IncomeTableData;
 import org.data.managedata.StatusTableData;
 import org.dataservice.DataFactoryService.ManageDataFactoryService;
 import org.dataservice.managedataservice.AccountManagementDataService;
 import org.dataservice.managedataservice.BeginAccountDataService;
+import org.dataservice.managedataservice.CostManagementDataService;
 import org.dataservice.managedataservice.IncomeManagementDataService;
 import org.dataservice.managedataservice.IncomeTableDataService;
 import org.dataservice.managedataservice.StatusTableDataService;
@@ -22,7 +24,7 @@ public class ManageDataFactory extends UnicastRemoteObject implements ManageData
 	public IncomeManagementDataService incomeManagementData;
 	public IncomeTableDataService incomeTableData;
 	public StatusTableDataService statusTableData;
-	
+	public CostManagementDataService costManagementData;
 	
 	public ManageDataFactory() throws RemoteException {
 		super();
@@ -31,6 +33,7 @@ public class ManageDataFactory extends UnicastRemoteObject implements ManageData
 		incomeManagementData=null;
 		incomeTableData=null;
 		statusTableData=null;
+		costManagementData=null;
 	}
 
 	public AccountManagementDataService getAccountManagementData()
@@ -68,6 +71,13 @@ public class ManageDataFactory extends UnicastRemoteObject implements ManageData
 			statusTableData=new StatusTableData();
 		}
 		return statusTableData;
+	}
+	
+	public CostManagementDataService getCostManagementData() throws RemoteException{
+		if(costManagementData==null){
+			costManagementData=new CostManagementData();
+		}
+		return costManagementData;
 	}
 
 }

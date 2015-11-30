@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import org.dataservice.managedataservice.CostManagementDataService;
 import org.dataservice.managedataservice.StatusTableDataService;
 import org.po.HallCollectionBills;
 import org.po.PayingBills;
@@ -24,7 +25,10 @@ public class StatusTableData extends UnicastRemoteObject implements StatusTableD
 
 	public ArrayList<PayingBills> searchPayingBill(myDate date1, myDate date2) throws RemoteException{
 		// TODO Auto-generated method stub
-		return null;
+		
+		CostManagementDataService cmd=new CostManagementData();
+		
+		return cmd.getBillByTime(date1, date2);
 	}
 
 }

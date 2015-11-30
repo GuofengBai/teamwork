@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 
 import org.dataservice.managedataservice.AccountManagementDataService;
 import org.dataservice.managedataservice.BeginAccountDataService;
+import org.dataservice.managedataservice.CostManagementDataService;
 import org.dataservice.managedataservice.IncomeManagementDataService;
 import org.dataservice.managedataservice.IncomeTableDataService;
 import org.dataservice.managedataservice.StatusTableDataService;
@@ -20,4 +21,6 @@ public interface ManageDataFactoryService extends Remote{
     public IncomeTableDataService getIncomeTableData()throws RemoteException;
 
     public StatusTableDataService getStatusTableData()throws RemoteException;
+    
+    public CostManagementDataService getCostManagementData()throws RemoteException;
 }
