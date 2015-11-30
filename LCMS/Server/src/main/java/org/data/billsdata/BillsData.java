@@ -74,6 +74,10 @@ public class BillsData extends UnicastRemoteObject implements BillsDataService{
 		}
 		return null;
 	}
+	
+	public ArrayList<BillsPO> getList(){
+		return list;
+	}
 
 	public ResultMessage deleteBills(String BillNum) throws RemoteException {
 		for(BillsPO po:list){

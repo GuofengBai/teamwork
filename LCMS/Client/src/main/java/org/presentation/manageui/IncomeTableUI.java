@@ -8,13 +8,16 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+import org.businesslogic.blFactory.BLFactory;
+import org.businesslogicservice.manageblservice.IncomeTableBLService;
+
 
 public class IncomeTableUI {
 
 	private JFrame frame;
-	private int income;
-	private int payment;
-	private int earning;
+	private int income=0;
+	private int payment=0;
+	private int earning=0;
 
 	/**
 	 * Launch the application.
@@ -73,18 +76,23 @@ public class IncomeTableUI {
 		JLabel label_3 = new JLabel("\u6536\u76CA");
 		label_3.setBounds(293, 64, 54, 15);
 		panel.add(label_3);
+/**		
+		IncomeTableBLService it=BLFactory.getIncomeTableBL();
+		income=it.getIncome();
+		payment=it.getPayment();
+		earning=income-payment;
+*/				
+		JLabel incomeLabel = new JLabel(String.valueOf(income));
+		incomeLabel.setBounds(72, 105, 54, 15);
+		panel.add(incomeLabel);
 		
-		JLabel label_4 = new JLabel("\u6536\u5165\u6570\u989D");
-		label_4.setBounds(61, 105, 54, 15);
-		panel.add(label_4);
+		JLabel payLabel = new JLabel(String.valueOf(payment));
+		payLabel.setBounds(182, 105, 54, 15);
+		panel.add(payLabel);
 		
-		JLabel label_5 = new JLabel("\u652F\u51FA\u6570\u989D");
-		label_5.setBounds(182, 105, 54, 15);
-		panel.add(label_5);
-		
-		JLabel label_6 = new JLabel("\u5229\u6DA6");
-		label_6.setBounds(293, 105, 54, 15);
-		panel.add(label_6);
+		JLabel earnLabel = new JLabel(String.valueOf(earning));
+		earnLabel.setBounds(293, 105, 54, 15);
+		panel.add(earnLabel);
 	}
 	
 	class backButtonListener implements ActionListener{

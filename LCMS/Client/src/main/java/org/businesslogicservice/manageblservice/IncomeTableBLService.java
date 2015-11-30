@@ -5,6 +5,5 @@ public interface IncomeTableBLService {
 	public int getIncome();
 	
 	public int getPayment ();
-	
-	public int getEarning();
+
 }
