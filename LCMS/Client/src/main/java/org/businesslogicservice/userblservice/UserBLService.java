@@ -3,6 +3,7 @@ package org.businesslogicservice.userblservice;
 import java.rmi.RemoteException;
 
 import org.po.ResultMessage;
+import org.po.UserPO;
 
 public interface UserBLService {
 	/**启动登录
@@ -13,4 +14,5 @@ public interface UserBLService {
 	 * 
 	 */
 	public ResultMessage login(String id,String password) throws RemoteException;
+	public UserPO getUser(String account,String password) throws RemoteException;
 }

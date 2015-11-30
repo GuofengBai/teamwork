@@ -14,6 +14,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
+import org.businesslogic.blFactory.BLFactory;
+import org.businesslogicservice.manageblservice.AccountManagementBLService;
+import org.po.ResultMessage;
 import org.vo.BankAccountVO;
 
 
@@ -30,6 +33,8 @@ public class AccountManageUI {
 	DefaultTableModel model;
 	private Vector<BankAccountVO> searchtableContent;
 	DefaultTableModel searchmodel;
+	
+	
 	
 	/**
 	 * Launch the application.
@@ -77,7 +82,11 @@ public class AccountManageUI {
 		panel.add(label_1);
 		
 		
+//		AccountManagementBLService ambl=BLFactory.getAccountManagementBL();
+//获取列表		
 		tableContent=new Vector<BankAccountVO>();
+//		tableContent=ambl.getAccountList();
+		
 		Vector<String> Column = new Vector<String>();
 		Column.add("名称");
 		Column.add("余额");
@@ -91,7 +100,7 @@ public class AccountManageUI {
 		};
 		model=new DefaultTableModel(tableContent,Column);
 		table.setModel(model);
-		table.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);;
+		table.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setFillsViewportHeight(true);
 /**		table.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -153,6 +162,7 @@ public class AccountManageUI {
 		JButton searchButton = new JButton("\u67E5\u627E");
 		searchButton.setBounds(263, 446, 93, 23);
 		panel.add(searchButton);
+		searchButton.addActionListener(new searchButtonListener());
 		
 		searchtableContent=new Vector<BankAccountVO>();
 		
@@ -165,7 +175,7 @@ public class AccountManageUI {
 		};
 		searchmodel=new DefaultTableModel(searchtableContent,Column);
 		searchTable.setModel(searchmodel);
-		searchTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);;
+		searchTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		searchTable.setFillsViewportHeight(true);
 /**	searchTable.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -211,8 +221,16 @@ public class AccountManageUI {
 			// TODO Auto-generated method stub
 			String name=accountNameField.getText();
 			BankAccountVO account=new BankAccountVO(name,0);
-			model.addRow(account);
-			accountNameField.setText("");
+			AccountManagementBLService ambl=BLFactory.getAccountManagementBL();
+			ResultMessage message=ambl.addAccount(name);
+			
+			if(message.success){
+				model.addRow(account);
+				accountNameField.setText("");
+			}else{
+				System.out.println(message.info);
+			}
+			
 			
 		}
 		
@@ -223,7 +241,16 @@ public class AccountManageUI {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			int dex=table.getSelectedRow();
-			model.removeRow(dex);
+			String name=(String) table.getModel().getValueAt(dex, 0);
+			AccountManagementBLService ambl=BLFactory.getAccountManagementBL();
+			ResultMessage message=ambl.delAccount(name);
+			
+			if(message.success){
+				model.removeRow(dex);
+			}else{
+				System.out.println(message.info);
+			}
+			
 		}
 		
 	}
@@ -232,6 +259,18 @@ public class AccountManageUI {
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
+			String newName=newNameField.getText();
+			int dex=table.getSelectedRow();
+			String name=(String) table.getModel().getValueAt(dex, 0);
+			AccountManagementBLService ambl=BLFactory.getAccountManagementBL();
+			
+			ResultMessage message=ambl.changeName(name, newName);
+			
+			if(message.success){
+				model.setValueAt(newName, dex, 0);
+			}else{
+				System.out.println(message.info);
+			}
 			
 		}
 		
@@ -242,6 +281,12 @@ public class AccountManageUI {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			String namepart=namepartField.getText();
+			AccountManagementBLService ambl=BLFactory.getAccountManagementBL();
+			
+			Vector<BankAccountVO> result=ambl.accountSearch(namepart);			
+			for(BankAccountVO row:result){
+				searchmodel.addRow(row);
+			}
 			
 		}
 		

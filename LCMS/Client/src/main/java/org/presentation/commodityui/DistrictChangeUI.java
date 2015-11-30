@@ -13,10 +13,12 @@ import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 
+import org.Client.CurrentStaff;
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.commodityblservice.CheckCommodityBLService;
 import org.businesslogicservice.commodityblservice.DistrictChangeBLService;
 import org.vo.CommodityVO;
+import org.vo.StaffVO;
 
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
@@ -46,6 +48,7 @@ public class DistrictChangeUI extends JPanel {
 	private String selected2;
 	private String to;// 移至另一个仓库
 	private String centerNum;
+	private StaffVO thisstaff;
 
 	/**
 	 * Create the panel.
@@ -68,7 +71,7 @@ public class DistrictChangeUI extends JPanel {
 				if (evt.getStateChange() == ItemEvent.SELECTED) {
 					selected1 = (String) ComBox1.getSelectedItem();
 					try {
-						cvo1 = cbs.getDistrictCommodity(centerNum,selected1);
+						cvo1 = cbs.getDistrictCommodity(centerNum, selected1);
 					} catch (RemoteException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -98,7 +101,7 @@ public class DistrictChangeUI extends JPanel {
 				if (evt.getStateChange() == ItemEvent.SELECTED) {
 					selected2 = (String) ComBox2.getSelectedItem();
 					try {
-						cvo2 = cbs.getEmpty(centerNum,selected2);
+						cvo2 = cbs.getEmpty(centerNum, selected2);
 					} catch (RemoteException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -187,19 +190,23 @@ public class DistrictChangeUI extends JPanel {
 				ListSelectionModel.SINGLE_SELECTION);
 		table2.setFillsViewportHeight(true);
 	}
+
 	protected void changeItem() throws RemoteException {
 		int index = table1.getSelectedRow();
-		int index2=table2.getSelectedRow();
-		if(index == -1||index2==-1){
-			JOptionPane.showMessageDialog(null, "请选中一个商品！","", JOptionPane.ERROR_MESSAGE);
+		int index2 = table2.getSelectedRow();
+		if (index == -1 || index2 == -1) {
+			JOptionPane.showMessageDialog(null, "请选中一个商品！", "",
+					JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		table1.remove(index);
-		cbs.change(selected1, selected2,index);
+		cbs.change(selected1, selected2, index);
 	}
 
-	public DistrictChangeUI(String centerNum) throws RemoteException {
-		this.centerNum=centerNum;
+	public DistrictChangeUI() throws RemoteException {
+		thisstaff = CurrentStaff.getStaff();
+		if (thisstaff.workSpace.type.equals("中转中心"))
+			this.centerNum = thisstaff.workSpace.num;
 		cbs = BLFactory.getDistrictChangeBL();
 		initDistrictSelecter();
 		initSelecterTable();
@@ -232,7 +239,7 @@ public class DistrictChangeUI extends JPanel {
 		JButton button = new JButton("返回");
 		button.setBounds(453, 363, 113, 27);
 		add(button);
-		
+
 		JButton btnNewButton = new JButton("确定");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

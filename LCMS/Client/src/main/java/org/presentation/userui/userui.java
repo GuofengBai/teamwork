@@ -13,15 +13,21 @@ import java.rmi.RemoteException;
 
 import javax.swing.JPasswordField;
 
+import org.Client.CurrentStaff;
 import org.Client.RMIHelper;
 import org.businesslogic.blFactory.BLFactory;
+import org.businesslogicservice.staffblservice.StaffBLService;
 import org.businesslogicservice.userblservice.UserBLService;
 import org.po.ResultMessage;
+import org.po.StaffPO;
+import org.po.UserPO;
+import org.vo.StaffVO;
 
 public class UserUI extends JPanel {
 	private JPasswordField passwordField;
 	private JTextField textField;
 	UserBLService ubs;
+	StaffBLService sbs;
 
 	/**
 	 * Create the panel.
@@ -29,7 +35,7 @@ public class UserUI extends JPanel {
 	public UserUI() {
 		
 		ubs=BLFactory.getUserBL();
-		
+		sbs=BLFactory.getStaffBL();
 		
 		
 		
@@ -89,8 +95,12 @@ public class UserUI extends JPanel {
 		if (!ubs.login(account, pw).success)
 			JOptionPane.showMessageDialog(null, ubs.login(account, pw).info[1], ubs.login(account, pw).info[0],
 					JOptionPane.ERROR_MESSAGE);
-		else
-			System.exit(0);
+		else{
+			UserPO po=ubs.getUser(account, pw);
+			StaffVO svo=sbs.findStaff(po.getNumber());
+			CurrentStaff.setStaff(svo);
+		}
+			
 		//info[2]里储存了String类型的staffrole
 	}
 }

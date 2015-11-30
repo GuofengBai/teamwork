@@ -12,6 +12,9 @@ import javax.swing.JLabel;
 public class IncomeTableUI {
 
 	private JFrame frame;
+	private int income;
+	private int payment;
+	private int earning;
 
 	/**
 	 * Launch the application.
