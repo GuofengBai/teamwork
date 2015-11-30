@@ -3,6 +3,7 @@ package org.dataservice.billsdataservice;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Vector;
 
 import org.po.BILLSTYPE;
 import org.po.BillsPO;
@@ -16,7 +17,10 @@ public interface BillsDataService extends Remote{
 	public ResultMessage updateBills(String BillNum,BillsPO bill)throws RemoteException;
 	public ResultMessage examine(String BillNum)throws RemoteException;
 	public long getUnexaminedBillsNum()throws RemoteException;
-	public ArrayList<BillsPO> getUnexaminedBills()throws RemoteException;
-	public ArrayList<BillsPO> getByDate(myDate date1,myDate date2)throws RemoteException;
-    public ResultMessage save()throws RemoteException;
+	public Vector<Vector<String>> getUnexaminedBills()throws RemoteException;
+	public Vector<Vector<String>> getByDate(myDate date1,myDate date2)throws RemoteException;
+	public Vector<Vector<String>> getAllInfo()throws RemoteException;
+	public ArrayList<BillsPO> getAll()throws RemoteException;
+	public ResultMessage save()throws RemoteException;
 }
+ 
