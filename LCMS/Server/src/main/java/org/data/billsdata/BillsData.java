@@ -10,6 +10,8 @@ import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Vector;
 
 import org.dataservice.billsdataservice.BillsDataService;
 import org.po.BILLSTYPE;
@@ -75,10 +77,6 @@ public class BillsData extends UnicastRemoteObject implements BillsDataService{
 		return null;
 	}
 	
-	public ArrayList<BillsPO> getList(){
-		return list;
-	}
-
 	public ResultMessage deleteBills(String BillNum) throws RemoteException {
 		for(BillsPO po:list){
 			if(po.idNum.equals(BillNum)){
@@ -138,14 +136,47 @@ public class BillsData extends UnicastRemoteObject implements BillsDataService{
 		return unExaminedNum;
 	}
 
-	public ArrayList<BillsPO> getUnexaminedBills() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public Vector<Vector<String>> getUnexaminedBills() {
+		if(unExaminedNum==0){
+			return null;
+		}
+		Vector<Vector<String>> vList=new Vector<Vector<String>>();
+		for(BillsPO po:unExaminedList){
+			vList.add(po.getInfo());
+        }
+		return vList;
+    }
 
-	public ArrayList<BillsPO> getByDate(myDate date1, myDate date2) {
-		// TODO Auto-generated method stub
-		return null;
+	public Vector<Vector<String>> getByDate(myDate date1, myDate date2) {
+		Collections.sort(list);
+		Collections.sort(unExaminedList);
+		if(date1.compareTo(date2)>0){
+			myDate temp=date1;
+			date1=date2;
+			date2=temp;
+		}
+		Vector<Vector<String>> vList=new Vector<Vector<String>>();
+		for(BillsPO po:list){
+			if(po.Date.compareTo(date1)<0){
+				continue;
+			}else if(po.Date.compareTo(date1)>=0&&po.Date.compareTo(date2)<=0){
+				vList.add(po.getInfo());
+			}else{
+				break;
+			}
+        }
+		
+		for(BillsPO po:unExaminedList){
+			if(po.Date.compareTo(date1)<0){
+				continue;
+			}else if(po.Date.compareTo(date1)>=0&&po.Date.compareTo(date2)<=0){
+				vList.add(po.getInfo());
+			}else{
+				break;
+			}
+        }
+		
+		return vList;
 	}
 
 	public ResultMessage save() {
@@ -164,6 +195,27 @@ public class BillsData extends UnicastRemoteObject implements BillsDataService{
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public Vector<Vector<String>> getAllInfo() throws RemoteException {
+		
+		Vector<Vector<String>> vList=new Vector<Vector<String>>();
+		for(BillsPO po:list){
+			vList.add(po.getInfo());
+        }
+		
+		for(BillsPO po:unExaminedList){
+			vList.add(po.getInfo());
+        }
+		
+		return vList;
+	}
+
+	public ArrayList<BillsPO> getAll() throws RemoteException {
+		ArrayList<BillsPO> allList=new ArrayList<BillsPO>();
+		allList.addAll(list);
+		allList.addAll(unExaminedList);
+		return allList;
 	}
 
 	

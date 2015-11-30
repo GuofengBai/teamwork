@@ -18,9 +18,20 @@ public class ManagerSettingBL implements ManagerSettingBLService{
 	String[] cities={"北京","广州","上海","南京"};
 
 	public ResultMessage ManagerSetStdFee(double stdfee) {
-		OrganizationDataService setStdFee = RMIHelper.getDataFactory().getOrganizationData();
+		OrganizationDataService setStdFee = null;
+		try {
+			setStdFee = RMIHelper.getDataFactory().getOrganizationData();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		ResultMessage end=null;
-		end=setStdFee.addStdFee(new StdFeePO(stdfee));
+		try {
+			end=setStdFee.addStdFee(new StdFeePO(stdfee));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return end;
 	}
 
