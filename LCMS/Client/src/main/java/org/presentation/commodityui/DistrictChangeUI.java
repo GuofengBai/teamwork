@@ -264,8 +264,11 @@ public class DistrictChangeUI extends JPanel {
 				+ WEI.getText();
 		
 		ResultMessage re=cbs.change(selected1, selected2, index, location);
-		if(re.success)
+		if(re.success){
 			table1.remove(index);
+			model1.removeRow(index);
+			}
+		
 		else
 			JOptionPane.showMessageDialog(null, re.info[0], re.info[1],
 					JOptionPane.ERROR_MESSAGE);

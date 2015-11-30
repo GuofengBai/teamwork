@@ -21,6 +21,7 @@ public class ExamineCommodityBL implements ExamineCommodityBLService {
 	public Vector<ExamineVO> examineCommodity(myDate timestart, myDate timeend,
 			String centerNum) throws RemoteException {
 		ArrayList<BillsPO> inbillslist, outbillslist;
+		ArrayList<ComPO> comlist;
 		Vector<ExamineVO> result = new Vector<ExamineVO>();
 		List<String> arealist = this.getArea(centerNum);
 		int inNum = 0, outNum = 0, nowNum = 0;
@@ -37,12 +38,18 @@ public class ExamineCommodityBL implements ExamineCommodityBLService {
 			 */
 			for (BillsPO bills : inbillslist) {
 				if (bills.type == BILLSTYPE.IB) {
-
+					
 				}
 			}
 			for (BillsPO bills : outbillslist) {
 				if (bills.type == BILLSTYPE.OB) {
-
+					
+				}
+			}
+			comlist=cds.getAllCom(centerNum);
+			for(ComPO po:comlist){
+				if(po.getArea().equals(area)){
+					nowNum++;
 				}
 			}
 			ExamineVO vo = new ExamineVO(area, timestart, timeend,
