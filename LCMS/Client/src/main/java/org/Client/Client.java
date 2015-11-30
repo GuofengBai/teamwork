@@ -20,22 +20,22 @@ public class Client{
     public static void main(String[] args) throws RemoteException
     {
     	RMIHelper.init();
-<<<<<<< HEAD
+
     	NewSendingBillsUI newSendingBills=new NewSendingBillsUI();
     	UserUI u=new UserUI();
     	DistrictChangeUI c=new DistrictChangeUI();
-=======
+
     	BLFactory.init();
  //   	NewSendingBillsUI newSendingBills=new NewSendingBillsUI();
 //    	UserUI u=new UserUI();
 //    	NewCenterArriveBillsUI c=new NewCenterArriveBillsUI();
->>>>>>> origin/master
+
     	JFrame f=new JFrame();
         ViewController.init(f);
     	f.setSize(700, 700);
     	f.setVisible(true);
 //    	GeneralManagerUI manager=new GeneralManagerUI();
-    	ViewController.jumpToAnotherView();
+    	//ViewController.jumpToAnotherView();
     	
     	
     }

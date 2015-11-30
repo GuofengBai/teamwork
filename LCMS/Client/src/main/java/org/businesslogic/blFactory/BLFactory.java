@@ -17,6 +17,7 @@ import org.businesslogic.commoditybl.CheckCommodityBL;
 import org.businesslogic.commoditybl.CommodityBL;
 import org.businesslogic.commoditybl.CommodityInAndOutBL;
 import org.businesslogic.commoditybl.DistrictChangeBL;
+import org.businesslogic.commoditybl.ExamineCommodityBL;
 import org.businesslogic.commoditybl.SettingAlertBL;
 import org.businesslogic.managebl.AccountManagementBL;
 import org.businesslogic.managebl.BeginAccountBL;
@@ -42,6 +43,7 @@ import org.businesslogicservice.billsblservice.NewSendingBillsBLService;
 import org.businesslogicservice.commodityblservice.CommodityBLService;
 import org.businesslogicservice.commodityblservice.CommodityInAndOutBLService;
 import org.businesslogicservice.commodityblservice.DistrictChangeBLService;
+import org.businesslogicservice.commodityblservice.ExamineCommodityBLService;
 import org.businesslogicservice.commodityblservice.SettingAlertBLService;
 import org.businesslogicservice.manageblservice.AccountManagementBLService;
 import org.businesslogicservice.manageblservice.BeginAccountBLService;
@@ -81,6 +83,7 @@ public class BLFactory {
 	public static NewPayingBillsBLService newPayingBillsBL;
 	public static CheckCommodityBLService checkcommodityBL;
 	public static DistrictChangeBLService districtchangeBL;
+	public static ExamineCommodityBLService examinecommoditybl;
 	
 	public static AccountManagementBLService accountManagementBL;
 	public static BeginAccountBLService beginAccountBL;
@@ -115,6 +118,7 @@ public class BLFactory {
 		newBeginAccountBL=null;
 		statusTableBL=null;
 		settingalertBL=null;
+		examinecommoditybl=null;
 	}
 
 	public static CommodityBLService getCommodityBL() {
@@ -141,6 +145,12 @@ public class BLFactory {
 		}
 
 		return settingalertBL;
+	}
+	public static ExamineCommodityBLService getExamineCommodityBL() throws RemoteException{
+		if(examinecommoditybl==null){
+			examinecommoditybl=new ExamineCommodityBL();
+		}
+		return examinecommoditybl;
 	}
 
 	public static StaffBLService getStaffBL() {
