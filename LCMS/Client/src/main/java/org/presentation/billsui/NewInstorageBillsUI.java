@@ -19,8 +19,11 @@ import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.billsblservice.NewInstorageBillsBLService;
 import org.businesslogicservice.commodityblservice.CommodityInAndOutBLService;
 import org.po.ComPO;
+import org.po.StateListPO;
 import org.po.myDate;
 import org.vo.CommodityVO;
+import org.vo.HABVO;
+import org.vo.IBVO;
 import org.vo.StateListVO;
 
 
@@ -168,7 +171,8 @@ public class NewInstorageBillsUI extends JPanel {
 				// TODO Auto-generated method stub
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
 				NewInstorageBillsBLService bl = BLFactory.getNewInstorageBillsBL();
-				bl.newInstorageBill(date,idNum.getText(), centerNum.getText(), compo);
+				IBVO bvo = new IBVO(date,idNum.getText(), centerNum.getText(), compo);
+				bl.newInstorageBill(bvo);
 				bl.addCommodity(compo);				
 			}
 			
@@ -199,5 +203,16 @@ public class NewInstorageBillsUI extends JPanel {
 		add(idNum);
 		idNum.setColumns(10);
 
+	}
+	public void showview(IBVO vo){
+		newyear.setText(vo.date.year+"");
+		newmonth.setText(vo.date.month+"");
+		newday.setText(vo.date.day+"");
+		centerNum.setText(vo.centerNum);
+		idNum.setText(vo.idNum);
+		for(ComPO po:vo.list){
+			CommodityVO list = new CommodityVO(po);
+			model.addRow(list);
+		}
 	}
 }

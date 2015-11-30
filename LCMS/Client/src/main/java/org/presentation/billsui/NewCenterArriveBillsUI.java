@@ -25,6 +25,7 @@ import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.billsblservice.NewCenterArriveBillsBLService;
 import org.po.StateListPO;
 import org.po.myDate;
+import org.vo.CABVO;
 import org.vo.StateListVO;
 
 
@@ -82,7 +83,8 @@ public class NewCenterArriveBillsUI extends JPanel {
 				// TODO Auto-generated method stub
 				NewCenterArriveBillsBLService bl = BLFactory.getNewCenterArriveBillsBL();
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
-				bl.addCenterArriveBills(date, CABNum.getText(), CenterNum.getText(), list);
+				CABVO bvo = new CABVO(date, CABNum.getText(), CenterNum.getText(), list);
+				bl.addCenterArriveBills(bvo);
 			}
 			
 		});
@@ -172,5 +174,17 @@ public class NewCenterArriveBillsUI extends JPanel {
 		add(scrollPane);
 			
 		}
+	public void showview(CABVO vo){
+		newyear.setText(vo.date.year+"");
+		newmonth.setText(vo.date.month+"");
+		newday.setText(vo.date.day+"");
+		CABNum.setText(vo.FreightNum);
+		CenterNum.setText(vo.CenterNum);
+		for(StateListPO po:vo.po){
+			StateListVO list = new StateListVO(po);
+			model.addRow(list);
+		}
+		
+	}
 	}
 

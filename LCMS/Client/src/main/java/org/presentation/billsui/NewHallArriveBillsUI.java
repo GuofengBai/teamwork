@@ -21,6 +21,8 @@ import org.businesslogicservice.billsblservice.NewHallArriveBillsBLService;
 import org.po.SENDSTYPE;
 import org.po.StateListPO;
 import org.po.myDate;
+import org.vo.CEBVO;
+import org.vo.HABVO;
 import org.vo.StateListVO;
 
 
@@ -137,7 +139,8 @@ public class NewHallArriveBillsUI extends JPanel {
 				// TODO Auto-generated method stub
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
 				NewHallArriveBillsBLService bl = BLFactory.getNewHallArriveBillsBL();
-				bl.addHallArriveBills(date,idNum.getText(),startPlace.getText(),entruckNum.getText(),list);
+				HABVO bvo = new HABVO(date,idNum.getText(),startPlace.getText(),entruckNum.getText(),list);
+				bl.addHallArriveBills(bvo);
 			}
 			
 		});
@@ -170,5 +173,17 @@ public class NewHallArriveBillsUI extends JPanel {
 			
 		});
 
+	}
+	public void showview(HABVO vo){
+		newyear.setText(vo.date.year+"");
+		newmonth.setText(vo.date.month+"");
+		newday.setText(vo.date.day+"");
+		startPlace.setText(vo.startPlace);
+		entruckNum.setText(vo.entruckNum);
+		idNum.setText(vo.idNum);
+		for(StateListPO po:vo.list){
+			StateListVO list = new StateListVO(po);
+			model.addRow(list);
+		}
 	}
 }

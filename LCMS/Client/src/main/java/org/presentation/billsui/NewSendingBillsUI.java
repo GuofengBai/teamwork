@@ -35,6 +35,8 @@ public class NewSendingBillsUI extends JPanel {
 	private JTextField height;
 	private JTextField weight;
 	private JLabel presentvalue;
+	private JComboBox sendtype;
+	private JComboBox boxtype;
 
 	/**
 	 * Create the panel.
@@ -128,7 +130,7 @@ public class NewSendingBillsUI extends JPanel {
 		label_8.setBounds(10, 135, 54, 15);
 		add(label_8);
 		
-		final JComboBox sendtype = new JComboBox();
+		sendtype = new JComboBox();
 		sendtype.setBounds(85, 132, 70, 21);
 		add(sendtype);
 		sendtype.addItem("经济");
@@ -139,7 +141,7 @@ public class NewSendingBillsUI extends JPanel {
 		label_9.setBounds(165, 135, 54, 15);
 		add(label_9);
 		
-		final JComboBox boxtype = new JComboBox();
+		boxtype = new JComboBox();
 		boxtype.setBounds(240, 132, 70, 21);
 		add(boxtype);
 		boxtype.addItem("纸袋");
@@ -248,6 +250,24 @@ public class NewSendingBillsUI extends JPanel {
 			}
 			
 		});
-
+	}
+	public void showview(SBVO vo){
+		sendername.setText(vo.sendername);
+		senderphone.setText(vo.senderphone);
+		senderlocation.setText(vo.senderlocation);
+		receivername.setText(vo.receivername);
+		receiverphone.setText(vo.receiverphone);
+		receiverlocation.setText(vo.receiverlocation);
+		goodsnumber.setText(vo.goodsnumber);
+		newyear.setText(vo.date.year+"");
+		newmonth.setText(vo.date.month+"");
+		newday.setText(vo.date.day+"");
+		sendtype.setSelectedItem(vo.send);
+		boxtype.setSelectedItem(vo.box);
+		length.setText(vo.length);
+		width.setText(vo.width);
+		height.setText(vo.height);
+		weight.setText(vo.weight);
+		
 	}
 }

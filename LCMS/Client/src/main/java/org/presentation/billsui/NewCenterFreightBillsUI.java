@@ -24,6 +24,8 @@ import org.po.BOXSTYPE;
 import org.po.SENDSTYPE;
 import org.po.StateListPO;
 import org.po.myDate;
+import org.vo.CEBVO;
+import org.vo.CFBVO;
 import org.vo.StateListVO;
 
 
@@ -228,7 +230,8 @@ public class NewCenterFreightBillsUI extends JPanel {
 				}
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
 				NewCenterFreightBillsBLService bl = BLFactory.getNewCenterFreightBillsBL();
-				bl.addCenterFreightBills(date, freightNum.getText(), craftNum.getText(), startPlace.getText(), endPlace.getText(), caseNum.getText(), personName.getText(),Long.parseLong(price.getText()),send,list);
+				CFBVO bvo = new CFBVO(date, freightNum.getText(), craftNum.getText(), startPlace.getText(), endPlace.getText(), caseNum.getText(), personName.getText(),Long.parseLong(price.getText()),send,list);
+				bl.addCenterFreightBills(bvo);
 			}
 			
 		});
@@ -252,5 +255,20 @@ public class NewCenterFreightBillsUI extends JPanel {
 		add(price);
 		price.setColumns(10);
 
+	}
+	public void showview(CFBVO vo){
+		newyear.setText(vo.date.year+"");
+		newmonth.setText(vo.date.month+"");
+		newday.setText(vo.date.day+"");
+		freightNum.setText(vo.FreightNum);
+		craftNum.setText(vo.tramNum);
+		startPlace.setText(vo.StartPlace);
+		endPlace.setText(vo.EndPlace);
+		caseNum.setText(vo.caseNum);
+		personName.setText(vo.Scoutername);
+		for(StateListPO po:vo.po){
+			StateListVO list = new StateListVO(po);
+			model.addRow(list);
+		}
 	}
 }

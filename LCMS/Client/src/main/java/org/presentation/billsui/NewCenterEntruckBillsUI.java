@@ -19,6 +19,7 @@ import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.billsblservice.NewCenterEntruckBillsBLService;
 import org.po.StateListPO;
 import org.po.myDate;
+import org.vo.CEBVO;
 import org.vo.StateListVO;
 
 
@@ -193,7 +194,8 @@ public class NewCenterEntruckBillsUI extends JPanel {
 				// TODO Auto-generated method stub
 				NewCenterEntruckBillsBLService bl = BLFactory.getNewCenterEntruckBillsBL();
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
-				bl.addCenterEntruckBills(date, entruckNum.getText(), hallNum.getText(), carNum.getText(), driverName.getText(), examerName.getText(), list );
+				CEBVO bvo = new CEBVO(date, entruckNum.getText(), hallNum.getText(), carNum.getText(), driverName.getText(), examerName.getText(), list);
+				bl.addCenterEntruckBills(bvo);
 			}
 			
 		});
@@ -209,10 +211,20 @@ public class NewCenterEntruckBillsUI extends JPanel {
 				price.setText("600元");
 			}
 			
-		});
-		
-		
-		
-		
+		});		
+	}
+	public void showview(CEBVO vo){
+		newyear.setText(vo.date.year+"");
+		newmonth.setText(vo.date.month+"");
+		newday.setText(vo.date.day+"");
+		entruckNum.setText(vo.TrafficNum);
+		hallNum.setText(vo.HallNum);
+		carNum.setText(vo.Vehicle);
+		driverName.setText(vo.DriverName);
+		examerName.setText(vo.ScouterName);
+		for(StateListPO po:vo.po){
+			StateListVO list = new StateListVO(po);
+			model.addRow(list);
+		}
 	}
 }

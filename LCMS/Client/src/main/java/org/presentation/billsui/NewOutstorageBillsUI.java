@@ -23,6 +23,8 @@ import org.dataservice.commoditydataservice.CommodityDataService;
 import org.po.ComPO;
 import org.po.myDate;
 import org.vo.CommodityVO;
+import org.vo.HABVO;
+import org.vo.OBVO;
 
 
 public class NewOutstorageBillsUI extends JPanel {
@@ -147,7 +149,8 @@ public class NewOutstorageBillsUI extends JPanel {
 				// TODO Auto-generated method stub
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
 				NewOutstorageBillsBLService bl = BLFactory.getNewOutstorageBillsBL();
-				bl.addOutstorageBills(date, centerNum.getText(), entruckNum.getText(), compo);
+				OBVO bvo = new OBVO(date, centerNum.getText(), entruckNum.getText(), compo);
+				bl.addOutstorageBills(bvo);
 				bl.deleteCommodity(compo);
 			}
 			
@@ -162,5 +165,16 @@ public class NewOutstorageBillsUI extends JPanel {
 		add(centerNum);
 		centerNum.setColumns(10);
 
+	}
+	public void showview(OBVO vo){
+		newyear.setText(vo.date.year+"");
+		newmonth.setText(vo.date.month+"");
+		newday.setText(vo.date.day+"");
+		entruckNum.setText(vo.entruckNum);
+		centerNum.setText(vo.centerNum);
+		for(ComPO po:vo.list){
+			CommodityVO list = new CommodityVO(po);
+			model.addRow(list);
+		}
 	}
 }

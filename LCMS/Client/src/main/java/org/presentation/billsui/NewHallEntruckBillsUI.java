@@ -21,6 +21,8 @@ import org.businesslogicservice.billsblservice.NewHallEntruckBillsBLService;
 import org.po.SENDSTYPE;
 import org.po.StateListPO;
 import org.po.myDate;
+import org.vo.HABVO;
+import org.vo.HEBVO;
 import org.vo.StateListVO;
 
 
@@ -180,7 +182,8 @@ public class NewHallEntruckBillsUI extends JPanel {
 				// TODO Auto-generated method stub
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
 				NewHallEntruckBillsBLService bl = BLFactory.getNewHallEntruckBillsBL();
-				bl.addHallEntruckBills(date, entruckNum.getText(), hallNum.getText(), aimNum.getText(), carNum.getText(), driverName.getText(), list);
+				HEBVO bvo = new HEBVO(date, entruckNum.getText(), hallNum.getText(), aimNum.getText(), carNum.getText(), driverName.getText(), list);
+				bl.addHallEntruckBills(bvo);
 			}
 			
 		});
@@ -192,5 +195,19 @@ public class NewHallEntruckBillsUI extends JPanel {
 		goodState.addItem("损坏");
 		goodState.addItem("丢失");
 
+	}
+	public void showview(HEBVO vo){
+		newyear.setText(vo.date.year+"");
+		newmonth.setText(vo.date.month+"");
+		newday.setText(vo.date.day+"");
+		entruckNum.setText(vo.entruckNum);
+		aimNum.setText(vo.aimNum);
+		carNum.setText(vo.carNum);
+		hallNum.setText(vo.hallNum);
+		driverName.setText(vo.driverName);
+		for(StateListPO po:vo.list){
+			StateListVO list = new StateListVO(po);
+			model.addRow(list);
+		}
 	}
 }

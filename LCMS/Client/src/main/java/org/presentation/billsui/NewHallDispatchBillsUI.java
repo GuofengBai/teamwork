@@ -16,7 +16,11 @@ import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.billsblservice.NewHallDispatchBillsBLService;
 import org.dataservice.billsdataservice.NewSendingBillsDataService;
 import org.po.SendingBills;
+import org.po.StateListPO;
 import org.po.myDate;
+import org.vo.HABVO;
+import org.vo.HDBVO;
+import org.vo.StateListVO;
 
 
 public class NewHallDispatchBillsUI extends JPanel {
@@ -86,7 +90,8 @@ public class NewHallDispatchBillsUI extends JPanel {
 				// TODO Auto-generated method stub
 				NewHallDispatchBillsBLService bl = BLFactory.getNewHallDispatchBillsBL();
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
-				bl.newHallDispatchBill(date,idNum.getText(), name.getText(), goodNum.getText());
+				HDBVO bvo = new HDBVO(date,idNum.getText(), name.getText(), goodNum.getText());
+				bl.newHallDispatchBill(bvo);
 			}
 			
 		});
@@ -141,5 +146,13 @@ public class NewHallDispatchBillsUI extends JPanel {
 			
 		});
 
+	}
+	public void showview(HDBVO vo){
+		newyear.setText(vo.date.year+"");
+		newmonth.setText(vo.date.month+"");
+		newday.setText(vo.date.day+"");
+		goodNum.setText(vo.GoodsNum);
+		name.setText(vo.name);
+		idNum.setText(vo.idNum);
 	}
 }
