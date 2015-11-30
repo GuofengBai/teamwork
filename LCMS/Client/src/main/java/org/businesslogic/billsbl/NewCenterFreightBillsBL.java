@@ -8,10 +8,13 @@ import org.businesslogic.organizationbl.ManagerSettingBL;
 import org.businesslogicservice.billsblservice.NewCenterEntruckBillsBLService;
 import org.businesslogicservice.billsblservice.NewCenterFreightBillsBLService;
 import org.dataservice.billsdataservice.BillsDataService;
+import org.dataservice.billsdataservice.NewSendingBillsDataService;
 import org.po.CenterFreightBills;
+import org.po.EXPRESSSTATE;
 import org.po.ResultMessage;
 import org.po.SENDSTYPE;
 import org.po.SendingBills;
+import org.po.StateListPO;
 import org.po.myDate;
 import org.vo.CFBVO;
 import org.vo.StateListVO;
@@ -21,11 +24,16 @@ public class NewCenterFreightBillsBL implements NewCenterFreightBillsBLService{
 	public ResultMessage addCenterFreightBills(CFBVO vo) {
 		// TODO Auto-generated method stub
 		ResultMessage message=null;
+		NewSendingBillsDataService sendingBillsData;
 		try {
 			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewCenterFreightBillsData();
+			sendingBillsData = RMIHelper.getDataFactory().getBillsDataFactory().getNewSendingBillsData();
 			message=billsData.addBills(new CenterFreightBills(vo.date,vo.FreightNum,
 					vo.tramNum, vo.StartPlace, vo.EndPlace, vo.caseNum,
 					vo.Scoutername, vo.price, vo.send, vo.po));
+			for(StateListPO po:vo.po){
+				((SendingBills)sendingBillsData.findBills(po.getNum())).setExpressState(EXPRESSSTATE.LOCALTOTARGET);				
+			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -99,6 +99,27 @@ public class BillsDataServiceSerializableFileImpl extends UnicastRemoteObject im
 		return null;
 	}
 
+	public BillsPO findBills(String BillNum) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ResultMessage deleteBills(String BillNum) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ResultMessage updateBills(String BillNum, BillsPO bill)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ResultMessage examine(String BillNum) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 
 }
