@@ -10,6 +10,7 @@ import org.presentation.billsui.NewCenterArriveBillsUI;
 import org.presentation.billsui.NewSendingBillsUI;
 import org.presentation.commodityui.CheckCommodityUI;
 import org.presentation.commodityui.DistrictChangeUI;
+import org.presentation.commodityui.ExamineCommodityUI;
 import org.presentation.commodityui.SettingAlertUI;
 import org.presentation.mainui.ViewController;
 import org.presentation.staffui.GeneralManagerUI;
@@ -34,6 +35,7 @@ public class Client{
         ViewController.init(f);
     	f.setSize(700, 700);
     	f.setVisible(true);
+    	f.add(c);
 //    	GeneralManagerUI manager=new GeneralManagerUI();
     	//ViewController.jumpToAnotherView();
     	

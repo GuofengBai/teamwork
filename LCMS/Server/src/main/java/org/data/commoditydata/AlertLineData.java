@@ -28,7 +28,7 @@ public class AlertLineData extends UnicastRemoteObject implements
 	}
 
 	public ResultMessage add(AlertPO po) {
-		String[] fa={"增加失败","已存在货运单号对应的货物"};
+		String[] fa={"增加失败","已存在营业厅号对应的警戒线"};
 		for(AlertPO p:AlertList){
 			if(p.getcenterNum().equals(po.getcenterNum())){
 				return new ResultMessage(false,fa);

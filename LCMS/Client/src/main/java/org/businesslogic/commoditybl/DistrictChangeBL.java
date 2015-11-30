@@ -36,7 +36,7 @@ public class DistrictChangeBL implements DistrictChangeBLService {
 		myDate newdate = new myDate(Integer.parseInt(vo.getyear()),
 				Integer.parseInt(vo.getmonth()), Integer.parseInt(vo.getday()));
 		CommodityVO newvo = new CommodityVO(vo.getGoodsNum(), newdate,
-				vo.getplace(), location, to, vo.getcity());
+				vo.getplace(), location, to, vo.getcenterNum());
 		ResultMessage re = changeDistrict(newvo);
 		return re;
 	}

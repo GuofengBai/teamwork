@@ -28,7 +28,7 @@ public class SettingAlertBL implements SettingAlertBLService {
 	}
 
 	public SettingAlertBL() throws RemoteException {
-		ads = RMIHelper.getDataFactory().getAlertData();
+		//ads = RMIHelper.getDataFactory().getAlertData();
 	}
 
 	public ResultMessage ALERT(String centerNum) {

@@ -19,7 +19,7 @@ public class HallPO implements Serializable {
 		this.distanceToOtherCities = distanceToOtherCities;
 	}
 
-	public String getHallNum() {
+ public String getHallNum() {
 		return HallNum;
 	}
 

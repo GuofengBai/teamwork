@@ -42,6 +42,10 @@ import org.vo.CommodityVO;
 import org.vo.StaffVO;
 
 public class CheckCommodityUI extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTable table;
 	CheckCommodityBLService cbs;
 	private DefaultTableModel model;

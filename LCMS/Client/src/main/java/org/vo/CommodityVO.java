@@ -2,12 +2,13 @@ package org.vo;
 
 import java.util.Vector;
 
+import org.po.ComPO;
 import org.po.myDate;
 
 public class CommodityVO extends Vector<String> {
 
 	public CommodityVO(String GoodsNum, myDate inDate, String place,
-			String LocationNum, String area, String city) {
+			String LocationNum, String area, String centerNum) {
 		this.add(GoodsNum);
 		this.add(String.valueOf(inDate.year) + "/"
 				+ String.valueOf(inDate.month) + "/"
@@ -18,7 +19,18 @@ public class CommodityVO extends Vector<String> {
 		this.add(LocationNum.substring(1, 2));
 		this.add(LocationNum.substring(2, 3));
 		this.add(LocationNum.substring(3, 4));
-		this.add(city);
+		this.add(centerNum);
+	}
+	public CommodityVO(ComPO po){
+		this.add(po.getGoodsNum());
+		this.add(po.getinDate().year+"/"+po.getinDate().month+"/"+po.getinDate().day);
+		this.add(po.getplace());
+		
+		this.add(po.LocationNum().substring(0, 1));
+		this.add(po.LocationNum().substring(1, 2));
+		this.add(po.LocationNum().substring(2, 3));
+		this.add(po.LocationNum().substring(3, 4));
+		this.add(po.getcenterNum());
 	}
 
 	public String getGoodsNum() {
@@ -82,7 +94,7 @@ public class CommodityVO extends Vector<String> {
 		return this.get(3);
 	}
 
-	public String getcity() {
+	public String getcenterNum() {
 		return this.get(8);
 	}
 }
