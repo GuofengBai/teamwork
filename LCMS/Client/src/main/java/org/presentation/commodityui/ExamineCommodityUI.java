@@ -177,7 +177,7 @@ public class ExamineCommodityUI extends JPanel {
 		button_1.setBounds(500, 367, 113, 27);
 		add(button_1);
 
-		JLabel label = new JLabel("格式:2015/11/29");
+		JLabel label = new JLabel("格式:2015/1/29");
 		label.setBounds(396, 64, 176, 18);
 		add(label);
 

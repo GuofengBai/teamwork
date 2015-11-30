@@ -84,7 +84,7 @@ public class CheckCommodityUI extends JPanel {
 		vColumns.add("中转中心编号");
 		Vector<CommodityVO> vData = new Vector<CommodityVO>();
 
-		model = new DefaultTableModel(cvo, vColumns);
+		model = new DefaultTableModel(vData, vColumns);
 		table = new JTable(model) {
 			private static final long serialVersionUID = 1L;
 
