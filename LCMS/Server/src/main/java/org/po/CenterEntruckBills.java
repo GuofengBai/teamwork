@@ -1,48 +1,48 @@
 package org.po;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+
 
 
 public class CenterEntruckBills extends BillsPO{
-	private myDate Date;
-	private String TrafficNum;
 	private String HallNum;
-	private String Name;
-	private String[] GoodsNum;
-	public void setTravelNum(String s){
-		this.idNum=s;
-	}
-	public String getTravelNum(){
-		return this.idNum;
-	}
-	public void setDate(myDate t){
-		this.Date=t;
+	private String Vehicle;
+	private String DriverName;
+	private String ScouterName;
+	private ArrayList<StateListPO> po;
+	public CenterEntruckBills(myDate date, String TrafficNum,
+			String HallNum, String Vehicle, String DriverName,
+			String ScouterName, ArrayList<StateListPO> po){
+		this.Date=date;
+		this.idNum=TrafficNum;
+		this.HallNum=HallNum;
+		this.Vehicle=Vehicle;
+		this.DriverName=DriverName;
+		this.ScouterName=ScouterName;
+		this.po=po;
+		this.type=BILLSTYPE.CEB;
+		this.Examined=false;
 	}
 	public myDate getDate(){
 		return Date;
 	}
-	public void setTrafficNum(String s){
-		this.TrafficNum=s;
-	}
-	public String getTrafficNum(){
-		return TrafficNum;
-	}
-	public void setHallNum(String s){
-		this.HallNum=s;
+	public String getidNum(){
+		return idNum;
 	}
 	public String getHallNum(){
 		return HallNum;
 	}
-	public void setName(String s){
-		this.Name=s;
+	public String getVehicle(){
+		return Vehicle;
 	}
-	public String getName(){
-		return Name;
+	public String getDriverName(){
+		return DriverName;
 	}
-	public void setGoodsNum(String[] l){
-		this.GoodsNum=l;
+	public String getScouterName(){
+		return ScouterName;
 	}
-	public String[] getGoodsNum(){
-		return GoodsNum;
+	public ArrayList<StateListPO> getpo(){
+		return po;
 	}
 }

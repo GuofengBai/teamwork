@@ -29,7 +29,7 @@ public class NewSendingBillsData extends BillsData implements NewSendingBillsDat
 		
 		for(BillsPO po:list){
 			if(po.idNum.equals(BillNum)){
-				((SendingBills)po).expressState=expressState;
+				((SendingBills)po).setExpressState(expressState);
 				save();
 				String[] info={"成功修改编号为"+BillNum+"的寄件单的货物状态"};
 				return new ResultMessage(true,info);
@@ -38,7 +38,7 @@ public class NewSendingBillsData extends BillsData implements NewSendingBillsDat
 		
 		for(BillsPO po:unExaminedList){
 			if(po.idNum.equals(BillNum)){
-				((SendingBills)po).expressState=expressState;
+				((SendingBills)po).setExpressState(expressState);
 				save();
 				String[] info={"成功修改编号为"+BillNum+"的寄件单的货物状态"};
 				return new ResultMessage(true,info);
@@ -52,13 +52,13 @@ public class NewSendingBillsData extends BillsData implements NewSendingBillsDat
 	public EXPRESSSTATE getExpressState(String BillNum) throws RemoteException{
 		for(BillsPO po:list){
 			if(po.idNum.equals(BillNum)){
-				return ((SendingBills)po).expressState;
+				return ((SendingBills)po).getState();
 			}
 		}
 		
 		for(BillsPO po:unExaminedList){
 			if(po.idNum.equals(BillNum)){
-			    return ((SendingBills)po).expressState;
+			    return ((SendingBills)po).getState();
 			}
 		}
 		

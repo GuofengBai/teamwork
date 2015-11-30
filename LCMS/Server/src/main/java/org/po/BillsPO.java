@@ -4,9 +4,6 @@ import java.io.Serializable;
 
 
 public class BillsPO implements Serializable,Comparable<BillsPO>{
-	/**
-	 * 
-	 */
 	protected static final long serialVersionUID = 1L;
 	public boolean Examined;
 	public BILLSTYPE type;

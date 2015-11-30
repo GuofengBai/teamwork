@@ -1,62 +1,62 @@
 package org.po;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 
 public class CenterFreightBills extends BillsPO{
-	private myDate Date;
-	private String ContainerNum;
-	private String Means;
-	private String Name;
+	private String tramNum;
+	private String caseNum;
 	private String StartPlace;
 	private String EndPlace;
-	private String[] GoodsNum;	
-	public void setBillNum(String s){
-		this.idNum=s;
+	private String Scoutername;
+	private long price;
+	private SENDSTYPE send;
+	private ArrayList<StateListPO> po;
+	public CenterFreightBills(myDate date, String FreightNum,
+			String tramNum, String StartPlace, String EndPlace, String caseNum,
+			String Scoutername, long price, SENDSTYPE send, ArrayList<StateListPO> po){
+		this.Date=date;
+		this.idNum=FreightNum;
+		this.tramNum=tramNum;
+		this.caseNum=caseNum;
+		this.StartPlace=StartPlace;
+		this.EndPlace=EndPlace;
+		this.Scoutername=Scoutername;
+		this.price=price;
+		this.send=send;
+		this.po=po;
+		this.type=BILLSTYPE.CFB;
+		this.Examined=false;
 	}
-	public String getBillNum(){
-		return this.idNum;
+	public String getidNum(){
+		return idNum;
 	}
-	public void setDate(myDate t){
-		this.Date=t;
+	public String gettramNum(){
+		return tramNum;
 	}
-	public myDate getDate(){
-		return Date;
-	}
-	public void setContainerNum(String s){
-		this.ContainerNum=s;
-	}
-	public String getContainerNum(){
-		return ContainerNum;
-	}
-	public void setMeans(String s){
-		this.Means=s;
-	}
-	public String getMeans(){
-		return Means;
-	}
-	public void setName(String s){
-		this.Name=s;
-	}
-	public String getName(){
-		return Name;
-	}
-	public void setStartPlace(String s){
-		this.StartPlace=s;
+	public String getcaseNum(){
+		return caseNum;
 	}
 	public String getStartPlace(){
 		return StartPlace;
 	}
-	public void setEndPlace(String s){
-		this.EndPlace=s;
-	}
 	public String getEndPlace(){
 		return EndPlace;
 	}
-	public void setGoodsNum(String[] l){
-		this.GoodsNum=l;
+	public String getScoutername(){
+		return Scoutername;
 	}
-	public String[] getGoodsNum(){
-		return this.GoodsNum;
+	public myDate getdate(){
+		return Date;
+	}
+	public long getprice(){
+		return price;
+	}
+	public SENDSTYPE getsend(){
+		return send;
+	}
+	public ArrayList<StateListPO> getpo(){
+		return po;
 	}
 }

@@ -12,7 +12,6 @@ import javax.swing.JFrame;
 
 import org.po.BillsPO;
 import org.po.CenterArriveBills;
-import org.po.StateListVO;
 import org.po.myDate;
 
 public class Text {
@@ -21,7 +20,7 @@ public class Text {
 		long unExaminedNum=0;
 		ArrayList<BillsPO> unExaminedList=new ArrayList<BillsPO>();
 		try {
-            FileOutputStream fos = new FileOutputStream("SerializableData/CAB.file");
+            FileOutputStream fos = new FileOutputStream("SerializableData/OB.file");
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(list);
 			oos.writeObject((Long)unExaminedNum);

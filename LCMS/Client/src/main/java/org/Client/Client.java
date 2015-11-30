@@ -23,19 +23,19 @@ public class Client{
     	RMIHelper.init();
 
     	NewSendingBillsUI newSendingBills=new NewSendingBillsUI();
-    	UserUI u=new UserUI();
-    	DistrictChangeUI c=new DistrictChangeUI();
+ //   	UserUI u=new UserUI();
+  //  	DistrictChangeUI c=new DistrictChangeUI();
 
     	BLFactory.init();
- //   	NewSendingBillsUI newSendingBills=new NewSendingBillsUI();
-//    	UserUI u=new UserUI();
 //    	NewCenterArriveBillsUI c=new NewCenterArriveBillsUI();
 
     	JFrame f=new JFrame();
-        ViewController.init(f);
-    	f.setSize(700, 700);
+    	f.setContentPane(newSendingBills);
     	f.setVisible(true);
-    	f.add(c);
+ //       ViewController.init(f);
+ //   	f.setSize(700, 700);
+ //   	f.setVisible(true);
+ //   	f.add(c);
 //    	GeneralManagerUI manager=new GeneralManagerUI();
     	//ViewController.jumpToAnotherView();
     	

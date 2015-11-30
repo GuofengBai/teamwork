@@ -1,34 +1,42 @@
 package org.po;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+
 
 
 public class HallArrivingBills extends BillsPO{
 	private String StartPlace;
-	private String State;
-	public void setDate(myDate t){
-		this.Date=t;
+	private String entruckNum;
+	private ArrayList<StateListPO> list;
+	public HallArrivingBills(myDate date,String idNum,String startPlace,String entruckNum ,ArrayList<StateListPO> list){
+		this.Date=date;
+		this.idNum=idNum;
+		this.StartPlace=StartPlace;
+		this.entruckNum=entruckNum;
+		this.list=list;
+		this.type=BILLSTYPE.HAB;
+		this.Examined=false;
 	}
-	public myDate getDate(){
+	
+	public String getidNum(){
+		return idNum;
+	}
+	
+	public myDate getdate(){
 		return Date;
 	}
-	public void setFreightNum(String s){
-		this.idNum=s;
-	}
-	public String getFreightNum(){
-		return this.idNum;
-	}
-	public void setStartPlace(String s){
-		this.StartPlace=s;
-	}
+	
 	public String getStartPlace(){
 		return StartPlace;
 	}
-	public void setState(String s){
-		this.State=s;
+	
+	public String getentruckNum(){
+		return entruckNum;
 	}
-	public String getState(){
-		return State;
+	
+	public ArrayList<StateListPO> getlist(){
+		return list;
 	}
 
 }
