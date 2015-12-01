@@ -244,11 +244,11 @@ public class NewHallArriveBillsUI extends JPanel {
 			
 		});
 		
-		Vector<StateListVO> vo = new Vector<StateListVO>();
+		Vector<StateListVO> VO = new Vector<StateListVO>();
 		Vector<String> str = new Vector<String>();
 		str.add("货物单号");
 		str.add("货物状态");
-		model = new DefaultTableModel(vo,str);;
+		model = new DefaultTableModel(VO,str);;
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 175, 251, 92);
 		add(scrollPane);
@@ -263,7 +263,7 @@ public class NewHallArriveBillsUI extends JPanel {
 		table.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setFillsViewportHeight(true);
 		
-		JButton submit = new JButton("\u63D0\u4EA4");
+		JButton submit = new JButton("更新");
 		submit.setBounds(96, 277, 93, 23);
 		add(submit);
 		submit.addActionListener(new ActionListener(){
@@ -273,7 +273,7 @@ public class NewHallArriveBillsUI extends JPanel {
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
 				NewHallArriveBillsBLService bl = BLFactory.getNewHallArriveBillsBL();
 				HABVO bvo = new HABVO(date,idNum.getText(),startPlace.getText(),entruckNum.getText(),list);
-				bl.addHallArriveBills(bvo);
+				bl.updateHallArriveBills(bvo);
 			}
 			
 		});
@@ -315,5 +315,6 @@ public class NewHallArriveBillsUI extends JPanel {
 			StateListVO list = new StateListVO(po);
 			model.addRow(list);
 		}
+		this.list=vo.list;
 	}
 }

@@ -10,5 +10,7 @@ import org.vo.StateListVO;
 public interface NewHallEntruckBillsBLService {
 
 	public ResultMessage addHallEntruckBills(HEBVO vo);
+	
+	public ResultMessage updateHallEntruckBills(HEBVO vo);
 
 }

@@ -67,6 +67,18 @@ public class NewOutstorageBillsBL implements NewOutstorageBillsBLService{
 		}
 		return cpo;
 	}
+	public ResultMessage updateOutstorageBills(OBVO vo) {
+		// TODO Auto-generated method stub
+		ResultMessage message=null;
+		try {
+			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewOutstorageBillsData();
+			message=billsData.updateBills(vo.centerNum, new OutstorageBills(vo.date, vo.centerNum, vo.entruckNum, vo.list));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return message;
+	}
 
 
 }

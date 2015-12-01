@@ -27,4 +27,17 @@ public class NewHallEntruckBillsBL implements NewHallEntruckBillsBLService{
 		return message;
 	}
 
+	public ResultMessage updateHallEntruckBills(HEBVO vo) {
+		// TODO Auto-generated method stub
+		ResultMessage message=null;
+		try {
+			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewHallEntruckBillsData();
+			message=billsData.updateBills(vo.entruckNum, new HallEntruckBills(vo.date, vo.entruckNum, vo.hallNum, vo.aimNum, vo.carNum, vo.driverName, vo.list));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return message;
+	}
+
 }

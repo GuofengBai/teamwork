@@ -48,4 +48,17 @@ public class NewInstorageBillsBL implements NewInstorageBillsBLService {
 		}
 	}
 
+	public ResultMessage updateInstorageBill(IBVO vo) {
+		// TODO Auto-generated method stub
+		ResultMessage message=null;
+		try {
+			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewInstorageBillsData();
+			message=billsData.updateBills(vo.idNum, new InstorageBills(vo.date,vo.idNum, vo.centerNum, vo.list));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return message;
+	}
+
 }

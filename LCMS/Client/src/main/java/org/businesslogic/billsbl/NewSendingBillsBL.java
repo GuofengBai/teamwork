@@ -59,5 +59,20 @@ public class NewSendingBillsBL implements NewSendingBillsBLService{
 		}
 		price=price+baozhuang;		
 		return (long)price;
+	}
+
+	public ResultMessage updateSendingBills(SBVO vo) {
+		// TODO Auto-generated method stub
+		ResultMessage message=null;
+		try {
+			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewSendingBillsData();
+			message=billsData.updateBills(vo.goodsnumber, new SendingBills(vo.sendername,vo.receivername,vo.senderphone,vo.receiverphone,
+					vo.senderlocation,vo.receiverlocation,vo.date,vo.goodsnumber,vo.box,vo.send,vo.length,vo.width,
+					vo.height,vo.weight));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return message;
 	}	
 }

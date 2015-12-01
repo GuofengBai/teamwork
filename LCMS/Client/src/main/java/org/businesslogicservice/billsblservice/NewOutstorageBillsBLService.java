@@ -12,6 +12,8 @@ public interface NewOutstorageBillsBLService {
 	
 	public ResultMessage addOutstorageBills(OBVO vo);
 	
+	public ResultMessage updateOutstorageBills(OBVO vo);
+	
 	public void deleteCommodity(ArrayList<ComPO> list);
 	
 	public CommodityVO creatVO(String goodNum);

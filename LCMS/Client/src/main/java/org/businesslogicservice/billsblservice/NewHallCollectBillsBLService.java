@@ -11,5 +11,7 @@ public interface NewHallCollectBillsBLService {
 	
 	public ResultMessage addHallCollectionBills(HCBVO vo);
 	
+	public ResultMessage updateHallCollectionBills(HCBVO vo);
+	
 
 }

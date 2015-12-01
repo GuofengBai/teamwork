@@ -12,5 +12,7 @@ public interface NewInstorageBillsBLService {
 	
 	public ResultMessage newInstorageBill(IBVO vo);
 	
+	public ResultMessage updateInstorageBill(IBVO vo);
+	
 	public void addCommodity(ArrayList<ComPO> list);
 }

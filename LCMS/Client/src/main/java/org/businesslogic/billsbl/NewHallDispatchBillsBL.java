@@ -58,4 +58,17 @@ public class NewHallDispatchBillsBL implements NewHallDispatchBillsBLService{
 		return name+" "+phone+" "+location;
 	}
 
+	public ResultMessage updateHallDispatchBill(HDBVO vo) {
+		// TODO Auto-generated method stub
+		ResultMessage message=null;
+		try {
+			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewHallDispatchBillsData();
+			message=billsData.updateBills(vo.idNum, new HallDispatchBills(vo.date,vo.idNum, vo.name, vo.GoodsNum));			
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return message;
+	}
+
 }

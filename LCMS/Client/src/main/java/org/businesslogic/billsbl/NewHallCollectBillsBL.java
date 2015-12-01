@@ -28,4 +28,17 @@ public class NewHallCollectBillsBL implements NewHallCollectBillsBLService{
 		return message;
 	}
 
+	public ResultMessage updateHallCollectionBills(HCBVO vo) {
+		// TODO Auto-generated method stub
+		ResultMessage message=null;
+		try {
+			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewHallCollectBillsData();
+			message=billsData.updateBills(vo.idNum, new HallCollectionBills(vo.date, vo.idNum, vo.name, vo.total, vo.list));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return message;
+	}
+
 }
