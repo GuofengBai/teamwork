@@ -21,8 +21,9 @@ import org.po.myDate;
 import org.vo.IncomeBillVO;
 
 
-public class IncomeManagementUI {
-
+public class IncomeManagementUI extends JPanel{
+	
+	private JPanel panel = this;
 	private JFrame frame;
 	private JTextField searchDate;
 	private JTextField searchHall;
@@ -64,7 +65,7 @@ public class IncomeManagementUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JPanel panel = new JPanel();
+
 		panel.setBounds(0, 0, 434, 312);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);

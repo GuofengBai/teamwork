@@ -16,8 +16,9 @@ import org.businesslogicservice.manageblservice.NewBeginAccountBLService;
 import org.po.ResultMessage;
 
 
-public class NewBeginAccountUI {
-
+public class NewBeginAccountUI extends JPanel{
+	
+	private JPanel panel = this;
 	private JFrame frame;
 	private JTextField organizationField;
 	private JTextField carNumField;
@@ -58,7 +59,7 @@ public class NewBeginAccountUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JPanel panel = new JPanel();
+
 		panel.setBounds(0, 0, 434, 262);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);

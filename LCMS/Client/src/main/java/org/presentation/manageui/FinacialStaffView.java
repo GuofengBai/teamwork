@@ -1,15 +1,20 @@
 package org.presentation.manageui;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
+import org.presentation.mainui.ViewController;
 
-public class FinacialStaffView {
+
+public class FinacialStaffView extends JPanel{
 
 	private JFrame frame;
+	private JPanel panel = this;
 
 	/**
 	 * Launch the application.
@@ -43,7 +48,7 @@ public class FinacialStaffView {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JPanel panel = new JPanel();
+
 		panel.setBounds(0, 0, 434, 262);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
@@ -59,6 +64,14 @@ public class FinacialStaffView {
 		JButton incomeButton = new JButton("\u7ED3\u7B97\u7BA1\u7406");
 		incomeButton.setBounds(75, 69, 93, 23);
 		panel.add(incomeButton);
+		incomeButton.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+			
+			}
+			
+		});
 		
 		JButton paymentButton = new JButton("\u6210\u672C\u7BA1\u7406");
 		paymentButton.setBounds(240, 69, 93, 23);

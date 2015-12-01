@@ -23,8 +23,8 @@ import org.po.ResultMessage;
 import org.vo.PayingBillVO;
 
 
-public class CostManageUI {
-
+public class CostManageUI extends JPanel{
+	private JPanel panel = this;
 	private JFrame frame;
 	private JTable table;
 	
@@ -63,7 +63,7 @@ public class CostManageUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JPanel panel = new JPanel();
+
 		panel.setBounds(0, 0, 434, 262);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);

@@ -20,8 +20,9 @@ import org.po.ResultMessage;
 import org.vo.BankAccountVO;
 
 
-public class AccountManageUI {
-
+public class AccountManageUI extends JPanel{
+	private JPanel panel=this;
+	
 	private JFrame frame;
 	private JTable table;
 	private JTextField accountNameField;
@@ -68,7 +69,7 @@ public class AccountManageUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JPanel panel = new JPanel();
+//		panel = new JPanel();
 		panel.setBounds(0, 0, 434, 662);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
@@ -300,4 +301,5 @@ public class AccountManageUI {
 		}
 		
 	}
+	
 }

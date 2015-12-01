@@ -12,8 +12,9 @@ import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.manageblservice.IncomeTableBLService;
 
 
-public class IncomeTableUI {
-
+public class IncomeTableUI extends JPanel{
+	
+	private JPanel panel = this;
 	private JFrame frame;
 	private long income=0;
 	private long payment=0;
@@ -51,7 +52,7 @@ public class IncomeTableUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JPanel panel = new JPanel();
+
 		panel.setBounds(0, 0, 434, 262);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);

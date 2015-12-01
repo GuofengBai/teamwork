@@ -20,8 +20,9 @@ import org.vo.IncomeBillVO;
 import org.vo.PayingBillVO;
 
 
-public class StatusTableUI {
-
+public class StatusTableUI extends JPanel{
+	
+	private JPanel panel = this;
 	private JFrame frame;
 	private JTextField beginDateField;
 	private JTextField endDateField;
@@ -65,7 +66,6 @@ public class StatusTableUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 434, 412);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
