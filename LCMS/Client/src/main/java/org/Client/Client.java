@@ -27,10 +27,10 @@ public class Client{
   //  	DistrictChangeUI c=new DistrictChangeUI();
 
     	BLFactory.init();
-//    	NewCenterArriveBillsUI c=new NewCenterArriveBillsUI();
+    	SettingAlertUI c=new SettingAlertUI();
 
     	JFrame f=new JFrame();
-    	f.setContentPane(newSendingBills);
+    	f.setContentPane(c);
     	f.setVisible(true);
  //       ViewController.init(f);
  //   	f.setSize(700, 700);

@@ -4,7 +4,6 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 import org.dataservice.billsdataservice.BillsDataService;
-import org.dataservice.commoditydataservice.AlertLineDataService;
 import org.dataservice.commoditydataservice.CommodityDataService;
 import org.dataservice.managedataservice.ManageDataService;
 import org.dataservice.organizationdataservice.OrganizationDataService;
@@ -25,5 +24,5 @@ public interface DataFactoryService extends Remote{
 	
 	public ManageDataFactoryService getManageDataFactory()throws RemoteException;
 	
-	public AlertLineDataService getAlertData() throws RemoteException;
+
 }

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 import org.dataservice.commoditydataservice.CommodityDataService;
+import org.po.AlertPO;
 import org.po.BillsPO;
 import org.po.CenterCom;
 import org.po.ComPO;
@@ -29,6 +30,28 @@ public class CommodityData extends UnicastRemoteObject implements
 		super();
 		init();
 		// TODO Auto-generated constructor stub
+	}
+	
+	public AlertPO getAlert(String centerNum) throws RemoteException{
+		for(CenterCom center:totalList){
+			if(center.centerNum.equals(centerNum)){
+				return center.po;
+			}
+		}
+		return null;
+	}
+	
+	public ResultMessage setAlert(String centerNum,double line) throws RemoteException{
+		ResultMessage re;
+		String[] su={"更改成功!"};
+		String[] fa={"更改失败!"};
+		for(CenterCom center:totalList){
+			if(center.centerNum.equals(centerNum)){
+				center.po=new AlertPO(line);
+				return re=new ResultMessage(true,su);
+			}
+		}
+		return re=new ResultMessage(false,fa);
 	}
 
 	private void init() {
@@ -144,8 +167,15 @@ public class CommodityData extends UnicastRemoteObject implements
 				return o.ComList;
 			}
 		}
-
+	
 		return null;
 	}
-
+	public int getComSize(String centerNum) throws RemoteException{
+		for(CenterCom o:totalList){
+			if(o.centerNum.equals(centerNum)){
+				return o.ComList.size();
+			}
+		}
+		return -1;
+	}
 }

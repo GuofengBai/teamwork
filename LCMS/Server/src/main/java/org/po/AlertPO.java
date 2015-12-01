@@ -1,23 +1,13 @@
 package org.po;
 
 public class AlertPO {
-	private String centerNum;
-	private int fullNumber=100000;
-	private int nowNumber;
-	private double alertline;
-	public AlertPO(String centerNum,int nowNumber,double alertline){
-		this.centerNum=centerNum;
-		this.nowNumber=nowNumber;
+	private int fullNumber=10000;
+	private double alertline;//0-1小数
+	public AlertPO(double alertline){
 		this.alertline=alertline;
 	}
 	public int getfullNumber(){
 		return fullNumber;
-	}
-	public int getnowNumber(){
-		return nowNumber;
-	}
-	public String getcenterNum(){
-		return centerNum;
 	}
 	public double getalertline(){
 		return alertline;

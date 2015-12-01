@@ -17,6 +17,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class SettingAlertUI extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	private String centerNum;
 	private StaffVO thisstaff;
@@ -24,8 +28,9 @@ public class SettingAlertUI extends JPanel {
 
 	/**
 	 * Create the panel.
+	 * @throws RemoteException 
 	 */
-	public void showAlertLine() {
+	public void showAlertLine() throws RemoteException {
 		JLabel label = new JLabel("当前警报线");
 		label.setBounds(90, 90, 119, 18);
 		add(label);
@@ -37,7 +42,7 @@ public class SettingAlertUI extends JPanel {
 		alert.setText(String.valueOf(sabs.getAlert(centerNum)));
 	}
 
-	public void setAlertLine() {
+	public void setAlertLine() throws RemoteException {
 		if (textField.getText().equals(null)) {
 			JOptionPane.showMessageDialog(null, "请输入新的警戒线！", "",
 					JOptionPane.ERROR_MESSAGE);
@@ -56,9 +61,10 @@ public class SettingAlertUI extends JPanel {
 	public SettingAlertUI() throws RemoteException {
 		thisstaff = CurrentStaff.getStaff();
 		sabs = BLFactory.getSettingAlertBL();
-		if (thisstaff.workSpace.type.equals("中转中心"))
-			this.centerNum = thisstaff.workSpace.num;
-		showAlertLine();
+		//if (thisstaff.workSpace.type.equals("中转中心"))
+		//	this.centerNum = thisstaff.workSpace.num;
+		this.centerNum="0000000";
+		//showAlertLine();
 		setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("警报设置");
@@ -77,7 +83,12 @@ public class SettingAlertUI extends JPanel {
 		JButton button = new JButton("保存");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setAlertLine();
+				try {
+					setAlertLine();
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		button.setBounds(219, 328, 113, 27);

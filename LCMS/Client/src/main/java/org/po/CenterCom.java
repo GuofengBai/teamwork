@@ -8,6 +8,8 @@ public class CenterCom {
 	
 	public String centerNum;
 	
+	public AlertPO po;
+	
 	public CenterCom(){
 		this(null,null);
 	}
@@ -16,5 +18,6 @@ public class CenterCom {
 		super();
 		this.ComList=ComList;
 		this.centerNum=centerNum;
+		po=new AlertPO(0.7);
 	}
 }
