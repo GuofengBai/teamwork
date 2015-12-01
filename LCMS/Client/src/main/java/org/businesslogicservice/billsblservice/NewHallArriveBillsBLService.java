@@ -12,4 +12,6 @@ import org.vo.StateListVO;
 public interface NewHallArriveBillsBLService {
 		
 	public ResultMessage addHallArriveBills(HABVO vo);
+	
+	public ResultMessage updateHallArriveBills(HABVO vo);
 }

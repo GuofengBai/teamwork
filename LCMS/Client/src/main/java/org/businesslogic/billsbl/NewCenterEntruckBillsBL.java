@@ -35,4 +35,17 @@ public class NewCenterEntruckBillsBL implements NewCenterEntruckBillsBLService{
 		return 0;
 	}
 
+	public ResultMessage updateCenterEntruckBills(CEBVO vo) {
+		// TODO Auto-generated method stub
+		ResultMessage message=null;
+		try {
+			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewCenterEntruckBillsData();
+			message=billsData.updateBills(vo.TrafficNum,new CenterEntruckBills(vo.date,vo.TrafficNum,vo.HallNum,vo.Vehicle,vo.DriverName,vo.ScouterName,vo.po));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return message;
+	}
+
 }

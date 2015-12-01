@@ -41,5 +41,19 @@ public class NewCenterArriveBillsBL implements NewCenterArriveBillsBLService{
 		return message;
 	}
 
+	public ResultMessage updateCenterArriveBills(CABVO vo) {
+		// TODO Auto-generated method stub
+		BillsDataService billsData;
+		ResultMessage message=null;
+		try {
+			billsData = RMIHelper.getDataFactory().getBillsDataFactory().getNewCenterArriveBillsData();
+			message=billsData.updateBills(vo.CenterNum, new CenterArriveBills(vo.date,vo.FreightNum,vo.CenterNum,vo.po));	
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return message;
+	}
+
 
 }

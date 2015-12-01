@@ -55,4 +55,19 @@ public class NewCenterFreightBillsBL implements NewCenterFreightBillsBLService{
 		return (long)price;
 	}
 
+	public ResultMessage updateCenterFreightBills(CFBVO vo) {
+		// TODO Auto-generated method stub
+		ResultMessage message=null;
+		try {
+			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewCenterFreightBillsData();
+			message=billsData.updateBills(vo.FreightNum, new CenterFreightBills(vo.date,vo.FreightNum,
+					vo.tramNum, vo.StartPlace, vo.EndPlace, vo.caseNum,
+					vo.Scoutername, vo.price, vo.send, vo.po));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return message;
+	}
+
 }

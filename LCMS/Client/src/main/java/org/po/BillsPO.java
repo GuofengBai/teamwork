@@ -1,6 +1,7 @@
 package org.po;
 
 import java.io.Serializable;
+import java.util.Vector;
 
 
 public class BillsPO implements Serializable,Comparable<BillsPO>{
@@ -19,5 +20,13 @@ public class BillsPO implements Serializable,Comparable<BillsPO>{
 			return 1;
 		}
 		return 0;
+	}
+	
+	public Vector<String> getInfo(){
+		Vector<String> v=new Vector<String>();
+		v.add(type.getType());
+		v.add(idNum);
+		v.add(Date.toString());
+		return v;
 	}
 }

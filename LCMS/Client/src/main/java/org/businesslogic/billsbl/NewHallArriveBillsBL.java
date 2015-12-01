@@ -40,4 +40,17 @@ public class NewHallArriveBillsBL implements NewHallArriveBillsBLService{
 		return message;
 	}
 
+	public ResultMessage updateHallArriveBills(HABVO vo) {
+		// TODO Auto-generated method stub
+		ResultMessage message=null;
+		try {
+			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewHallArriveBillsData();
+			message=billsData.updateBills(vo.idNum, new HallArrivingBills(vo.date,vo.idNum,vo.startPlace,vo.entruckNum,vo.list));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return message;
+	}
+
 }

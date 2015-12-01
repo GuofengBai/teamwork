@@ -13,5 +13,7 @@ import org.vo.StateListVO;
 
 public interface NewCenterArriveBillsBLService {
 	public ResultMessage addCenterArriveBills(CABVO vo);
+	
+	public ResultMessage updateCenterArriveBills(CABVO vo);
 
 }
