@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 import javax.swing.JList;
 import javax.swing.JLabel;
@@ -16,11 +17,19 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import org.businesslogic.blFactory.BLFactory;
+import org.businesslogicservice.manageblservice.CostManagementBLService;
+import org.po.ResultMessage;
+import org.vo.PayingBillVO;
+
 
 public class CostManageUI {
 
 	private JFrame frame;
 	private JTable table;
+	
+	DefaultTableModel model;
+	private Vector<PayingBillVO> tableContent;
 
 	/**
 	 * Launch the application.
@@ -78,7 +87,19 @@ public class CostManageUI {
 		JLabel label_1 = new JLabel("\u4ED8\u6B3E\u5355\u5217\u8868");
 		label_1.setBounds(23, 39, 79, 15);
 		panel.add(label_1);
-		table = new JTable();
+		
+		Vector<String> column = new Vector<String>();
+		column.add("名称");
+		column.add("余额");
+		
+		
+		table = new JTable(){
+			private static final long serialVersionUID = 1L;
+
+			public boolean isCellEditable(int row, int column){
+				return false;
+			}
+		};
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null, null, null, null, null},
@@ -124,7 +145,15 @@ public class CostManageUI {
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
+			int dex=table.getSelectedRow();
+			CostManagementBLService cmbl=BLFactory.getCostManagementBL();
+			ResultMessage message=cmbl.delBill(dex);
 			
+			if(message.success){
+				model.removeRow(dex);
+			}else{
+				System.out.println(message.info);
+			}
 		}
 		
 	}

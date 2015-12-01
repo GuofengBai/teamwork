@@ -15,9 +15,9 @@ import org.businesslogicservice.manageblservice.IncomeTableBLService;
 public class IncomeTableUI {
 
 	private JFrame frame;
-	private int income=0;
-	private int payment=0;
-	private int earning=0;
+	private long income=0;
+	private long payment=0;
+	private long earning=0;
 
 	/**
 	 * Launch the application.

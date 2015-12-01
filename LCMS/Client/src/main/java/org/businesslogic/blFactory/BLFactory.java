@@ -21,6 +21,7 @@ import org.businesslogic.commoditybl.ExamineCommodityBL;
 import org.businesslogic.commoditybl.SettingAlertBL;
 import org.businesslogic.managebl.AccountManagementBL;
 import org.businesslogic.managebl.BeginAccountBL;
+import org.businesslogic.managebl.CostManagementBL;
 import org.businesslogic.managebl.IncomeManagementBL;
 import org.businesslogic.managebl.IncomeTableBL;
 import org.businesslogic.managebl.ManageBL;
@@ -47,6 +48,7 @@ import org.businesslogicservice.commodityblservice.ExamineCommodityBLService;
 import org.businesslogicservice.commodityblservice.SettingAlertBLService;
 import org.businesslogicservice.manageblservice.AccountManagementBLService;
 import org.businesslogicservice.manageblservice.BeginAccountBLService;
+import org.businesslogicservice.manageblservice.CostManagementBLService;
 import org.businesslogicservice.manageblservice.IncomeManagementBLService;
 import org.businesslogicservice.manageblservice.IncomeTableBLService;
 import org.businesslogicservice.manageblservice.ManageBLService;
@@ -92,7 +94,8 @@ public class BLFactory {
 	public static NewBeginAccountBLService newBeginAccountBL;
 	public static StatusTableBLService statusTableBL;
 	public static SettingAlertBLService settingalertBL;
-
+	public static CostManagementBLService costManagementBL;
+	
 	public static void init() {
 		commodityBL = null;
 		staffBL = null;
@@ -117,8 +120,11 @@ public class BLFactory {
 		incomeTableBL=null;
 		newBeginAccountBL=null;
 		statusTableBL=null;
+		costManagementBL=null;
+		
 		settingalertBL=null;
 		examinecommoditybl=null;
+		
 	}
 
 	public static CommodityBLService getCommodityBL() {
@@ -351,6 +357,14 @@ public class BLFactory {
 			statusTableBL=new StatusTableBL();
 		}
 		return statusTableBL;
+	}
+	
+	public static CostManagementBLService getCostManagementBL(){
+		if(costManagementBL==null){
+			costManagementBL=new CostManagementBL();
+		}
+		
+		return costManagementBL;
 	}
 	
 }

@@ -6,7 +6,7 @@ import java.rmi.RemoteException;
 
 
 public interface IncomeTableDataService extends Remote{
-	public int getIncome()throws RemoteException;
+	public long getIncome()throws RemoteException;
 	
-	public int getPayment ()throws RemoteException;
+	public long getPayment ()throws RemoteException;
 }

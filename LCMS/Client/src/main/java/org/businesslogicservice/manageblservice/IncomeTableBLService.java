@@ -2,8 +2,8 @@ package org.businesslogicservice.manageblservice;
 
 public interface IncomeTableBLService {
 	
-	public int getIncome();
+	public long getIncome();
 	
-	public int getPayment ();
+	public long getPayment ();
 
 }
