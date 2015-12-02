@@ -14,6 +14,7 @@ import org.businesslogic.billsbl.NewInstorageBillsBL;
 import org.businesslogic.billsbl.NewOutstorageBillsBL;
 import org.businesslogic.billsbl.NewPayingBillsBL;
 import org.businesslogic.billsbl.NewSendingBillsBL;
+import org.businesslogic.billsbl.ReceiveMessageBL;
 import org.businesslogic.commoditybl.CheckCommodityBL;
 import org.businesslogic.commoditybl.CommodityBL;
 import org.businesslogic.commoditybl.CommodityInAndOutBL;
@@ -43,6 +44,7 @@ import org.businesslogicservice.billsblservice.NewInstorageBillsBLService;
 import org.businesslogicservice.billsblservice.NewOutstorageBillsBLService;
 import org.businesslogicservice.billsblservice.NewPayingBillsBLService;
 import org.businesslogicservice.billsblservice.NewSendingBillsBLService;
+import org.businesslogicservice.billsblservice.ReceiveMessageBLService;
 import org.businesslogicservice.commodityblservice.CommodityBLService;
 import org.businesslogicservice.commodityblservice.CommodityInAndOutBLService;
 import org.businesslogicservice.commodityblservice.DistrictChangeBLService;
@@ -85,6 +87,7 @@ public class BLFactory {
 	public static NewInstorageBillsBLService newInstorageBillsBL;
 	public static NewOutstorageBillsBLService newOutstorageBillsBL;
 	public static NewPayingBillsBLService newPayingBillsBL;
+	public static ReceiveMessageBLService receiveMessageBL;
 	public static CheckCommodityBLService checkcommodityBL;
 	public static DistrictChangeBLService districtchangeBL;
 	public static ExamineCommodityBLService examinecommoditybl;
@@ -117,6 +120,7 @@ public class BLFactory {
 		newOutstorageBillsBL = null;
 		newPayingBillsBL = null;
 		examineBillsBL=null;
+		receiveMessageBL=null;
 		
 		accountManagementBL=null;
 		beginAccountBL=null;
@@ -376,6 +380,14 @@ public class BLFactory {
 		}
 		
 		return costManagementBL;
+	}
+	
+	public static ReceiveMessageBLService getReceiveMessageBL(){
+		if(receiveMessageBL==null){
+			receiveMessageBL=new ReceiveMessageBL();
+		}
+		
+		return receiveMessageBL;
 	}
 	
 }

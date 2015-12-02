@@ -8,6 +8,7 @@ import org.businesslogic.blFactory.BLFactory;
 import org.po.BILLSTYPE;
 import org.presentation.billsui.NewCenterArriveBillsUI;
 import org.presentation.billsui.NewHallDispatchBillsUI;
+import org.presentation.billsui.NewInstorageBillsUI;
 import org.presentation.billsui.NewSendingBillsUI;
 import org.presentation.commodityui.CheckCommodityUI;
 import org.presentation.commodityui.DistrictChangeUI;
@@ -23,27 +24,13 @@ public class Client{
     {
     	RMIHelper.init();
 
-    	NewCenterArriveBillsUI ui=new NewCenterArriveBillsUI();
+    	NewInstorageBillsUI ui=new NewInstorageBillsUI();
 
     	BLFactory.init();
-<<<<<<< HEAD
     	JFrame frame = new JFrame();
     	frame.setContentPane(ui);
     	frame.setVisible(true);
-=======
-    	SettingAlertUI c=new SettingAlertUI();
 
-    	JFrame f=new JFrame();
-    	f.setContentPane(c);
-    	f.setVisible(true);
- //       ViewController.init(f);
-    	f.setSize(1700, 900);
- //   	f.setVisible(true);
- //   	f.add(c);
-//    	GeneralManagerUI manager=new GeneralManagerUI();
-    	//ViewController.jumpToAnotherView();
-    	
->>>>>>> origin/master
     	
     }
 }
