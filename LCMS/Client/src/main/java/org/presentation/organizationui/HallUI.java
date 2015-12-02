@@ -21,12 +21,21 @@ public class HallUI extends JPanel {
 	private JTextField cityName;
 	private JTable table;
 	private JTextField location;
+	private JPanel superView;
 
 	/**
 	 * Create the panel.
 	 */
-	public HallUI() {
-		setLayout(null);
+	public HallUI(JPanel su) {
+		
+		super();
+		this.superView=su;
+		init();
+		
+	}
+
+	private void init() {
+        setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("营业厅管理");
 		lblNewLabel.setBounds(224, 15, 108, 25);
@@ -59,13 +68,13 @@ public class HallUI extends JPanel {
 		add(cityName);
 		cityName.setColumns(10);
 		
-		JButton button_1 = new JButton("返回");
-		button_1.setBounds(415, 15, 114, 28);
-		add(button_1);
+		JButton jump = new JButton("返回");
+		jump.setBounds(416, 37, 114, 28);
+		add(jump);
 		
-		Button button_2 = new Button("新增");
-		button_2.setBounds(457, 175, 87, 25);
-		add(button_2);
+		Button submit = new Button("新增");
+		submit.setBounds(457, 175, 87, 25);
+		add(submit);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(24, 219, 524, 171);
@@ -100,7 +109,7 @@ public class HallUI extends JPanel {
 		add(lblNewLabel_2);
 		
 		location = new JTextField();
-		location.setBounds(127, 137, 420, 25);
+		location.setBounds(129, 139, 420, 25);
 		add(location);
 		location.setColumns(10);
 		
@@ -109,9 +118,9 @@ public class HallUI extends JPanel {
 		separator_1.setBounds(18, 80, 540, 2);
 		add(separator_1);
 		
-		JButton button = new JButton("删除");
-		button.setBounds(127, 420, 123, 29);
-		add(button);
+		JButton del = new JButton("删除");
+		del.setBounds(224, 405, 123, 29);
+		add(del);
 
 	}
 }

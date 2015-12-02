@@ -19,7 +19,7 @@ public interface DataFactoryService extends Remote{
 	
 	public UserDataService getUserData()throws RemoteException;
 	
-	public OrganizationDataService getOrganizationData()throws RemoteException;
+	public OrganizationDataFactoryService getOrganizationDataFactory()throws RemoteException;
 	
 	public StaffDataService getStaffData()throws RemoteException;
 	

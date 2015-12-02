@@ -34,6 +34,9 @@ public class StaffData extends UnicastRemoteObject implements StaffDataService{
 	        ObjectInputStream ois = new ObjectInputStream(bis); 
 	        staffList=(ArrayList<StaffPO>)ois.readObject();
 	        ois.close();
+	        if(staffList==null){
+	        	staffList=new ArrayList<StaffPO>();
+	        }
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

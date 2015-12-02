@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 
+
 import org.data.commoditydata.CommodityData;
 import org.data.managedata.ManageData;
 import org.data.organizationdata.OrganizationData;
@@ -12,9 +13,9 @@ import org.data.userdata.UserData;
 import org.dataservice.DataFactoryService.BillsDataFactoryService;
 import org.dataservice.DataFactoryService.DataFactoryService;
 import org.dataservice.DataFactoryService.ManageDataFactoryService;
+import org.dataservice.DataFactoryService.OrganizationDataFactoryService;
 import org.dataservice.Impl.BillsDataServiceSerializableFileImpl;
 import org.dataservice.billsdataservice.BillsDataService;
-
 import org.dataservice.commoditydataservice.CommodityDataService;
 import org.dataservice.managedataservice.ManageDataService;
 import org.dataservice.organizationdataservice.OrganizationDataService;
@@ -26,7 +27,7 @@ public class DataFactory extends UnicastRemoteObject implements DataFactoryServi
 	CommodityDataService commodityData;
 	BillsDataFactoryService billsDataFactory;
 	UserDataService userData;
-	OrganizationDataService organizationData;
+	OrganizationDataFactoryService organizationDataFactory;
 	StaffDataService staffData;
 	ManageDataFactoryService manageDataFactory;
 	
@@ -36,7 +37,7 @@ public class DataFactory extends UnicastRemoteObject implements DataFactoryServi
 		System.out.println("OK");
 		commodityData=null;
 		userData=null;
-		organizationData=null;
+		organizationDataFactory=null;
 		billsDataFactory=null;
 		staffData=null;
 		manageDataFactory=null;
@@ -70,18 +71,18 @@ public class DataFactory extends UnicastRemoteObject implements DataFactoryServi
 	}
 
 
-	public OrganizationDataService getOrganizationData() throws RemoteException{
+	public OrganizationDataFactoryService getOrganizationDataFactory() throws RemoteException{
 
-		if(organizationData==null){
+		if(organizationDataFactory==null){
 			try {
-				organizationData=new OrganizationData();
+				organizationDataFactory=new OrganizationDataFactory();
 			} catch (RemoteException e) {
 				
 				e.printStackTrace();
 			}
 		}
 		
-		return organizationData;
+		return organizationDataFactory;
 	}
 
 	public StaffDataService getStaffData() throws RemoteException{

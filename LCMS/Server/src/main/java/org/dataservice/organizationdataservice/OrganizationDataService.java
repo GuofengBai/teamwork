@@ -12,16 +12,6 @@ import org.po.ResultMessage;
 
 public interface OrganizationDataService extends Remote {
 	/**
-	 * 添加HallPO
-	 * @return ResultMessage
-	 */
-	public ResultMessage addHall(HallPO po)throws RemoteException;
-	/**
-	 * 删除HallPO
-	 * @return ResultMessage
-	 */
-	public ResultMessage delHall(String HallNum)throws RemoteException;
-	/**
 	 * 添加CenterPO
 	 * @return ResultMessage
 	 */
@@ -35,12 +25,6 @@ public interface OrganizationDataService extends Remote {
 	 * 查找HallPO
 	 * @param HallNum 营业厅编号
 	 * @return HallPO
-	 */
-	public HallPO findHall(String HallNum)throws RemoteException;
-	/**
-	 * 查找CenterPO
-	 * @param CenterNum 中转中心编号
-	 * @return CenterPO
 	 */
 	public CenterPO findCenter(String CenterNum)throws RemoteException;
 	/**
