@@ -14,7 +14,7 @@ public class HallCollectionBills extends BillsPO{
 	public HallCollectionBills(myDate date,String idNum, String name, String total, ArrayList<StateListPO> list){
 		this.Date=date;
 		this.idNum=idNum;
-		this.HallNum=idNum.substring(0, 8);
+		this.HallNum=idNum.substring(0, 7);
 		this.name=name;
 		this.total=total;
 		this.list=list;

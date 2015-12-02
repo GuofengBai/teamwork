@@ -1,7 +1,12 @@
 package org.presentation.billsui;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+
+import org.presentation.mainui.ViewController;
 
 
 public class CenterBusinessContralUI extends JPanel {
@@ -20,17 +25,41 @@ public class CenterBusinessContralUI extends JPanel {
 		label_1.setBounds(10, 35, 113, 15);
 		add(label_1);
 		
-		JButton button = new JButton("中转中心到达单生成");
-		button.setBounds(20, 60, 141, 23);
-		add(button);
+		JButton creatarrivebill = new JButton("中转中心到达单生成");
+		creatarrivebill.setBounds(20, 60, 141, 23);
+		add(creatarrivebill);
+		creatarrivebill.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JPanel next = new NewCenterArriveBillsUI();
+				ViewController.jumpToAnotherView(next);
+			}
+		});
 		
-		JButton button_1 = new JButton("中转中心中转单生成");
-		button_1.setBounds(20, 93, 141, 23);
-		add(button_1);
+		JButton creatfreightbill = new JButton("中转中心中转单生成");
+		creatfreightbill.setBounds(20, 93, 141, 23);
+		add(creatfreightbill);
+		creatfreightbill.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JPanel next = new NewCenterFreightBillsUI();
+				ViewController.jumpToAnotherView(next);
+			}
+		});
 		
-		JButton button_2 = new JButton("中转中心装车单生成");
-		button_2.setBounds(20, 126, 141, 23);
-		add(button_2);
+		JButton createntruckbill = new JButton("中转中心装车单生成");
+		createntruckbill.setBounds(20, 126, 141, 23);
+		add(createntruckbill);
+		createntruckbill.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JPanel next = new NewCenterEntruckBillsUI();
+				ViewController.jumpToAnotherView(next);
+			}
+		});
 
 	}
 }
