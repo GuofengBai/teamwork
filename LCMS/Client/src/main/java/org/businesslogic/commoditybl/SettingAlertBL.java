@@ -2,39 +2,63 @@ package org.businesslogic.commoditybl;
 
 import java.rmi.RemoteException;
 
+import org.Client.MockCommodityData;
 import org.Client.RMIHelper;
 import org.businesslogicservice.commodityblservice.SettingAlertBLService;
-
 import org.dataservice.commoditydataservice.CommodityDataService;
 import org.po.AlertPO;
 import org.po.ResultMessage;
 
 public class SettingAlertBL implements SettingAlertBLService {
 	CommodityDataService cds;
+	MockCommodityData mcd;
 
 	public boolean settingAlert(String centerNum, double alertLine) throws RemoteException {
 		// TODO Auto-generated method stub
-		AlertPO po = cds.getAlert(centerNum);
-		if (cds.setAlert(centerNum, alertLine).success)
+		//AlertPO po = cds.getAlert(centerNum);
+		/**
+		 * Mock测试
+		 */
+		
+		//AlertPO po = mcd.getAlert(centerNum);
+		if (mcd.setAlert(centerNum, alertLine).success)
 			return true;
 		else
 			return false;
+		//if (cds.setAlert(centerNum, alertLine).success)
+		//	return true;
+		//else
+		//	return false;
 
 	}
 
 	public double getAlert(String centerNum) throws RemoteException {
-		double now=cds.getComSize(centerNum);
+		//double now=cds.getComSize(centerNum);
+		//double result=now/10000;
+		/**
+		 * Mock测试
+		 */
+		double now=mcd.getComSize(centerNum);
 		double result=now/10000;
 		return result*100.0;
 	}
 
 	public SettingAlertBL() throws RemoteException {
 		// ads = RMIHelper.getDataFactory().getAlertData();
+		/**
+		 * Mock测试
+		 */
+		MockCommodityData mcd=new MockCommodityData();
 	}
 
 	public ResultMessage ALERT(String centerNum) throws RemoteException {
-		AlertPO po = cds.getAlert(centerNum);
-		int nowNum = cds.getAllCom(centerNum).size();
+		//AlertPO po = cds.getAlert(centerNum);
+		//int nowNum = cds.getAllCom(centerNum).size();
+		/**
+		 * Mock测试
+		 */
+		AlertPO po=mcd.getAlert(centerNum);
+		int nowNum=mcd.getAllCom(centerNum).size();
 		ResultMessage re;
 		String[] alert = { "执行入库将超过警报线！" };
 		String[] su = { "入库成功" };
