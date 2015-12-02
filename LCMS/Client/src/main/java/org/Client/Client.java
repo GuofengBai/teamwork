@@ -26,9 +26,24 @@ public class Client{
     	NewCenterArriveBillsUI ui=new NewCenterArriveBillsUI();
 
     	BLFactory.init();
+<<<<<<< HEAD
     	JFrame frame = new JFrame();
     	frame.setContentPane(ui);
     	frame.setVisible(true);
+=======
+    	SettingAlertUI c=new SettingAlertUI();
+
+    	JFrame f=new JFrame();
+    	f.setContentPane(c);
+    	f.setVisible(true);
+ //       ViewController.init(f);
+    	f.setSize(1700, 900);
+ //   	f.setVisible(true);
+ //   	f.add(c);
+//    	GeneralManagerUI manager=new GeneralManagerUI();
+    	//ViewController.jumpToAnotherView();
+    	
+>>>>>>> origin/master
     	
     }
 }

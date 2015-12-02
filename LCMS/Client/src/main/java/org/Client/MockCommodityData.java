@@ -45,12 +45,12 @@ public class MockCommodityData {
 		return null;
 	}
 	
-	public ResultMessage setAlert(String centerNum,double line) {
+	public ResultMessage setAlert(String centerNum1,double line) {
 		ResultMessage re;
 		String[] su={"更改成功!"};
 		String[] fa={"更改失败!"};
 		for(CenterCom center:totalList){
-			if(center.centerNum.equals(centerNum)){
+			if(center.centerNum.equals(centerNum1)){
 				center.po=new AlertPO(line);
 				return re=new ResultMessage(true,su);
 			}
@@ -107,8 +107,7 @@ public class MockCommodityData {
 		CenterCom center=new CenterCom(ComList,po.getcenterNum());
 		for (CenterCom o : totalList) {
 			if (o.centerNum.equals(center.centerNum)) {
-				totalList.remove(o);
-				totalList.add(center);
+				o=new CenterCom(ComList,po.getcenterNum());
 			}
 		}
 		ResultMessage ms;
@@ -139,20 +138,21 @@ public class MockCommodityData {
 		return null;
 	}
 
-	public ArrayList<ComPO> getAllCom(String centerNum) {
+	public ArrayList<ComPO> getAllCom(String centerNum1) {
 		
 		
 		for(CenterCom o:totalList){
-			if(o.centerNum.equals(centerNum)){
+			if(o.centerNum.equals(centerNum1)){
 				return o.ComList;
 			}
 		}
 	
 		return null;
 	}
-	public int getComSize(String centerNum) {
+	public int getComSize(String centerNum1) {
 		for(CenterCom o:totalList){
-			if(o.centerNum.equals(centerNum)){
+			if(o.centerNum.equals(centerNum1)){
+				
 				return o.ComList.size();
 			}
 		}
