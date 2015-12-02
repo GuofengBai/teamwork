@@ -47,7 +47,7 @@ public class DistrictChangeUI extends JPanel {
 	private JComboBox<String> ComBox1;
 	private JComboBox<String> ComBox2;
 	private List<String> list;
-	private String selected1;
+	private String selected1="航运区";
 	private String selected2;
 	private String to;// 移至另一个仓库
 	private String centerNum;
@@ -77,7 +77,11 @@ public class DistrictChangeUI extends JPanel {
 			public void itemStateChanged(ItemEvent evt) {
 				if (evt.getStateChange() == ItemEvent.SELECTED) {
 					selected1 = (String) ComBox1.getSelectedItem();
+					System.out.println(selected1);
+					
 					try {
+						showTable();
+						hideTable(selected1);
 						cvo1 = cbs.getDistrictCommodity(centerNum, selected1);
 					} catch (RemoteException e) {
 						// TODO Auto-generated catch block
@@ -91,7 +95,23 @@ public class DistrictChangeUI extends JPanel {
 		ComBox1.setBounds(62, 56, 82, 25);
 		this.add(ComBox1);
 	}
+	private void showTable() throws RemoteException{
+		cvo1=cbs.getDistrictCommodity(centerNum, selected1);
+		for(CommodityVO vo:cvo1){
+			model1.addRow(vo);
+		}
+	}
 
+	private void hideTable(String selected){
+		
+		for(int i=0;i<model1.getRowCount();i++){
+			if(!((String)(model1.getValueAt(i, 3))).equals(selected)){
+				model1.removeRow(i);
+				i--;
+			}
+		}
+	}
+	
 	private void initToSelecter() throws RemoteException {
 		ComBox2 = new JComboBox<String>();
 		// 获得供应商列表
@@ -107,7 +127,7 @@ public class DistrictChangeUI extends JPanel {
 			public void itemStateChanged(ItemEvent evt) {
 				if (evt.getStateChange() == ItemEvent.SELECTED) {
 					selected2 = (String) ComBox2.getSelectedItem();
-					
+					System.out.println(selected2);
 				}
 			}
 		});
@@ -125,7 +145,7 @@ public class DistrictChangeUI extends JPanel {
 				.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setViewportBorder(UIManager.getBorder("Menu.border"));
 		scrollPane.setToolTipText("");
-		scrollPane.setBounds(62, 118, 346, 218);
+		scrollPane.setBounds(62, 118, 507, 305);
 		Vector<String> vColumns = new Vector<String>();
 		vColumns.add("货运编号");
 		vColumns.add("入库日期");
@@ -138,10 +158,10 @@ public class DistrictChangeUI extends JPanel {
 		vColumns.add("中转中心编号");
 		Vector<CommodityVO> vData = new Vector<CommodityVO>();
 
-		model1 = new DefaultTableModel(cvo1, vColumns);
-		for (CommodityVO vo : cvo1) {
-			model1.addRow(vo);
-		}
+		model1 = new DefaultTableModel(vData, vColumns);
+		//for (CommodityVO vo : cvo1) {
+		//	model1.addRow(vo);
+		//}
 		this.add(scrollPane);
 		table1 = new JTable(model1) {
 			private static final long serialVersionUID = 1L;
@@ -195,43 +215,43 @@ public class DistrictChangeUI extends JPanel {
 
 	public void initTo() {
 		JLabel label_4 = new JLabel("区");
-		label_4.setBounds(460, 117, 72, 18);
+		label_4.setBounds(609, 117, 72, 18);
 		add(label_4);
 
 		JLabel label_5 = new JLabel("排");
-		label_5.setBounds(460, 172, 72, 18);
+		label_5.setBounds(609, 172, 72, 18);
 		add(label_5);
 
 		JLabel label_6 = new JLabel("架");
-		label_6.setBounds(460, 232, 72, 18);
+		label_6.setBounds(609, 232, 72, 18);
 		add(label_6);
 
 		JLabel label_7 = new JLabel("位");
-		label_7.setBounds(460, 289, 72, 18);
+		label_7.setBounds(609, 286, 72, 18);
 		add(label_7);
 
 		QU = new JTextField();
-		QU.setBounds(519, 114, 86, 24);
+		QU.setBounds(696, 114, 86, 24);
 		add(QU);
 		QU.setColumns(10);
 
 		PAI = new JTextField();
-		PAI.setBounds(519, 169, 86, 24);
+		PAI.setBounds(696, 169, 86, 24);
 		add(PAI);
 		PAI.setColumns(10);
 
 		JIA = new JTextField();
-		JIA.setBounds(519, 229, 86, 24);
+		JIA.setBounds(696, 229, 86, 24);
 		add(JIA);
 		JIA.setColumns(10);
 
 		WEI = new JTextField();
-		WEI.setBounds(519, 286, 86, 24);
+		WEI.setBounds(696, 286, 86, 24);
 		add(WEI);
 		WEI.setColumns(10);
 
 		JLabel label_8 = new JLabel("区排架位各为1位整数");
-		label_8.setBounds(669, 289, 148, 18);
+		label_8.setBounds(669, 367, 148, 18);
 		add(label_8);
 	}
 
@@ -243,12 +263,13 @@ public class DistrictChangeUI extends JPanel {
 					JOptionPane.ERROR_MESSAGE);
 			return;
 		}
+		System.out.println(index);
 		if (QU.getText() == null || PAI.getText() == null
 				|| JIA.getText() == null || WEI.getText() == null) {
-			JOptionPane.showMessageDialog(null, "请输入新的4位数字的位置号！", "",
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "请输入新的4位数字的位置号！", "",JOptionPane.ERROR_MESSAGE);
 			return;
-		} else if (Integer.parseInt(QU.getText()) > 9
+			}
+		else if (Integer.parseInt(QU.getText()) > 9
 				|| Integer.parseInt(QU.getText()) < 0
 				|| Integer.parseInt(PAI.getText()) > 9
 				|| Integer.parseInt(PAI.getText()) < 0
@@ -259,6 +280,10 @@ public class DistrictChangeUI extends JPanel {
 			JOptionPane.showMessageDialog(null, "请输入正确的(4位数字)的位置号！", "",
 					JOptionPane.ERROR_MESSAGE);
 			return;
+		}
+		else{
+			JOptionPane.showMessageDialog(null, "调整成功", "",
+					JOptionPane.ERROR_MESSAGE);
 		}
 		String location = QU.getText() + PAI.getText() + JIA.getText()
 				+ WEI.getText();
@@ -275,9 +300,10 @@ public class DistrictChangeUI extends JPanel {
 	}
 
 	public DistrictChangeUI() throws RemoteException {
-		thisstaff = CurrentStaff.getStaff();
-		if (thisstaff.workSpace.type.equals("中转中心"))
-			this.centerNum = thisstaff.workSpace.num;
+		//thisstaff = CurrentStaff.getStaff();
+		//if (thisstaff.workSpace.type.equals("中转中心"))
+		//	this.centerNum = thisstaff.workSpace.num;
+		this.centerNum="0210001";
 		cbs = BLFactory.getDistrictChangeBL();
 		initDistrictSelecter();
 		initSelecterTable();
@@ -313,7 +339,7 @@ public class DistrictChangeUI extends JPanel {
 				System.exit(0);//返回
 			}
 		});
-		button.setBounds(453, 363, 113, 27);
+		button.setBounds(669, 436, 113, 27);
 		add(button);
 
 		JButton btnNewButton = new JButton("确定");

@@ -27,13 +27,13 @@ public class Client{
   //  	DistrictChangeUI c=new DistrictChangeUI();
 
     	BLFactory.init();
-    	SettingAlertUI c=new SettingAlertUI();
+    	DistrictChangeUI c=new DistrictChangeUI();
 
     	JFrame f=new JFrame();
     	f.setContentPane(c);
     	f.setVisible(true);
  //       ViewController.init(f);
- //   	f.setSize(700, 700);
+    	f.setSize(1700, 900);
  //   	f.setVisible(true);
  //   	f.add(c);
 //    	GeneralManagerUI manager=new GeneralManagerUI();

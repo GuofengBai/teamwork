@@ -34,12 +34,14 @@ public class SettingAlertUI extends JPanel {
 		JLabel label = new JLabel("当前警报线");
 		label.setBounds(90, 90, 119, 18);
 		add(label);
-
-		JLabel alert = new JLabel("");
+		String line="";
+		System.out.println(this.centerNum);;
+		line=(String.valueOf(sabs.getAlert(this.centerNum)));
+		JLabel alert = new JLabel(line);
+		
 		alert.setBounds(222, 99, 72, 18);
 		add(alert);
 
-		alert.setText(String.valueOf(sabs.getAlert(centerNum)));
 	}
 
 	public void setAlertLine() throws RemoteException {
@@ -63,8 +65,8 @@ public class SettingAlertUI extends JPanel {
 		sabs = BLFactory.getSettingAlertBL();
 		//if (thisstaff.workSpace.type.equals("中转中心"))
 		//	this.centerNum = thisstaff.workSpace.num;
-		this.centerNum="0000000";
-		//showAlertLine();
+		this.centerNum="0210001";
+		showAlertLine();
 		setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("警报设置");

@@ -108,9 +108,10 @@ public class CheckCommodityUI extends JPanel {
 	 * Create the panel.
 	 */
 	public CheckCommodityUI() {
-		thisstaff = CurrentStaff.getStaff();
-		if (thisstaff.workSpace.type.equals("中转中心"))
-			this.centerNum = thisstaff.workSpace.num;
+		//thisstaff = CurrentStaff.getStaff();
+		//if (thisstaff.workSpace.type.equals("中转中心"))
+		//	this.centerNum = thisstaff.workSpace.num;
+		this.centerNum="0210001";
 		cbs = BLFactory.getCheckCommodityBL();
 		setLayout(null);
 		initTable();
