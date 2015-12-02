@@ -3,7 +3,6 @@ package org.po;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import org.vo.StateListVO;
 
 
 public class HallArrivingBills extends BillsPO{
