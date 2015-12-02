@@ -21,7 +21,8 @@ import org.po.ResultMessage;
 import org.po.StaffPO;
 import org.po.myDate;
 
-public class CommodityData extends UnicastRemoteObject implements CommodityDataService {
+public class CommodityData extends UnicastRemoteObject implements
+		CommodityDataService {
 
 	/**
 	 * 
@@ -34,27 +35,29 @@ public class CommodityData extends UnicastRemoteObject implements CommodityDataS
 		init();
 		// TODO Auto-generated constructor stub
 	}
-	
-	public AlertPO getAlert(String centerNum) throws RemoteException{
-		for(CenterCom center:totalList){
-			if(center.centerNum.equals(centerNum)){
+
+	public AlertPO getAlert(String centerNum) throws RemoteException {
+		for (CenterCom center : totalList) {
+			if (center.centerNum.equals(centerNum)) {
 				return center.po;
 			}
 		}
 		return null;
 	}
-	
-	public ResultMessage setAlert(String centerNum,double line) throws RemoteException{
+
+	public ResultMessage setAlert(String centerNum1, double line)
+			throws RemoteException {
 		ResultMessage re;
-		String[] su={"更改成功!"};
-		String[] fa={"更改失败!"};
-		for(CenterCom center:totalList){
-			if(center.centerNum.equals(centerNum)){
-				center.po=new AlertPO(line);
-				return re=new ResultMessage(true,su);
+		String[] su = { "更改成功!" };
+		String[] fa = { "更改失败!" };
+		for (CenterCom center : totalList) {
+			if (center.centerNum.equals(centerNum1)) {
+				center.po = new AlertPO(line);
+				save();
+				return re = new ResultMessage(true, su);
 			}
 		}
-		return re=new ResultMessage(false,fa);
+		return re = new ResultMessage(false, fa);
 	}
 
 	private void init() {
@@ -82,6 +85,7 @@ public class CommodityData extends UnicastRemoteObject implements CommodityDataS
 
 	public ResultMessage addCom(ComPO po) throws RemoteException {
 		String[] fa = { "增加失败", "已存在货运单号对应的货物" };
+		String[] used = { "该位置已有货物" };
 		ArrayList<ComPO> ComList = null;
 
 		for (CenterCom o : totalList) {
@@ -95,8 +99,18 @@ public class CommodityData extends UnicastRemoteObject implements CommodityDataS
 			if (p.getGoodsNum().equals(po.getGoodsNum())) {
 				return new ResultMessage(false, fa);
 			}
+			if (p.getcenterNum().equals(po.getcenterNum())
+					&& (p.getArea().equals(po.getArea()) && (p.LocationNum()
+							.equals(po.LocationNum())))) {
+				return new ResultMessage(false, used);
+			}
 		}
 		ComList.add(po);
+		for (CenterCom o : totalList) {
+			if (o.centerNum.equals(po.getcenterNum())) {
+				o = new CenterCom(ComList, po.getcenterNum());
+			}
+		}
 		save();
 		return new ResultMessage(true, null);
 	}
@@ -129,8 +143,14 @@ public class CommodityData extends UnicastRemoteObject implements CommodityDataS
 		for (ComPO p : ComList) {
 			if (p.getGoodsNum().equals(po.getGoodsNum())) {
 				ComList.remove(p);
-				save();
+
 				String[] info = { "更新信息成功" };
+				for (CenterCom o : totalList) {
+					if (o.centerNum.equals(po.getcenterNum())) {
+						o = new CenterCom(ComList, po.getcenterNum());
+					}
+				}
+				save();
 				ResultMessage ms = new ResultMessage(true, info);
 				return ms;
 			}
@@ -140,7 +160,6 @@ public class CommodityData extends UnicastRemoteObject implements CommodityDataS
 		return ms = new ResultMessage(false, infof);
 
 	}
-
 	@SuppressWarnings("unchecked")
 	public ComPO findCom(String GoodsNum) throws RemoteException {
 		ArrayList<ComPO> ComList = null;
@@ -163,19 +182,19 @@ public class CommodityData extends UnicastRemoteObject implements CommodityDataS
 	}
 
 	public ArrayList<ComPO> getAllCom(String centerNum) throws RemoteException {
-		
-		
-		for(CenterCom o:totalList){
-			if(o.centerNum.equals(centerNum)){
+
+		for (CenterCom o : totalList) {
+			if (o.centerNum.equals(centerNum)) {
 				return o.ComList;
 			}
 		}
-	
+
 		return null;
 	}
-	public int getComSize(String centerNum) throws RemoteException{
-		for(CenterCom o:totalList){
-			if(o.centerNum.equals(centerNum)){
+
+	public int getComSize(String centerNum) throws RemoteException {
+		for (CenterCom o : totalList) {
+			if (o.centerNum.equals(centerNum)) {
 				return o.ComList.size();
 			}
 		}
