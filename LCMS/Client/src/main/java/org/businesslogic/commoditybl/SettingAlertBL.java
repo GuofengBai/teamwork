@@ -10,8 +10,8 @@ import org.po.AlertPO;
 import org.po.ResultMessage;
 
 public class SettingAlertBL implements SettingAlertBLService {
-	CommodityDataService cds;
-	MockCommodityData mcd;
+	CommodityDataService cds=RMIHelper.getDataFactory().getCommodityData();
+	MockCommodityData mcd=new MockCommodityData();
 
 	public boolean settingAlert(String centerNum, double alertLine) throws RemoteException {
 		// TODO Auto-generated method stub
@@ -21,7 +21,7 @@ public class SettingAlertBL implements SettingAlertBLService {
 		 */
 		
 		//AlertPO po = mcd.getAlert(centerNum);
-		if (mcd.setAlert(centerNum, alertLine).success)
+		if (cds.setAlert(centerNum, alertLine).success)
 			return true;
 		else
 			return false;
@@ -38,8 +38,9 @@ public class SettingAlertBL implements SettingAlertBLService {
 		/**
 		 * Mock测试
 		 */
-		double now=mcd.getComSize(centerNum);
-		double result=now/10000;
+		int now=cds.getComSize(centerNum);
+		//int temp=3000;
+		double result=(now/10000.0);
 		return result*100.0;
 	}
 
@@ -48,7 +49,6 @@ public class SettingAlertBL implements SettingAlertBLService {
 		/**
 		 * Mock测试
 		 */
-		MockCommodityData mcd=new MockCommodityData();
 	}
 
 	public ResultMessage ALERT(String centerNum) throws RemoteException {
@@ -57,8 +57,8 @@ public class SettingAlertBL implements SettingAlertBLService {
 		/**
 		 * Mock测试
 		 */
-		AlertPO po=mcd.getAlert(centerNum);
-		int nowNum=mcd.getAllCom(centerNum).size();
+		AlertPO po=cds.getAlert(centerNum);
+		int nowNum=cds.getComSize(centerNum);
 		ResultMessage re;
 		String[] alert = { "执行入库将超过警报线！" };
 		String[] su = { "入库成功" };

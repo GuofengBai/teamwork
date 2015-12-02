@@ -28,44 +28,55 @@ public class SettingAlertUI extends JPanel {
 
 	/**
 	 * Create the panel.
-	 * @throws RemoteException 
+	 * 
+	 * @throws RemoteException
 	 */
 	public void showAlertLine() throws RemoteException {
 		JLabel label = new JLabel("当前警报线");
 		label.setBounds(90, 90, 119, 18);
 		add(label);
-		String line="";
-		System.out.println(this.centerNum);;
-		line=(String.valueOf(sabs.getAlert(this.centerNum)));
-		JLabel alert = new JLabel(line);
-		
+		String line = "";
+		line = (String.valueOf(sabs.getAlert(centerNum)));
+		System.out.println(line);
+		JLabel alert = new JLabel(line + "%");
 		alert.setBounds(222, 99, 72, 18);
 		add(alert);
+	}
 
+	public boolean isNumber(String str) {
+		if (str == null)
+			return false;
+		if (str.length() > 3)
+			return false;
+		for (int i = 0; i < str.length(); i++) {
+			if (str.charAt(i) - '0' < 0 || str.charAt(i) - '0' > 9)
+				return false;
+
+		}
+		if (str.length() == 3)
+			if (str.charAt(0) == '1' && str.charAt(1) - '0' > 0)
+				return false;
+		return false;
 	}
 
 	public void setAlertLine() throws RemoteException {
-		if (textField.getText().equals(null)) {
-			JOptionPane.showMessageDialog(null, "请输入新的警戒线！", "",
-					JOptionPane.ERROR_MESSAGE);
-		} else if (Double.parseDouble(textField.getText()) > 100.0
-				|| Double.parseDouble(textField.getText()) <= 0.0) {
+		String line = "";
+		line = textField.getText();
+		if(!isNumber(line)) {
 			JOptionPane.showMessageDialog(null, "请输入一个0-100间的警报值！", "",
 					JOptionPane.ERROR_MESSAGE);
-		}
-
-		else {
+		} else {
 			double newline = Double.parseDouble(textField.getText());
 			sabs.settingAlert(centerNum, newline);
 		}
 	}
 
 	public SettingAlertUI() throws RemoteException {
-		thisstaff = CurrentStaff.getStaff();
+		// thisstaff = CurrentStaff.getStaff();
 		sabs = BLFactory.getSettingAlertBL();
-		//if (thisstaff.workSpace.type.equals("中转中心"))
-		//	this.centerNum = thisstaff.workSpace.num;
-		this.centerNum="0210001";
+		// if (thisstaff.workSpace.type.equals("中转中心"))
+		// this.centerNum = thisstaff.workSpace.num;
+		this.centerNum = "0210001";
 		showAlertLine();
 		setLayout(null);
 
@@ -99,7 +110,7 @@ public class SettingAlertUI extends JPanel {
 		JButton button_1 = new JButton("返回");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//返回上级页面
+				// 返回上级页面
 			}
 		});
 		button_1.setBounds(422, 328, 113, 27);

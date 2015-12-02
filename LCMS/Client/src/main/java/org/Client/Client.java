@@ -27,7 +27,7 @@ public class Client{
   //  	DistrictChangeUI c=new DistrictChangeUI();
 
     	BLFactory.init();
-    	DistrictChangeUI c=new DistrictChangeUI();
+    	SettingAlertUI c=new SettingAlertUI();
 
     	JFrame f=new JFrame();
     	f.setContentPane(c);
