@@ -16,6 +16,8 @@ public class SendingBills extends BillsPO {
 	private String height;
 	private String weight;
 	private EXPRESSSTATE expressState;
+	private myDate arriveDate;
+	private String ReceiverNameReal;
 
 	public SendingBills() {
 		super();
@@ -161,5 +163,21 @@ public class SendingBills extends BillsPO {
 	
 	public EXPRESSSTATE getState(){
 		return expressState;
+	}
+	
+	public void setArriveDate(myDate d){
+		this.arriveDate=d;
+	}
+	
+	public myDate getArriveDate(){
+		return arriveDate;
+	}
+	
+	public void setReceiverNameReal(String s){
+		this.ReceiverNameReal=s;
+	}
+	
+	public String getReceiverNameReal(){
+		return ReceiverNameReal;
 	}
 }

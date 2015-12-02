@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 
-
 public class CenterArriveBills extends BillsPO{
 	private String FreightNum;
 	private ArrayList<StateListPO> po;
