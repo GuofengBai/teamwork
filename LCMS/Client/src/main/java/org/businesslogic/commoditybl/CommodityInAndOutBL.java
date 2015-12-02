@@ -22,7 +22,7 @@ public class CommodityInAndOutBL implements CommodityInAndOutBLService {
 		/**
 		 * Mock测试
 		 */
-		MockCommodityData mcd=new MockCommodityData();
+		//MockCommodityData mcd=new MockCommodityData();
 		
 		
 		SettingAlertBLService sabs = BLFactory.getSettingAlertBL();
@@ -31,7 +31,7 @@ public class CommodityInAndOutBL implements CommodityInAndOutBLService {
 		String[] su = { "入库成功" };
 		String[] fa = { "入库成功但是货物量已经超过警戒线!" };
 		String[] fai = { "入库失败" };
-		ResultMessage rem=mcd.addCom(po);
+		ResultMessage rem=cds.addCom(po);
 		if(rem.success&&!sabs.ALERT(po.getcenterNum()).success){
 			return re = new ResultMessage(true, fa);
 		}
@@ -51,12 +51,12 @@ public class CommodityInAndOutBL implements CommodityInAndOutBLService {
 		/**
 		 * Mock测试
 		 */
-		MockCommodityData mcd=new MockCommodityData();
+		//MockCommodityData mcd=new MockCommodityData();
 		
 		
 		SettingAlertBLService sabs = BLFactory.getSettingAlertBL();
 		ResultMessage re;
-		ResultMessage rem=mcd.delCom(po);
+		ResultMessage rem=cds.delCom(po);
 		String[] su = { "出库成功" };
 		String[] fa = { "出库失败" };
 		
