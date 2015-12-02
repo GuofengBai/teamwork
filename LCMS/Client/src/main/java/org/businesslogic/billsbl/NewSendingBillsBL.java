@@ -20,8 +20,9 @@ public class NewSendingBillsBL implements NewSendingBillsBLService{
 	public ResultMessage addSendingBills(SBVO vo) {
 		// TODO Auto-generated method stub
 		ResultMessage message=null;
+		BillsDataService billsData;
 		try {
-			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewSendingBillsData();
+			billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewSendingBillsData();
 			message=billsData.addBills(new SendingBills(vo.sendername,vo.receivername,vo.senderphone,vo.receiverphone,
 					vo.senderlocation,vo.receiverlocation,vo.date,vo.goodsnumber,vo.box,vo.send,vo.length,vo.width,
 					vo.height,vo.weight));

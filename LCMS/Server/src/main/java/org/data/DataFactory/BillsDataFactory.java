@@ -70,7 +70,7 @@ public class BillsDataFactory  extends UnicastRemoteObject implements BillsDataF
 				e.printStackTrace();
 			}
 		}
-		return null;
+		return newSendingBillsData;
 	}
 
 	public NewCenterArriveBillsDataService getNewCenterArriveBillsData() throws RemoteException{
