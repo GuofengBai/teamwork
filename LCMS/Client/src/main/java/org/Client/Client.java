@@ -24,13 +24,13 @@ public class Client{
     {
     	RMIHelper.init();
 
-    	NewInstorageBillsUI ui=new NewInstorageBillsUI();
+    	UserUI ui=new UserUI();
 
     	BLFactory.init();
     	JFrame frame = new JFrame();
     	frame.setContentPane(ui);
     	frame.setVisible(true);
 
-    	
+    	frame.setSize(900, 600);
     }
 }

@@ -12,13 +12,16 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import org.dataservice.userdataservice.UserDataService;
-import org.po.ComPO;
 import org.po.ResultMessage;
 import org.po.StaffPO;
 import org.po.UserPO;
 
 public class UserData extends UnicastRemoteObject implements UserDataService {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public ArrayList<UserPO> UserList;
 	public String role;
 
@@ -28,6 +31,7 @@ public class UserData extends UnicastRemoteObject implements UserDataService {
 		// TODO Auto-generated constructor stub
 	}
 
+	@SuppressWarnings("unchecked")
 	private void init() {
 		// TODO Auto-generated method stub
 		String fileName = "SerializableData/User.file";
@@ -62,13 +66,19 @@ public class UserData extends UnicastRemoteObject implements UserDataService {
 
 	public UserPO find(String account,String password) throws RemoteException{
         for(UserPO po:UserList){
-        	if(po.getAccount().equals(account)&&po.getPassword().equals(password)){
+        	if((po.getAccount().equals(account))&&(po.getPassword().equals(password))){
+        		System.out.println("Data success");
+        		System.out.println(po.getAccount()+" "+po.getPassword());
         		return po;
         	}
-        	else 
-        		return new UserPO("登录错误","密码错误",new StaffPO());
+        	else if((po.getAccount().equals(account))&&!(po.getPassword().equals(password))){
+        		System.out.println("Data wrong");
+        		return new UserPO("登录错误","密码错误","-1");
+        	}
+        		
         }
-        return new UserPO("用户名不存在","用户名不存在",new StaffPO());
+        System.out.println("Data wrong");
+        return new UserPO("用户名不存在","用户名不存在","-1");
 	}
 
 	private ResultMessage save() {

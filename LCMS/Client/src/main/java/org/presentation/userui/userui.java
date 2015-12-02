@@ -59,6 +59,7 @@ public class UserUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					login();
+					System.out.println("0");
 				} catch (HeadlessException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
