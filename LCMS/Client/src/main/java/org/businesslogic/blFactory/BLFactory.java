@@ -2,6 +2,7 @@ package org.businesslogic.blFactory;
 
 import java.rmi.RemoteException;
 
+import org.businesslogic.billsbl.ExamineBillsBL;
 import org.businesslogic.billsbl.NewCenterArriveBillsBL;
 import org.businesslogic.billsbl.NewCenterEntruckBillsBL;
 import org.businesslogic.billsbl.NewCenterFreightBillsBL;
@@ -30,6 +31,7 @@ import org.businesslogic.managebl.StatusTableBL;
 import org.businesslogic.organizationbl.OrganizationBL;
 import org.businesslogic.staffbl.StaffBL;
 import org.businesslogic.userbl.UserBL;
+import org.businesslogicservice.billsblservice.ExamineBillsBLService;
 import org.businesslogicservice.billsblservice.NewCenterArriveBillsBLService;
 import org.businesslogicservice.billsblservice.NewCenterEntruckBillsBLService;
 import org.businesslogicservice.billsblservice.NewCenterFreightBillsBLService;
@@ -86,6 +88,7 @@ public class BLFactory {
 	public static CheckCommodityBLService checkcommodityBL;
 	public static DistrictChangeBLService districtchangeBL;
 	public static ExamineCommodityBLService examinecommoditybl;
+	public static ExamineBillsBLService examineBillsBL;
 	
 	public static AccountManagementBLService accountManagementBL;
 	public static BeginAccountBLService beginAccountBL;
@@ -113,6 +116,7 @@ public class BLFactory {
 		newInstorageBillsBL = null;
 		newOutstorageBillsBL = null;
 		newPayingBillsBL = null;
+		examineBillsBL=null;
 		
 		accountManagementBL=null;
 		beginAccountBL=null;
@@ -309,6 +313,13 @@ public class BLFactory {
 		}
 		return districtchangeBL;
 
+	}
+	
+	public static ExamineBillsBLService getExamineBillsBL(){
+		if(examineBillsBL==null){
+			examineBillsBL=new ExamineBillsBL();
+		}
+		return examineBillsBL;
 	}
 	
 	public static AccountManagementBLService getAccountManagementBL(){
