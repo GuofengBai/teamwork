@@ -67,17 +67,17 @@ public class UserData extends UnicastRemoteObject implements UserDataService {
 	public UserPO find(String account,String password) throws RemoteException{
         for(UserPO po:UserList){
         	if((po.getAccount().equals(account))&&(po.getPassword().equals(password))){
-        		System.out.println("Data success");
+        		//System.out.println("Data success");
         		System.out.println(po.getAccount()+" "+po.getPassword());
         		return po;
         	}
         	else if((po.getAccount().equals(account))&&!(po.getPassword().equals(password))){
-        		System.out.println("Data wrong");
+        		//System.out.println("Data wrong");
         		return new UserPO("登录错误","密码错误","-1");
         	}
         		
         }
-        System.out.println("Data wrong");
+       // System.out.println("Data wrong");
         return new UserPO("用户名不存在","用户名不存在","-1");
 	}
 

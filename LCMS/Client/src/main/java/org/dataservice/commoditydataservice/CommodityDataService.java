@@ -27,4 +27,5 @@ public interface CommodityDataService extends Remote{
 	public ResultMessage setAlert(String centerNum,double line) throws RemoteException;
 	public AlertPO getAlert(String centerNum) throws RemoteException;
 	public int getComSize(String centerNum) throws RemoteException;
+	public ResultMessage addNewCity(String centerNum) throws RemoteException;
 }

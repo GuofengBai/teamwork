@@ -200,4 +200,20 @@ public class CommodityData extends UnicastRemoteObject implements
 		}
 		return -1;
 	}
+	/**
+	 * 新增城市时的方法
+	 */
+	public ResultMessage addNewCity(String centerNum) throws RemoteException{
+		String[] fa={"新增失败"};
+		String[] su={"新增成功"};
+		
+		for (CenterCom o : totalList) {
+			if (o.centerNum.equals(centerNum)) {
+				return new ResultMessage(false,fa);
+			}
+		}
+		
+		totalList.add(new CenterCom(new ArrayList<ComPO>(),centerNum));
+		return new ResultMessage(true,su);
+	}
 }
