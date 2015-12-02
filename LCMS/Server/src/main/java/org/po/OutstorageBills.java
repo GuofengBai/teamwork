@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 
+
 public class OutstorageBills extends BillsPO{
 	private myDate date;
 	private String centerNum;

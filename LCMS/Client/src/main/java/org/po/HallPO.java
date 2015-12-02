@@ -10,13 +10,13 @@ public class HallPO implements Serializable {
 	private String HallNum;// 营业厅编号，三位城市+1位+三位编号
 	private String cityName;// 城市名称
 	private String name;//营业厅名称
-	private double[] distanceToOtherCities;// 到其他城市的距离，数组长度为当前城市数
+	private String concreteLocation;//营业厅详细地址，用文字描述
 
-	public HallPO(String HallNum, String cityName, String name,double[] distanceToOtherCities) {
+	public HallPO(String HallNum, String cityName, String name,String loc) {
 		this.HallNum = HallNum;
 		this.cityName = cityName;
 		this.name=name;
-		this.distanceToOtherCities = distanceToOtherCities;
+		this.concreteLocation=loc;
 	}
 
 	public String getHallNum() {
@@ -30,10 +30,6 @@ public class HallPO implements Serializable {
 		return name;
 	}
 
-	public double[] getdistanceToOtherCities() {
-		return distanceToOtherCities;
-	}
-
 	public void setHallNum(String HallNum) {
 		this.HallNum = HallNum;
 		// 不知道哪用
@@ -41,12 +37,11 @@ public class HallPO implements Serializable {
 	public void setname(String name){
 		this.name=name;
 	}
+	public String getLocation(){
+		return this.concreteLocation;
+	}
+	public void setLocation(String loc){
+		this.concreteLocation=loc;
+	}
 
-	public void setdistanceToOtherCities(double[] distanceToOtherCities) {
-		this.distanceToOtherCities = distanceToOtherCities;
-		// 改变城市间距离时用
-	}
-	public void del(){
-		
-	}
 }
