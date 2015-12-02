@@ -1,20 +1,18 @@
 package org.businesslogicservice.organizationblservice;
 
 import org.po.HallPO;
+import org.vo.HallVO;
 
 public interface HallBLService {
 	/**
-	 * 启动新增营业厅
-	 * @param city中转中心编号
-	 * @param CenterNum 营业厅编号
-	 * @param name 营业厅名称
-	 * @return 返回启动是否成功
+	 * @param vo 营业厅
+	 * @return 返回添加是否成功
 	 */
-	public HallPO AddHallbl(String city, String CenterNum, String name,String HallNum);
+	public boolean AddHall(HallVO vo);
 	/**
 	 * 启动删除营业厅
 	 * @param HallNum 营业厅编号
-	 * @return 返回启动是否成功
+	 * @return 返回删除是否成功
 	 */
-	public boolean DelHallbl(String HallNum);
+	public boolean DelHall(String HallNum);
 }
