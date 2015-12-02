@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.manageblservice.NewBeginAccountBLService;
 import org.po.ResultMessage;
+import org.presentation.mainui.ViewController;
 
 
 public class NewBeginAccountUI extends JPanel{
@@ -153,6 +154,8 @@ public class NewBeginAccountUI extends JPanel{
 			
 			if(message.success){
 				//页面跳转
+				BeginAccountUI ui=new BeginAccountUI();
+				ViewController.jumpToAnotherView(ui);
 			}else{
 				
 			}
@@ -165,7 +168,8 @@ public class NewBeginAccountUI extends JPanel{
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			
+			BeginAccountUI ui=new BeginAccountUI();
+			ViewController.jumpToAnotherView(ui);
 		}
 		
 	}

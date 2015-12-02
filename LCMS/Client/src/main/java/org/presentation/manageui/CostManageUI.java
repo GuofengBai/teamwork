@@ -20,6 +20,8 @@ import javax.swing.table.DefaultTableModel;
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.manageblservice.CostManagementBLService;
 import org.po.ResultMessage;
+import org.presentation.billsui.NewPayingBillsUI;
+import org.presentation.mainui.ViewController;
 import org.vo.PayingBillVO;
 
 
@@ -27,6 +29,11 @@ public class CostManageUI extends JPanel{
 	private JPanel panel = this;
 	private JFrame frame;
 	private JTable table;
+	
+	private JButton addButton;
+	private JButton delButton;
+	private JButton changeButton;
+	private JButton backButton;
 	
 	DefaultTableModel model;
 	private Vector<PayingBillVO> tableContent;
@@ -72,17 +79,20 @@ public class CostManageUI extends JPanel{
 		label.setBounds(187, 10, 54, 15);
 		panel.add(label);
 		
-		JButton newBillButton = new JButton("\u65B0\u5EFA\u4ED8\u6B3E\u5355");
-		newBillButton.setBounds(23, 199, 93, 23);
-		panel.add(newBillButton);
+		addButton = new JButton("\u65B0\u5EFA\u4ED8\u6B3E\u5355");
+		addButton.setBounds(23, 199, 93, 23);
+		panel.add(addButton);
+		addButton.addActionListener(new addButtonListener());
 		
-		JButton delete = new JButton("\u5220\u9664\u4ED8\u6B3E\u5355");
-		delete.setBounds(303, 199, 93, 23);
-		panel.add(delete);
+		delButton = new JButton("\u5220\u9664\u4ED8\u6B3E\u5355");
+		delButton.setBounds(303, 199, 93, 23);
+		panel.add(delButton);
+		delButton.addActionListener(new delButtonListener());
 		
-		JButton change = new JButton("\u4FEE\u6539");
-		change.setBounds(171, 199, 70, 23);
-		panel.add(change);
+		changeButton = new JButton("\u4FEE\u6539");
+		changeButton.setBounds(171, 199, 70, 23);
+		panel.add(changeButton);
+		changeButton.addActionListener(new changeButtonListener());
 		
 		JLabel label_1 = new JLabel("\u4ED8\u6B3E\u5355\u5217\u8868");
 		label_1.setBounds(23, 39, 79, 15);
@@ -117,9 +127,10 @@ public class CostManageUI extends JPanel{
 		billList.setBounds(23, 68, 401, 121);
 		panel.add(billList);
 		
-		JButton back = new JButton("\u8FD4\u56DE");
-		back.setBounds(330, 229, 79, 23);
-		panel.add(back);
+		backButton = new JButton("\u8FD4\u56DE");
+		backButton.setBounds(330, 229, 79, 23);
+		panel.add(backButton);
+		backButton.addActionListener(new backButtonListener());
 
 	}
 	
@@ -127,6 +138,8 @@ public class CostManageUI extends JPanel{
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
+			NewPayingBillsUI ui=new NewPayingBillsUI();
+			ViewController.jumpToAnotherView(ui);
 			
 		}
 		
@@ -162,7 +175,8 @@ public class CostManageUI extends JPanel{
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			
+			FinacialStaffView ui=new FinacialStaffView();
+			ViewController.jumpToAnotherView(ui);
 		}
 		
 	}

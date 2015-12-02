@@ -17,6 +17,7 @@ import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.manageblservice.BeginAccountBLService;
 import org.po.BeginAccountPO;
 import org.po.ResultMessage;
+import org.presentation.mainui.ViewController;
 import org.vo.BankAccountVO;
 import org.vo.BeginAccountVO;
 
@@ -26,6 +27,10 @@ public class BeginAccountUI extends JPanel{
 	private JPanel panel = this;
 	private JFrame frame;
 	private JTable table;
+	
+	private JButton backButton;
+	private JButton addButton;
+	private JButton deleteButton;
 	
 	private Vector<BeginAccountVO> tableContent;
 	DefaultTableModel model;
@@ -71,7 +76,7 @@ public class BeginAccountUI extends JPanel{
 		label.setBounds(185, 10, 54, 15);
 		panel.add(label);
 		
-		JButton backButton = new JButton("\u8FD4\u56DE");
+		backButton = new JButton("\u8FD4\u56DE");
 		backButton.setBounds(306, 229, 93, 23);
 		panel.add(backButton);
 		backButton.addActionListener(new backButtonListener());
@@ -123,12 +128,12 @@ public class BeginAccountUI extends JPanel{
 		scrollPane.setBounds(37, 75, 362, 87);
 		panel.add(scrollPane);
 		
-		JButton addButton = new JButton("\u65B0\u5EFA");
+		addButton = new JButton("\u65B0\u5EFA");
 		addButton.setBounds(37, 185, 93, 23);
 		panel.add(addButton);
 		addButton.addActionListener(new addButtonListener());
 		
-		JButton deleteButton = new JButton("\u5220\u9664");
+		deleteButton = new JButton("\u5220\u9664");
 		deleteButton.setBounds(165, 185, 93, 23);
 		panel.add(deleteButton);
 		deleteButton.addActionListener(new deleteButtonListener());
@@ -139,7 +144,8 @@ public class BeginAccountUI extends JPanel{
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			
+			NewBeginAccountUI ui=new NewBeginAccountUI();
+			ViewController.jumpToAnotherView(ui);
 		}
 		
 	}
@@ -175,7 +181,8 @@ public class BeginAccountUI extends JPanel{
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			
+			FinacialStaffView ui=new FinacialStaffView();
+			ViewController.jumpToAnotherView(ui);
 		}
 		
 	}

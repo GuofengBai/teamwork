@@ -15,7 +15,15 @@ public class FinacialStaffView extends JPanel{
 
 	private JFrame frame;
 	private JPanel panel = this;
-
+	
+	private JButton backButton;
+	private JButton incomeButton;
+	private JButton paymentButton;
+	private JButton beginaccountButton;
+	private JButton accountButton;
+	private JButton earningButton;
+	private JButton statusButton;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -43,55 +51,109 @@ public class FinacialStaffView extends JPanel{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+//		frame = new JFrame();
+//		frame.setBounds(100, 100, 450, 300);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.getContentPane().setLayout(null);
 		
 
 		panel.setBounds(0, 0, 434, 262);
-		frame.getContentPane().add(panel);
+//		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel label = new JLabel("\u8D22\u52A1\u7BA1\u7406");
 		label.setBounds(182, 10, 54, 15);
 		panel.add(label);
 		
-		JButton backButton = new JButton("\u8FD4\u56DE");
+		backButton = new JButton("\u8FD4\u56DE");
 		backButton.setBounds(302, 229, 93, 23);
 		panel.add(backButton);
+		backButton.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 		
-		JButton incomeButton = new JButton("\u7ED3\u7B97\u7BA1\u7406");
+		incomeButton = new JButton("\u7ED3\u7B97\u7BA1\u7406");
 		incomeButton.setBounds(75, 69, 93, 23);
 		panel.add(incomeButton);
 		incomeButton.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-			
+				IncomeManagementUI ui=new IncomeManagementUI();
+				ViewController.jumpToAnotherView(ui);
 			}
 			
 		});
 		
-		JButton paymentButton = new JButton("\u6210\u672C\u7BA1\u7406");
+		paymentButton = new JButton("\u6210\u672C\u7BA1\u7406");
 		paymentButton.setBounds(240, 69, 93, 23);
 		panel.add(paymentButton);
+		paymentButton.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				CostManageUI ui=new CostManageUI();
+				ViewController.jumpToAnotherView(ui);
+			}
+			
+		});
 		
-		JButton beginaccoutButton = new JButton("\u671F\u521D\u5EFA\u8D26");
-		beginaccoutButton.setBounds(75, 123, 93, 23);
-		panel.add(beginaccoutButton);
+		beginaccountButton = new JButton("\u671F\u521D\u5EFA\u8D26");
+		beginaccountButton.setBounds(75, 123, 93, 23);
+		panel.add(beginaccountButton);
+		beginaccountButton.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				BeginAccountUI ui=new BeginAccountUI();
+				ViewController.jumpToAnotherView(ui);
+			}
+			
+		});
 		
-		JButton accountButton = new JButton("\u8D26\u6237\u7BA1\u7406");
+		accountButton = new JButton("\u8D26\u6237\u7BA1\u7406");
 		accountButton.setBounds(240, 123, 93, 23);
 		panel.add(accountButton);
+		accountButton.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				AccountManageUI ui=new AccountManageUI();
+				ViewController.jumpToAnotherView(ui);
+			}
+			
+		});
 		
-		JButton earningButton = new JButton("\u6210\u672C\u6536\u76CA\u8868");
+		earningButton = new JButton("\u6210\u672C\u6536\u76CA\u8868");
 		earningButton.setBounds(75, 177, 93, 23);
 		panel.add(earningButton);
+		earningButton.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				IncomeTableUI ui=new IncomeTableUI();
+				ViewController.jumpToAnotherView(ui);
+			}
+			
+		});
 		
-		JButton statusButton = new JButton("\u7ECF\u8425\u60C5\u51B5\u8868");
+		statusButton = new JButton("\u7ECF\u8425\u60C5\u51B5\u8868");
 		statusButton.setBounds(240, 177, 93, 23);
 		panel.add(statusButton);
+		statusButton.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				StatusTableUI ui=new StatusTableUI();
+				ViewController.jumpToAnotherView(ui);
+			}
+			
+		});
 	}
 
 }

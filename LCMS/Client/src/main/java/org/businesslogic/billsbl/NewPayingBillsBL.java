@@ -1,26 +1,36 @@
 package org.businesslogic.billsbl;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import org.Client.RMIHelper;
 import org.businesslogicservice.billsblservice.NewPayingBillsBLService;
+import org.dataservice.billsdataservice.BillsDataService;
+import org.dataservice.managedataservice.AccountManagementDataService;
+import org.po.PayingBills;
 import org.po.ResultMessage;
 import org.po.myDate;
 
 public class NewPayingBillsBL implements NewPayingBillsBLService{
 
-	public ResultMessage addPayingBills(myDate date, String name, String PayNum) {
+	public ResultMessage addPayingBills(PayingBills bill) {
 		// TODO Auto-generated method stub
-		return null;
+		ResultMessage message=null;
+		
+		try {
+			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewPayingBillsData();
+			message=billsData.addBills(bill);
+			
+			AccountManagementDataService accountData=RMIHelper.getDataFactory().getManageDataFactory().getAccountManagementData();
+//			accountData.changeBalance(bill.getname(), (int)(-bill.getMoney()));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return message;
 	}
 
-	public ArrayList addItem(String Item, String cash) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	public ArrayList deleteItem(String Item) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

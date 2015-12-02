@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.manageblservice.IncomeTableBLService;
+import org.presentation.mainui.ViewController;
 
 
 public class IncomeTableUI extends JPanel{
@@ -100,7 +101,8 @@ public class IncomeTableUI extends JPanel{
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			
+			FinacialStaffView ui=new FinacialStaffView();
+			ViewController.jumpToAnotherView(ui);
 		}
 		
 	}

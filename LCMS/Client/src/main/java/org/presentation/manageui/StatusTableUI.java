@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.manageblservice.StatusTableBLService;
 import org.po.myDate;
+import org.presentation.mainui.ViewController;
 import org.vo.IncomeBillVO;
 import org.vo.PayingBillVO;
 
@@ -199,7 +200,8 @@ public class StatusTableUI extends JPanel{
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			
+			FinacialStaffView ui=new FinacialStaffView();
+			ViewController.jumpToAnotherView(ui);
 		}
 		
 	}

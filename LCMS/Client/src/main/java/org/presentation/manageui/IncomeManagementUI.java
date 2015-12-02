@@ -18,6 +18,7 @@ import org.businesslogic.blFactory.BLFactory;
 import org.businesslogic.managebl.IncomeManagementBL;
 import org.businesslogicservice.manageblservice.IncomeManagementBLService;
 import org.po.myDate;
+import org.presentation.mainui.ViewController;
 import org.vo.IncomeBillVO;
 
 
@@ -190,7 +191,8 @@ public class IncomeManagementUI extends JPanel{
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			
+			FinacialStaffView ui=new FinacialStaffView();
+			ViewController.jumpToAnotherView(ui);
 		}
 		
 	}

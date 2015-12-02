@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.manageblservice.AccountManagementBLService;
 import org.po.ResultMessage;
+import org.presentation.mainui.ViewController;
 import org.vo.BankAccountVO;
 
 
@@ -30,10 +31,17 @@ public class AccountManageUI extends JPanel{
 	private JTable searchTable;
 	private JTextField newNameField;
 	
+	private JButton backButton;
+	private JButton deleteButton;
+	private JButton addButton;
+	private JButton searchButton;
+	private JButton changeButton;
+	
 	private Vector<BankAccountVO> tableContent;
 	DefaultTableModel model;
 	private Vector<BankAccountVO> searchtableContent;
 	DefaultTableModel searchmodel;
+	
 	
 	
 	
@@ -122,12 +130,12 @@ public class AccountManageUI extends JPanel{
 		scrollPane.setBounds(40, 75, 346, 91);
 		panel.add(scrollPane);
 		
-		JButton backButton = new JButton("\u8FD4\u56DE");
+		backButton = new JButton("\u8FD4\u56DE");
 		backButton.setBounds(293, 629, 93, 23);
 		panel.add(backButton);
-		backButton.addActionListener(new addButtonListener());
+		backButton.addActionListener(new backButtonListener());
 		
-		JButton deleteButton = new JButton("\u5220\u9664");
+		deleteButton = new JButton("\u5220\u9664");
 		deleteButton.setBounds(40, 176, 93, 23);
 		panel.add(deleteButton);
 		deleteButton.addActionListener(new deleteButtonListener());
@@ -145,7 +153,7 @@ public class AccountManageUI extends JPanel{
 		panel.add(accountNameField);
 		accountNameField.setColumns(10);
 		
-		JButton addButton = new JButton("\u6DFB\u52A0");
+		addButton = new JButton("\u6DFB\u52A0");
 		addButton.setBounds(263, 361, 93, 23);
 		panel.add(addButton);
 		addButton.addActionListener(new addButtonListener());
@@ -160,7 +168,7 @@ public class AccountManageUI extends JPanel{
 		panel.add(namepartField);
 		namepartField.setColumns(10);
 		
-		JButton searchButton = new JButton("\u67E5\u627E");
+		searchButton = new JButton("\u67E5\u627E");
 		searchButton.setBounds(263, 446, 93, 23);
 		panel.add(searchButton);
 		searchButton.addActionListener(new searchButtonListener());
@@ -209,7 +217,7 @@ public class AccountManageUI extends JPanel{
 		label_6.setBounds(40, 253, 54, 15);
 		panel.add(label_6);
 		
-		JButton changeButton = new JButton("修改");
+		changeButton = new JButton("修改");
 		changeButton.setBounds(263, 249, 93, 23);
 		panel.add(changeButton);
 		changeButton.addActionListener(new changeButtonListener());
@@ -297,7 +305,8 @@ public class AccountManageUI extends JPanel{
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			
+			FinacialStaffView ui=new FinacialStaffView();
+			ViewController.jumpToAnotherView(ui);
 		}
 		
 	}

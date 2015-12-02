@@ -1,4 +1,7 @@
 package org.presentation.billsui;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -7,18 +10,26 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
+import org.businesslogic.blFactory.BLFactory;
+import org.businesslogicservice.billsblservice.NewPayingBillsBLService;
+import org.po.PayingBills;
+import org.po.ResultMessage;
+import org.po.myDate;
+import org.presentation.mainui.ViewController;
+import org.presentation.manageui.CostManageUI;
+
 
 public class NewPayingBillsUI extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTable table;
-	private JButton button_2;
-
+	private JTextField yearField;
+	private JTextField monthField;
+	private JTextField dayField;
+	private JTextField nameField;
+	private JTextField accountField;
+	private JTextField itemField;
+	private JTextField moneyField;
+	private JButton addButton;
+	private JTextField remarkField;
+	private JButton backButton;
 	/**
 	 * Create the panel.
 	 */
@@ -29,89 +40,112 @@ public class NewPayingBillsUI extends JPanel {
 		label.setBounds(10, 13, 48, 15);
 		add(label);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(63, 10, 66, 21);
-		add(textField);
+		yearField = new JTextField();
+		yearField.setColumns(10);
+		yearField.setBounds(63, 10, 66, 21);
+		add(yearField);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(134, 10, 66, 21);
-		add(textField_1);
+		monthField = new JTextField();
+		monthField.setColumns(10);
+		monthField.setBounds(134, 10, 66, 21);
+		add(monthField);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(205, 10, 66, 21);
-		add(textField_2);
+		dayField = new JTextField();
+		dayField.setColumns(10);
+		dayField.setBounds(205, 10, 66, 21);
+		add(dayField);
 		
 		JLabel label_1 = new JLabel("付款人姓名");
-		label_1.setBounds(10, 38, 60, 15);
+		label_1.setBounds(10, 41, 60, 15);
 		add(label_1);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(80, 35, 120, 21);
-		add(textField_3);
-		textField_3.setColumns(10);
+		nameField = new JTextField();
+		nameField.setBounds(80, 35, 120, 21);
+		add(nameField);
+		nameField.setColumns(10);
 		
 		JLabel label_2 = new JLabel("付款账号");
-		label_2.setBounds(10, 63, 54, 15);
+		label_2.setBounds(10, 76, 54, 15);
 		add(label_2);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(63, 60, 208, 21);
-		add(textField_4);
-		textField_4.setColumns(10);
+		accountField = new JTextField();
+		accountField.setBounds(80, 73, 208, 21);
+		add(accountField);
+		accountField.setColumns(10);
 		
 		JLabel label_3 = new JLabel("款项");
-		label_3.setBounds(10, 88, 37, 15);
+		label_3.setBounds(21, 120, 37, 15);
 		add(label_3);
 		
-		textField_5 = new JTextField();
-		textField_5.setBounds(52, 85, 219, 21);
-		add(textField_5);
-		textField_5.setColumns(10);
+		itemField = new JTextField();
+		itemField.setBounds(80, 117, 219, 21);
+		add(itemField);
+		itemField.setColumns(10);
 		
 		JLabel label_4 = new JLabel("金额");
-		label_4.setBounds(10, 113, 37, 15);
+		label_4.setBounds(21, 156, 37, 15);
 		add(label_4);
 		
-		textField_6 = new JTextField();
-		textField_6.setBounds(52, 110, 77, 21);
-		add(textField_6);
-		textField_6.setColumns(10);
+		moneyField = new JTextField();
+		moneyField.setBounds(80, 153, 77, 21);
+		add(moneyField);
+		moneyField.setColumns(10);
 		
-		JButton button = new JButton("添加");
-		button.setBounds(134, 109, 66, 23);
-		add(button);
+		addButton = new JButton("提交");
+		addButton.setBounds(80, 251, 93, 23);
+		add(addButton);
+		addButton.addActionListener(new addButtonListener());
 		
-		JButton button_1 = new JButton("删除");
-		button_1.setBounds(205, 109, 66, 23);
-		add(button_1);
+		JLabel label_5 = new JLabel("备注");
+		label_5.setBounds(21, 192, 37, 15);
+		add(label_5);
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-			},
-			new String[] {
-				"\u6B3E\u9879", "\u91D1\u989D"
-			}
-		));
-		table.setBounds(10, 138, 261, 90);
-
+		backButton = new JButton("取消");
+		backButton.setBounds(223, 251, 93, 23);
+		add(backButton);
+		backButton.addActionListener(new backButtonListener());
 		
-		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(10, 138, 261, 90);
-		add(scrollPane);
-		
-		button_2 = new JButton("提交");
-		button_2.setBounds(95, 238, 93, 23);
-		add(button_2);
+		remarkField = new JTextField();
+		remarkField.setBounds(80, 189, 219, 21);
+		add(remarkField);
+		remarkField.setColumns(10);
 
 	}
+	
+	class addButtonListener implements ActionListener{
 
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			int year=Integer.parseInt(yearField.getText());
+			int month=Integer.parseInt(monthField.getText());
+			int day=Integer.parseInt(dayField.getText());
+			myDate date=new myDate(year,month,day);
+			String name=nameField.getText();
+			String accountName=accountField.getText();
+			String item=itemField.getText();
+			long money=Long.parseLong(moneyField.getText());
+			String remark=remarkField.getText();
+			
+			PayingBills bill=new PayingBills(date,name,accountName,item,money,remark);
+			
+			NewPayingBillsBLService billBL=BLFactory.getNewPayingBillsBL();
+			
+			ResultMessage message=billBL.addPayingBills(bill);
+			
+			CostManageUI ui=new CostManageUI();
+			ViewController.jumpToAnotherView(ui);
+			
+			
+		}
+		
+	}
+	class backButtonListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			CostManageUI ui=new CostManageUI();
+			ViewController.jumpToAnotherView(ui);
+		}
+		
+	}
 }
