@@ -1,9 +1,10 @@
 package org.businesslogicservice.billsblservice;
 
 import org.po.ResultMessage;
+import org.po.myDate;
 
 public interface ReceiveMessageBLService {
 	
-	public ResultMessage addMessage();
+	public Boolean addMessage(String goodNum, String receiverName, myDate date);
 
 }
