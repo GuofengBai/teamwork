@@ -111,7 +111,7 @@ public class CheckCommodityUI extends JPanel {
 		//thisstaff = CurrentStaff.getStaff();
 		//if (thisstaff.workSpace.type.equals("中转中心"))
 		//	this.centerNum = thisstaff.workSpace.num;
-		this.centerNum="0210001";
+		this.centerNum="0250001";
 		cbs = BLFactory.getCheckCommodityBL();
 		setLayout(null);
 		initTable();
