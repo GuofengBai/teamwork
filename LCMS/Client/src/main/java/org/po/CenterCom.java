@@ -1,8 +1,9 @@
 package org.po;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class CenterCom {
+public class CenterCom implements Serializable{
 	
 	public ArrayList<ComPO> ComList;
 	
@@ -21,3 +22,4 @@ public class CenterCom {
 		po=new AlertPO(0.7);
 	}
 }
+
