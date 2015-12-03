@@ -226,6 +226,10 @@ public class NewSendingBillsUI extends JPanel {
 		JButton submit = new JButton("\u63D0\u4EA4");
 		submit.setBounds(115, 264, 93, 23);
 		add(submit);
+		
+		JLabel suggest = new JLabel("");
+		suggest.setBounds(21, 297, 289, 15);
+		add(suggest);
 		submit.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {
