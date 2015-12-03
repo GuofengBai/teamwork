@@ -24,7 +24,7 @@ public class Client{
     {
     	RMIHelper.init();
 
-    	UserUI ui=new UserUI();
+    	ExamineCommodityUI ui=new ExamineCommodityUI();
 
     	BLFactory.init();
     	JFrame frame = new JFrame();

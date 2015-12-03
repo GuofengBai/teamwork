@@ -152,8 +152,9 @@ public class ExamineCommodityUI extends JPanel {
 
 	public ExamineCommodityUI() throws RemoteException {
 		thisstaff = CurrentStaff.getStaff();
-		if (thisstaff.workSpace.type.equals("中转中心"))
-			this.centerNum = thisstaff.workSpace.num;
+		//if (thisstaff.workSpace.type.equals("中转中心"))
+		//	this.centerNum = thisstaff.workSpace.num;
+		this.centerNum="0250001";
 		ecbs = BLFactory.getExamineCommodityBL();
 		initDate();
 		initTable();

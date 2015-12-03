@@ -12,6 +12,7 @@ import org.po.BILLSTYPE;
 import org.po.BillsPO;
 import org.po.ComPO;
 import org.po.InstorageBills;
+import org.po.OutstorageBills;
 import org.po.myDate;
 import org.vo.ExamineVO;
 
@@ -26,34 +27,44 @@ public class ExamineCommodityBL implements ExamineCommodityBLService {
 		List<String> arealist = this.getArea(centerNum);
 		int inNum = 0, outNum = 0, nowNum = 0;
 		inbillslist = RMIHelper.getDataFactory().getBillsDataFactory()
-				.getNewInstorageBillsData().getByDate(timestart, timeend);
+				.getNewInstorageBillsData().getAll();
 		outbillslist = RMIHelper.getDataFactory().getBillsDataFactory()
-				.getNewOutstorageBillsData().getByDate(timestart, timeend);
-		
+				.getNewOutstorageBillsData().getAll();
+
 		CommodityDataService cds = RMIHelper.getDataFactory()
 				.getCommodityData();
-		for (String area : arealist) {
+		for (String area1 : arealist) {
 			/*
 			 * 需完善
 			 */
 			for (BillsPO bills : inbillslist) {
 				if (bills.type == BILLSTYPE.IB) {
-					
+					InstorageBills temp=(InstorageBills) bills;
+					ArrayList<ComPO> list=temp.getlist();
+					for(ComPO po:list){
+						if(po.getArea().equals(area1))
+							inNum++;
+					}
 				}
 			}
-			for (BillsPO bills : outbillslist) {
+			for (BillsPO bills : inbillslist) {
 				if (bills.type == BILLSTYPE.OB) {
-					
+					OutstorageBills temp=(OutstorageBills) bills;
+					ArrayList<ComPO> list=temp.getlist();
+					for(ComPO po:list){
+						if(po.getArea().equals(area1))
+							outNum++;
+					}
 				}
 			}
-			comlist=cds.getAllCom(centerNum);
-			for(ComPO po:comlist){
-				if(po.getArea().equals(area)){
+			comlist = cds.getAllCom(centerNum);
+			for (ComPO po : comlist) {
+				if (po.getArea().equals(area1)) {
 					nowNum++;
 				}
 			}
-			ExamineVO vo = new ExamineVO(area, timestart, timeend,
-					inNum, outNum, nowNum);
+			ExamineVO vo = new ExamineVO(area1, timestart, timeend, inNum,
+					outNum, nowNum);
 			result.add(vo);
 		}
 
