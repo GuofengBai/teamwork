@@ -40,7 +40,7 @@ public class CheckCommodityBL implements CheckCommodityBLService {
 		 * Mock测试
 		 */
 		//list = cds.getAllCom(centerNum);
-		list=mcd.getAllCom(centerNum);
+		list=cds.getAllCom(centerNum);
 		return false;
 	}
 

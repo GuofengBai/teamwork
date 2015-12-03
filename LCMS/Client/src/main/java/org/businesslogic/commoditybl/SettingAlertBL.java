@@ -11,7 +11,7 @@ import org.po.ResultMessage;
 
 public class SettingAlertBL implements SettingAlertBLService {
 	CommodityDataService cds=RMIHelper.getDataFactory().getCommodityData();
-	MockCommodityData mcd=new MockCommodityData();
+	//MockCommodityData mcd=new MockCommodityData();
 
 	public boolean settingAlert(String centerNum, double alertLine) throws RemoteException {
 		// TODO Auto-generated method stub

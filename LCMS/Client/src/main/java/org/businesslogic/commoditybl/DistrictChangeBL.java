@@ -52,7 +52,7 @@ public class DistrictChangeBL implements DistrictChangeBLService {
 		CommodityDataService cds = RMIHelper.getDataFactory()
 				.getCommodityData();
 		vdata1 = new Vector<CommodityVO>();
-		ArrayList<ComPO> list=mcd.getAllCom(centerNum);
+		ArrayList<ComPO> list=cds.getAllCom(centerNum);
 		//ArrayList<ComPO> list = cds.getAllCom(centerNum);
 		for (ComPO po : list) {
 			CommodityVO vo;
@@ -67,16 +67,16 @@ public class DistrictChangeBL implements DistrictChangeBLService {
 	}
 
 	public ResultMessage changeDistrict(CommodityVO vo) throws RemoteException {
-		//CommodityDataService cds = RMIHelper.getDataFactory()
-		//		.getCommodityData();
+		CommodityDataService cds = RMIHelper.getDataFactory()
+				.getCommodityData();
 		ComPO po, po1;
 		ResultMessage re;
 		String[] used = { "货位已被占用" };
 		String[] su = { "调整成功" };
 		String[] fa = { "调整失败" };
-		/*try {
+		try {
 			po = cds.findCom(vo.getGoodsNum());
-			if (po.LocationNum().equals(vo.getLocation())) {
+			if (po.LocationNum().equals(vo.getLocation())&&po.getArea().equals(vo.getarea())) {
 				return re = new ResultMessage(false, used);
 			}
 			cds.delCom(po);
@@ -88,7 +88,7 @@ public class DistrictChangeBL implements DistrictChangeBLService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return re = new ResultMessage(false, fa);
-		}*/
+		}/*
 		po=mcd.findCom(vo.getGoodsNum());
 		System.out.println(po.getGoodsNum());
 		System.out.println(po.getGoodsNum()+" ");
@@ -96,8 +96,8 @@ public class DistrictChangeBL implements DistrictChangeBLService {
 			return re = new ResultMessage(false, used);
 		mcd.delCom(po);
 		po1=new ComPO(vo.getGoodsNum(),po.getinDate(),vo.getplace(),vo.getLocation(),vo.getarea(),po.getcenterNum());
-		mcd.addCom(po1);
-		return re=new ResultMessage(true,su);
+		mcd.addCom(po1);*/
+		//return re=new ResultMessage(true,su);
 					
 
 	}
@@ -105,7 +105,7 @@ public class DistrictChangeBL implements DistrictChangeBLService {
 	public List<String> getArea(String centerNum) throws RemoteException {
 		CommodityDataService cds = RMIHelper.getDataFactory()
 				.getCommodityData();
-		ArrayList<ComPO> list=mcd.getAllCom(centerNum);
+		ArrayList<ComPO> list=cds.getAllCom(centerNum);
 		//ArrayList<ComPO> list = cds.getAllCom(centerNum);
 		String p;
 		List<String> area = new ArrayList<String>();
