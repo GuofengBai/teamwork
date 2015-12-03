@@ -20,6 +20,7 @@ public class SettingAlertUI extends JPanel {
 	/**
 	 * 
 	 */
+	private JPanel panel = this;
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	private String centerNum;

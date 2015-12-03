@@ -45,6 +45,7 @@ public class CheckCommodityUI extends JPanel {
 	/**
 	 * 
 	 */
+	private JPanel panel = this;
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	CheckCommodityBLService cbs;

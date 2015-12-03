@@ -33,6 +33,7 @@ public class ExamineCommodityUI extends JPanel {
 	/**
 	 * 
 	 */
+	private JPanel panel = this;
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	private JTextField textField_1;

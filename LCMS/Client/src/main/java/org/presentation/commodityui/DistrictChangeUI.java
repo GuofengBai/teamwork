@@ -36,12 +36,13 @@ public class DistrictChangeUI extends JPanel {
 	/**
 	 * 
 	 */
+	private JPanel panel = this;
 	private static final long serialVersionUID = 1L;
 	private JTable table1;
-	private JTable table2;
+
 	DistrictChangeBLService cbs;
 	private DefaultTableModel model1;
-	private DefaultTableModel model2;
+
 	Vector<CommodityVO> cvo1;
 	Vector<CommodityVO> cvo2;
 	private JComboBox<String> ComBox1;
