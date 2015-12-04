@@ -6,23 +6,14 @@ public class CenterPO implements Serializable {
 	 * 序列化版本号
 	 */
 	private static final long serialVersionUID = 1L;
-	private String city;// 城市编号，3位
+	private String location;// 城市详细地址
 	private String CenterNum;// 中转中心编号，城市编号+1位+3位
 	private String name;// 中转中心名称，例如“鼓楼”
 
-	public CenterPO(String city, String CenterNum, String name) {
-		this.city = city;
+	public CenterPO(String name, String CenetrNum, String location) {
+		this.location = location;
 		this.CenterNum = CenterNum;
 		this.name = name;
-	}
-
-	public String getCity() {
-		/*
-		 * sif(city==25) return "南京"; else if (city==10) return "北京"; else
-		 * if(city==21) return "上海"; else if(city==20) return "广州"; else return
-		 * "新城市";
-		 */
-		return city;
 	}
 
 	public String getCenterNum() {
@@ -36,7 +27,11 @@ public class CenterPO implements Serializable {
 	public void setname(String name) {
 		this.name = name;
 	}
-	public void del(){
-		
+	public  void setLocation(String loc){
+		this.location=loc;
 	}
+	public String getLocation(){
+		return this.location;
+	}
+
 }

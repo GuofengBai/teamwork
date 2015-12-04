@@ -4,15 +4,25 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.ListSelectionModel;
+
 import java.awt.Button;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JSplitPane;
 import javax.swing.JSeparator;
+
+import org.businesslogic.blFactory.BLFactory;
+import org.businesslogicservice.organizationblservice.HallBLService;
+import org.presentation.mainui.ViewController;
+import org.vo.HallVO;
+
 import java.awt.Color;
+import java.util.Vector;
 
 
 public class HallUI extends JPanel {
@@ -20,6 +30,7 @@ public class HallUI extends JPanel {
 	private JTextField hallNum;
 	private JTextField cityName;
 	private JTable table;
+	private DefaultTableModel model;
 	private JTextField location;
 	private JPanel superView;
 
@@ -36,6 +47,32 @@ public class HallUI extends JPanel {
 
 	private void init() {
         setLayout(null);
+        
+        JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(24, 219, 524, 171);
+		add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		
+		JSeparator separator = new JSeparator();
+		separator.setForeground(Color.BLACK);
+		separator.setBounds(18, 212, 540, 2);
+		add(separator);
+		
+		JLabel lblNewLabel_2 = new JLabel("详细地址");
+		lblNewLabel_2.setBounds(24, 139, 81, 21);
+		add(lblNewLabel_2);
+		
+		location = new JTextField();
+		location.setBounds(129, 139, 420, 25);
+		add(location);
+		location.setColumns(10);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setForeground(Color.BLACK);
+		separator_1.setBounds(18, 80, 540, 2);
+		add(separator_1);
 		
 		JLabel lblNewLabel = new JLabel("营业厅管理");
 		lblNewLabel.setBounds(224, 15, 108, 25);
@@ -68,59 +105,74 @@ public class HallUI extends JPanel {
 		add(cityName);
 		cityName.setColumns(10);
 		
+		initModel();
+		initButton();
+
+	}
+
+	private void initButton() {
 		JButton jump = new JButton("返回");
 		jump.setBounds(416, 37, 114, 28);
 		add(jump);
+		jump.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent arg0) {
+				ViewController.jumpToAnotherView(superView);
+				
+			}
+			
+		});
 		
-		Button submit = new Button("新增");
+		JButton submit = new JButton("新增");
 		submit.setBounds(457, 175, 87, 25);
 		add(submit);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(24, 219, 524, 171);
-		add(scrollPane);
-		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-			},
-			new String[] {
-				"营业厅名称", "营业厅编号", "所在城市"
+		submit.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				HallVO vo=new HallVO(hallName.getText(),hallNum.getText(),cityName.getText(),location.getText());
+				HallBLService hallBL=BLFactory.getHallBL();
+				if(hallBL.addHall(vo)){
+					model.addRow(vo);
+					model.fireTableRowsInserted(model.getRowCount(),model.getRowCount());
+				}
 			}
-		));
-		scrollPane.setViewportView(table);
+			
+		});
 		
-		JSeparator separator = new JSeparator();
-		separator.setForeground(Color.BLACK);
-		separator.setBounds(18, 212, 540, 2);
-		add(separator);
 		
-		JLabel lblNewLabel_2 = new JLabel("详细地址");
-		lblNewLabel_2.setBounds(24, 139, 81, 21);
-		add(lblNewLabel_2);
-		
-		location = new JTextField();
-		location.setBounds(129, 139, 420, 25);
-		add(location);
-		location.setColumns(10);
-		
-		JSeparator separator_1 = new JSeparator();
-		separator_1.setForeground(Color.BLACK);
-		separator_1.setBounds(18, 80, 540, 2);
-		add(separator_1);
 		
 		JButton del = new JButton("删除");
 		del.setBounds(224, 405, 123, 29);
 		add(del);
+		del.addActionListener(new ActionListener(){
 
+			public void actionPerformed(ActionEvent e) {
+				HallBLService hallBL=BLFactory.getHallBL();
+				int row=table.getSelectedRow();
+				String hallnum=(String) model.getValueAt(row,1);
+				hallBL.delHall(hallnum);
+				model.removeRow(row);
+				model.fireTableRowsDeleted(row,row);
+			}
+			
+		});
+	}
+
+	private void initModel() {
+		
+		Vector<String> column=new Vector<String>();
+		column.add("营业厅名称");
+		column.add("营业厅编号");
+		column.add("所在城市");
+		column.add("具体地址");
+		
+		HallBLService hallBL=BLFactory.getHallBL();
+		Vector<HallVO> vData=hallBL.getList();
+		
+		model=new DefaultTableModel(vData,column);
+		
+		table.setModel(model);
+		table.getSelectionModel().setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		
 	}
 }

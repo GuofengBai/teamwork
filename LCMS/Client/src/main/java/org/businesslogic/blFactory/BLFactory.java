@@ -29,6 +29,7 @@ import org.businesslogic.managebl.IncomeTableBL;
 import org.businesslogic.managebl.ManageBL;
 import org.businesslogic.managebl.NewBeginAccountBL;
 import org.businesslogic.managebl.StatusTableBL;
+import org.businesslogic.organizationbl.HallBL;
 import org.businesslogic.organizationbl.OrganizationBL;
 import org.businesslogic.staffbl.StaffBL;
 import org.businesslogic.userbl.UserBL;
@@ -58,6 +59,7 @@ import org.businesslogicservice.manageblservice.IncomeTableBLService;
 import org.businesslogicservice.manageblservice.ManageBLService;
 import org.businesslogicservice.manageblservice.NewBeginAccountBLService;
 import org.businesslogicservice.manageblservice.StatusTableBLService;
+import org.businesslogicservice.organizationblservice.HallBLService;
 import org.businesslogicservice.organizationblservice.OrganizationBLService;
 import org.businesslogicservice.staffblservice.StaffBLService;
 import org.businesslogicservice.userblservice.UserBLService;
@@ -71,6 +73,7 @@ public class BLFactory {
 	public static StaffBLService staffBL;
 
 	public static OrganizationBLService organizationBL;
+	public static HallBLService hallBL;
 
 	public static ManageBLService manageBL;
 
@@ -106,6 +109,7 @@ public class BLFactory {
 		commodityBL = null;
 		staffBL = null;
 		organizationBL = null;
+		hallBL=null;
 		manageBL = null;
 		userBL = null;
 		newSendingBillsBL = null;
@@ -201,6 +205,15 @@ public class BLFactory {
 		}
 
 		return organizationBL;
+	}
+	
+	public static HallBLService getHallBL() {
+
+		if (hallBL == null) {
+			hallBL = new HallBL();
+		}
+
+		return hallBL;
 	}
 
 	public static NewSendingBillsBLService getNewSendingBillsBL() {

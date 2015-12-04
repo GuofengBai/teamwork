@@ -1,29 +1,35 @@
 package org.businesslogicservice.organizationblservice;
 
+import java.util.Vector;
+
 import org.po.CenterPO;
+import org.vo.CenterVO;
+import org.vo.HallVO;
 
 public interface CenterBLService {
 	/**
 	 * 启动新增中转中心
-	 * @param cityName城市
-	 * @param CityNum 中转中心编号
-	 * @param distanceToOtherCities 城市之间距离
-	 * @return 返回启动是否成功
+	 * @param vo 中转中心
+	 * @return 返回添加是否成功
 	 */
-	public CenterPO AddCenterbl(String cityName, String CityNum,
-			double[] distanceToOtherCities);
-	/**
-	 * 启动设置新城市到其他城市间距离
-	 * @param distance 新城市到其他
-	 * @return 返回启动是否成功
-	 */
-	public boolean ManagerSetNewCitiesDistance(String city,double[] distance);
+	public boolean addCenter(CenterVO vo);
 	/**
 	 * 启动删除中转中心
-	 * @param city 中转中心编号
-	 * @return 返回启动是否成功
+	 * @param CenterNum 中转中心编号
+	 * @return 返回删除是否成功
 	 */
-	public boolean DelCenterbl(String city);
+	public boolean delCenter(String CenterNum);
+	/**
+	 * 启动更新中转中心
+	 * @param CenterNum 中转中心编号
+	 * @return 返回更新是否成功
+	 */
+	public boolean updateCenter(CenterVO vo);
+	/**
+	 * 获得中转中心列表
+	 * @return 返回列表
+	 */
+	public Vector<CenterVO> getList();
 }
 
 

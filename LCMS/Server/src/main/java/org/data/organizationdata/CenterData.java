@@ -12,19 +12,19 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-import org.dataservice.organizationdataservice.HallDataService;
+import org.dataservice.organizationdataservice.CenterDataService;
+import org.po.CenterPO;
 import org.po.HallPO;
 import org.po.ResultMessage;
-import org.po.StaffPO;
 
-public class HallData extends UnicastRemoteObject implements HallDataService{
-	
-	public ArrayList<HallPO> hallList;
+public class CenterData  extends UnicastRemoteObject implements CenterDataService{
+
+	public ArrayList<CenterPO> centerList;
 	private String fileName;
 	
-	public HallData() throws RemoteException{
+	public CenterData() throws RemoteException{
 		super();
-		fileName="SerializableData/Hall.file";
+		fileName="SerializableData/Center.file";
 		init();
 	}
 	
@@ -35,10 +35,10 @@ public class HallData extends UnicastRemoteObject implements HallDataService{
 			FileInputStream fis = new FileInputStream(fileName);
 			BufferedInputStream bis = new BufferedInputStream(fis);  
 	        ObjectInputStream ois = new ObjectInputStream(bis); 
-	        hallList=(ArrayList<HallPO>)ois.readObject();
+	        centerList=(ArrayList<CenterPO>)ois.readObject();
 	        ois.close();
-	        if(hallList==null){
-	        	hallList=new ArrayList<HallPO>();
+	        if(centerList==null){
+	        	centerList=new ArrayList<CenterPO>();
 	        }
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -52,16 +52,16 @@ public class HallData extends UnicastRemoteObject implements HallDataService{
 		}
 	}
 
-	public ResultMessage addHall(HallPO po) throws RemoteException {
-		hallList.add(po);
+	public ResultMessage addCenter(CenterPO po) throws RemoteException {
+		centerList.add(po);
 		save();
 		return null;
 	}
 
-	public ResultMessage delHall(String HallNum) throws RemoteException {
-		for(HallPO po:hallList){
-			if(po.getHallNum().equals(HallNum)){
-				hallList.remove(po);
+	public ResultMessage delCenter(String CenterNum) throws RemoteException {
+		for(CenterPO po:centerList){
+			if(po.getCenterNum().equals(CenterNum)){
+				centerList.remove(po);
 				save();
 				return new ResultMessage(true,null);
 			}
@@ -69,18 +69,18 @@ public class HallData extends UnicastRemoteObject implements HallDataService{
 		return new ResultMessage(false,null);
 	}
 
-	public HallPO findHall(String HallNum) throws RemoteException {
-		for(HallPO po:hallList){
-			if(po.getHallNum().equals(HallNum)){
+	public CenterPO findCenter(String CenterNum) throws RemoteException {
+		for(CenterPO po:centerList){
+			if(po.getCenterNum().equals(CenterNum)){
 				return po;
 			}
 		}
 		return null;
 	}
 
-	public ResultMessage updateHall(HallPO p) throws RemoteException {
-		for(HallPO po:hallList){
-			if(po.getHallNum().equals(p.getHallNum())){
+	public ResultMessage updateCenter(CenterPO p) throws RemoteException {
+		for(CenterPO po:centerList){
+			if(po.getCenterNum().equals(p.getCenterNum())){
 				po=p;
 				save();
 				return new ResultMessage(true,null);
@@ -89,9 +89,9 @@ public class HallData extends UnicastRemoteObject implements HallDataService{
 		return new ResultMessage(false,null);
 	}
 
-	public ArrayList<HallPO> getAll() throws RemoteException {
-		ArrayList<HallPO> all=new ArrayList<HallPO>();
-		all.addAll(hallList);
+	public ArrayList<CenterPO> getAll() throws RemoteException {
+		ArrayList<CenterPO> all=new ArrayList<CenterPO>();
+		all.addAll(centerList);
 		return all;
 	}
 	
@@ -101,7 +101,7 @@ public class HallData extends UnicastRemoteObject implements HallDataService{
         	FileOutputStream fos = new FileOutputStream(fileName);
     		BufferedOutputStream bos = new BufferedOutputStream(fos);  
             ObjectOutputStream oos = new ObjectOutputStream(bos); 
-			oos.writeObject(hallList);
+			oos.writeObject(centerList);
 			oos.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
