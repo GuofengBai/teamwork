@@ -12,7 +12,9 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import org.Server.RMIHelper;
 import org.dataservice.organizationdataservice.CenterDataService;
+import org.dataservice.organizationdataservice.HallDataService;
 import org.po.CenterPO;
 import org.po.HallPO;
 import org.po.ResultMessage;
@@ -59,8 +61,10 @@ public class CenterData  extends UnicastRemoteObject implements CenterDataServic
 	}
 
 	public ResultMessage delCenter(String CenterNum) throws RemoteException {
+		HallDataService hallData=RMIHelper.data.getOrganizationDataFactory().getHallData();
 		for(CenterPO po:centerList){
 			if(po.getCenterNum().equals(CenterNum)){
+				hallData.delByCity(CenterNum);
 				centerList.remove(po);
 				save();
 				return new ResultMessage(true,null);

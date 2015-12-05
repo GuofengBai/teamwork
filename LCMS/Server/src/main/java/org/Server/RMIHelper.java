@@ -12,6 +12,8 @@ import org.dataservice.Impl.BillsDataServiceSerializableFileImpl;
 import org.dataservice.billsdataservice.BillsDataService;
 
 public class RMIHelper {
+	
+	public static DataFactoryService data;
 
     public static void init() {
         try {
@@ -19,7 +21,7 @@ public class RMIHelper {
             
             System.out.println("OK");
 
-            DataFactoryService data= new DataFactory();
+            data= new DataFactory();
             
             System.out.println("OK");
 

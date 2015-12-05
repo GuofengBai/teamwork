@@ -28,7 +28,7 @@ public class OrganizationDataFactory extends UnicastRemoteObject implements Orga
 		return hallData;
 	}
 
-	public CenterDataService getCenter() throws RemoteException {
+	public CenterDataService getCenterData() throws RemoteException {
 		if(centerData==null){
 			centerData=new CenterData();
 		}

@@ -20,6 +20,11 @@ public interface HallDataService extends Remote{
 	 */
 	public ResultMessage delHall(String HallNum)throws RemoteException;
 	/**
+	 * 根据城市（编号前3位）删除HallPO
+	 * @return ResultMessage
+	 */
+	public ResultMessage delByCity(String cityNum)throws RemoteException;
+	/**
 	 * 查找HallPO
 	 * @param HallNum 营业厅编号
 	 * @return HallPO

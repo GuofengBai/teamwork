@@ -4,121 +4,168 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.ListSelectionModel;
+
 import java.awt.Button;
+import java.awt.Color;
+import java.util.Vector;
+
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
+import org.businesslogic.blFactory.BLFactory;
+import org.businesslogicservice.organizationblservice.CenterBLService;
+import org.businesslogicservice.organizationblservice.HallBLService;
+import org.presentation.mainui.ViewController;
+import org.vo.CenterVO;
+import org.vo.HallVO;
+
 
 public class CenterUI extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JTextField Name;
+	private JTextField centerNum;
+	private JTextField location;
 	private JTable table;
+	private DefaultTableModel model;
+	private JPanel superView;
 
 	/**
 	 * Create the panel.
 	 */
-	public CenterUI() {
-		setLayout(null);
+	public CenterUI(JPanel su) {
 		
-		JLabel label = new JLabel("中转中心（城市）管理");
-		label.setBounds(222, 30, 226, 25);
-		add(label);
+		super();
+		this.superView=su;
+		init();
 		
-		JLabel label_1 = new JLabel("城市名称");
-		label_1.setBounds(24, 73, 72, 18);
-		add(label_1);
-		
-		JLabel label_2 = new JLabel("中转中心编号");
-		label_2.setBounds(292, 73, 102, 18);
-		add(label_2);
-		
-		textField = new JTextField();
-		textField.setBounds(90, 70, 121, 24);
-		add(textField);
-		textField.setColumns(10);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(397, 68, 165, 24);
-		add(textField_1);
-		textField_1.setColumns(10);
-		
-		JLabel label_3 = new JLabel("距离");
-		label_3.setBounds(24, 119, 72, 18);
-		add(label_3);
-		
-		JLabel label_4 = new JLabel("北京");
-		label_4.setBounds(63, 119, 72, 18);
-		add(label_4);
-		
-		JLabel label_5 = new JLabel("广州");
-		label_5.setBounds(187, 119, 72, 18);
-		add(label_5);
-		
-		JLabel label_6 = new JLabel("上海");
-		label_6.setBounds(310, 119, 72, 18);
-		add(label_6);
-		
-		JLabel label_7 = new JLabel("南京");
-		label_7.setBounds(445, 119, 72, 18);
-		add(label_7);
-		
-		textField_2 = new JTextField();
-		textField_2.setBounds(100, 116, 72, 24);
-		add(textField_2);
-		textField_2.setColumns(10);
-		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(226, 116, 72, 24);
-		add(textField_3);
-		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(359, 116, 72, 24);
-		add(textField_4);
-		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(490, 116, 72, 24);
-		add(textField_5);
-		
-		JButton button = new JButton("返回");
-		button.setBounds(422, 328, 113, 27);
-		add(button);
-		
-		Button button_1 = new Button("新增");
-		button_1.setBounds(437, 152, 59, 25);
-		add(button_1);
-		
-		Button button_2 = new Button("删除");
-		button_2.setBounds(503, 152, 59, 25);
-		add(button_2);
+	}
+
+	private void init() {
+        setLayout(null);
+        
+        JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(24, 219, 524, 171);
+		add(scrollPane);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-			},
-			new String[] {
-				"\u4E2D\u5FC3\u7F16\u53F7", "\u57CE\u5E02\u540D\u79F0", "\u8DDD\u5317\u4EAC", "\u8DDD\u5E7F\u5DDE", "\u8DDD\u4E0A\u6D77", "\u8DDD\u5357\u4EAC"
-			}
-		));
-		table.setBounds(24, 135, 539, 172);
-		//dd();
+		scrollPane.setViewportView(table);
 		
-		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(24, 183, 539, 96);
-		add(scrollPane);
+		JSeparator separator = new JSeparator();
+		separator.setForeground(Color.BLACK);
+		separator.setBounds(18, 212, 540, 2);
+		add(separator);
+		
+		JLabel lblNewLabel_2 = new JLabel("详细地址");
+		lblNewLabel_2.setBounds(24, 139, 81, 21);
+		add(lblNewLabel_2);
+		
+		location = new JTextField();
+		location.setBounds(129, 139, 420, 25);
+		add(location);
+		location.setColumns(10);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setForeground(Color.BLACK);
+		separator_1.setBounds(18, 80, 540, 2);
+		add(separator_1);
+		
+		JLabel lblNewLabel = new JLabel("营业厅管理");
+		lblNewLabel.setBounds(224, 15, 108, 25);
+		add(lblNewLabel);
+		
+		JLabel label = new JLabel("营业厅名称");
+		label.setBounds(24, 106, 108, 18);
+		add(label);
+		
+		Name = new JTextField();
+		Name.setBounds(129, 103, 121, 24);
+		add(Name);
+		Name.setColumns(10);
+		
+		JLabel lblNewLabel_1 = new JLabel("营业厅编号");
+		lblNewLabel_1.setBounds(287, 106, 108, 18);
+		add(lblNewLabel_1);
+		
+		centerNum = new JTextField();
+		centerNum.setBounds(397, 103, 150, 24);
+		add(centerNum);
+		centerNum.setColumns(10);
+		
+		JLabel label_1 = new JLabel("所在城市");
+		label_1.setBounds(24, 175, 72, 18);
+		add(label_1);
+		
+		initModel();
+		initButton();
 
+	}
+
+	private void initButton() {
+		JButton jump = new JButton("返回");
+		jump.setBounds(416, 37, 114, 28);
+		add(jump);
+		jump.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent arg0) {
+				ViewController.jumpToAnotherView(superView);
+				
+			}
+			
+		});
+		
+		JButton submit = new JButton("新增");
+		submit.setBounds(457, 175, 87, 25);
+		add(submit);
+		submit.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				CenterVO vo=new CenterVO(Name.getText(),centerNum.getText(),location.getText());
+				CenterBLService centerBL=BLFactory.getCenterBL();
+				if(centerBL.addCenter(vo)){
+					model.addRow(vo);
+					model.fireTableRowsInserted(model.getRowCount(),model.getRowCount());
+				}
+			}
+			
+		});
+		
+		
+		
+		JButton del = new JButton("删除");
+		del.setBounds(224, 405, 123, 29);
+		add(del);
+		del.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				CenterBLService centerBL=BLFactory.getCenterBL();
+				int row=table.getSelectedRow();
+				String centernum=(String) model.getValueAt(row,1);
+				centerBL.delCenter(centernum);
+				model.removeRow(row);
+				model.fireTableRowsDeleted(row,row);
+			}
+			
+		});
+	}
+
+	private void initModel() {
+		
+		Vector<String> column=new Vector<String>();
+		column.add("城市名称");
+		column.add("城市编号");
+		column.add("具体地址");
+		
+		CenterBLService centerBL=BLFactory.getCenterBL();
+		Vector<CenterVO> vData=centerBL.getList();
+		
+		model=new DefaultTableModel(vData,column);
+		
+		table.setModel(model);
+		table.getSelectionModel().setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		
 	}
 }

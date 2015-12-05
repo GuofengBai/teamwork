@@ -9,7 +9,7 @@ import org.dataservice.organizationdataservice.HallDataService;
 public interface OrganizationDataFactoryService extends Remote{
 	
 	public HallDataService getHallData()throws RemoteException;
-	public CenterDataService getCenter()throws RemoteException;
+	public CenterDataService getCenterData()throws RemoteException;
 	
 
 }

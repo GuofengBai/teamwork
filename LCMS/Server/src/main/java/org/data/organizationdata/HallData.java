@@ -110,4 +110,14 @@ public class HallData extends UnicastRemoteObject implements HallDataService{
         
 	}
 
+	public ResultMessage delByCity(String cityNum) throws RemoteException {
+		for(HallPO po:hallList){
+			if(po.getHallNum().subSequence(0,3).equals(cityNum.substring(0,3))){
+				hallList.remove(po);
+				save();
+			}
+		}
+		return null;
+	}
+
 }
