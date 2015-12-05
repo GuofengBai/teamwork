@@ -11,26 +11,7 @@ import org.po.DriverPO;
 import org.po.ResultMessage;
 
 public interface OrganizationDataService extends Remote {
-	/**
-	 * 添加CenterPO
-	 * @return ResultMessage
-	 */
-	public ResultMessage addCenter(CenterPO po)throws RemoteException;
-	/**
-	 * 删除CenterPO
-	 * @return ResultMessage
-	 */
-	public ResultMessage delCenter(String CenterNum)throws RemoteException;
-	/**
-	 * 查找HallPO
-	 * @param HallNum 营业厅编号
-	 * @return HallPO
-	 */
-	public CenterPO findCenter(String CenterNum)throws RemoteException;
-	/**
-	 * 添加CarPO
-	 * @return ResultMessage
-	 */
+	
 	public ResultMessage addCar(CarPO po)throws RemoteException;
 	/**
 	 * 添加DriverPO

@@ -5,20 +5,24 @@ import java.rmi.server.UnicastRemoteObject;
 
 import org.data.organizationdata.CenterData;
 import org.data.organizationdata.HallData;
+import org.data.organizationdata.ManagerSettingData;
 import org.dataservice.DataFactoryService.OrganizationDataFactoryService;
 import org.dataservice.organizationdataservice.CenterDataService;
 import org.dataservice.organizationdataservice.HallDataService;
+import org.dataservice.organizationdataservice.ManagerSettingDataService;
 
 public class OrganizationDataFactory extends UnicastRemoteObject implements OrganizationDataFactoryService{
 
 	public HallDataService hallData;
 	public CenterDataService centerData;
+	public ManagerSettingDataService managerSettingData;
 	
 	
 	public OrganizationDataFactory() throws RemoteException {
 		super();
 		hallData=null;
 		centerData=null;
+		managerSettingData=null;
 	}
 
 	public HallDataService getHallData() throws RemoteException {
@@ -33,6 +37,13 @@ public class OrganizationDataFactory extends UnicastRemoteObject implements Orga
 			centerData=new CenterData();
 		}
 		return centerData;
+	}
+
+	public ManagerSettingDataService getManagerSettingData()throws RemoteException {
+		if(managerSettingData==null){
+			managerSettingData=new ManagerSettingData();
+		}
+		return managerSettingData;
 	}
 
 }

@@ -31,6 +31,7 @@ import org.businesslogic.managebl.NewBeginAccountBL;
 import org.businesslogic.managebl.StatusTableBL;
 import org.businesslogic.organizationbl.CenterBL;
 import org.businesslogic.organizationbl.HallBL;
+import org.businesslogic.organizationbl.ManagerSettingBL;
 import org.businesslogic.organizationbl.OrganizationBL;
 import org.businesslogic.staffbl.StaffBL;
 import org.businesslogic.userbl.UserBL;
@@ -62,10 +63,13 @@ import org.businesslogicservice.manageblservice.NewBeginAccountBLService;
 import org.businesslogicservice.manageblservice.StatusTableBLService;
 import org.businesslogicservice.organizationblservice.CenterBLService;
 import org.businesslogicservice.organizationblservice.HallBLService;
+import org.businesslogicservice.organizationblservice.ManagerSettingBLService;
 import org.businesslogicservice.organizationblservice.OrganizationBLService;
 import org.businesslogicservice.staffblservice.StaffBLService;
 import org.businesslogicservice.userblservice.UserBLService;
 import org.businesslogicservice.commodityblservice.CheckCommodityBLService;
+import org.po.SENDSTYPE;
+import org.po.TRANSPORTATION;
 
 public class BLFactory {
 
@@ -77,6 +81,7 @@ public class BLFactory {
 	public static OrganizationBLService organizationBL;
 	public static HallBLService hallBL;
 	public static CenterBLService centerBL;
+	public static ManagerSettingBLService managerSettingBL;
 
 	public static ManageBLService manageBL;
 
@@ -114,6 +119,7 @@ public class BLFactory {
 		organizationBL = null;
 		hallBL=null;
 		centerBL=null;
+		managerSettingBL=null;
 		manageBL = null;
 		userBL = null;
 		newSendingBillsBL = null;
@@ -218,6 +224,13 @@ public class BLFactory {
 		}
 
 		return hallBL;
+	}
+	
+	public static ManagerSettingBLService getManagerSettingBL(){
+		if(managerSettingBL==null){
+			managerSettingBL=new ManagerSettingBL();
+		}
+		return managerSettingBL;
 	}
 
 	public static NewSendingBillsBLService getNewSendingBillsBL() {
