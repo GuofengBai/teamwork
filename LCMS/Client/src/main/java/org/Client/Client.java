@@ -29,9 +29,10 @@ public class Client{
 
     	BLFactory.init();
     	JFrame frame = new JFrame();
+    	ViewController.init(frame);
     	frame.setContentPane(ui);
     	frame.setVisible(true);
-
+    	
     	frame.setSize(900, 600);
     }
 }

@@ -37,6 +37,7 @@ import org.Client.CurrentStaff;
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.commodityblservice.CheckCommodityBLService;
 import org.po.myDate;
+import org.presentation.mainui.ViewController;
 import org.vo.ComVO;
 import org.vo.CommodityVO;
 import org.vo.StaffVO;
@@ -109,10 +110,10 @@ public class CheckCommodityUI extends JPanel {
 	 * Create the panel.
 	 */
 	public CheckCommodityUI() {
-		//thisstaff = CurrentStaff.getStaff();
-		//if (thisstaff.workSpace.type.equals("中转中心"))
-		//	this.centerNum = thisstaff.workSpace.num;
-		this.centerNum="0250001";
+		thisstaff = CurrentStaff.getStaff();
+		if (thisstaff.workSpace.type.equals("中转中心"))
+			this.centerNum = thisstaff.workSpace.num;
+		//this.centerNum="0250001";
 		cbs = BLFactory.getCheckCommodityBL();
 		setLayout(null);
 		initTable();
@@ -120,35 +121,15 @@ public class CheckCommodityUI extends JPanel {
 		label.setBounds(222, 30, 74, 25);
 		add(label);
 
-		/*
-		 * table = new JTable(); table.setFillsViewportHeight(true);
-		 * table.setModel(new DefaultTableModel( new Object[][] { {null, null,
-		 * null, null}, {null, null, null, null}, {null, null, null, null},
-		 * {null, null, null, null}, {null, null, null, null}, {null, null,
-		 * null, null}, {null, null, null, null}, {null, null, null, null},
-		 * {null, null, null, null}, {null, null, null, null}, {null, null,
-		 * null, null}, {null, null, null, null}, {null, null, null, null},
-		 * {null, null, null, null}, }, new String[] {
-		 * "\u5FEB\u9012\u7F16\u53F7", "\u5165\u5E93\u65E5\u671F",
-		 * "\u76EE\u7684\u5730",
-		 * "\u533A\u53F7\u6392\u53F7\u67B6\u53F7\u4F4D\u53F7" } ));
-		 * table.getColumnModel().getColumn(0).setPreferredWidth(180);
-		 * table.getColumnModel().getColumn(3).setPreferredWidth(150);
-		 * table.setBounds(105, 93, 319, 218); //add(table);
-		 * 
-		 * JScrollPane scrollPane = new JScrollPane(table);
-		 * scrollPane.setVerticalScrollBarPolicy
-		 * (ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		 * scrollPane.setViewportBorder(UIManager.getBorder("Menu.border"));
-		 * scrollPane.setToolTipText(""); scrollPane.setBounds(53, 82, 482,
-		 * 218); add(scrollPane);
-		 */
-
 		JButton btnNewButton = new JButton("返回");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// 跳转
-				System.exit(0);
+				try {
+					ViewController.jumpToAnotherView(new StorageStaffView());
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnNewButton.setBounds(422, 328, 113, 27);

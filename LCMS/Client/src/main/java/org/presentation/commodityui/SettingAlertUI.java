@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import org.Client.CurrentStaff;
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.commodityblservice.SettingAlertBLService;
+import org.presentation.mainui.ViewController;
 import org.vo.StaffVO;
 
 import java.awt.event.ActionListener;
@@ -33,7 +34,7 @@ public class SettingAlertUI extends JPanel {
 	 * @throws RemoteException
 	 */
 	public void showAlertLine() throws RemoteException {
-		JLabel label = new JLabel("当前警报线");
+		JLabel label = new JLabel("当前库存比例");
 		label.setBounds(90, 90, 119, 18);
 		add(label);
 		String line = "";
@@ -73,11 +74,11 @@ public class SettingAlertUI extends JPanel {
 	}
 
 	public SettingAlertUI() throws RemoteException {
-		// thisstaff = CurrentStaff.getStaff();
+		 thisstaff = CurrentStaff.getStaff();
 		sabs = BLFactory.getSettingAlertBL();
-		// if (thisstaff.workSpace.type.equals("中转中心"))
-		// this.centerNum = thisstaff.workSpace.num;
-		this.centerNum = "0210001";
+		 if (thisstaff.workSpace.type.equals("中转中心"))
+		 this.centerNum = thisstaff.workSpace.num;
+		//this.centerNum = "0210001";
 		showAlertLine();
 		setLayout(null);
 
@@ -111,7 +112,12 @@ public class SettingAlertUI extends JPanel {
 		JButton button_1 = new JButton("返回");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// 返回上级页面
+				try {
+					ViewController.jumpToAnotherView(new StorageStaffView());
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}	// 返回上级页面
 			}
 		});
 		button_1.setBounds(422, 328, 113, 27);

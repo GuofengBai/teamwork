@@ -18,6 +18,7 @@ import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.commodityblservice.CheckCommodityBLService;
 import org.businesslogicservice.commodityblservice.DistrictChangeBLService;
 import org.po.ResultMessage;
+import org.presentation.mainui.ViewController;
 import org.vo.CommodityVO;
 import org.vo.StaffVO;
 
@@ -301,10 +302,10 @@ public class DistrictChangeUI extends JPanel {
 	}
 
 	public DistrictChangeUI() throws RemoteException {
-		//thisstaff = CurrentStaff.getStaff();
-		//if (thisstaff.workSpace.type.equals("中转中心"))
-		//	this.centerNum = thisstaff.workSpace.num;
-		this.centerNum="0210001";
+		thisstaff = CurrentStaff.getStaff();
+		if (thisstaff.workSpace.type.equals("中转中心"))
+			this.centerNum = thisstaff.workSpace.num;
+		//this.centerNum="0250001";
 		cbs = BLFactory.getDistrictChangeBL();
 		initDistrictSelecter();
 		initSelecterTable();
@@ -337,7 +338,12 @@ public class DistrictChangeUI extends JPanel {
 		JButton button = new JButton("返回");
 		button.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				System.exit(0);//返回
+				try {
+					ViewController.jumpToAnotherView(new StorageStaffView());
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}//返回
 			}
 		});
 		button.setBounds(669, 436, 113, 27);

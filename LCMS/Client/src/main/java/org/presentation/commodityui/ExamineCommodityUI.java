@@ -20,9 +20,11 @@ import org.Client.RMIHelper;
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.commodityblservice.ExamineCommodityBLService;
 import org.po.myDate;
+import org.presentation.mainui.ViewController;
 import org.vo.CommodityVO;
 import org.vo.ExamineVO;
 import org.vo.StaffVO;
+
 
 
 
@@ -146,16 +148,16 @@ public class ExamineCommodityUI extends JPanel {
 		// model.addRow(cvo);
 		table.getSelectionModel().setSelectionMode(
 				ListSelectionModel.SINGLE_SELECTION);
-		scrollPane.getViewport().add(table);
+		scrollPane.setViewportView(table);
 		table.setFillsViewportHeight(true);
 		this.add(scrollPane);
 	}
 
 	public ExamineCommodityUI() throws RemoteException {
 		thisstaff = CurrentStaff.getStaff();
-		//if (thisstaff.workSpace.type.equals("中转中心"))
-		//	this.centerNum = thisstaff.workSpace.num;
-		this.centerNum="0250001";
+		if (thisstaff.workSpace.type.equals("中转中心"))
+			this.centerNum = thisstaff.workSpace.num;
+		//this.centerNum="0250001";
 		ecbs = BLFactory.getExamineCommodityBL();
 		initDate();
 		initTable();
@@ -180,6 +182,16 @@ public class ExamineCommodityUI extends JPanel {
 		add(button);
 
 		JButton button_1 = new JButton("返回");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					ViewController.jumpToAnotherView(new StorageStaffView());
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		button_1.setBounds(500, 367, 113, 27);
 		add(button_1);
 

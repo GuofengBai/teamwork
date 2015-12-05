@@ -1,5 +1,6 @@
 package org.presentation.commodityui;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -17,25 +18,12 @@ public class StorageStaffView extends JPanel {
 	private String centerNum;
 	private JPanel panel = this;
 	private StaffVO thisstaff;
+	private JFrame frame;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * Create the panel.
-	 */
-	public StorageStaffView() {
-		// thisstaff = CurrentStaff.getStaff();
-		// if (thisstaff.workSpace.type.equals("中转中心"))
-		// this.centerNum = thisstaff.workSpace.num;
-		this.centerNum = "0210001";
-		setLayout(null);
-
-		JLabel label = new JLabel("中转中心仓库管理员");
-		label.setBounds(231, 26, 142, 18);
-		add(label);
-
+	public void init() throws RemoteException{
 		JButton btnNewButton = new JButton("库存查看");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -82,7 +70,7 @@ public class StorageStaffView extends JPanel {
 		JButton btnNewButton_3 = new JButton("库存调整");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DistrictChangeUI UI = null;
+				DistrictChangeUI UI=null;
 				try {
 					UI = new DistrictChangeUI();
 				} catch (RemoteException e1) {
@@ -103,6 +91,25 @@ public class StorageStaffView extends JPanel {
 		});
 		button.setBounds(429, 334, 113, 27);
 		add(button);
+	}
+
+	/**
+	 * Create the panel.
+	 * @throws RemoteException 
+	 */
+	public StorageStaffView() throws RemoteException {
+		// thisstaff = CurrentStaff.getStaff();
+		// if (thisstaff.workSpace.type.equals("中转中心"))
+		// this.centerNum = thisstaff.workSpace.num;
+		this.centerNum = "0210001";
+		init();
+		setLayout(null);
+
+		JLabel label = new JLabel("中转中心仓库管理员");
+		label.setBounds(231, 26, 142, 18);
+		add(label);
+
+		
 
 	}
 }

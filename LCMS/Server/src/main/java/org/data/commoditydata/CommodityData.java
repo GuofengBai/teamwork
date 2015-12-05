@@ -216,4 +216,18 @@ public class CommodityData extends UnicastRemoteObject implements
 		totalList.add(new CenterCom(new ArrayList<ComPO>(),centerNum));
 		return new ResultMessage(true,su);
 	}
+	public ResultMessage delNewCity(String centerNum) throws RemoteException{
+		String[] fa={"删除失败"};
+		String[] su={"删除成功"};
+		
+		for (CenterCom o : totalList) {
+			if (o.centerNum.equals(centerNum)) {
+				totalList.remove(o);
+				return new ResultMessage(true,su);
+			}
+		}
+		
+		totalList.add(new CenterCom(new ArrayList<ComPO>(),centerNum));
+		return new ResultMessage(false,fa);
+	}
 }
