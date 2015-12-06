@@ -227,7 +227,7 @@ public class CommodityData extends UnicastRemoteObject implements
 			}
 		}
 		
-		totalList.add(new CenterCom(new ArrayList<ComPO>(),centerNum));
+		
 		return new ResultMessage(false,fa);
 	}
 }

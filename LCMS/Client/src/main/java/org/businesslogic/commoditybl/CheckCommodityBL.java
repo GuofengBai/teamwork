@@ -12,7 +12,7 @@ import org.businesslogicservice.commodityblservice.CheckCommodityBLService;
 import org.dataservice.commoditydataservice.CommodityDataService;
 import org.po.ComPO;
 import org.po.myDate;
-import org.vo.ComVO;
+
 import org.vo.CommodityVO;
 
 public class CheckCommodityBL implements CheckCommodityBLService {

@@ -149,7 +149,7 @@ public class BLFactory {
 		
 	}
 
-	public static CommodityBLService getCommodityBL() {
+	public static CommodityBLService getCommodityBL() throws RemoteException {
 
 		if (commodityBL == null) {
 			commodityBL = new CommodityBL();

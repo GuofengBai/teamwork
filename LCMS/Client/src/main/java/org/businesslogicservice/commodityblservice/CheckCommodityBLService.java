@@ -4,7 +4,7 @@ import java.rmi.RemoteException;
 import java.util.Vector;
 
 import org.po.myDate;
-import org.vo.ComVO;
+
 import org.vo.CommodityVO;
 
 public interface CheckCommodityBLService {
