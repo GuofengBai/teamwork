@@ -21,6 +21,7 @@ import org.businesslogicservice.commodityblservice.CommodityInAndOutBLService;
 import org.po.ComPO;
 import org.po.StateListPO;
 import org.po.myDate;
+import org.presentation.mainui.ViewController;
 import org.vo.CommodityVO;
 import org.vo.HABVO;
 import org.vo.IBVO;
@@ -28,6 +29,7 @@ import org.vo.StateListVO;
 
 
 public class NewInstorageBillsUI extends JPanel {
+	private JPanel superview;
 	private JTextField newday;
 	private JTextField newmonth;
 	private JTextField newyear;
@@ -42,11 +44,14 @@ public class NewInstorageBillsUI extends JPanel {
 	private JTextField centerNum;
 	private JLabel label_3;
 	private JTextField idNum;
+	private JButton back;
 
 	/**
 	 * Create the panel.
+	 * @wbp.parser.constructor
 	 */
-	public NewInstorageBillsUI() {
+	public NewInstorageBillsUI(final JPanel superview) {
+		this.superview = superview;
 		setLayout(null);
 		
 		newday = new JTextField();
@@ -163,7 +168,7 @@ public class NewInstorageBillsUI extends JPanel {
 		table.setFillsViewportHeight(true);
 		
 		submit = new JButton("\u63D0\u4EA4");
-		submit.setBounds(102, 288, 93, 23);
+		submit.setBounds(20, 288, 93, 23);
 		add(submit);
 		submit.addActionListener(new ActionListener(){
 
@@ -202,6 +207,17 @@ public class NewInstorageBillsUI extends JPanel {
 		idNum.setBounds(86, 168, 185, 21);
 		add(idNum);
 		idNum.setColumns(10);
+		
+		back = new JButton("返回");
+		back.setBounds(178, 288, 93, 23);
+		add(back);
+		back.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ViewController.jumpToAnotherView(superview);
+			}
+		});
 
 	}
 	public NewInstorageBillsUI(IBVO vo){

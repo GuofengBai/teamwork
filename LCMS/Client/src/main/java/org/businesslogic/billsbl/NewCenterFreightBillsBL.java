@@ -15,6 +15,7 @@ import org.po.ResultMessage;
 import org.po.SENDSTYPE;
 import org.po.SendingBills;
 import org.po.StateListPO;
+import org.po.TRANSPORTATION;
 import org.po.myDate;
 import org.vo.CFBVO;
 import org.vo.StateListVO;
@@ -43,15 +44,15 @@ public class NewCenterFreightBillsBL implements NewCenterFreightBillsBLService{
 
 	public long getPrice(SENDSTYPE send, String StartPlace, String EndPlace) {
 		// TODO Auto-generated method stub
-		int canshu = 20;
+		TRANSPORTATION type = TRANSPORTATION.CAR;
 		if(send==SENDSTYPE.SLOW){
-			canshu = 400;
+			type = TRANSPORTATION.TRAIN;
 		}
 		if(send==SENDSTYPE.FAST){
-			canshu = 1000;
+			type = TRANSPORTATION.PLANE;
 		}
 		ManagerSettingBL managerset = new ManagerSettingBL();
-		double price = managerset.getCitiesDistance(StartPlace, EndPlace)*canshu;
+		double price = managerset.getCityDistance(StartPlace, EndPlace)*managerset.getTransFee(type);
 		return (long)price;
 	}
 

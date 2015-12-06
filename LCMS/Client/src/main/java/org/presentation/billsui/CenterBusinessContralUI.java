@@ -10,11 +10,14 @@ import org.presentation.mainui.ViewController;
 
 
 public class CenterBusinessContralUI extends JPanel {
+	private JPanel superview;
+	private JPanel temp = this;
 
 	/**
 	 * Create the panel.
 	 */
 	public CenterBusinessContralUI() {
+		this.superview = superview;
 		setLayout(null);
 		
 		JLabel label = new JLabel("中转中心业务管理系统");
@@ -32,7 +35,7 @@ public class CenterBusinessContralUI extends JPanel {
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				JPanel next = new NewCenterArriveBillsUI();
+				JPanel next = new NewCenterArriveBillsUI(temp);
 				ViewController.jumpToAnotherView(next);
 			}
 		});
@@ -44,7 +47,7 @@ public class CenterBusinessContralUI extends JPanel {
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				JPanel next = new NewCenterFreightBillsUI();
+				JPanel next = new NewCenterFreightBillsUI(temp);
 				ViewController.jumpToAnotherView(next);
 			}
 		});
@@ -56,7 +59,7 @@ public class CenterBusinessContralUI extends JPanel {
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				JPanel next = new NewCenterEntruckBillsUI();
+				JPanel next = new NewCenterEntruckBillsUI(temp);
 				ViewController.jumpToAnotherView(next);
 			}
 		});

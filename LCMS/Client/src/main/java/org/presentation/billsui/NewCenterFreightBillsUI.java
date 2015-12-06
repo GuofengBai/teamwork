@@ -24,12 +24,14 @@ import org.po.BOXSTYPE;
 import org.po.SENDSTYPE;
 import org.po.StateListPO;
 import org.po.myDate;
+import org.presentation.mainui.ViewController;
 import org.vo.CEBVO;
 import org.vo.CFBVO;
 import org.vo.StateListVO;
 
 
 public class NewCenterFreightBillsUI extends JPanel {
+	private JPanel superview;
 	private JTextField newyear;
 	private JTextField newmonth;
 	private JTextField newday;
@@ -54,11 +56,14 @@ public class NewCenterFreightBillsUI extends JPanel {
 	private JComboBox goodState;
 	private JComboBox SendType;
 	private JTextField price;
+	private JButton back;
 
 	/**
 	 * Create the panel.
+	 * @wbp.parser.constructor
 	 */
-	public NewCenterFreightBillsUI() {
+	public NewCenterFreightBillsUI(final JPanel superview) {
+		this.superview = superview;
 		setLayout(null);
 		
 		JLabel label = new JLabel("\u88C5\u8F66\u65E5\u671F");
@@ -216,7 +221,7 @@ public class NewCenterFreightBillsUI extends JPanel {
 		});
 		
 		JButton submit = new JButton("\u63D0\u4EA4");
-		submit.setBounds(113, 307, 93, 23);
+		submit.setBounds(61, 307, 93, 23);
 		add(submit);
 		submit.addActionListener(new ActionListener(){
 
@@ -254,6 +259,17 @@ public class NewCenterFreightBillsUI extends JPanel {
 		price.setBounds(113, 279, 66, 21);
 		add(price);
 		price.setColumns(10);
+		
+		back = new JButton("返回");
+		back.setBounds(198, 307, 93, 23);
+		add(back);
+		back.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ViewController.jumpToAnotherView(superview);
+			}
+		});
 
 	}
 	public NewCenterFreightBillsUI(CFBVO vo){

@@ -18,12 +18,14 @@ import org.dataservice.billsdataservice.NewSendingBillsDataService;
 import org.po.SendingBills;
 import org.po.StateListPO;
 import org.po.myDate;
+import org.presentation.mainui.ViewController;
 import org.vo.HABVO;
 import org.vo.HDBVO;
 import org.vo.StateListVO;
 
 
 public class NewHallDispatchBillsUI extends JPanel {
+	private JPanel superview;
 	private JTextField newyear;
 	private JTextField newmonth;
 	private JTextField newday;
@@ -37,11 +39,14 @@ public class NewHallDispatchBillsUI extends JPanel {
 	private JLabel rlocation;
 	private JLabel label_6;
 	private JTextField idNum;
+	private JButton back;
 
 	/**
 	 * Create the panel.
+	 * @wbp.parser.constructor
 	 */
-	public NewHallDispatchBillsUI() {
+	public NewHallDispatchBillsUI(final JPanel superview) {
+		this.superview = superview;
 		setLayout(null);
 		
 		JLabel label = new JLabel("到达日期  ");
@@ -82,7 +87,7 @@ public class NewHallDispatchBillsUI extends JPanel {
 		name.setColumns(10);
 		
 		JButton submit = new JButton("提交");
-		submit.setBounds(85, 194, 93, 23);
+		submit.setBounds(20, 194, 93, 23);
 		add(submit);
 		submit.addActionListener(new ActionListener(){
 
@@ -132,6 +137,17 @@ public class NewHallDispatchBillsUI extends JPanel {
 		idNum.setBounds(75, 166, 174, 21);
 		add(idNum);
 		idNum.setColumns(10);
+		
+		back = new JButton("返回");
+		back.setBounds(166, 194, 93, 23);
+		add(back);
+		back.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ViewController.jumpToAnotherView(superview);
+			}
+		});
 		search.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {

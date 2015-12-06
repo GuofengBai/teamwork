@@ -12,7 +12,6 @@ import org.businesslogicservice.billsblservice.NewInstorageBillsBLService;
 import org.businesslogicservice.commodityblservice.CommodityInAndOutBLService;
 import org.dataservice.billsdataservice.BillsDataService;
 import org.po.ComPO;
-import org.po.CommodityPO;
 import org.po.HallCollectionBills;
 import org.po.InstorageBills;
 import org.po.ResultMessage;

@@ -28,11 +28,13 @@ import org.dataservice.billsdataservice.BillsDataService;
 import org.dataservice.billsdataservice.NewCenterArriveBillsDataService;
 import org.po.StateListPO;
 import org.po.myDate;
+import org.presentation.mainui.ViewController;
 import org.vo.CABVO;
 import org.vo.StateListVO;
 
 
 public class NewCenterArriveBillsUI extends JPanel {
+	private JPanel superview;
 	private JTextField newyear;
 	private JTextField CABNum;
 	private JTextField newday;
@@ -45,8 +47,10 @@ public class NewCenterArriveBillsUI extends JPanel {
 
 	/**
 	 * Create the panel.
+	 * @wbp.parser.constructor
 	 */
-	public NewCenterArriveBillsUI() {
+	public NewCenterArriveBillsUI(final JPanel superview) {
+		this.superview = superview;
 		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("\u5230\u8FBE\u65E5\u671F  ");
@@ -78,7 +82,7 @@ public class NewCenterArriveBillsUI extends JPanel {
 		CABNum.setColumns(30);
 		
 		JButton Submit = new JButton("提交");
-		Submit.setBounds(100, 260, 93, 23);
+		Submit.setBounds(19, 257, 93, 23);
 		add(Submit);
 		Submit.addActionListener(new ActionListener(){
 
@@ -175,6 +179,18 @@ public class NewCenterArriveBillsUI extends JPanel {
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(19, 137, 249, 110);
 		add(scrollPane);
+		
+		JButton back = new JButton("返回");
+		back.setBounds(175, 257, 93, 23);
+		add(back);
+		back.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ViewController.jumpToAnotherView(superview);
+			}
+		});
+		
 			
 		}
 	public NewCenterArriveBillsUI(CABVO vo){

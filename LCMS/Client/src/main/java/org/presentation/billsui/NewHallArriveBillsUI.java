@@ -21,12 +21,14 @@ import org.businesslogicservice.billsblservice.NewHallArriveBillsBLService;
 import org.po.SENDSTYPE;
 import org.po.StateListPO;
 import org.po.myDate;
+import org.presentation.mainui.ViewController;
 import org.vo.CEBVO;
 import org.vo.HABVO;
 import org.vo.StateListVO;
 
 
 public class NewHallArriveBillsUI extends JPanel {
+	private JPanel superview;
 	private JTextField newyear;
 	private JTextField newmonth;
 	private JTextField newday;
@@ -40,8 +42,10 @@ public class NewHallArriveBillsUI extends JPanel {
 
 	/**
 	 * Create the panel.
+	 * @wbp.parser.constructor
 	 */
-	public NewHallArriveBillsUI() {
+	public NewHallArriveBillsUI(final JPanel superview) {
+		this.superview = superview;
 		setLayout(null);
 		
 		JLabel label = new JLabel("\u5230\u8FBE\u65E5\u671F  ");
@@ -131,7 +135,7 @@ public class NewHallArriveBillsUI extends JPanel {
 		table.setFillsViewportHeight(true);
 		
 		JButton submit = new JButton("\u63D0\u4EA4");
-		submit.setBounds(96, 277, 93, 23);
+		submit.setBounds(20, 277, 93, 23);
 		add(submit);
 		submit.addActionListener(new ActionListener(){
 
@@ -162,6 +166,17 @@ public class NewHallArriveBillsUI extends JPanel {
 		idNum.setBounds(75, 85, 184, 21);
 		add(idNum);
 		idNum.setColumns(10);
+		
+		JButton back = new JButton("返回");
+		back.setBounds(166, 277, 93, 23);
+		add(back);
+		back.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ViewController.jumpToAnotherView(superview);
+			}
+		});
 		deleteGood.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {
