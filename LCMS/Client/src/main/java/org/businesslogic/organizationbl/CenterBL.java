@@ -6,6 +6,7 @@ import java.util.Vector;
 
 import org.Client.RMIHelper;
 import org.businesslogic.blFactory.BLFactory;
+import org.businesslogicservice.commodityblservice.CommodityBLService;
 import org.businesslogicservice.organizationblservice.CenterBLService;
 import org.businesslogicservice.organizationblservice.ManagerSettingBLService;
 import org.dataservice.organizationdataservice.CenterDataService;
@@ -26,6 +27,9 @@ public class CenterBL implements CenterBLService{
 			ManagerSettingBLService manager=BLFactory.getManagerSettingBL();
 			manager.addCity(po.getname());
 			
+			CommodityBLService combl=BLFactory.getCommodityBL();
+			combl.addCenter(po.getCenterNum());
+			
 			
 		    return true;
 		} catch (RemoteException e) {
@@ -44,6 +48,8 @@ public class CenterBL implements CenterBLService{
 			ManagerSettingBLService manager=BLFactory.getManagerSettingBL();
 			manager.delCity(center.getname());
 			
+			CommodityBLService combl=BLFactory.getCommodityBL();
+			combl.addCenter(CenterNum);
 			
 			return true;
 		} catch (RemoteException e) {
