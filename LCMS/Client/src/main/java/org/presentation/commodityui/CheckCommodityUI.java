@@ -38,7 +38,6 @@ import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.commodityblservice.CheckCommodityBLService;
 import org.po.myDate;
 import org.presentation.mainui.ViewController;
-import org.vo.ComVO;
 import org.vo.CommodityVO;
 import org.vo.StaffVO;
 
@@ -46,6 +45,7 @@ public class CheckCommodityUI extends JPanel {
 	/**
 	 * 
 	 */
+	private JPanel superpanel;
 	private JPanel panel = this;
 	private static final long serialVersionUID = 1L;
 	private JTable table;
@@ -109,10 +109,11 @@ public class CheckCommodityUI extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public CheckCommodityUI() {
+	public CheckCommodityUI(JPanel ui) {
 		thisstaff = CurrentStaff.getStaff();
 		if (thisstaff.workSpace.type.equals("中转中心"))
 			this.centerNum = thisstaff.workSpace.num;
+		this.superpanel=ui;
 		//this.centerNum="0250001";
 		cbs = BLFactory.getCheckCommodityBL();
 		setLayout(null);
@@ -124,12 +125,7 @@ public class CheckCommodityUI extends JPanel {
 		JButton btnNewButton = new JButton("返回");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					ViewController.jumpToAnotherView(new StorageStaffView());
-				} catch (RemoteException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				ViewController.jumpToAnotherView(superpanel);
 			}
 		});
 		btnNewButton.setBounds(422, 328, 113, 27);

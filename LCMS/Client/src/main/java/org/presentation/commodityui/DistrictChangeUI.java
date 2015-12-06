@@ -37,6 +37,7 @@ public class DistrictChangeUI extends JPanel {
 	/**
 	 * 
 	 */
+	private JPanel superpanel;
 	private JPanel panel = this;
 	private static final long serialVersionUID = 1L;
 	private JTable table1;
@@ -301,10 +302,11 @@ public class DistrictChangeUI extends JPanel {
 					JOptionPane.ERROR_MESSAGE);
 	}
 
-	public DistrictChangeUI() throws RemoteException {
+	public DistrictChangeUI(JPanel ui) throws RemoteException {
 		thisstaff = CurrentStaff.getStaff();
 		if (thisstaff.workSpace.type.equals("中转中心"))
 			this.centerNum = thisstaff.workSpace.num;
+		this.superpanel=ui;
 		//this.centerNum="0250001";
 		cbs = BLFactory.getDistrictChangeBL();
 		initDistrictSelecter();
@@ -338,12 +340,7 @@ public class DistrictChangeUI extends JPanel {
 		JButton button = new JButton("返回");
 		button.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				try {
-					ViewController.jumpToAnotherView(new StorageStaffView());
-				} catch (RemoteException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}//返回
+				ViewController.jumpToAnotherView(superpanel);
 			}
 		});
 		button.setBounds(669, 436, 113, 27);

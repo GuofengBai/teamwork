@@ -21,6 +21,7 @@ public class SettingAlertUI extends JPanel {
 	/**
 	 * 
 	 */
+	private JPanel superpanel;
 	private JPanel panel = this;
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
@@ -64,7 +65,7 @@ public class SettingAlertUI extends JPanel {
 	public void setAlertLine() throws RemoteException {
 		String line = "";
 		line = textField.getText();
-		if(!isNumber(line)) {
+		if (!isNumber(line)) {
 			JOptionPane.showMessageDialog(null, "请输入一个0-100间的警报值！", "",
 					JOptionPane.ERROR_MESSAGE);
 		} else {
@@ -73,12 +74,13 @@ public class SettingAlertUI extends JPanel {
 		}
 	}
 
-	public SettingAlertUI() throws RemoteException {
-		 thisstaff = CurrentStaff.getStaff();
+	public SettingAlertUI(JPanel ui) throws RemoteException {
+		thisstaff = CurrentStaff.getStaff();
 		sabs = BLFactory.getSettingAlertBL();
-		 if (thisstaff.workSpace.type.equals("中转中心"))
-		 this.centerNum = thisstaff.workSpace.num;
-		//this.centerNum = "0210001";
+		if (thisstaff.workSpace.type.equals("中转中心"))
+			this.centerNum = thisstaff.workSpace.num;
+		this.superpanel=ui;
+		// this.centerNum = "0210001";
 		showAlertLine();
 		setLayout(null);
 
@@ -112,12 +114,7 @@ public class SettingAlertUI extends JPanel {
 		JButton button_1 = new JButton("返回");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					ViewController.jumpToAnotherView(new StorageStaffView());
-				} catch (RemoteException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}	// 返回上级页面
+				ViewController.jumpToAnotherView(superpanel);
 			}
 		});
 		button_1.setBounds(422, 328, 113, 27);
