@@ -38,7 +38,6 @@ public class UserWriter {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		StaffDataService sds=new StaffData();
-		StaffPO adminstaff=new StaffPO(STAFFROLE.ADMINISTRATOR,"上帝",String num,GENDER gender,myDate birthday,String location,String phone,String user,String bankAccount,WorkSpace space,Payment payment);
+		
 	}
 }

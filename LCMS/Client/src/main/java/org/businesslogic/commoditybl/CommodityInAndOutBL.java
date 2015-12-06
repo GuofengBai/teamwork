@@ -10,7 +10,6 @@ import org.businesslogicservice.commodityblservice.SettingAlertBLService;
 import org.dataservice.commoditydataservice.CommodityDataService;
 import org.po.AlertPO;
 import org.po.ComPO;
-import org.po.CommodityPO;
 import org.po.ResultMessage;
 
 public class CommodityInAndOutBL implements CommodityInAndOutBLService {

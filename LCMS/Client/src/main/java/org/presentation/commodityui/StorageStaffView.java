@@ -29,7 +29,7 @@ public class StorageStaffView extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				ExamineCommodityUI ui = null;
 				try {
-					ui = new ExamineCommodityUI();
+					ui = new ExamineCommodityUI(panel);
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -44,7 +44,7 @@ public class StorageStaffView extends JPanel {
 		JButton btnNewButton_1 = new JButton("库存盘点");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CheckCommodityUI ui = new CheckCommodityUI();
+				CheckCommodityUI ui = new CheckCommodityUI(panel);
 				ViewController.jumpToAnotherView(ui);
 			}
 		});
@@ -56,7 +56,7 @@ public class StorageStaffView extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				SettingAlertUI ui = null;
 				try {
-					ui = new SettingAlertUI();
+					ui = new SettingAlertUI(panel);
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -72,7 +72,7 @@ public class StorageStaffView extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				DistrictChangeUI UI=null;
 				try {
-					UI = new DistrictChangeUI();
+					UI = new DistrictChangeUI(panel);
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
