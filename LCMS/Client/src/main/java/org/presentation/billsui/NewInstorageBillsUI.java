@@ -21,6 +21,7 @@ import org.businesslogicservice.commodityblservice.CommodityInAndOutBLService;
 import org.po.ComPO;
 import org.po.StateListPO;
 import org.po.myDate;
+import org.presentation.mainui.ViewController;
 import org.vo.CommodityVO;
 import org.vo.HABVO;
 import org.vo.IBVO;
@@ -28,6 +29,7 @@ import org.vo.StateListVO;
 
 
 public class NewInstorageBillsUI extends JPanel {
+	private JPanel superview;
 	private JTextField newday;
 	private JTextField newmonth;
 	private JTextField newyear;
@@ -42,61 +44,64 @@ public class NewInstorageBillsUI extends JPanel {
 	private JTextField centerNum;
 	private JLabel label_3;
 	private JTextField idNum;
+	private JButton back;
 
 	/**
 	 * Create the panel.
+	 * @wbp.parser.constructor
 	 */
-	public NewInstorageBillsUI() {
+	public NewInstorageBillsUI(final JPanel superview) {
+		this.superview = superview;
 		setLayout(null);
 		
 		newday = new JTextField();
 		newday.setColumns(10);
-		newday.setBounds(205, 10, 66, 21);
+		newday.setBounds(366, 36, 66, 21);
 		add(newday);
 		
 		newmonth = new JTextField();
 		newmonth.setColumns(10);
-		newmonth.setBounds(134, 10, 66, 21);
+		newmonth.setBounds(271, 36, 66, 21);
 		add(newmonth);
 		
 		newyear = new JTextField();
 		newyear.setColumns(10);
-		newyear.setBounds(63, 10, 66, 21);
+		newyear.setBounds(168, 36, 66, 21);
 		add(newyear);
 		
 		JLabel label = new JLabel("\u5165\u5E93\u65E5\u671F");
-		label.setBounds(10, 13, 48, 15);
+		label.setBounds(60, 38, 103, 18);
 		add(label);
 		
 		JLabel label_1 = new JLabel("\u6258\u8FD0\u5355\u53F7");
-		label_1.setBounds(10, 38, 54, 15);
+		label_1.setBounds(271, 70, 103, 21);
 		add(label_1);
 		
 		goodNum = new JTextField();
-		goodNum.setBounds(63, 35, 208, 21);
+		goodNum.setBounds(366, 69, 161, 21);
 		add(goodNum);
 		goodNum.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("\u76EE\u7684\u5730");
-		lblNewLabel.setBounds(10, 63, 54, 15);
+		lblNewLabel.setBounds(60, 71, 54, 19);
 		add(lblNewLabel);
 		
 		place = new JTextField();
-		place.setBounds(63, 60, 121, 21);
+		place.setBounds(168, 69, 80, 21);
 		add(place);
 		place.setColumns(10);
 		
-		JLabel label_2 = new JLabel("\u6446\u653E\u4F4D\u7F6E");
-		label_2.setBounds(10, 88, 54, 15);
+		JLabel label_2 = new JLabel("摆放位置(4位数字)");
+		label_2.setBounds(60, 105, 137, 19);
 		add(label_2);
 		
 		location = new JTextField();
-		location.setBounds(63, 85, 208, 21);
+		location.setBounds(264, 103, 161, 21);
 		add(location);
 		location.setColumns(10);
 		
 		JButton addGood = new JButton("\u6DFB\u52A0");
-		addGood.setBounds(10, 113, 93, 23);
+		addGood.setBounds(264, 137, 93, 23);
 		add(addGood);
 		addGood.addActionListener(new ActionListener(){
 
@@ -121,7 +126,7 @@ public class NewInstorageBillsUI extends JPanel {
 		
 		
 		JButton deleteGood = new JButton("\u5220\u9664");
-		deleteGood.setBounds(113, 113, 93, 23);
+		deleteGood.setBounds(434, 137, 93, 23);
 		add(deleteGood);
 		deleteGood.addActionListener(new ActionListener(){
 
@@ -149,7 +154,7 @@ public class NewInstorageBillsUI extends JPanel {
 
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 199, 261, 79);
+		scrollPane.setBounds(60, 241, 467, 128);
 		add(scrollPane);
 		table = new JTable(model){
 			private static final long serialVersionUID = 1L;
@@ -163,7 +168,7 @@ public class NewInstorageBillsUI extends JPanel {
 		table.setFillsViewportHeight(true);
 		
 		submit = new JButton("\u63D0\u4EA4");
-		submit.setBounds(102, 288, 93, 23);
+		submit.setBounds(271, 396, 93, 23);
 		add(submit);
 		submit.addActionListener(new ActionListener(){
 
@@ -179,29 +184,40 @@ public class NewInstorageBillsUI extends JPanel {
 		});
 		
 		area = new JComboBox();
-		area.setBounds(194, 60, 77, 21);
+		area.setBounds(450, 102, 77, 25);
 		add(area);
 		area.addItem("汽运区");
 		area.addItem("铁运区");
 		area.addItem("空运区");
 		
 		JLabel lblNewLabel_1 = new JLabel("中转中心编号");
-		lblNewLabel_1.setBounds(10, 146, 82, 15);
+		lblNewLabel_1.setBounds(62, 175, 122, 19);
 		add(lblNewLabel_1);
 		
 		centerNum = new JTextField();
-		centerNum.setBounds(102, 143, 169, 21);
+		centerNum.setBounds(264, 173, 263, 21);
 		add(centerNum);
 		centerNum.setColumns(10);
 		
 		label_3 = new JLabel("入库单编号");
-		label_3.setBounds(10, 171, 66, 15);
+		label_3.setBounds(62, 207, 137, 21);
 		add(label_3);
 		
 		idNum = new JTextField();
-		idNum.setBounds(86, 168, 185, 21);
+		idNum.setBounds(264, 207, 264, 21);
 		add(idNum);
 		idNum.setColumns(10);
+		
+		back = new JButton("返回");
+		back.setBounds(434, 396, 93, 23);
+		add(back);
+		back.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ViewController.jumpToAnotherView(superview);
+			}
+		});
 
 	}
 	public NewInstorageBillsUI(IBVO vo){

@@ -20,12 +20,14 @@ import org.businesslogicservice.billsblservice.NewHallCollectBillsBLService;
 import org.po.SENDSTYPE;
 import org.po.StateListPO;
 import org.po.myDate;
+import org.presentation.mainui.ViewController;
 import org.vo.CEBVO;
 import org.vo.HCBVO;
 import org.vo.StateListVO;
 
 
 public class NewHallCollectionBillsUI extends JPanel {
+	private JPanel superview;
 	private JTextField newyear;
 	private JTextField newmonth;
 	private JTextField newday;
@@ -39,11 +41,14 @@ public class NewHallCollectionBillsUI extends JPanel {
 	private JLabel total;
 	private JLabel label_4;
 	private JTextField idNum;
+	private JButton back;
 
 	/**
 	 * Create the panel.
+	 * @wbp.parser.constructor
 	 */
-	public NewHallCollectionBillsUI() {
+	public NewHallCollectionBillsUI(final JPanel superview) {
+		this.superview = superview;
 		setLayout(null);
 		
 		JLabel label = new JLabel("收款日期  ");
@@ -148,7 +153,7 @@ public class NewHallCollectionBillsUI extends JPanel {
 		table.setFillsViewportHeight(true);	
 		
 		submit = new JButton("提交");
-		submit.setBounds(90, 266, 93, 23);
+		submit.setBounds(20, 266, 93, 23);
 		add(submit);
 		submit.addActionListener(new ActionListener(){
 
@@ -178,6 +183,17 @@ public class NewHallCollectionBillsUI extends JPanel {
 		idNum.setBounds(75, 35, 184, 21);
 		add(idNum);
 		idNum.setColumns(10);
+		
+		back = new JButton("返回");
+		back.setBounds(146, 266, 93, 23);
+		add(back);
+		back.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ViewController.jumpToAnotherView(superview);
+			}
+		});
 
 	}
 	public NewHallCollectionBillsUI(HCBVO vo){

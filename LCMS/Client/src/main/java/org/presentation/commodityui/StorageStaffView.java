@@ -7,6 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.text.View;
 
+import org.presentation.billsui.NewInstorageBillsUI;
+import org.presentation.billsui.NewOutstorageBillsUI;
 import org.presentation.mainui.ViewController;
 import org.vo.StaffVO;
 
@@ -38,7 +40,7 @@ public class StorageStaffView extends JPanel {
 
 			}
 		});
-		btnNewButton.setBounds(231, 88, 113, 27);
+		btnNewButton.setBounds(135, 88, 113, 27);
 		add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("库存盘点");
@@ -48,7 +50,7 @@ public class StorageStaffView extends JPanel {
 				ViewController.jumpToAnotherView(ui);
 			}
 		});
-		btnNewButton_1.setBounds(231, 155, 113, 27);
+		btnNewButton_1.setBounds(135, 155, 113, 27);
 		add(btnNewButton_1);
 
 		JButton btnNewButton_2 = new JButton("设置警报");
@@ -64,7 +66,7 @@ public class StorageStaffView extends JPanel {
 				ViewController.jumpToAnotherView(ui);
 			}
 		});
-		btnNewButton_2.setBounds(231, 222, 113, 27);
+		btnNewButton_2.setBounds(135, 222, 113, 27);
 		add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("库存调整");
@@ -80,7 +82,7 @@ public class StorageStaffView extends JPanel {
 				ViewController.jumpToAnotherView(UI);
 			}
 		});
-		btnNewButton_3.setBounds(231, 289, 113, 27);
+		btnNewButton_3.setBounds(398, 222, 113, 27);
 		add(btnNewButton_3);
 
 		JButton button = new JButton("退出");
@@ -108,6 +110,26 @@ public class StorageStaffView extends JPanel {
 		JLabel label = new JLabel("中转中心仓库管理员");
 		label.setBounds(231, 26, 142, 18);
 		add(label);
+		
+		JButton btnNewButton_4 = new JButton("入库");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				NewInstorageBillsUI ui=new NewInstorageBillsUI(panel);
+				ViewController.jumpToAnotherView(ui);
+			}
+		});
+		btnNewButton_4.setBounds(398, 88, 113, 27);
+		add(btnNewButton_4);
+		
+		JButton button = new JButton("出库");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				NewOutstorageBillsUI ui=new NewOutstorageBillsUI(panel);
+				ViewController.jumpToAnotherView(ui);
+			}
+		});
+		button.setBounds(398, 155, 113, 27);
+		add(button);
 
 		
 

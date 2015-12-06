@@ -19,11 +19,13 @@ import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.billsblservice.NewCenterEntruckBillsBLService;
 import org.po.StateListPO;
 import org.po.myDate;
+import org.presentation.mainui.ViewController;
 import org.vo.CEBVO;
 import org.vo.StateListVO;
 
 
 public class NewCenterEntruckBillsUI extends JPanel {
+	private JPanel superview;
 	ArrayList<StateListPO> list = new ArrayList<StateListPO>();
 	private JTextField newyear;
 	private JTextField newmonth;
@@ -41,11 +43,14 @@ public class NewCenterEntruckBillsUI extends JPanel {
 	private JTable table;
 	private JButton submit;
 	DefaultTableModel model;
+	private JButton back;
 
 	/**
 	 * Create the panel.
+	 * @wbp.parser.constructor
 	 */
-	public NewCenterEntruckBillsUI() {
+	public NewCenterEntruckBillsUI(final JPanel superview) {
+		this.superview = superview;
 		setLayout(null);
 		
 		JLabel label = new JLabel("\u88C5\u8F66\u65E5\u671F");
@@ -186,7 +191,7 @@ public class NewCenterEntruckBillsUI extends JPanel {
 		add(scrollPane);
 		
 		submit = new JButton("\u63D0\u4EA4");
-		submit.setBounds(107, 299, 93, 23);
+		submit.setBounds(10, 299, 93, 23);
 		add(submit);
 		submit.addActionListener(new ActionListener(){
 
@@ -204,6 +209,17 @@ public class NewCenterEntruckBillsUI extends JPanel {
 		JButton getPrice = new JButton("显示费用");
 		getPrice.setBounds(139, 112, 89, 23);
 		add(getPrice);
+		
+		back = new JButton("返回");
+		back.setBounds(185, 299, 93, 23);
+		add(back);
+		back.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ViewController.jumpToAnotherView(superview);
+			}
+		});
 		getPrice.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {

@@ -10,19 +10,23 @@ import javax.swing.JButton;
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.billsblservice.ReceiveMessageBLService;
 import org.po.myDate;
+import org.presentation.mainui.ViewController;
 
 
 public class ReceiveMessageUI extends JPanel {
+	private JPanel superview;
 	private JTextField goodNum;
 	private JTextField receiverName;
 	private JTextField newyear;
 	private JTextField newmonth;
 	private JTextField newday;
+	private JButton back;
 
 	/**
 	 * Create the panel.
 	 */
-	public ReceiveMessageUI() {
+	public ReceiveMessageUI(final JPanel superview) {
+		this.superview = superview;
 		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("快递单号");
@@ -63,8 +67,19 @@ public class ReceiveMessageUI extends JPanel {
 		add(newday);
 		
 		JButton submit = new JButton("添加");
-		submit.setBounds(84, 87, 93, 23);
+		submit.setBounds(20, 85, 93, 23);
 		add(submit);
+		
+		back = new JButton("返回");
+		back.setBounds(139, 85, 93, 23);
+		add(back);
+		back.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ViewController.jumpToAnotherView(superview);
+			}
+		});
 		submit.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {

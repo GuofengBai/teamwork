@@ -6,7 +6,12 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import org.presentation.mainui.ViewController;
+
 import java.awt.Button;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class HallCarUI extends JPanel {
@@ -82,9 +87,9 @@ public class HallCarUI extends JPanel {
 		add(textField_5);
 		textField_5.setColumns(10);
 		
-		JButton button_1 = new JButton("返回");
-		button_1.setBounds(422, 328, 113, 27);
-		add(button_1);
+		JButton back = new JButton("返回");
+		back.setBounds(422, 328, 113, 27);
+		add(back);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(24, 171, 529, 144);

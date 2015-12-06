@@ -10,11 +10,14 @@ import javax.swing.JButton;
 import org.presentation.mainui.ViewController;
 
 public class PostmanUI extends JPanel {
+	private JPanel superview;
+	private JPanel temp = this;
 
 	/**
 	 * Create the panel.
 	 */
-	public PostmanUI() {
+	public PostmanUI(final JPanel superview) {
+		this.superview = superview;
 		setLayout(null);
 		
 		JLabel label = new JLabel("快递员界面");
@@ -32,7 +35,7 @@ public class PostmanUI extends JPanel {
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				JPanel next = new NewSendingBillsUI();
+				JPanel next = new NewSendingBillsUI(temp);
 				ViewController.jumpToAnotherView(next);
 			}
 		});
@@ -44,7 +47,7 @@ public class PostmanUI extends JPanel {
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				JPanel next = new ReceiveMessageUI();
+				JPanel next = new ReceiveMessageUI(temp);
 				ViewController.jumpToAnotherView(next);
 			}
 		});

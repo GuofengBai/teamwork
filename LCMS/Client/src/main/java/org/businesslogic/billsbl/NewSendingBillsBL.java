@@ -44,14 +44,8 @@ public class NewSendingBillsBL implements NewSendingBillsBLService{
 		if(size>heavy){
 			heavy=size;
 		}
-		double canshu=1;
-		if(sendtype==SENDSTYPE.FAST){
-			canshu=25.0/23;
-		}else if(sendtype==SENDSTYPE.SLOW){
-			canshu=18.0/23;
-		}
 		ManagerSettingBL managerset = new ManagerSettingBL();
-		double price=managerset.getCitiesDistance(city1[0]+"市", city2[0]+"市")/1000*managerset.getStdFee()*canshu*heavy;
+		double price=managerset.getCityDistance(city1[0]+"市", city2[0]+"市")/1000*managerset.getExpressFee(sendtype)*heavy;
 		int baozhuang=1;
 		if(boxtype==BOXSTYPE.Paper){
 			baozhuang=5;

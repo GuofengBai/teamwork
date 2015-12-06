@@ -21,12 +21,14 @@ import org.businesslogicservice.billsblservice.NewHallEntruckBillsBLService;
 import org.po.SENDSTYPE;
 import org.po.StateListPO;
 import org.po.myDate;
+import org.presentation.mainui.ViewController;
 import org.vo.HABVO;
 import org.vo.HEBVO;
 import org.vo.StateListVO;
 
 
 public class NewHallEntruckBillsUI extends JPanel {
+	private JPanel superview;
 	private JTextField newyear;
 	private JTextField newmonth;
 	private JTextField newday;
@@ -41,11 +43,14 @@ public class NewHallEntruckBillsUI extends JPanel {
 	DefaultTableModel model;
 	ArrayList<StateListPO> list = new ArrayList<StateListPO>();
 	private JComboBox goodState;
+	private JButton back;
 
 	/**
 	 * Create the panel.
+	 * @wbp.parser.constructor
 	 */
-	public NewHallEntruckBillsUI() {
+	public NewHallEntruckBillsUI(final JPanel superview) {
+		this.superview = superview;
 		setLayout(null);
 		
 		JLabel label = new JLabel("装车日期");
@@ -174,7 +179,7 @@ public class NewHallEntruckBillsUI extends JPanel {
 		add(scrollPane);
 		
 		submit = new JButton("提交");
-		submit.setBounds(95, 277, 93, 23);
+		submit.setBounds(36, 277, 93, 23);
 		add(submit);
 		submit.addActionListener(new ActionListener(){
 
@@ -194,6 +199,17 @@ public class NewHallEntruckBillsUI extends JPanel {
 		goodState.addItem("完整");
 		goodState.addItem("损坏");
 		goodState.addItem("丢失");
+		
+		back = new JButton("返回");
+		back.setBounds(166, 277, 93, 23);
+		add(back);
+		back.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ViewController.jumpToAnotherView(superview);
+			}
+		});
 
 	}
 	public NewHallEntruckBillsUI(HEBVO vo){

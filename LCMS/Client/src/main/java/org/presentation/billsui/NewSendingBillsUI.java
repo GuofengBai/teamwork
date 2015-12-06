@@ -14,10 +14,12 @@ import org.businesslogicservice.billsblservice.NewSendingBillsBLService;
 import org.po.BOXSTYPE;
 import org.po.SENDSTYPE;
 import org.po.myDate;
+import org.presentation.mainui.ViewController;
 import org.vo.SBVO;
 
 
 public class NewSendingBillsUI extends JPanel {
+	private JPanel superview;
 	private JTextField sendername;
 	private JTextField senderphone;
 	private JTextField senderlocation;
@@ -37,11 +39,14 @@ public class NewSendingBillsUI extends JPanel {
 	private JLabel presentvalue;
 	private JComboBox sendtype;
 	private JComboBox boxtype;
+	private JButton back;
 
 	/**
 	 * Create the panel.
+	 * @wbp.parser.constructor
 	 */
-	public NewSendingBillsUI() {
+	public NewSendingBillsUI(final JPanel superview) {
+		this.superview = superview;
 		setLayout(null);
 		
 		JLabel label = new JLabel("\u5BC4\u4EF6\u4EBA\u59D3\u540D");
@@ -224,12 +229,23 @@ public class NewSendingBillsUI extends JPanel {
 		});
 		
 		JButton submit = new JButton("\u63D0\u4EA4");
-		submit.setBounds(115, 264, 93, 23);
+		submit.setBounds(40, 264, 93, 23);
 		add(submit);
 		
 		JLabel suggest = new JLabel("");
 		suggest.setBounds(21, 297, 289, 15);
 		add(suggest);
+		
+		back = new JButton("返回");
+		back.setBounds(190, 264, 93, 23);
+		add(back);
+		back.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ViewController.jumpToAnotherView(superview);
+			}
+		});
 		submit.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {
