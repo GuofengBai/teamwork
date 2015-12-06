@@ -1,11 +1,14 @@
 package org.vo;
 
+import javax.swing.JPanel;
+
 import org.po.BOXSTYPE;
 import org.po.SENDSTYPE;
 import org.po.SendingBills;
 import org.po.myDate;
+import org.presentation.billsui.NewSendingBillsUI;
 
-public class SBVO { 
+public class SBVO implements PanelCreaterService{ 
 	public String sendername;
 	public String receivername;
 	public String senderphone;
@@ -56,5 +59,9 @@ public class SBVO {
 		this.width=po.getwidth();
 		this.height=po.getheight();
 		this.weight=po.getweight();
+	}
+	public JPanel careatePanel(JPanel su) {
+		JPanel panel=new NewSendingBillsUI(su,this);
+		return panel;
 	}
 }

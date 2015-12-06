@@ -2,11 +2,15 @@ package org.vo;
 
 import java.util.ArrayList;
 
+import javax.swing.JPanel;
+
 import org.po.ComPO;
 import org.po.InstorageBills;
 import org.po.myDate;
+import org.presentation.billsui.NewCenterEntruckBillsUI;
+import org.presentation.billsui.NewInstorageBillsUI;
 
-public class IBVO {
+public class IBVO implements PanelCreaterService{
 	public myDate date;
 	public String idNum;
 	public String centerNum;
@@ -22,6 +26,10 @@ public class IBVO {
 		this.idNum=po.getidNum();
 		this.centerNum=po.getcenterNum();
 		this.list=po.getlist();
+	}
+	public JPanel careatePanel(JPanel su) {
+		JPanel panel=new NewInstorageBillsUI(su,this);
+		return panel;
 	}
 
 }

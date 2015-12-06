@@ -2,12 +2,16 @@ package org.vo;
 
 import java.util.ArrayList;
 
+import javax.swing.JPanel;
+
 import org.po.CenterFreightBills;
 import org.po.SENDSTYPE;
 import org.po.StateListPO;
 import org.po.myDate;
+import org.presentation.billsui.NewCenterEntruckBillsUI;
+import org.presentation.billsui.NewCenterFreightBillsUI;
 
-public class CFBVO {
+public class CFBVO implements PanelCreaterService{
 	public myDate date; 
 	public String FreightNum;
 	public String tramNum;
@@ -43,7 +47,10 @@ public class CFBVO {
 		this.send=po.getsend();
 		this.po=po.getpo();	
 	}
-	
+	public JPanel careatePanel(JPanel su) {
+		JPanel panel=new NewCenterFreightBillsUI(su,this);
+		return panel;
+	}
 	
 
 }

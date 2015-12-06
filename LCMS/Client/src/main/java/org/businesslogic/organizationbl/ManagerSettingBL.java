@@ -147,11 +147,11 @@ public class ManagerSettingBL implements ManagerSettingBLService{
 			cities[cad.cities.length]=cityName;
 			cad.cities=cities;
 			
-			double[][] distance=new double[cad.cities.length][cad.cities.length];
+			Double[][] distance=new Double[cad.cities.length][cad.cities.length];
 			for(int i=0;i<cad.cities.length;i++){
 				for(int j=0;j<cad.cities.length;j++){
 					if(i==cad.cities.length-1||j==cad.cities.length-1){
-						distance[i][j]=30;
+						distance[i][j]=(double) 30;
 					}else{
 						distance[i][j]=cad.distance[i][j];
 					}
@@ -193,7 +193,7 @@ public class ManagerSettingBL implements ManagerSettingBLService{
 			}
 			cad.cities=cities;
 			
-			double[][] distance=new double[cad.cities.length][cad.cities.length];
+			Double[][] distance=new Double[cad.cities.length][cad.cities.length];
 			for(int i=0;i<cad.cities.length;i++){
 				for(int j=0;j<cad.cities.length;j++){
 					if(i<del&&j<del){

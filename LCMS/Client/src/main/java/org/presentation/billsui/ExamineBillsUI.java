@@ -3,6 +3,8 @@ package org.presentation.billsui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Vector;
 
 import javax.swing.JPanel;
@@ -16,17 +18,23 @@ import javax.swing.ListSelectionModel;
 
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.billsblservice.ExamineBillsBLService;
+import org.businesslogicservice.staffblservice.StaffBLService;
 import org.presentation.mainui.ViewController;
+import org.presentation.staffui.StaffInfoUI;
+import org.vo.PanelCreaterService;
+import org.vo.StaffVO;
 
 //�������ݵĽ���
 public class ExamineBillsUI extends JPanel{
 	private JTable table;
 	private DefaultTableModel model;
 	private JPanel superView;
+	private JPanel temp;
 	
 	public ExamineBillsUI(JPanel su) {
 		super();
 		this.superView=su;
+		temp=this;
 		setLayout(null);
 		init();
 	}
@@ -58,6 +66,43 @@ public class ExamineBillsUI extends JPanel{
 		table.setModel(model);
 		table.getSelectionModel().setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		
+		table.addMouseListener(new MouseListener() {
+			
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void mouseClicked(MouseEvent arg0) {
+				
+				if(arg0.getButton()==MouseEvent.BUTTON1&&arg0.getClickCount()==2){
+					int row =((JTable)arg0.getSource()).rowAtPoint(arg0.getPoint());
+					System.out.println("选中第"+(row+1)+"行");
+					ExamineBillsBLService examineBillsBL=BLFactory.getExamineBillsBL();
+					
+					PanelCreaterService creater=examineBillsBL.getPanelCreater(
+							(String)model.getValueAt(row,0),(String)model.getValueAt(row,1));
+					JPanel next=creater.careatePanel(temp);
+					ViewController.jumpToAnotherView(next);
+				}
+				
+			}
+		});
 		
 		
 		

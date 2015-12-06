@@ -51,7 +51,7 @@ public class NewCenterFreightBillsBL implements NewCenterFreightBillsBLService{
 			canshu = 1000;
 		}
 		ManagerSettingBL managerset = new ManagerSettingBL();
-		double price = managerset.getCitiesDistance(StartPlace, EndPlace)*canshu;
+		double price = managerset.getCityDistance(StartPlace, EndPlace)*canshu;
 		return (long)price;
 	}
 

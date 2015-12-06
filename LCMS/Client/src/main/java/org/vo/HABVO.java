@@ -2,11 +2,15 @@ package org.vo;
 
 import java.util.ArrayList;
 
+import javax.swing.JPanel;
+
 import org.po.HallArrivingBills;
 import org.po.StateListPO;
 import org.po.myDate;
+import org.presentation.billsui.NewCenterEntruckBillsUI;
+import org.presentation.billsui.NewHallArriveBillsUI;
 
-public class HABVO {
+public class HABVO implements PanelCreaterService{
 	public myDate date;
 	public String idNum;
 	public String startPlace;
@@ -25,5 +29,10 @@ public class HABVO {
 		this.startPlace=po.getStartPlace();
 		this.entruckNum=po.getentruckNum();
 		this.list=po.getlist();		
+	}
+	
+	public JPanel careatePanel(JPanel su) {
+		JPanel panel=new NewHallArriveBillsUI(su,this);
+		return panel;
 	}
 }

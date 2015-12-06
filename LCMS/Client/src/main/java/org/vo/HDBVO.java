@@ -1,9 +1,13 @@
 package org.vo;
 
+import javax.swing.JPanel;
+
 import org.po.HallDispatchBills;
 import org.po.myDate;
+import org.presentation.billsui.NewCenterEntruckBillsUI;
+import org.presentation.billsui.NewHallDispatchBillsUI;
 
-public class HDBVO {
+public class HDBVO implements PanelCreaterService{
 	public myDate date;
 	public String idNum;
 	public String name;
@@ -20,6 +24,10 @@ public class HDBVO {
 		this.idNum=po.getidNum();
 		this.name=po.getname();
 		this.GoodsNum=po.getgoodNum();
+	}
+	public JPanel careatePanel(JPanel su) {
+		JPanel panel=new NewHallDispatchBillsUI(su,this);
+		return panel;
 	}
 
 }

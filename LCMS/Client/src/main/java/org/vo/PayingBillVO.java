@@ -2,10 +2,12 @@ package org.vo;
 
 import java.util.Vector;
 
+import javax.swing.JPanel;
+
 import org.po.PayingBills;
 import org.po.myDate;
 
-public class PayingBillVO extends Vector<String>{
+public class PayingBillVO extends Vector<String> implements PanelCreaterService{
 	public PayingBillVO(myDate date,long money,String name,String accountName,String item,String remark,boolean examined){
 		this.add(date.toString());
 		this.add(String.valueOf(money));
@@ -35,6 +37,11 @@ public class PayingBillVO extends Vector<String>{
 			this.add("未审批");
 		}
 		
+	}
+
+	public JPanel careatePanel(JPanel su) {
+		
+		return null;
 	}
 	
 }

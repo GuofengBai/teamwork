@@ -2,11 +2,15 @@ package org.vo;
 
 import java.util.ArrayList;
 
+import javax.swing.JPanel;
+
 import org.po.HallCollectionBills;
 import org.po.StateListPO;
 import org.po.myDate;
+import org.presentation.billsui.NewCenterEntruckBillsUI;
+import org.presentation.billsui.NewHallCollectionBillsUI;
 
-public class HCBVO {
+public class HCBVO implements PanelCreaterService{
 	public myDate date;
 	public String idNum;
 	public String name;
@@ -25,6 +29,11 @@ public class HCBVO {
 		this.name=po.getname();
 		this.total=po.gettotal();
 		this.list=po.getlist();
+	}
+	
+	public JPanel careatePanel(JPanel su) {
+		JPanel panel=new NewHallCollectionBillsUI(su,this);
+		return panel;
 	}
 
 }
