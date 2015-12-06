@@ -217,5 +217,19 @@ public class ManagerSettingBL implements ManagerSettingBLService{
 		}
 		return false;
 	}
+
+	public CityAndDistancePO getCad() {
+		try {
+			ManagerSettingDataService manager=RMIHelper.getDataFactory().getOrganizationDataFactory().getManagerSettingData();
+		
+			CityAndDistancePO cad=manager.getCityAndDistance();
+			
+			return cad;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 }

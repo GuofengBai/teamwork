@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 import org.Client.RMIHelper;
+import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.organizationblservice.CenterBLService;
+import org.businesslogicservice.organizationblservice.ManagerSettingBLService;
 import org.dataservice.organizationdataservice.CenterDataService;
 import org.dataservice.organizationdataservice.HallDataService;
 import org.po.CenterPO;
@@ -19,7 +21,12 @@ public class CenterBL implements CenterBLService{
 		CenterPO po=new CenterPO(vo.get(0),vo.get(1),vo.get(2));
 		try {
 			CenterDataService centerData=RMIHelper.getDataFactory().getOrganizationDataFactory().getCenterData();
-		    centerData.addCenter(po);
+			centerData.addCenter(po);
+			
+			ManagerSettingBLService manager=BLFactory.getManagerSettingBL();
+			manager.addCity(po.getname());
+			
+			
 		    return true;
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -31,8 +38,14 @@ public class CenterBL implements CenterBLService{
 	public boolean delCenter(String CenterNum) {
 		try {
 			CenterDataService centerData=RMIHelper.getDataFactory().getOrganizationDataFactory().getCenterData();
-		    centerData.delCenter(CenterNum);
-		    return true;
+		    CenterPO center=centerData.findCenter(CenterNum);
+			centerData.delCenter(CenterNum);
+			
+			ManagerSettingBLService manager=BLFactory.getManagerSettingBL();
+			manager.delCity(center.getname());
+			
+			
+			return true;
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

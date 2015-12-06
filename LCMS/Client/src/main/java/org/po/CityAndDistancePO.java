@@ -14,6 +14,6 @@ public class CityAndDistancePO implements Serializable{
 	
 	public String[] cities;
 	
-	public double[][] distance;
+	public Double[][] distance;
 
 }

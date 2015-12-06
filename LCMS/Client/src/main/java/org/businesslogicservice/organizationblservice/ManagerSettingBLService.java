@@ -1,5 +1,6 @@
 package org.businesslogicservice.organizationblservice;
 
+import org.po.CityAndDistancePO;
 import org.po.ResultMessage;
 import org.po.ExpressFeePO;
 import org.po.SENDSTYPE;
@@ -27,6 +28,12 @@ public interface ManagerSettingBLService {
 	 * @return 距离
 	 */
 	public double getCityDistance(String city1, String city2);
+	
+	/**
+	 * 
+	 * @return cad
+	 */
+	public CityAndDistancePO getCad();
 	
 	/**
 	 * 从城市列表中添加某城市
