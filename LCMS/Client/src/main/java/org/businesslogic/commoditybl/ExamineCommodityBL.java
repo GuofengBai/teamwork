@@ -19,6 +19,10 @@ import org.vo.ExamineVO;
 public class ExamineCommodityBL implements ExamineCommodityBLService {
 	private CommodityDataService cds;
 
+	/**
+	 * 通过检查两个时间内的所有的出库单、入库单和货物信息获得入库数量、出库数量和当前数量 
+	 * 返回可显示格式
+	 */
 	public Vector<ExamineVO> examineCommodity(myDate timestart, myDate timeend,
 			String centerNum) throws RemoteException {
 		ArrayList<BillsPO> inbillslist, outbillslist;
@@ -35,34 +39,43 @@ public class ExamineCommodityBL implements ExamineCommodityBLService {
 				.getCommodityData();
 		for (String area1 : arealist) {
 			/*
-			 * 需完善
+			 * 入库数量
 			 */
 			for (BillsPO bills : inbillslist) {
 				if (bills.type == BILLSTYPE.IB) {
-					InstorageBills temp=(InstorageBills) bills;
-					ArrayList<ComPO> list=temp.getlist();
-					for(ComPO po:list){
-						if(po.getArea().equals(area1))
+					InstorageBills temp = (InstorageBills) bills;
+					ArrayList<ComPO> list = temp.getlist();
+					for (ComPO po : list) {
+						if (po.getArea().equals(area1))
 							inNum++;
 					}
 				}
 			}
+			/*
+			 * 出库数量
+			 */
 			for (BillsPO bills : inbillslist) {
 				if (bills.type == BILLSTYPE.OB) {
-					OutstorageBills temp=(OutstorageBills) bills;
-					ArrayList<ComPO> list=temp.getlist();
-					for(ComPO po:list){
-						if(po.getArea().equals(area1))
+					OutstorageBills temp = (OutstorageBills) bills;
+					ArrayList<ComPO> list = temp.getlist();
+					for (ComPO po : list) {
+						if (po.getArea().equals(area1))
 							outNum++;
 					}
 				}
 			}
+			/*
+			 * 当前数量
+			 */
 			comlist = cds.getAllCom(centerNum);
 			for (ComPO po : comlist) {
 				if (po.getArea().equals(area1)) {
 					nowNum++;
 				}
 			}
+			/*
+			 * table中可显示的格式
+			 */
 			ExamineVO vo = new ExamineVO(area1, timestart, timeend, inNum,
 					outNum, nowNum);
 			result.add(vo);
@@ -75,6 +88,12 @@ public class ExamineCommodityBL implements ExamineCommodityBLService {
 	public ExamineCommodityBL() throws RemoteException {
 		cds = RMIHelper.getDataFactory().getCommodityData();
 	}
+	/**
+	 * 获得当前库区的列表，返回给显示层
+	 * @param centerNum
+	 * @return
+	 * @throws RemoteException
+	 */
 
 	public List<String> getArea(String centerNum) throws RemoteException {
 		ArrayList<ComPO> list = cds.getAllCom(centerNum);

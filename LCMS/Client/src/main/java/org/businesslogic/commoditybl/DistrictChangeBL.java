@@ -16,20 +16,20 @@ import org.po.myDate;
 import org.vo.CommodityVO;
 
 public class DistrictChangeBL implements DistrictChangeBLService {
-	//private final static int QU = 10;
-	//private final static int PAI = 10;
-	//private final static int JIA = 10;
-//	private final static int WEI = 10;
+
 	Vector<CommodityVO> vdata1;
 	Vector<CommodityVO> vdata2;
 	MockCommodityData mcd;
-	// List<String> area;
+
 	public DistrictChangeBL() {
 		vdata1 = new Vector<CommodityVO>();
 		vdata2 = new Vector<CommodityVO>();
-		mcd=new MockCommodityData();
+		mcd = new MockCommodityData();
 	}
 
+	/**
+	 * 得到选中的货物后，将其交给changeDistrict方法完成改变
+	 */
 	public ResultMessage change(String from, String to, int index,
 			String location) throws RemoteException {
 		// TODO Auto-generated method stub
@@ -41,31 +41,37 @@ public class DistrictChangeBL implements DistrictChangeBLService {
 				Integer.parseInt(vo.getmonth()), Integer.parseInt(vo.getday()));
 		CommodityVO newvo = new CommodityVO(vo.getGoodsNum(), newdate,
 				vo.getplace(), location, to, vo.getcenterNum());
-	
+
 		ResultMessage re = changeDistrict(newvo);
 		System.out.println(re.info);
 		return re;
 	}
 
+	/**
+	 * 得到当前库区的货物列表并且转换为可显示格式返回给显示层
+	 */
 	public Vector<CommodityVO> getDistrictCommodity(String centerNum,
 			String from) throws RemoteException {
 		CommodityDataService cds = RMIHelper.getDataFactory()
 				.getCommodityData();
 		vdata1 = new Vector<CommodityVO>();
-		ArrayList<ComPO> list=cds.getAllCom(centerNum);
-		//ArrayList<ComPO> list = cds.getAllCom(centerNum);
+		ArrayList<ComPO> list = cds.getAllCom(centerNum);
+		// ArrayList<ComPO> list = cds.getAllCom(centerNum);
 		for (ComPO po : list) {
 			CommodityVO vo;
-			if(from.equals(po.getArea())){
-			vdata1.add(vo = new CommodityVO(po.getGoodsNum(), po.getinDate(),
-					po.getplace(), po.LocationNum(), po.getArea(), po
-							.getcenterNum()));
+			if (from.equals(po.getArea())) {
+				vdata1.add(vo = new CommodityVO(po.getGoodsNum(), po
+						.getinDate(), po.getplace(), po.LocationNum(), po
+						.getArea(), po.getcenterNum()));
 			}
 		}
 
 		return vdata1;
 	}
 
+	/**
+	 * 检查货位是否被占用后完成调整
+	 */
 	public ResultMessage changeDistrict(CommodityVO vo) throws RemoteException {
 		CommodityDataService cds = RMIHelper.getDataFactory()
 				.getCommodityData();
@@ -76,7 +82,8 @@ public class DistrictChangeBL implements DistrictChangeBLService {
 		String[] fa = { "调整失败" };
 		try {
 			po = cds.findCom(vo.getGoodsNum());
-			if (po.LocationNum().equals(vo.getLocation())&&po.getArea().equals(vo.getarea())) {
+			if (po.LocationNum().equals(vo.getLocation())
+					&& po.getArea().equals(vo.getarea())) {
 				return re = new ResultMessage(false, used);
 			}
 			cds.delCom(po);
@@ -89,24 +96,28 @@ public class DistrictChangeBL implements DistrictChangeBLService {
 			e.printStackTrace();
 			return re = new ResultMessage(false, fa);
 		}/*
-		po=mcd.findCom(vo.getGoodsNum());
-		System.out.println(po.getGoodsNum());
-		System.out.println(po.getGoodsNum()+" ");
-		if(po.LocationNum().equals(vo.getLocation())&&po.getArea().equals(vo.getarea()))
-			return re = new ResultMessage(false, used);
-		mcd.delCom(po);
-		po1=new ComPO(vo.getGoodsNum(),po.getinDate(),vo.getplace(),vo.getLocation(),vo.getarea(),po.getcenterNum());
-		mcd.addCom(po1);*/
-		//return re=new ResultMessage(true,su);
-					
+		 * po=mcd.findCom(vo.getGoodsNum());
+		 * System.out.println(po.getGoodsNum());
+		 * System.out.println(po.getGoodsNum()+" ");
+		 * if(po.LocationNum().equals(vo
+		 * .getLocation())&&po.getArea().equals(vo.getarea())) return re = new
+		 * ResultMessage(false, used); mcd.delCom(po); po1=new
+		 * ComPO(vo.getGoodsNum
+		 * (),po.getinDate(),vo.getplace(),vo.getLocation(),vo
+		 * .getarea(),po.getcenterNum()); mcd.addCom(po1);
+		 */
+		// return re=new ResultMessage(true,su);
 
 	}
 
+	/**
+	 * 获得当前库区的列表，返回给显示层
+	 */
 	public List<String> getArea(String centerNum) throws RemoteException {
 		CommodityDataService cds = RMIHelper.getDataFactory()
 				.getCommodityData();
-		ArrayList<ComPO> list=cds.getAllCom(centerNum);
-		//ArrayList<ComPO> list = cds.getAllCom(centerNum);
+		ArrayList<ComPO> list = cds.getAllCom(centerNum);
+		// ArrayList<ComPO> list = cds.getAllCom(centerNum);
 		String p;
 		List<String> area = new ArrayList<String>();
 		for (ComPO po : list) {
@@ -115,43 +126,8 @@ public class DistrictChangeBL implements DistrictChangeBLService {
 				area.add(p);
 			}
 		}
-		// area.add("航运区");
-		// area.add("火车区");
-		// area.add("汽运区");
+		
 		return area;
 	}
-
-	/*public Vector<CommodityVO> getEmpty(String centerNum, String to)
-			throws RemoteException {
-		CommodityDataService cds = RMIHelper.getDataFactory()
-				.getCommodityData();
-		ArrayList<ComPO> list = cds.getAllCom(centerNum);
-		vdata2 = new Vector<CommodityVO>();
-		String location;
-		for (ComPO po : list) {
-			CommodityVO vo;
-			if (po.getcenterNum().equals(centerNum)) {
-				for (int quhao = 0; quhao < QU; quhao++) {
-					for (int paihao = 0; paihao < PAI; paihao++) {
-						for (int jiahao = 0; jiahao < JIA; jiahao++) {
-							for (int weihao = 0; weihao < WEI; weihao++) {
-								if (!po.getGoodsNum().equals(
-										location = String.valueOf(quhao)
-												+ String.valueOf(paihao)
-												+ String.valueOf(jiahao)
-												+ String.valueOf(weihao))) {
-									vdata2.add(vo = new CommodityVO(" ",
-											new myDate(0, 0, 0), " ", location,
-											" ", " "));
-								}
-							}
-						}
-					}
-				}
-			}
-			// 设计每个仓库（航运仓库、火车仓库、汽运仓库）下各有10区，每区下10排，每排下10架，每架下10位
-		}
-		return vdata2;
-	}*/
 
 }

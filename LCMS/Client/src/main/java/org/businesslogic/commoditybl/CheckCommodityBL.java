@@ -19,15 +19,19 @@ public class CheckCommodityBL implements CheckCommodityBLService {
 	Vector<CommodityVO> comlist;
 	ArrayList<ComPO> list;
 
-	public boolean startCheckCommodity(myDate time,String centerNum) throws RemoteException {
+	/**
+	 * 开始库存盘点 得到截止当前日期的货物信息列表
+	 */
+	public boolean startCheckCommodity(myDate time, String centerNum)
+			throws RemoteException {
 		// TODO Auto-generated method stub
 		CommodityDataService cds = RMIHelper.getDataFactory()
 				.getCommodityData();
 		/**
 		 * Mock测试
 		 */
-		MockCommodityData mcd=new MockCommodityData();
-		
+		MockCommodityData mcd = new MockCommodityData();
+
 		Date date = new Date();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
 		String curdate = simpleDateFormat.format(date);
@@ -35,25 +39,28 @@ public class CheckCommodityBL implements CheckCommodityBLService {
 		int month = Integer.parseInt(curdate.substring(4, 6));
 		int day = Integer.parseInt(curdate.substring(6, 8));
 		myDate today = new myDate(year, month, day);
-		
+
 		/**
 		 * Mock测试
 		 */
-		//list = cds.getAllCom(centerNum);
-		list=cds.getAllCom(centerNum);
+		// list = cds.getAllCom(centerNum);
+		list = cds.getAllCom(centerNum);
 		return false;
 	}
 
+	/**
+	 * 将货物信息转换为table中可显示的格式返回到显示层
+	 */
 	public Vector<CommodityVO> checkCommodityInf(String centerNum) {
 		// TODO Auto-generated method stub
 		comlist = new Vector<CommodityVO>();
 		for (ComPO po : list) {
-		
-				CommodityVO obj = new CommodityVO(po.getGoodsNum(),
-						po.getinDate(), po.getplace(), po.LocationNum(),
-						po.getArea(), po.getcenterNum());
-				comlist.add(obj);
-			
+
+			CommodityVO obj = new CommodityVO(po.getGoodsNum(), po.getinDate(),
+					po.getplace(), po.LocationNum(), po.getArea(),
+					po.getcenterNum());
+			comlist.add(obj);
+
 		}
 		return comlist;
 	}

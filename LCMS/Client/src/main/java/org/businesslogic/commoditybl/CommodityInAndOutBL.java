@@ -13,7 +13,9 @@ import org.po.ComPO;
 import org.po.ResultMessage;
 
 public class CommodityInAndOutBL implements CommodityInAndOutBLService {
-
+	/**
+	 * 将获得的需要入库货物通过警报线检查后交给数据层完成信息改变
+	 */
 	public ResultMessage Commodityin(ComPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		CommodityDataService cds = RMIHelper.getDataFactory()
@@ -21,28 +23,28 @@ public class CommodityInAndOutBL implements CommodityInAndOutBLService {
 		/**
 		 * Mock测试
 		 */
-		//MockCommodityData mcd=new MockCommodityData();
-		
-		
+		// MockCommodityData mcd=new MockCommodityData();
+
 		SettingAlertBLService sabs = BLFactory.getSettingAlertBL();
 		ResultMessage re;
 		int size = 0;
 		String[] su = { "入库成功" };
 		String[] fa = { "入库成功但是货物量已经超过警戒线!" };
 		String[] fai = { "入库失败" };
-		ResultMessage rem=cds.addCom(po);
-		if(rem.success&&!sabs.ALERT(po.getcenterNum()).success){
+		ResultMessage rem = cds.addCom(po);
+		if (rem.success && !sabs.ALERT(po.getcenterNum()).success) {
 			return re = new ResultMessage(true, fa);
-		}
-		else if(rem.success&&sabs.ALERT(po.getcenterNum()).success){
+		} else if (rem.success && sabs.ALERT(po.getcenterNum()).success) {
 			return re = new ResultMessage(true, su);
 		}
-		//if (cds.addCom(po).success&&sabs.ALERT(po.getcenterNum()).success) {
-		//	return re = new ResultMessage(true, fa);
-		 else
+		// if (cds.addCom(po).success&&sabs.ALERT(po.getcenterNum()).success) {
+		// return re = new ResultMessage(true, fa);
+		else
 			return re = new ResultMessage(false, fai);
 	}
-
+	/**
+	 * 将获得的需要出库货物通过检查后交给数据层完成信息改变
+	 */
 	public ResultMessage Commodityout(ComPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		CommodityDataService cds = RMIHelper.getDataFactory()
@@ -50,19 +52,18 @@ public class CommodityInAndOutBL implements CommodityInAndOutBLService {
 		/**
 		 * Mock测试
 		 */
-		//MockCommodityData mcd=new MockCommodityData();
-		
-		
+		// MockCommodityData mcd=new MockCommodityData();
+
 		SettingAlertBLService sabs = BLFactory.getSettingAlertBL();
 		ResultMessage re;
-		ResultMessage rem=cds.delCom(po);
+		ResultMessage rem = cds.delCom(po);
 		String[] su = { "出库成功" };
 		String[] fa = { "出库失败" };
-		
-		if(rem.success)
+
+		if (rem.success)
 			return re = new ResultMessage(true, su);
-		//if (cds.delCom(po).success) {
-		//	return re = new ResultMessage(true, su);
+		// if (cds.delCom(po).success) {
+		// return re = new ResultMessage(true, su);
 		else
 			return re = new ResultMessage(false, fa);
 	}
