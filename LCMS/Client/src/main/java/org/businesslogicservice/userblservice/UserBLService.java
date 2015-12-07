@@ -28,4 +28,11 @@ public interface UserBLService {
 	 * @throws RemoteException
 	 */
 	public ResultMessage delUser(String account) throws RemoteException ;
+	/**
+	 * 
+	 * @param po
+	 * @return
+	 * @throws RemoteException
+	 */
+	public ResultMessage addUser(UserPO po) throws RemoteException;
 }

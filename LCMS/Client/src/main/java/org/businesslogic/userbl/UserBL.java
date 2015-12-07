@@ -31,7 +31,14 @@ public class UserBL implements UserBLService {
 		UserPO po = uds.find(account);
 		return po;
 	}
-
+	/**
+	 * 
+	 */
+	public ResultMessage addUser(UserPO po) throws RemoteException{
+		UserDataService uds = RMIHelper.getDataFactory().getUserData();
+		ResultMessage re = uds.insert(po);
+		return re;
+	}
 	public ResultMessage delUser(String account) throws RemoteException {
 		UserDataService uds = RMIHelper.getDataFactory().getUserData();
 		ResultMessage re = uds.delete(account);
