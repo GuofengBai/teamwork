@@ -99,7 +99,7 @@ public class StorageStaffView extends JPanel {
 	 * Create the panel.
 	 * @throws RemoteException 
 	 */
-	public StorageStaffView() throws RemoteException {
+	public StorageStaffView(JPanel newpanel) throws RemoteException {
 		// thisstaff = CurrentStaff.getStaff();
 		// if (thisstaff.workSpace.type.equals("中转中心"))
 		// this.centerNum = thisstaff.workSpace.num;
