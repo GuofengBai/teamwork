@@ -69,6 +69,7 @@ public class UserData extends UnicastRemoteObject implements UserDataService {
 		for(UserPO po:UserList){
 			if(po.getAccount().equals(account)){
 				UserList.remove(po);
+				save();
 				return new ResultMessage(true,su);
 			}
 		}
