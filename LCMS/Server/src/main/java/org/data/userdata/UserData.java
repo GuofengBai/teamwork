@@ -115,9 +115,4 @@ public class UserData extends UnicastRemoteObject implements UserDataService {
 		}
 		return null;
 	}
-
-	private void setRole(StaffPO staff){
-		String re = String.valueOf(staff.staffRole);
-		this.role = re;
-	}
 }
