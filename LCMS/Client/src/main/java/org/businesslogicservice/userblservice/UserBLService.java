@@ -1,9 +1,11 @@
 package org.businesslogicservice.userblservice;
 
 import java.rmi.RemoteException;
+import java.util.Vector;
 
 import org.po.ResultMessage;
 import org.po.UserPO;
+import org.vo.UserVO;
 
 public interface UserBLService {
 	/**启动登录
@@ -35,4 +37,10 @@ public interface UserBLService {
 	 * @throws RemoteException
 	 */
 	public ResultMessage addUser(UserPO po) throws RemoteException;
+	
+	/**
+	 * 获得现有User列表
+	 * @return UserVO的Vector
+	 */
+	public Vector<UserVO> getList();
 }

@@ -1,53 +1,25 @@
 package org.vo;
 
+import java.util.Vector;
+
 import org.po.STAFFROLE;
+import org.po.UserPO;
 
 
 
-public class UserVO {
+public class UserVO extends Vector<String>{
 	
-	public String account;
-	private String password;
-	public StaffVO staff;                     //与此账号对应的员工
-	public STAFFROLE staffRole;               //职务
-	
-	public UserVO(){
+	public UserVO(String account,String staffNumber){
 		super();
+		this.add(account);
+		this.add(staffNumber);
 	}
 	
-	public UserVO(String account,String password,StaffVO staff){
-		this.account=account;
-		this.password=password;
-		this.staff=staff;
-		this.staffRole=staff.staffRole;
+	public UserVO(UserPO po){
+		super();
+		this.add(po.getAccount());
+		this.add(po.getNumber());
 	}
-	
-	public String getAccount(){
-		return account;
-	}
-	
-	public String getPassword(){
-		return password;
-	}
-	
-	public boolean setPassword(String newpw){
-		password=newpw;
-		return true;
-	}
-	
-	public StaffVO getStaff(){
-		return staff;
-	}
-	
-	public STAFFROLE getStaffRole(){
-		return staffRole;
-	}
-	
-	public boolean setStaffRole(STAFFROLE sr){
-		staffRole=sr;
-		return true;
-	}
-	
 	
 
 }

@@ -22,10 +22,14 @@ public class StaffData extends UnicastRemoteObject implements StaffDataService{
 
 	public StaffData() throws RemoteException {
 		super();
+		System.out.println("初始化文件");
 		init();
 	}
 	
 	public void init(){
+		
+		staffList=null;
+		
 		String fileName="SerializableData/Staff.file";
 		FileInputStream fis;
 		try {
@@ -34,9 +38,7 @@ public class StaffData extends UnicastRemoteObject implements StaffDataService{
 	        ObjectInputStream ois = new ObjectInputStream(bis); 
 	        staffList=(ArrayList<StaffPO>)ois.readObject();
 	        ois.close();
-	        if(staffList==null){
-	        	staffList=new ArrayList<StaffPO>();
-	        }
+	        System.out.println("初始化文件成功");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -47,6 +49,9 @@ public class StaffData extends UnicastRemoteObject implements StaffDataService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		if(staffList==null){
+        	staffList=new ArrayList<StaffPO>();
+        }
         
 	}
 

@@ -14,7 +14,10 @@ import org.vo.StaffVO;
 public class StaffBL implements StaffBLService{
 
 	public ResultMessage newStaff(StaffVO vo) {
-		StaffPO po=new StaffPO(vo);
+		StaffPO po=new StaffPO(vo.staffRole,vo.name,vo.num,vo.gender,vo.birthday,
+				vo.location,vo.phone,vo.user,vo.bankAccount,vo.workSpace,vo.payment);
+		
+		System.out.println(po.getInfo());
 		StaffDataService staffData=null;
 		try {
 			staffData=RMIHelper.getDataFactory().getStaffData();
@@ -47,7 +50,8 @@ public class StaffBL implements StaffBLService{
 	}
 
 	public ResultMessage updateStaff(StaffVO vo) {
-		StaffPO po=new StaffPO(vo);
+		StaffPO po=new StaffPO(vo.staffRole,vo.name,vo.num,vo.gender,vo.birthday,
+				vo.location,vo.phone,vo.user,vo.bankAccount,vo.workSpace,vo.payment);
 		StaffDataService staffData=null;
 		try {
 			staffData=RMIHelper.getDataFactory().getStaffData();

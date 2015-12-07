@@ -61,9 +61,11 @@ public class StaffInfoUI extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				vo=new StaffVO();
 				String srole=role.getSelectedItem().toString();
+				System.out.println(srole);
 				for(STAFFROLE rl:STAFFROLE.values()){
 					if(rl.getName().equals(srole)){
 						vo.staffRole=rl;
+						System.out.println(vo.staffRole.getName());
 						break;
 					}
 				}
@@ -205,6 +207,7 @@ public class StaffInfoUI extends JPanel{
 		gender.addItem("男");
 		gender.addItem("女");
 		add(gender);
+		gender.setSelectedIndex(0);
 		
 		JLabel label_2 = new JLabel("\u5458\u5DE5\u7F16\u53F7");
 		label_2.setBounds(30, 205, 81, 21);
@@ -251,6 +254,7 @@ public class StaffInfoUI extends JPanel{
 		payWay.addItem("按月");
 		payWay.addItem("按次");
 		payWay.addItem("按提成");
+		payWay.setSelectedIndex(0);
 		add(payWay);
 		
 		JLabel label_7 = new JLabel("\u5DE5\u8D44\u7ED3\u7B97\u53C2\u6570");
@@ -270,6 +274,7 @@ public class StaffInfoUI extends JPanel{
 		String[] position={"快递员","营业厅业务员","中转中心业务员","中转中心仓库管理员","财务人员","总经理","管理员"};
 		role = new JComboBox(position);
 		role.setBounds(96, 448, 226, 27);
+		role.setSelectedIndex(0);
 		add(role);
 		
 		button = new JButton();
@@ -294,6 +299,7 @@ public class StaffInfoUI extends JPanel{
 		place.addItem("总部");
 		place.addItem("中转中心");
 		place.addItem("营业厅");
+		place.setSelectedIndex(0);
 		add(place);
 		
 		JLabel label_9 = new JLabel("\u5DE5\u4F5C\u5730\u70B9");

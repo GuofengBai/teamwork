@@ -30,7 +30,6 @@ import org.presentation.manageui.FinacialStaffView;
 import org.presentation.staffui.GeneralManagerUI;
 import org.vo.StaffVO;
 
-//shengmegui
 public class UserUI extends JPanel {
 	/**
 	 * 
@@ -104,7 +103,6 @@ public class UserUI extends JPanel {
 		String account = textField.getText();
 		char[] password = passwordField.getPassword();
 		String pw = String.valueOf(password);
-		//System.out.println(account+pw);
 
 		if (!ubs.login(account, pw).success)
 			JOptionPane.showMessageDialog(null, ubs.login(account, pw).info[1], ubs.login(account, pw).info[0],
@@ -132,10 +130,9 @@ public class UserUI extends JPanel {
 				ViewController.jumpToAnotherView(new GeneralManagerUI());
 			}
 			else if(svo.staffRole.getName().equals("管理员")){
-				ViewController.jumpToAnotherView(new AdministratorUI());
+				ViewController.jumpToAnotherView(new AdministratorUI(panel));
 			}
 		}
 			
-		//info[2]里储存了String类型的staffrole
 	}
 }

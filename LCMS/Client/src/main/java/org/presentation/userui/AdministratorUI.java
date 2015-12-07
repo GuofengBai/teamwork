@@ -1,23 +1,43 @@
 package org.presentation.userui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
+import java.util.Vector;
+
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import org.businesslogic.blFactory.BLFactory;
+import org.businesslogicservice.userblservice.UserBLService;
+import org.po.UserPO;
+import org.presentation.mainui.ViewController;
+import org.vo.UserVO;
+import javax.swing.JSeparator;
+import java.awt.Color;
+
 public class AdministratorUI extends JPanel {
 	private JTable table;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private DefaultTableModel model;
+	private JTextField account;
+	private JTextField password;
+	private JTextField staffNumber;
+	private JPanel superView;
+	private JPanel temp;
 
 	/**
 	 * Create the panel.
 	 */
-	public AdministratorUI() {
+	public AdministratorUI(JPanel su) {
+		super();
+		this.superView=su;
+		this.temp=this;
 		setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -25,85 +45,130 @@ public class AdministratorUI extends JPanel {
 		add(scrollPane);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-			},
-			new String[] {
-				"账号名称", "员工姓名", "员工编号"
-			}
-		));
-		table.getColumnModel().getColumn(0).setPreferredWidth(113);
-		table.getColumnModel().getColumn(1).setPreferredWidth(112);
-		table.getColumnModel().getColumn(2).setPreferredWidth(109);
 		scrollPane.setViewportView(table);
 		
-		JButton button = new JButton("删除账号");
-		button.setBounds(377, 489, 123, 29);
-		add(button);
-		
-		JLabel lblNewLabel = new JLabel("————————————————————————————");
-		lblNewLabel.setBounds(15, 203, 514, 21);
-		add(lblNewLabel);
-		
-		JLabel lblNewLabel_1 = new JLabel("————————————————————————————");
-		lblNewLabel_1.setBounds(15, 56, 514, 21);
-		add(lblNewLabel_1);
-		
 		JLabel label = new JLabel("账号名称");
-		label.setBounds(15, 87, 81, 21);
+		label.setBounds(40, 87, 81, 21);
 		add(label);
 		
-		textField = new JTextField();
-		textField.setBounds(94, 84, 123, 27);
-		add(textField);
-		textField.setColumns(10);
+		account = new JTextField();
+		account.setBounds(130, 84, 136, 27);
+		add(account);
+		account.setColumns(10);
 		
 		JLabel label_1 = new JLabel("密码");
-		label_1.setBounds(251, 87, 43, 21);
+		label_1.setBounds(281, 87, 43, 21);
 		add(label_1);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(295, 84, 130, 27);
-		add(textField_1);
-		textField_1.setColumns(10);
+		password = new JTextField();
+		password.setBounds(339, 84, 161, 27);
+		add(password);
+		password.setColumns(10);
 		
 		JLabel label_2 = new JLabel("对应员工编号");
-		label_2.setBounds(15, 131, 117, 21);
+		label_2.setBounds(42, 131, 117, 21);
 		add(label_2);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(134, 128, 291, 27);
-		add(textField_2);
-		textField_2.setColumns(10);
-		
-		JButton button_1 = new JButton("新增账号");
-		button_1.setBounds(377, 170, 123, 29);
-		add(button_1);
+		staffNumber = new JTextField();
+		staffNumber.setBounds(174, 128, 326, 27);
+		add(staffNumber);
+		staffNumber.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("管理账号");
 		lblNewLabel_2.setBounds(213, 34, 81, 21);
 		add(lblNewLabel_2);
 		
-		JButton button_2 = new JButton("返回");
-		button_2.setBounds(460, 12, 69, 29);
-		add(button_2);
+		initModel();
+		initButton();
 
+	}
+	
+	private void initModel(){
+		
+		Vector<String> column=new Vector<String>();
+		column.add("账号名称");
+		column.add("员工编号");
+		
+		Vector<UserVO> vData=null;
+		UserBLService ubs=BLFactory.getUserBL();
+		vData=ubs.getList();
+		
+		model=new DefaultTableModel(vData,column){
+			public boolean isCellEditable(int row, int column){
+                return false;
+            }
+		};
+		
+		table.setModel(model);
+		table.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+	}
+	
+	private void initButton(){
+		
+		JButton jump = new JButton("返回");
+		jump.setBounds(460, 12, 69, 29);
+		add(jump);
+		jump.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+
+				ViewController.jumpToAnotherView(superView);
+				
+			}
+		});
+		
+		JButton newUser = new JButton("新增账号");
+		newUser.setBounds(377, 170, 123, 29);
+		add(newUser);
+		newUser.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				UserPO newPO=new UserPO(account.getText(),password.getText(),staffNumber.getText());
+				
+				UserBLService ubs=BLFactory.getUserBL();
+				try {
+					ubs.addUser(newPO);
+					model.addRow(new UserVO(newPO));
+					model.fireTableRowsInserted(model.getRowCount()-1,model.getRowCount()-1);
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		JButton delUser = new JButton("删除账号");
+		delUser.setBounds(377, 489, 123, 29);
+		add(delUser);
+		
+		JSeparator separator = new JSeparator();
+		separator.setForeground(Color.BLACK);
+		separator.setBounds(30, 220, 486, 2);
+		add(separator);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setForeground(Color.BLACK);
+		separator_1.setBounds(30, 65, 486, 2);
+		add(separator_1);
+		delUser.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				int row=table.getSelectedRow();
+				String accountToDel=(String) model.getValueAt(row,0);
+				
+				UserBLService ubs=BLFactory.getUserBL();
+				try {
+					ubs.delUser(accountToDel);
+					model.removeRow(row);
+					model.fireTableRowsDeleted(row, row);
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 	}
 }

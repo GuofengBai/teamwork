@@ -6,6 +6,10 @@ import java.util.Vector;
 public class StaffPO implements Serializable{
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public String user;
 	public STAFFROLE staffRole;
 	public String name;
@@ -34,12 +38,12 @@ public class StaffPO implements Serializable{
 		this.workSpace=space;
 		this.payment=payment;
 		this.user=user;
-		
+		this.staffRole=role;
 	}
 	
 	public Vector<String> getInfo(){
 		Vector<String> info=new Vector<String>();
-		info.add(staffRole.toString());
+		info.add(staffRole.getName());
 		info.add(name);
 		info.add(num);
 		info.add(workSpace.toString());

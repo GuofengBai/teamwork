@@ -3,6 +3,7 @@ package org.Client;
 import java.rmi.RemoteException;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import org.businesslogic.blFactory.BLFactory;
 import org.po.BILLSTYPE;
@@ -24,13 +25,11 @@ public class Client{
     public static void main(String[] args) throws RemoteException
     {
     	RMIHelper.init();
-    	UserUI ui1=new UserUI();
-    	StorageStaffView ui=new StorageStaffView(ui1);
-
+    	JPanel newUI=new GeneralManagerUI();
     	BLFactory.init();
     	JFrame frame = new JFrame();
     	ViewController.init(frame);
-    	frame.setContentPane(ui);
+    	frame.setContentPane(newUI);
     	frame.setVisible(true);
     	
     	frame.setSize(900, 600);

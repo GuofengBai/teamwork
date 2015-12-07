@@ -6,10 +6,7 @@ public class UserPO  implements Serializable{
 	
 	public String account;
 	private String password;
-	public StaffPO staff;
-	// 与此账号对应的员工
-	public String number;// 编号
-	public STAFFROLE staffRole; // 职务
+	private String staffNumber;
 
 	public UserPO() {
 		super();
@@ -18,7 +15,7 @@ public class UserPO  implements Serializable{
 	public UserPO(String account, String password, String number) {
 		this.account = account;
 		this.password = password;
-		this.number = number;
+		this.staffNumber = number;
 	}
 
 	public String getAccount() {
@@ -34,25 +31,12 @@ public class UserPO  implements Serializable{
 		return true;
 	}
 
-	public StaffPO getStaff() {
-		return staff;
-	}
-
-	public STAFFROLE getStaffRole() {
-		return staffRole;
-	}
-
-	public boolean setStaffRole(STAFFROLE sr) {
-		staffRole = sr;
-		return true;
-	}
-
 	public String getNumber() {
-		return number;
+		return staffNumber;
 	}
 
 	public void setNumber(String number) {
-		this.number = number;
+		this.staffNumber = number;
 	}
 
 }

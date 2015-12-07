@@ -2,6 +2,7 @@ package org.dataservice.userdataservice;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import org.po.ResultMessage;
 import org.po.UserPO;
@@ -36,4 +37,10 @@ public interface UserDataService extends Remote {
 	 * @throws RemoteException
 	 */
 	public ResultMessage delete(String account) throws RemoteException;
+	
+	/**
+	 * 获得所有UserPO的列表
+	 * @return
+	 */
+	public ArrayList<UserPO> getList()throws RemoteException;
 }

@@ -3,11 +3,13 @@ package org.po;
 import java.io.Serializable;
 import java.util.Vector;
 
-import org.vo.StaffVO;
-
 public class StaffPO implements Serializable{
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public String user;
 	public STAFFROLE staffRole;
 	public String name;
@@ -36,26 +38,13 @@ public class StaffPO implements Serializable{
 		this.workSpace=space;
 		this.payment=payment;
 		this.user=user;
+		this.staffRole=role;
 		
-	}
-	
-	public StaffPO(StaffVO vo){
-		super();
-		this.name=vo.name;
-		this.num=vo.num;
-		this.gender=vo.gender;
-		this.birthday=vo.birthday;
-		this.location=vo.location;
-		this.phone=vo.phone;
-		this.bankAccount=vo.bankAccount;
-		this.workSpace=vo.workSpace;
-		this.payment=vo.payment;
-		this.user=vo.user;
 	}
 	
 	public Vector<String> getInfo(){
 		Vector<String> info=new Vector<String>();
-		info.add(staffRole.toString());
+		info.add(staffRole.getName());
 		info.add(name);
 		info.add(num);
 		info.add(workSpace.toString());

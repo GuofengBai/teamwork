@@ -1,12 +1,15 @@
 package org.businesslogic.userbl;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.Vector;
 
 import org.Client.RMIHelper;
 import org.businesslogicservice.userblservice.UserBLService;
 import org.dataservice.userdataservice.UserDataService;
 import org.po.ResultMessage;
 import org.po.UserPO;
+import org.vo.UserVO;
 
 public class UserBL implements UserBLService {
 	/**
@@ -43,5 +46,21 @@ public class UserBL implements UserBLService {
 		UserDataService uds = RMIHelper.getDataFactory().getUserData();
 		ResultMessage re = uds.delete(account);
 		return re;
+	}
+
+	public Vector<UserVO> getList() {
+		ArrayList<UserPO> all=null;
+		Vector<UserVO> vList=new Vector<UserVO>();
+		try {
+			UserDataService uds = RMIHelper.getDataFactory().getUserData();
+			all=uds.getList();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for(UserPO po:all){
+			vList.add(new UserVO(po));
+		}
+		return vList;
 	}
 }

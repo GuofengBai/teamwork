@@ -52,6 +52,9 @@ public class UserData extends UnicastRemoteObject implements UserDataService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		if(UserList==null){
+			UserList=new ArrayList<UserPO>();
+		}
 
 	}
 
@@ -91,6 +94,7 @@ public class UserData extends UnicastRemoteObject implements UserDataService {
         }
         return new ResultMessage(false,nofind);
 	}
+	
 	public UserPO find(String account) throws RemoteException{
 		for(UserPO po:UserList){
 			if(po.getAccount().equals(account))
@@ -114,5 +118,11 @@ public class UserData extends UnicastRemoteObject implements UserDataService {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public ArrayList<UserPO> getList() throws RemoteException{
+		ArrayList<UserPO> all=new ArrayList<UserPO>();
+		all.addAll(UserList);
+		return all;
 	}
 }
