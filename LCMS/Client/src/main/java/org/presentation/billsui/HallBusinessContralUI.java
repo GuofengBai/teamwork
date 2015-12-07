@@ -16,8 +16,8 @@ public class HallBusinessContralUI extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public HallBusinessContralUI(JPanel superview) {
-		this.superview = superview;
+	public HallBusinessContralUI(JPanel view) {
+		this.superview = view;
 		setLayout(null);
 		
 		JLabel label = new JLabel("营业厅人员主界面");
@@ -43,12 +43,24 @@ public class HallBusinessContralUI extends JPanel {
 		JButton btnNewButton_1 = new JButton("生成单据");
 		btnNewButton_1.setBounds(30, 97, 226, 23);
 		add(btnNewButton_1);
+		
 		btnNewButton_1.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				HallBillsContralUI ui = new HallBillsContralUI(temp);
 				ViewController.jumpToAnotherView(ui);
+			}
+		});
+		
+		JButton back = new JButton("返回");
+		back.setBounds(93, 130, 93, 23);
+		add(back);
+		back.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ViewController.jumpToAnotherView(superview);
 			}
 		});
 
