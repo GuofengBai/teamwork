@@ -85,21 +85,14 @@ public class StorageStaffView extends JPanel {
 		btnNewButton_3.setBounds(398, 222, 113, 27);
 		add(btnNewButton_3);
 
-		JButton button = new JButton("退出");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
-		button.setBounds(429, 334, 113, 27);
-		add(button);
+		
 	}
 
 	/**
 	 * Create the panel.
 	 * @throws RemoteException 
 	 */
-	public StorageStaffView(JPanel newpanel) throws RemoteException {
+	public StorageStaffView(final JPanel newpanel) throws RemoteException {
 		// thisstaff = CurrentStaff.getStaff();
 		// if (thisstaff.workSpace.type.equals("中转中心"))
 		// this.centerNum = thisstaff.workSpace.num;
@@ -131,7 +124,14 @@ public class StorageStaffView extends JPanel {
 		button.setBounds(398, 155, 113, 27);
 		add(button);
 
-		
+		JButton button1 = new JButton("登出");
+		button1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ViewController.jumpToAnotherView(newpanel);
+			}
+		});
+		button1.setBounds(429, 334, 113, 27);
+		add(button1);
 
 	}
 }

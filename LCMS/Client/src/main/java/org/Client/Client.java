@@ -24,8 +24,8 @@ public class Client{
     public static void main(String[] args) throws RemoteException
     {
     	RMIHelper.init();
-
-    	StorageStaffView ui=new StorageStaffView();
+    	UserUI ui1=new UserUI();
+    	StorageStaffView ui=new StorageStaffView(ui1);
 
     	BLFactory.init();
     	JFrame frame = new JFrame();
