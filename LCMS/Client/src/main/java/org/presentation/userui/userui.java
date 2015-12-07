@@ -32,6 +32,10 @@ import org.vo.StaffVO;
 
 //shengmegui
 public class UserUI extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPasswordField passwordField;
 	private JTextField textField;
 	UserBLService ubs;
