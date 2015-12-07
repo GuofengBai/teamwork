@@ -14,5 +14,18 @@ public interface UserBLService {
 	 * 
 	 */
 	public ResultMessage login(String id,String password) throws RemoteException;
-	public UserPO getUser(String account,String password) throws RemoteException;
+	/**
+	 * 
+	 * @param account
+	 * @return
+	 * @throws RemoteException
+	 */
+	public UserPO getUser(String account) throws RemoteException;
+	/**
+	 * 
+	 * @param account
+	 * @return
+	 * @throws RemoteException
+	 */
+	public ResultMessage delUser(String account) throws RemoteException ;
 }

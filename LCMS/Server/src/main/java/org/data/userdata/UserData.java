@@ -63,22 +63,39 @@ public class UserData extends UnicastRemoteObject implements UserDataService {
 		ResultMessage re = new ResultMessage(true, null);
 		return re;
 	}
+	public ResultMessage delete(String account) throws RemoteException{
+		String[] su={"删除成功"};
+		String[] fa={"删除失败"};
+		for(UserPO po:UserList){
+			if(po.getAccount().equals(account)){
+				UserList.remove(po);
+				return new ResultMessage(true,su);
+			}
+		}
+		return new ResultMessage(false,fa);
+	}
 
-	public UserPO find(String account,String password) throws RemoteException{
-        for(UserPO po:UserList){
+	public ResultMessage confirm(String account,String password) throws RemoteException{
+		ResultMessage re;
+		String[] su={"密码正确","登陆成功"};
+		String[] fa={"密码错误","请重新输入"};
+		String[] nofind={"未找到","请重新输入"};
+		for(UserPO po:UserList){
         	if((po.getAccount().equals(account))&&(po.getPassword().equals(password))){
-        		//System.out.println("Data success");
-        		System.out.println(po.getAccount()+" "+po.getPassword());
-        		return po;
+        		return re=new ResultMessage(true,su);
         	}
         	else if((po.getAccount().equals(account))&&!(po.getPassword().equals(password))){
-        		//System.out.println("Data wrong");
-        		return new UserPO("登录错误","密码错误","-1");
+        		return re=new ResultMessage(false,fa);
         	}
-        		
         }
-       // System.out.println("Data wrong");
-        return new UserPO("用户名不存在","用户名不存在","-1");
+        return new ResultMessage(false,nofind);
+	}
+	public UserPO find(String account) throws RemoteException{
+		for(UserPO po:UserList){
+			if(po.getAccount().equals(account))
+				return po;
+		}
+		return null;
 	}
 
 	private ResultMessage save() {

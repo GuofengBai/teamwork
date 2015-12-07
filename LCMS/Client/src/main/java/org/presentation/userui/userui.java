@@ -97,7 +97,7 @@ public class UserUI extends JPanel {
 			JOptionPane.showMessageDialog(null, ubs.login(account, pw).info[1], ubs.login(account, pw).info[0],
 					JOptionPane.ERROR_MESSAGE);
 		else{
-			UserPO po=ubs.getUser(account, pw);
+			UserPO po=ubs.getUser(account);
 			StaffVO svo=sbs.findStaff(po.getNumber());
 			CurrentStaff.setStaff(svo);
 		}

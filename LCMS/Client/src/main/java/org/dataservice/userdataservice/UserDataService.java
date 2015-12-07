@@ -20,5 +20,19 @@ public interface UserDataService extends Remote {
 	 * @param po
 	 * @return 查找结果
 	 */
-	public UserPO find(String account, String password) throws RemoteException;
+	public ResultMessage confirm(String account,String password) throws RemoteException;
+	/**
+	 * 返回User信息
+	 * @param account
+	 * @return
+	 * @throws RemoteException
+	 */
+	public UserPO find(String account) throws RemoteException;
+	/**
+	 * 删除User
+	 * @param account
+	 * @return
+	 * @throws RemoteException
+	 */
+	public ResultMessage delete(String account) throws RemoteException;
 }
