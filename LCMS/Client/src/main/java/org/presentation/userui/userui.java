@@ -21,6 +21,13 @@ import org.businesslogicservice.userblservice.UserBLService;
 import org.po.ResultMessage;
 import org.po.StaffPO;
 import org.po.UserPO;
+import org.presentation.billsui.CenterBusinessContralUI;
+import org.presentation.billsui.HallBusinessContralUI;
+import org.presentation.billsui.PostmanUI;
+import org.presentation.commodityui.StorageStaffView;
+import org.presentation.mainui.ViewController;
+import org.presentation.manageui.FinacialStaffView;
+import org.presentation.staffui.GeneralManagerUI;
 import org.vo.StaffVO;
 
 public class UserUI extends JPanel {
@@ -28,6 +35,7 @@ public class UserUI extends JPanel {
 	private JTextField textField;
 	UserBLService ubs;
 	StaffBLService sbs;
+	private JPanel panel=this;
 
 	/**
 	 * Create the panel.
@@ -100,6 +108,27 @@ public class UserUI extends JPanel {
 			UserPO po=ubs.getUser(account);
 			StaffVO svo=sbs.findStaff(po.getNumber());
 			CurrentStaff.setStaff(svo);
+			if(svo.staffRole.getName().equals("快递员")){
+				ViewController.jumpToAnotherView(new PostmanUI(panel));
+			}
+			else if(svo.staffRole.getName().equals("营业厅业务员")){
+				ViewController.jumpToAnotherView(new HallBusinessContralUI(panel));
+			}
+			else if(svo.staffRole.getName().equals("中转中心营业员")){
+				ViewController.jumpToAnotherView(new CenterBusinessContralUI(panel));
+			}
+			else if(svo.staffRole.getName().equals("中转中心仓库管理人员")){
+				ViewController.jumpToAnotherView(new StorageStaffView(panel));
+			}
+			else if(svo.staffRole.getName().equals("财务人员")){
+				ViewController.jumpToAnotherView(new FinacialStaffView());
+			}
+			else if(svo.staffRole.getName().equals("总经理")){
+				ViewController.jumpToAnotherView(new GeneralManagerUI());
+			}
+			else if(svo.staffRole.getName().equals("管理员")){
+				ViewController.jumpToAnotherView(new AdministratorUI());
+			}
 		}
 			
 		//info[2]里储存了String类型的staffrole
