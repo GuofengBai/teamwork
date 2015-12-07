@@ -30,6 +30,7 @@ import org.presentation.manageui.FinacialStaffView;
 import org.presentation.staffui.GeneralManagerUI;
 import org.vo.StaffVO;
 
+//shengmegui
 public class UserUI extends JPanel {
 	private JPasswordField passwordField;
 	private JTextField textField;
