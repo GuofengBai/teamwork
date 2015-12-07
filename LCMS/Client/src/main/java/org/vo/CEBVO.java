@@ -40,7 +40,7 @@ public class CEBVO implements PanelCreaterService{
 	}
 	
 	public JPanel careatePanel(JPanel su) {
-		JPanel panel=new NewCenterEntruckBillsUI(su this);
+		JPanel panel=new NewCenterEntruckBillsUI(su,this);
 		return panel;
 	}
 

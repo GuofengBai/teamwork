@@ -16,8 +16,8 @@ public class CenterBusinessContralUI extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public CenterBusinessContralUI() {
-		this.superview = superview;
+	public CenterBusinessContralUI(JPanel view) {
+		this.superview = view;
 		setLayout(null);
 		
 		JLabel label = new JLabel("中转中心业务管理系统");
@@ -55,12 +55,24 @@ public class CenterBusinessContralUI extends JPanel {
 		JButton createntruckbill = new JButton("中转中心装车单生成");
 		createntruckbill.setBounds(20, 126, 141, 23);
 		add(createntruckbill);
+		
 		createntruckbill.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				JPanel next = new NewCenterEntruckBillsUI(temp);
 				ViewController.jumpToAnotherView(next);
+			}
+		});
+		
+		JButton back = new JButton("返回");
+		back.setBounds(44, 163, 93, 23);
+		add(back);
+		back.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ViewController.jumpToAnotherView(superview);
 			}
 		});
 
