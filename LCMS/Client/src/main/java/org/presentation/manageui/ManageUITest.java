@@ -14,12 +14,12 @@ import org.presentation.mainui.ViewController;
 public class ManageUITest {
 	public static void main(String[] args) throws RemoteException
     {
-//    	RMIHelper.init();
+    	RMIHelper.init();
 
 
 
 
-//    	BLFactory.init();
+    	BLFactory.init();
 		FinacialStaffView c=new FinacialStaffView();
 
     	JFrame f=new JFrame();

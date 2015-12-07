@@ -8,6 +8,14 @@ import org.po.BeginAccountPO;
 import org.po.ResultMessage;
 
 public interface BeginAccountDataService extends Remote{
+	
+	/**
+	 * 
+	 * 
+	 * @param 
+	 * @return ResultMessage
+	 * @throws RemoteException
+	 */
 	public ResultMessage addBeginAccount (BeginAccountPO account) throws RemoteException;
 	
 	public void Initialize(BeginAccountPO account) throws RemoteException;

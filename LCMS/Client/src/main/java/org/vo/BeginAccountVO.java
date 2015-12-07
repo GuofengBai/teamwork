@@ -5,7 +5,7 @@ import java.util.Vector;
 import org.po.BeginAccountPO;
 
 public class BeginAccountVO extends Vector<String>{
-	public BeginAccountVO(String organization,int people,int car,int storage,String accountName,int balance){
+	public BeginAccountVO(String organization,int people,int car,int storage,String accountName,long balance){
 		this.add(organization);
 		this.add(String.valueOf(people));
 		this.add(String.valueOf(car));

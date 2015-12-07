@@ -36,6 +36,10 @@ public class BeginAccountData extends UnicastRemoteObject implements BeginAccoun
 			list=(ArrayList<BeginAccountPO>) is.readObject();
 			is.close();
 			
+			if(list==null){
+				list=new ArrayList<BeginAccountPO>();
+			}
+			
 			if(list.isEmpty()||list==null){
 				
 			}else{
@@ -87,6 +91,9 @@ public class BeginAccountData extends UnicastRemoteObject implements BeginAccoun
 			ObjectInputStream is = new ObjectInputStream(new FileInputStream("SerializableData/BeginAccount.file"));
 			list=(ArrayList<BeginAccountPO>) is.readObject();
 			is.close();
+			if(list==null){
+				list=new ArrayList<BeginAccountPO>();
+			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -137,6 +144,10 @@ public class BeginAccountData extends UnicastRemoteObject implements BeginAccoun
 			ObjectInputStream is = new ObjectInputStream(new FileInputStream("SerializableData/BeginAccount.file"));
 			list=(ArrayList<BeginAccountPO>) is.readObject();
 			is.close();
+			
+			if(list==null){
+				list=new ArrayList<BeginAccountPO>();
+			}
 			
 			for(BeginAccountPO accountTemp:list){
 				if(accountTemp.getAccountName().equals(account.getAccountName())&&accountTemp.getOrganization().equals(account.getOrganization())){

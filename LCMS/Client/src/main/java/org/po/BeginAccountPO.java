@@ -4,13 +4,13 @@ import java.io.Serializable;
 
 public class BeginAccountPO implements Serializable{
 	private String accountName;
-	private int balance;
+	private long balance;
 	private String organization;//机构
 	private int people;//人员
 	private int car;//车辆
 	private int storage;//库存
 	
-	public BeginAccountPO(String organization,int people,int car,int storage,String accountName,int balance){
+	public BeginAccountPO(String organization,int people,int car,int storage,String accountName,long balance){
 		this.organization=organization;
 		this.people=people;
 		this.car=car;
@@ -59,11 +59,11 @@ public class BeginAccountPO implements Serializable{
 		return accountName;
 	}
 	
-	public void setBalance(int balance){
+	public void setBalance(long balance){
 		this.balance=balance;
 	}
 	
-	public int getBalance(){
+	public long getBalance(){
 		return balance;
 	}
 }

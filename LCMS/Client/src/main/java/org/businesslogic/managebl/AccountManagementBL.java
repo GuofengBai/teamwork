@@ -94,7 +94,7 @@ public class AccountManagementBL implements AccountManagementBLService{
 		return message;
 	}
 
-	public ResultMessage changeBalance(String name, int change) {
+	public ResultMessage changeBalance(String name, long change) {
 		// TODO Auto-generated method stub
 		String[] infotemp={"Failed","Exception"};
 		ResultMessage message=new ResultMessage(false,infotemp);

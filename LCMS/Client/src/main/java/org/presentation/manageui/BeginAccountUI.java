@@ -161,7 +161,7 @@ public class BeginAccountUI extends JPanel{
 			int car=Integer.parseInt((String) table.getModel().getValueAt(dex, 2));
 			int storage=Integer.parseInt((String) table.getModel().getValueAt(dex, 3));
 			String accountName=(String) table.getModel().getValueAt(dex, 4);
-			int balance=Integer.parseInt((String) table.getModel().getValueAt(dex, 5));
+			long balance=Long.parseLong((String) table.getModel().getValueAt(dex, 5));
 			BeginAccountPO account=new BeginAccountPO(organization, people, car, storage, accountName, balance);
 			
 			BeginAccountBLService ba=BLFactory.getBeginAccountBL();

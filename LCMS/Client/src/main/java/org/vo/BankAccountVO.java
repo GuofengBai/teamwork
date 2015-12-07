@@ -6,7 +6,7 @@ import org.po.BankAccountPO;
 
 public class BankAccountVO extends Vector<String>{
 	
-	public BankAccountVO(String name,int balance){
+	public BankAccountVO(String name,long balance){
 		this.add(name);
 		this.add(String.valueOf(balance));
 	}
@@ -20,8 +20,8 @@ public class BankAccountVO extends Vector<String>{
 		return this.get(0);
 	}
 	
-	public int getBalance(){
-		return Integer.parseInt(this.get(1));
+	public long getBalance(){
+		return Long.parseLong(this.get(1));
 	}
 	
 }

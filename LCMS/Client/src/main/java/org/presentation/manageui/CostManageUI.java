@@ -15,6 +15,7 @@ import javax.swing.JScrollBar;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import org.businesslogic.blFactory.BLFactory;
@@ -99,9 +100,14 @@ public class CostManageUI extends JPanel{
 		panel.add(label_1);
 		
 		Vector<String> column = new Vector<String>();
-		column.add("名称");
-		column.add("余额");
+		column.add("日期");
+		column.add("金额");
+		column.add("付款人");
+		column.add("付款账号");
 		
+//		CostManagementBLService bl=BLFactory.getCostManagementBL();
+		tableContent=new Vector<PayingBillVO>();
+//		tableContent=bl.getAllBill();
 		
 		table = new JTable(){
 			private static final long serialVersionUID = 1L;
@@ -110,7 +116,11 @@ public class CostManageUI extends JPanel{
 				return false;
 			}
 		};
-		table.setModel(new DefaultTableModel(
+		model=new DefaultTableModel(tableContent,column);
+		table.setModel(model);
+		table.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setFillsViewportHeight(true);
+/*		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null, null, null, null, null},
 				{null, null, null, null, null, null, null, null, null},
@@ -122,6 +132,7 @@ public class CostManageUI extends JPanel{
 				"\u65E5\u671F", "\u91D1\u989D", "\u4ED8\u6B3E\u4EBA", "\u8D26\u53F7", "\u79DF\u91D1", "\u8FD0\u8D39", "\u4EBA\u5458\u5DE5\u8D44", "\u5956\u52B1", "\u5907\u6CE8"
 			}
 		));
+*/
 		table.setBounds(44, 109, 326, 126);
 		JScrollPane billList = new JScrollPane(table);
 		billList.setBounds(23, 68, 401, 121);
@@ -149,7 +160,9 @@ public class CostManageUI extends JPanel{
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			
+			int index=table.getSelectedRow();
+			ChangePayingBillsUI ui=new ChangePayingBillsUI(index);
+			ViewController.jumpToAnotherView(ui);
 		}
 		
 	}

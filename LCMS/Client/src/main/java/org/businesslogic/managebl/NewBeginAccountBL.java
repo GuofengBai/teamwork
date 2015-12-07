@@ -12,7 +12,7 @@ import org.test.dataservice.manageData.BeginAccountData;
 public class NewBeginAccountBL implements NewBeginAccountBLService {
 	
 	public ResultMessage addBeginAccount(String organization, int people, int car,
-			int storage, String accountname, int balance) {
+			int storage, String accountname, long balance) {
 		// TODO Auto-generated method stub
 		String[] infotemp={"Failed","Exception"};
 		ResultMessage message=new ResultMessage(false,infotemp);

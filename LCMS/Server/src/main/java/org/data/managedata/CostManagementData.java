@@ -30,6 +30,9 @@ public class CostManagementData extends UnicastRemoteObject implements CostManag
 			ObjectInputStream is = new ObjectInputStream(new FileInputStream("SerializableData/PB.file"));
 			list=(ArrayList<PayingBills>) is.readObject();
 			is.close();
+			if(list==null){
+				list=new ArrayList<PayingBills>();
+			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -56,6 +59,9 @@ public class CostManagementData extends UnicastRemoteObject implements CostManag
 			is = new ObjectInputStream(new FileInputStream("SerializableData/PB.file"));
 			list=(ArrayList<PayingBills>) is.readObject();
 			is.close();
+			if(list==null){
+				list=new ArrayList<PayingBills>();
+			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -100,6 +106,9 @@ public class CostManagementData extends UnicastRemoteObject implements CostManag
 			ObjectInputStream is = new ObjectInputStream(new FileInputStream("SerializableData/PB.file"));
 			list=(ArrayList<PayingBills>) is.readObject();
 			is.close();
+			if(list==null){
+				list=new ArrayList<PayingBills>();
+			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -138,6 +147,9 @@ public class CostManagementData extends UnicastRemoteObject implements CostManag
 			ObjectInputStream is = new ObjectInputStream(new FileInputStream("SerializableData/PB.file"));
 			list=(ArrayList<PayingBills>) is.readObject();
 			is.close();
+			if(list==null){
+				list=new ArrayList<PayingBills>();
+			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

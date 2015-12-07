@@ -4,19 +4,19 @@ import java.io.Serializable;
 
 public class BankAccountPO implements Serializable{
 	private String name="";
-	private int balance=0;
+	private long balance=0;
 	
 	public BankAccountPO(String name){
 		this.name=name;
 		this.balance=0;
 	}
 	
-	public BankAccountPO(String name,int balance){
+	public BankAccountPO(String name,long balance){
 		this.name=name;
 		this.balance=balance;
 	}
 	
-	public void setBalance(int balance){
+	public void setBalance(long balance){
 		this.balance=balance;
 	}
 	
@@ -28,7 +28,7 @@ public class BankAccountPO implements Serializable{
 		return name;
 	}
 	
-	public int getBalance(){
+	public long getBalance(){
 		return balance;
 	}
 	

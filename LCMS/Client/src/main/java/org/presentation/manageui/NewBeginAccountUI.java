@@ -147,7 +147,7 @@ public class NewBeginAccountUI extends JPanel{
 			int car=Integer.parseInt(carNumField.getText());
 			int storage=Integer.parseInt(storageField.getText());
 			String accountName=nameField.getText();
-			int balance=Integer.parseInt(balanceField.getText());
+			long balance=Long.parseLong(balanceField.getText());
 			
 			NewBeginAccountBLService nba=BLFactory.getNewBeginAccountBL();
 			ResultMessage message=nba.addBeginAccount(organization, people, car, storage, accountName, balance);

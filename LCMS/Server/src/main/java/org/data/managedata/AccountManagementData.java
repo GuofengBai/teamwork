@@ -21,13 +21,18 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	public ArrayList<BankAccountPO> getAccountList() throws RemoteException{
 		list=new ArrayList<BankAccountPO>();
 		try {
 			ObjectInputStream is = new ObjectInputStream(new FileInputStream("SerializableData/BankAccount.file"));
 			list=(ArrayList<BankAccountPO>) is.readObject();
 			is.close();
+			
+			if(list==null){
+				list=new ArrayList<BankAccountPO>();
+			}
+			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -56,6 +61,10 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 			list=(ArrayList<BankAccountPO>) is.readObject();
 			
 			is.close();
+			
+			if(list==null){
+				list=new ArrayList<BankAccountPO>();
+			}
 			
 			if(list.isEmpty()||list==null){
 				
@@ -97,7 +106,7 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 		return message;
 	}
 
-	public int getBalance(String name) throws RemoteException{
+	public long getBalance(String name) throws RemoteException{
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -112,6 +121,9 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 			
 			list=(ArrayList<BankAccountPO>) is.readObject();
 			is.close();
+			if(list==null){
+				list=new ArrayList<BankAccountPO>();
+			}
 			
 			for(BankAccountPO accountTemp:list){
 				if(accountTemp.getName().equals(name)){
@@ -169,6 +181,10 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 			list=(ArrayList<BankAccountPO>) is.readObject();
 			is.close();
 			
+			if(list==null){
+				list=new ArrayList<BankAccountPO>();
+			}
+			
 			for(BankAccountPO accountTemp:list){
 				if(accountTemp.getName().equals(name)){
 					nameExist=true;
@@ -205,7 +221,7 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 
 	}
 
-	public ResultMessage changeBalance(String name, int change) throws RemoteException{
+	public ResultMessage changeBalance(String name, long change) throws RemoteException{
 		boolean nameExist=false;
 		list=new ArrayList<BankAccountPO>();
 		String[] infotemp={"Failed","Exception"};
@@ -216,10 +232,14 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 			list=(ArrayList<BankAccountPO>) is.readObject();
 			is.close();
 			
+			if(list==null){
+				list=new ArrayList<BankAccountPO>();
+			}
+			
 			for(BankAccountPO accountTemp:list){
 				if(accountTemp.getName().equals(name)){
 					nameExist=true;
-					int balancetemp=accountTemp.getBalance();
+					long balancetemp=accountTemp.getBalance();
 					accountTemp.setBalance(balancetemp+change);
 					break;
 				}
@@ -259,6 +279,9 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 			ObjectInputStream is = new ObjectInputStream(new FileInputStream("SerializableData/BankAccount.file"));
 			list=(ArrayList<BankAccountPO>) is.readObject();
 			is.close();
+			if(list==null){
+				list=new ArrayList<BankAccountPO>();
+			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
