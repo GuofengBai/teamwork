@@ -32,11 +32,11 @@ public class ChangePayingBillsUI extends JPanel {
 	private JTextField remarkField;
 	private JButton backButton;
 	
-	private int index;
+	private String index;
 	/**
 	 * Create the panel.
 	 */
-	public ChangePayingBillsUI(int index) {
+	public ChangePayingBillsUI(String index) {
 		setLayout(null);
 		this.index=index;
 		
@@ -129,8 +129,9 @@ public class ChangePayingBillsUI extends JPanel {
 			String item=itemField.getText();
 			long money=Long.parseLong(moneyField.getText());
 			String remark=remarkField.getText();
+			String idNum=date.toString()+String.valueOf(money);
 			
-			PayingBills bill=new PayingBills(date,name,accountName,item,money,remark);
+			PayingBills bill=new PayingBills(date,name,accountName,item,money,remark,idNum);
 			
 			CostManagementBLService billBL=BLFactory.getCostManagementBL();
 			

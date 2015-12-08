@@ -15,6 +15,7 @@ public class FinacialStaffView extends JPanel{
 
 	private JFrame frame;
 	private JPanel panel = this;
+	private JPanel superview;
 	
 	private JButton backButton;
 	private JButton incomeButton;
@@ -46,6 +47,11 @@ public class FinacialStaffView extends JPanel{
 	public FinacialStaffView() {
 		initialize();
 	}
+	
+	public FinacialStaffView(JPanel panel) {
+		this.superview=panel;
+		initialize();
+	}
 
 	/**
 	 * Initialize the contents of the frame.
@@ -72,7 +78,7 @@ public class FinacialStaffView extends JPanel{
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				ViewController.jumpToAnotherView(superview);
 			}
 			
 		});

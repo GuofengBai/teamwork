@@ -84,7 +84,9 @@ public class UserUI extends JPanel {
 		btnNewButton.setBounds(218, 328, 113, 27);
 		add(btnNewButton);
 
-		
+		JButton button = new JButton("返回");
+		button.setBounds(422, 328, 113, 27);
+		add(button);
 
 		passwordField = new JPasswordField();
 		passwordField.setBounds(192, 157, 152, 21);
@@ -122,7 +124,7 @@ public class UserUI extends JPanel {
 				ViewController.jumpToAnotherView(new StorageStaffView(panel));
 			}
 			else if(svo.staffRole.getName().equals("财务人员")){
-				ViewController.jumpToAnotherView(new FinacialStaffView());
+				ViewController.jumpToAnotherView(new FinacialStaffView(panel));
 			}
 			else if(svo.staffRole.getName().equals("总经理")){
 				ViewController.jumpToAnotherView(new GeneralManagerUI(panel));

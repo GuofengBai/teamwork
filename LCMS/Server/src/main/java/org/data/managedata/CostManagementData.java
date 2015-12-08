@@ -10,8 +10,13 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import org.data.billsdata.NewPayingBillsData;
+import org.dataservice.billsdataservice.BillsDataService;
+import org.dataservice.billsdataservice.NewPayingBillsDataService;
 import org.dataservice.managedataservice.AccountManagementDataService;
 import org.dataservice.managedataservice.CostManagementDataService;
+import org.po.BillsPO;
+import org.po.HallCollectionBills;
 import org.po.PayingBills;
 import org.po.ResultMessage;
 import org.po.myDate;
@@ -27,54 +32,51 @@ public class CostManagementData extends UnicastRemoteObject implements CostManag
 	public ArrayList<PayingBills> getAllBill() throws RemoteException{
 		// TODO Auto-generated method stub
 		list=new ArrayList<PayingBills>();
-		try {
-			ObjectInputStream is = new ObjectInputStream(new FileInputStream("SerializableData/PB.file"));
-			list=(ArrayList<PayingBills>) is.readObject();
-			is.close();
-			if(list==null){
-				list=new ArrayList<PayingBills>();
-			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		ArrayList<BillsPO> billList=new ArrayList<BillsPO>();
+		
+		BillsDataService billsData=new NewPayingBillsData();
+		billList=billsData.getAll();
+		
+		for(BillsPO po:billList){
+			list.add((PayingBills)po);
 		}
+		
 		
 		return list;
 	}
 
-	public ResultMessage changeBill(int index, PayingBills newBill) throws RemoteException{
+	public ResultMessage changeBill(String index, PayingBills newBill) throws RemoteException{
 		// TODO Auto-generated method stub
 		list=new ArrayList<PayingBills>();
 		
 		String[] infotemp={"Failed","Exception"};
 		ResultMessage message=new ResultMessage(false,infotemp);
 		
-		ObjectInputStream is;
-		try {
-			is = new ObjectInputStream(new FileInputStream("SerializableData/PB.file"));
-			list=(ArrayList<PayingBills>) is.readObject();
-			is.close();
-			if(list==null){
-				list=new ArrayList<PayingBills>();
-			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		BillsDataService billsData=new NewPayingBillsData();
+		message=billsData.updateBills(index, newBill);
+		
+		/**
+		ArrayList<BillsPO> billList=new ArrayList<BillsPO>();
+		
+		BillsDataService billsData=new NewPayingBillsData();
+		billList=billsData.getAll();
+		
+		for(BillsPO po:billList){
+			list.add((PayingBills)po);
 		}
-		PayingBills oldBill=list.get(index);
-		list.set(index, newBill);
+		
+		PayingBills oldBill=new PayingBills(null, "", "", "", 0, "", "");
+		int dex=0;
+		for(PayingBills bill:list){
+			if(bill.getIdNum().equals(index)){
+				oldBill=bill;
+				list.set(dex, newBill);
+				
+			}
+			dex++;
+		}
+		
+		
 		
 		AccountManagementDataService am=new AccountManagementData();
 		am.changeBalance("", oldBill.getMoney()-newBill.getMoney());
@@ -93,38 +95,39 @@ public class CostManagementData extends UnicastRemoteObject implements CostManag
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		*/
 		
 		return message;
 	}
 
-	public ResultMessage delBill(int index) throws RemoteException{
+	public ResultMessage delBill(String index) throws RemoteException{
 		// TODO Auto-generated method stub
 		list=new ArrayList<PayingBills>();
 		
 		String[] infotemp={"Failed","Exception"};
 		ResultMessage message=new ResultMessage(false,infotemp);
 		
-		try {
-			ObjectInputStream is = new ObjectInputStream(new FileInputStream("SerializableData/PB.file"));
-			list=(ArrayList<PayingBills>) is.readObject();
-			is.close();
-			if(list==null){
-				list=new ArrayList<PayingBills>();
-			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		BillsDataService billsData=new NewPayingBillsData();
+		message=billsData.deleteBills(index);
+		/**
+		ArrayList<BillsPO> billList=new ArrayList<BillsPO>();
+		
+		BillsDataService billsData=new NewPayingBillsData();
+		billList=billsData.getAll();
+		
+		for(BillsPO po:billList){
+			list.add((PayingBills)po);
 		}
 		
-		PayingBills oldBill=list.get(index);
-		list.remove(index);
+		PayingBills oldBill=new PayingBills(null, "", "", "", 0, "", "");
+		for(PayingBills bill:list){
+			if(bill.getIdNum().equals(index)){
+				oldBill=bill;
+				list.remove(bill);
+			}
+		}
+		
+		
 		AccountManagementDataService am=new AccountManagementData();
 		am.changeBalance("", oldBill.getMoney());
 		
@@ -142,7 +145,7 @@ public class CostManagementData extends UnicastRemoteObject implements CostManag
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		*/
 		return message;
 	}
 
@@ -150,22 +153,14 @@ public class CostManagementData extends UnicastRemoteObject implements CostManag
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		list=new ArrayList<PayingBills>();
-		try {
-			ObjectInputStream is = new ObjectInputStream(new FileInputStream("SerializableData/PB.file"));
-			list=(ArrayList<PayingBills>) is.readObject();
-			is.close();
-			if(list==null){
-				list=new ArrayList<PayingBills>();
-			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		
+		ArrayList<BillsPO> billList=new ArrayList<BillsPO>();
+		
+		BillsDataService billsData=new NewPayingBillsData();
+		billList=billsData.getAll();
+		
+		for(BillsPO po:billList){
+			list.add((PayingBills)po);
 		}
 		
 		ArrayList<PayingBills> result=new ArrayList<PayingBills>();

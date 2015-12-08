@@ -11,13 +11,22 @@ public class PayingBills extends BillsPO{
 	private String item;
 	private String remark;
 	
-	public PayingBills(myDate date,String name,String accountName,String item,long money,String remark){
+	public PayingBills(myDate date,String name,String accountName,String item,long money,String remark,String idNum){
 		this.Date=date;
 		this.name=name;
 		this.accountName=accountName;
 		this.item=item;
 		this.money=money;
 		this.remark=remark;
+		this.idNum=idNum;
+	}
+	
+	public void setIdNum(String s){
+		this.idNum=s;
+	}
+	
+	public String getIdNum(){
+		return this.idNum;
 	}
 	
 	public void setDate(myDate t){

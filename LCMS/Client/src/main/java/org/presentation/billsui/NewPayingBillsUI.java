@@ -131,15 +131,18 @@ public class NewPayingBillsUI extends JPanel {
 			long money=Long.parseLong(moneyField.getText());
 			String remark=remarkField.getText();
 			
-			PayingBills bill=new PayingBills(date,name,accountName,item,money,remark);
+			String idNum=date.toString()+String.valueOf(money);
+			
+			PayingBills bill=new PayingBills(date,name,accountName,item,money,remark,idNum);
 			
 			NewPayingBillsBLService billBL=BLFactory.getNewPayingBillsBL();
 			
 			ResultMessage message=billBL.addPayingBills(bill);
 			
+
 			CostManageUI ui=new CostManageUI();
 			ViewController.jumpToAnotherView(ui);
-			
+
 			
 		}
 		

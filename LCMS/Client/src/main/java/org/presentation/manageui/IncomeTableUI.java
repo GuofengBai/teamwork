@@ -78,11 +78,13 @@ public class IncomeTableUI extends JPanel{
 		JLabel label_3 = new JLabel("\u6536\u76CA");
 		label_3.setBounds(293, 64, 54, 15);
 		panel.add(label_3);
-/**		
+/**	
+ */	
 		IncomeTableBLService it=BLFactory.getIncomeTableBL();
 		income=it.getIncome();
 		payment=it.getPayment();
 		earning=income-payment;
+/*
 */				
 		JLabel incomeLabel = new JLabel(String.valueOf(income));
 		incomeLabel.setBounds(72, 105, 54, 15);

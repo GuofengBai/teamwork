@@ -104,6 +104,10 @@ public class CostManageUI extends JPanel{
 		column.add("金额");
 		column.add("付款人");
 		column.add("付款账号");
+		column.add("条目");
+		column.add("备注");
+		column.add("审批状态");
+		column.add("id");
 		
 		CostManagementBLService bl=BLFactory.getCostManagementBL();
 		tableContent=new Vector<PayingBillVO>();
@@ -149,7 +153,7 @@ public class CostManageUI extends JPanel{
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			NewPayingBillsUI ui=new NewPayingBillsUI();
+			NewPayingBillsUI ui=new NewPayingBillsUI(panel);
 			ViewController.jumpToAnotherView(ui);
 			
 		}
@@ -161,7 +165,7 @@ public class CostManageUI extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			int index=table.getSelectedRow();
-			ChangePayingBillsUI ui=new ChangePayingBillsUI(index);
+			ChangePayingBillsUI ui=new ChangePayingBillsUI(tableContent.get(index).get(7));
 			ViewController.jumpToAnotherView(ui);
 		}
 		
@@ -173,7 +177,7 @@ public class CostManageUI extends JPanel{
 			// TODO Auto-generated method stub
 			int dex=table.getSelectedRow();
 			CostManagementBLService cmbl=BLFactory.getCostManagementBL();
-			ResultMessage message=cmbl.delBill(dex);
+			ResultMessage message=cmbl.delBill(tableContent.get(dex).get(7));
 			
 			if(message.success){
 				model.removeRow(dex);

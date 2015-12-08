@@ -20,21 +20,21 @@ public interface CostManagementDataService extends Remote{
 	/**
 	 * 修改付款单
 	 * 
-	 * @param int
+	 * @param String
 	 * @param PayingBills
 	 * @return ResultMessage
 	 * @throws RemoteException
 	 */
-	public ResultMessage changeBill(int index,PayingBills newBill)throws RemoteException;
+	public ResultMessage changeBill(String index,PayingBills newBill)throws RemoteException;
 	
 	/**
 	 * 删除付款单
 	 * 
-	 * @param int
+	 * @param String
 	 * @return ResultMessage
 	 * @throws RemoteException
 	 */
-	public ResultMessage delBill(int index)throws RemoteException;
+	public ResultMessage delBill(String index)throws RemoteException;
 	
 	/**
 	 * 获取某日期段的付款单

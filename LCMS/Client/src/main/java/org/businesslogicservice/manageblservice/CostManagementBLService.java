@@ -17,17 +17,17 @@ public interface CostManagementBLService {
 	/**
 	 * 修改付款单
 	 * 
-	 * @param int
+	 * @param String
 	 * @param PayingBills
 	 * @return ResultMessage
 	 */
-	public ResultMessage changeBill(int index,PayingBills newBill);
+	public ResultMessage changeBill(String index,PayingBills newBill);
 	
 	/**
 	 * 删除付款单
 	 * 
-	 * @param int
+	 * @param String
 	 * @return ResultMessage
 	 */
-	public ResultMessage delBill(int index);
+	public ResultMessage delBill(String index);
 }

@@ -9,7 +9,7 @@ import org.po.myDate;
 import org.presentation.billsui.NewPayingBillsUI;
 
 public class PayingBillVO extends Vector<String> implements PanelCreaterService{
-	public PayingBillVO(myDate date,long money,String name,String accountName,String item,String remark,boolean examined){
+	public PayingBillVO(myDate date,long money,String name,String accountName,String item,String remark,boolean examined,String idNum){
 		this.add(date.toString());
 		this.add(String.valueOf(money));
 		this.add(name);
@@ -22,6 +22,8 @@ public class PayingBillVO extends Vector<String> implements PanelCreaterService{
 		}else{
 			this.add("未审批");
 		}
+		
+		this.add(idNum);
 	}
 	
 	public PayingBillVO(PayingBills bill){
@@ -37,7 +39,7 @@ public class PayingBillVO extends Vector<String> implements PanelCreaterService{
 		}else{
 			this.add("未审批");
 		}
-		
+		this.add(bill.getIdNum());
 	}
 
 	public JPanel careatePanel(JPanel su) {

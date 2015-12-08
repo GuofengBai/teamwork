@@ -35,7 +35,7 @@ public class CostManagementBL implements CostManagementBLService {
 		return volist;
 	}
 
-	public ResultMessage changeBill(int index, PayingBills newBill) {
+	public ResultMessage changeBill(String index, PayingBills newBill) {
 		// TODO Auto-generated method stub
 		String[] infotemp={"Failed","Exception"};
 		ResultMessage message=new ResultMessage(false,infotemp);
@@ -49,7 +49,7 @@ public class CostManagementBL implements CostManagementBLService {
 		return message;
 	}
 
-	public ResultMessage delBill(int index) {
+	public ResultMessage delBill(String index) {
 		// TODO Auto-generated method stub
 		String[] infotemp={"Failed","Exception"};
 		ResultMessage message=new ResultMessage(false,infotemp);
