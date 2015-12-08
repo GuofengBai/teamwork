@@ -17,6 +17,7 @@ import org.Client.CurrentStaff;
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.commodityblservice.CheckCommodityBLService;
 import org.businesslogicservice.commodityblservice.DistrictChangeBLService;
+import org.businesslogicservice.commodityblservice.SettingAlertBLService;
 import org.po.ResultMessage;
 import org.presentation.mainui.ViewController;
 import org.vo.CommodityVO;
@@ -179,42 +180,7 @@ public class DistrictChangeUI extends JPanel {
 		table1.setFillsViewportHeight(true);
 	}
 
-/*	public void initToTable() {
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane
-				.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setViewportBorder(UIManager.getBorder("Menu.border"));
-		scrollPane.setToolTipText("");
-		scrollPane.setBounds(480, 118, 337, 218);
-		Vector<String> vColumns = new Vector<String>();
-		vColumns.add("货运编号");
-		vColumns.add("入库日期");
-		vColumns.add("目的地");
-		vColumns.add("仓库");
-		vColumns.add("区号");
-		vColumns.add("排号");
-		vColumns.add("架号");
-		vColumns.add("位号");
-		vColumns.add("中转中心编号");
-		Vector<CommodityVO> vData = new Vector<CommodityVO>();
 
-		model2 = new DefaultTableModel(cvo2, vColumns);
-		for (CommodityVO vo : cvo2) {
-			model2.addRow(vo);
-		}
-		this.add(scrollPane);
-		table2 = new JTable(model2) {
-			private static final long serialVersionUID = 1L;
-
-			public boolean isCellEditable(int row, int column) {
-				return false;
-			}
-		};
-		scrollPane.setViewportView(table2);
-		table2.getSelectionModel().setSelectionMode(
-				ListSelectionModel.SINGLE_SELECTION);
-		table2.setFillsViewportHeight(true);
-	}*/
 
 	public void initTo() {
 		JLabel label_4 = new JLabel("区");
@@ -328,12 +294,15 @@ public class DistrictChangeUI extends JPanel {
 		JLabel label_1 = new JLabel("移至");
 		label_1.setBounds(253, 68, 72, 18);
 		add(label_1);
-
+		String result=null;
+		SettingAlertBLService sabs=BLFactory.getSettingAlertBL();
+		result=String.valueOf(sabs.getAlert(centerNum))+"%";
 		JLabel label_2 = new JLabel("仓库已使用");
 		label_2.setBounds(487, 59, 82, 18);
 		add(label_2);
 
-		JLabel label_3 = new JLabel("25%");
+		JLabel label_3 = new JLabel(" ");
+		label_3.setText(result);
 		label_3.setBounds(583, 59, 72, 18);
 		add(label_3);
 

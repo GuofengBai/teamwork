@@ -24,7 +24,7 @@ public class DistrictChangeBL implements DistrictChangeBLService {
 	public DistrictChangeBL() {
 		vdata1 = new Vector<CommodityVO>();
 		vdata2 = new Vector<CommodityVO>();
-		mcd = new MockCommodityData();
+		//mcd = new MockCommodityData();
 	}
 
 	/**
@@ -95,18 +95,8 @@ public class DistrictChangeBL implements DistrictChangeBLService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return re = new ResultMessage(false, fa);
-		}/*
-		 * po=mcd.findCom(vo.getGoodsNum());
-		 * System.out.println(po.getGoodsNum());
-		 * System.out.println(po.getGoodsNum()+" ");
-		 * if(po.LocationNum().equals(vo
-		 * .getLocation())&&po.getArea().equals(vo.getarea())) return re = new
-		 * ResultMessage(false, used); mcd.delCom(po); po1=new
-		 * ComPO(vo.getGoodsNum
-		 * (),po.getinDate(),vo.getplace(),vo.getLocation(),vo
-		 * .getarea(),po.getcenterNum()); mcd.addCom(po1);
-		 */
-		// return re=new ResultMessage(true,su);
+		}
+		
 
 	}
 
