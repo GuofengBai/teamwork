@@ -29,9 +29,9 @@ public interface AccountManagementBLService {
 	 * 获取账户余额
 	 * 
 	 * @param String
-	 * @return int
+	 * @return long
 	 */
-	public int getBalance(String name);
+	public long getBalance(String name);
 	
 	/**
 	 * 删除账号

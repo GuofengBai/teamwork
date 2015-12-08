@@ -11,7 +11,9 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import org.dataservice.managedataservice.AccountManagementDataService;
+import org.dataservice.managedataservice.BeginAccountDataService;
 import org.po.BankAccountPO;
+import org.po.BeginAccountPO;
 import org.po.ResultMessage;
 
 public class AccountManagementData extends UnicastRemoteObject implements AccountManagementDataService {
@@ -108,7 +110,18 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 
 	public long getBalance(String name) throws RemoteException{
 		// TODO Auto-generated method stub
-		return 0;
+		long result=0;
+		BeginAccountDataService begin=new BeginAccountData();
+		BeginAccountPO account=begin.getBeginAccount();
+		String beginName=account.getAccountName();
+		
+		if(name.equals(beginName)){
+			result=result+account.getBalance();
+		}
+		
+		
+		
+		return result;
 	}
 
 	public ResultMessage delAccount(String name) throws RemoteException{
@@ -236,6 +249,12 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 				list=new ArrayList<BankAccountPO>();
 			}
 			
+			if(name.equals("")){
+				nameExist=true;
+				BeginAccountDataService ba=new BeginAccountData();
+				name=ba.getBeginAccount().getAccountName();
+				
+			}
 			for(BankAccountPO accountTemp:list){
 				if(accountTemp.getName().equals(name)){
 					nameExist=true;
@@ -244,6 +263,7 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 					break;
 				}
 			}
+			
 			
 			if(nameExist){
 				ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("SerializableData/BankAccount.file"));
@@ -300,6 +320,59 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 		}
 		
 		return searchList;
+	}
+
+	public ResultMessage setBalance(String name, long balance)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		boolean nameExist=false;
+		list=new ArrayList<BankAccountPO>();
+		String[] infotemp={"Failed","Exception"};
+		ResultMessage message=new ResultMessage(false,infotemp);
+		try {
+			ObjectInputStream is = new ObjectInputStream(new FileInputStream("SerializableData/BankAccount.file"));
+			
+			list=(ArrayList<BankAccountPO>) is.readObject();
+			is.close();
+			
+			if(list==null){
+				list=new ArrayList<BankAccountPO>();
+			}
+			
+			for(BankAccountPO accountTemp:list){
+				if(accountTemp.getName().equals(name)){
+					nameExist=true;
+					long balancetemp=accountTemp.getBalance();
+					accountTemp.setBalance(balance);
+					break;
+				}
+			}
+			
+			if(nameExist){
+				ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("SerializableData/BankAccount.file"));
+				os.writeObject(list);
+				os.close();
+			}
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(nameExist=true){
+			String[] info={"Success","Balance changed to"+" "+balance};
+			message=new ResultMessage(true,info);
+		}else{
+			String[] info={"Failed","Account not found"};
+			message=new ResultMessage(false,info);
+		}
+
+		return message;
 	}
 
 }

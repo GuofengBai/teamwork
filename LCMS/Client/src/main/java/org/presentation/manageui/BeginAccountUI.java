@@ -94,9 +94,9 @@ public class BeginAccountUI extends JPanel{
 		column.add("银行账户");
 		column.add("余额");
 		
-//		BeginAccountBLService ba=BLFactory.getBeginAccountBL();
+		BeginAccountBLService ba=BLFactory.getBeginAccountBL();
 		tableContent=new Vector<BeginAccountVO>();
-//		tableContent=ba.getBeginAccountList();
+		tableContent=ba.getBeginAccountList();
 		
 		table = new JTable(){
 			private static final long serialVersionUID = 1L;
@@ -170,6 +170,7 @@ public class BeginAccountUI extends JPanel{
 			if(message.success){
 				model.removeRow(dex);
 			}else{
+				
 				System.out.println(message.info);
 			}
 			

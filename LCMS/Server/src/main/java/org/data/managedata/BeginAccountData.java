@@ -10,6 +10,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import org.dataservice.managedataservice.AccountManagementDataService;
 import org.dataservice.managedataservice.BeginAccountDataService;
 import org.po.BankAccountPO;
 import org.po.BeginAccountPO;
@@ -26,7 +27,6 @@ public class BeginAccountData extends UnicastRemoteObject implements BeginAccoun
 	
 	public ResultMessage addBeginAccount(BeginAccountPO account) throws RemoteException{
 		// TODO Auto-generated method stub
-		boolean nameExist=false;
 		String[] infotemp={"Failed","Exception"};
 		ResultMessage message=new ResultMessage(false,infotemp);
 		
@@ -40,33 +40,20 @@ public class BeginAccountData extends UnicastRemoteObject implements BeginAccoun
 				list=new ArrayList<BeginAccountPO>();
 			}
 			
-			if(list.isEmpty()||list==null){
+			list.add(account);
+			ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("SerializableData/BeginAccount.file"));
+			os.writeObject(list);
+			os.close();
 				
-			}else{
-				for(BeginAccountPO accountTemp:list){
-					if(accountTemp.getAccountName().equals(account.getAccountName())){
-						nameExist=true;
-						break;
-					}
-				}
-			}
+			ObjectOutputStream os2 = new ObjectOutputStream(new FileOutputStream("SerializableData/BeginInfo.file"));
+			os2.writeObject(account);
+			os2.close();
+			String[] info={"Success","Account saved"};
+			message=new ResultMessage(true,info);
 			
-			if(nameExist){
-				String[] info={"Failed","The name already exists."};
-				 message=new ResultMessage(false,info);
-			}else{
-				list.add(account);
-				ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("SerializableData/BeginAccount.file"));
-				os.writeObject(list);
-				os.close();
-				
-				ObjectOutputStream os2 = new ObjectOutputStream(new FileOutputStream("SerializableData/BeginInfo.file"));
-				os2.writeObject(account);
-				os2.close();
-				String[] info={"Success","Account saved"};
-				message=new ResultMessage(true,info);
-			}
-			
+			AccountManagementDataService am=new AccountManagementData();
+			am.setBalance(account.getAccountName(), account.getBalance());
+
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -111,6 +98,19 @@ public class BeginAccountData extends UnicastRemoteObject implements BeginAccoun
 	
 	public void Initialize(BeginAccountPO account) throws RemoteException{
 		// TODO Auto-generated method stub
+		
+		try {
+			ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("SerializableData/BeginInfo.file"));
+			os.writeObject(account);
+			os.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 
 	}
 

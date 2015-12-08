@@ -22,7 +22,7 @@ public class NewBeginAccountBL implements NewBeginAccountBLService {
 		
 		try {
 			BeginAccountDataService bad=RMIHelper.getDataFactory().getManageDataFactory().getBeginAccountData();
-			message=bad.deleteAccount(account);
+			message=bad.addBeginAccount(account);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

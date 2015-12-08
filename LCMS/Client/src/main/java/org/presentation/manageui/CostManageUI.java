@@ -105,9 +105,9 @@ public class CostManageUI extends JPanel{
 		column.add("付款人");
 		column.add("付款账号");
 		
-//		CostManagementBLService bl=BLFactory.getCostManagementBL();
+		CostManagementBLService bl=BLFactory.getCostManagementBL();
 		tableContent=new Vector<PayingBillVO>();
-//		tableContent=bl.getAllBill();
+		tableContent=bl.getAllBill();
 		
 		table = new JTable(){
 			private static final long serialVersionUID = 1L;

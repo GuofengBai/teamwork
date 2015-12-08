@@ -10,6 +10,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import org.dataservice.managedataservice.AccountManagementDataService;
 import org.dataservice.managedataservice.CostManagementDataService;
 import org.po.PayingBills;
 import org.po.ResultMessage;
@@ -72,9 +73,11 @@ public class CostManagementData extends UnicastRemoteObject implements CostManag
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		PayingBills oldBill=list.get(index);
 		list.set(index, newBill);
 		
+		AccountManagementDataService am=new AccountManagementData();
+		am.changeBalance("", oldBill.getMoney()-newBill.getMoney());
 		
 		try {
 			ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("SerializableData/PB.file"));
@@ -119,7 +122,11 @@ public class CostManagementData extends UnicastRemoteObject implements CostManag
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		PayingBills oldBill=list.get(index);
 		list.remove(index);
+		AccountManagementDataService am=new AccountManagementData();
+		am.changeBalance("", oldBill.getMoney());
 		
 		try {
 			ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("SerializableData/PB.file"));

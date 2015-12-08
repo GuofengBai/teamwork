@@ -73,6 +73,7 @@ public class NewBeginAccountUI extends JPanel{
 		saveButton.addActionListener(new saveButtonListener());
 		saveButton.setBounds(101, 229, 93, 23);
 		panel.add(saveButton);
+
 		
 		JButton cancelButton = new JButton("\u53D6\u6D88");
 		cancelButton.setBounds(240, 229, 93, 23);

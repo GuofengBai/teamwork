@@ -45,7 +45,7 @@ public class IncomeTableData extends UnicastRemoteObject implements IncomeTableD
 		list=cmd.getAllBill();
 		
 		for(PayingBills bill:list){
-			result=result+bill.getCash();
+			result=result+bill.getMoney();
 		}
 		
 		

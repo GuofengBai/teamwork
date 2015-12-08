@@ -3,6 +3,10 @@ import java.io.Serializable;
 
 
 public class BeginAccountPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String accountName;
 	private long balance;
 	private String organization;//机构

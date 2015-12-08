@@ -55,11 +55,20 @@ public class AccountManagementBL implements AccountManagementBLService{
 		return message;
 	}
 
-	public int getBalance(String name) {
+	public long getBalance(String name) {
 		// TODO Auto-generated method stub
+		long result=0;
 		
-		AccountManagementData amd=new AccountManagementData();
-		return amd.getBalance(name);
+		AccountManagementDataService amd;
+		try {
+			amd = RMIHelper.getDataFactory().getManageDataFactory().getAccountManagementData();
+			result=amd.getBalance(name);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 
 	public ResultMessage delAccount(String name) {

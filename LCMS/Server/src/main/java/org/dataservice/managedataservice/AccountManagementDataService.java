@@ -72,4 +72,14 @@ public interface AccountManagementDataService extends Remote{
 	 * @throws RemoteException
 	 */
 	public ArrayList<BankAccountPO> search(String namepart) throws RemoteException;
+	
+	/**
+	 * 设定余额
+	 * 
+	 * @param String
+	 * @param long
+	 * @return ResultMessage
+	 * @throws RemoteException
+	 */
+	public ResultMessage setBalance(String name, long balance)throws RemoteException;
 }

@@ -91,10 +91,10 @@ public class AccountManageUI extends JPanel{
 		panel.add(label_1);
 		
 		
-//		AccountManagementBLService ambl=BLFactory.getAccountManagementBL();
+		AccountManagementBLService ambl=BLFactory.getAccountManagementBL();
 //获取列表		
 		tableContent=new Vector<BankAccountVO>();
-//		tableContent=ambl.getAccountList();
+		tableContent=ambl.getAccountList();
 		
 		Vector<String> Column = new Vector<String>();
 		Column.add("名称");

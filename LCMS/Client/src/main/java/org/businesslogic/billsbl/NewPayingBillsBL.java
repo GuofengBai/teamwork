@@ -22,7 +22,7 @@ public class NewPayingBillsBL implements NewPayingBillsBLService{
 			message=billsData.addBills(bill);
 			
 			AccountManagementDataService accountData=RMIHelper.getDataFactory().getManageDataFactory().getAccountManagementData();
-//			accountData.changeBalance(bill.getname(), (int)(-bill.getMoney()));
+			accountData.changeBalance(bill.getname(), (-bill.getMoney()));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

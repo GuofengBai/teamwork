@@ -92,6 +92,7 @@ public class IncomeManagementUI extends JPanel{
 		searchHall.setBounds(297, 48, 66, 21);
 		panel.add(searchHall);
 		searchHall.setColumns(10);
+
 		
 		Vector<String> column = new Vector<String>();
 		column.add("日期");

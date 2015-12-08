@@ -65,9 +65,9 @@ public interface AccountManagementDataService extends Remote{
 	public ResultMessage changeBalance (String name,long change) throws RemoteException;
 	
 	/**
+	 * 关键字查找
 	 * 
-	 * 
-	 * @param 
+	 * @param String
 	 * @return ResultMessage
 	 * @throws RemoteException
 	 */
