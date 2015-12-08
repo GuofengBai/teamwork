@@ -17,15 +17,15 @@ import org.po.TransFeePO;
 public class Init {
 	
 	public static void main(String[] args){
-		String fileName="SerializableData/"+"Center"+".file";
+		String fileName="SerializableData/"+"ManagerSetting"+".file";
 		try {
-			ArrayList<CenterPO> List=new ArrayList<CenterPO>();
+//			ArrayList<CenterPO> List=new ArrayList<CenterPO>();
 			FileOutputStream fos = new FileOutputStream(fileName);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(List);
-//			oos.writeObject(new CityAndDistancePO());
-//			oos.writeObject(new ExpressFeePO());
-//			oos.writeObject(new TransFeePO());
+//			oos.writeObject(List);
+			oos.writeObject(new CityAndDistancePO());
+			oos.writeObject(new ExpressFeePO());
+			oos.writeObject(new TransFeePO());
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

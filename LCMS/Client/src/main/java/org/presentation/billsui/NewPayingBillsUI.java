@@ -30,10 +30,15 @@ public class NewPayingBillsUI extends JPanel {
 	private JButton addButton;
 	private JTextField remarkField;
 	private JButton backButton;
+	private JPanel superView;
+	private JPanel temp;
 	/**
 	 * Create the panel.
 	 */
-	public NewPayingBillsUI() {
+	public NewPayingBillsUI(JPanel su) {
+		super();
+		this.superView=su;
+		this.temp=this;
 		setLayout(null);
 		
 		JLabel label = new JLabel("付款日期");
@@ -142,9 +147,7 @@ public class NewPayingBillsUI extends JPanel {
 	class backButtonListener implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			CostManageUI ui=new CostManageUI();
-			ViewController.jumpToAnotherView(ui);
+			ViewController.jumpToAnotherView(superView);
 		}
 		
 	}

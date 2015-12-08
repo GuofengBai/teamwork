@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
+import org.presentation.billsui.ExamineBillsUI;
 import org.presentation.mainui.ViewController;
 import org.presentation.organizationui.ManagerSettingUI;
 import org.presentation.organizationui.OrganizationUI;
@@ -32,7 +33,7 @@ public class GeneralManagerUI extends JPanel {
 		add(button);
 		
 		JButton staff = new JButton("\u4EBA\u5458\u7BA1\u7406");
-		staff.setBounds(201, 131, 123, 29);
+		staff.setBounds(201, 215, 123, 29);
 		
 		staff.addActionListener(new ActionListener(){
 
@@ -45,7 +46,7 @@ public class GeneralManagerUI extends JPanel {
 		add(staff);
 		
 		JButton organization = new JButton("\u673A\u6784\u7BA1\u7406");
-		organization.setBounds(201, 196, 123, 29);
+		organization.setBounds(201, 281, 123, 29);
 		add(organization);
 		organization.addActionListener(new ActionListener(){
 
@@ -57,7 +58,7 @@ public class GeneralManagerUI extends JPanel {
 		});
 		
 		JButton manage = new JButton("\u7ECF\u8425\u53C2\u6570\u8BBE\u7F6E");
-		manage.setBounds(201, 261, 141, 29);
+		manage.setBounds(201, 343, 141, 29);
 		add(manage);
 		manage.addActionListener(new ActionListener() {
 			
@@ -69,8 +70,21 @@ public class GeneralManagerUI extends JPanel {
 		});
 		
 		JButton bills = new JButton("\u67E5\u770B\u8868\u5355");
-		bills.setBounds(201, 332, 123, 29);
+		bills.setBounds(201, 403, 123, 29);
 		add(bills);
+		
+		JButton examine = new JButton("审批单据");
+		examine.setBounds(201, 154, 123, 29);
+		add(examine);
+		examine.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent arg0) {
+				JPanel next=new ExamineBillsUI(temp);
+				ViewController.jumpToAnotherView(next);
+				
+			}
+			
+		});
 
 		
 		
