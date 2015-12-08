@@ -117,8 +117,8 @@ public class NewSendingBillsUI extends JPanel {
 		newyear.setText(vo.date.year+"");
 		newmonth.setText(vo.date.month+"");
 		newday.setText(vo.date.day+"");
-		sendtype.setSelectedItem(vo.send);
-		boxtype.setSelectedItem(vo.box);
+		sendtype.setSelectedItem(vo.send.getState());
+		boxtype.setSelectedItem(vo.box.getState());
 		length.setText(vo.length);
 		width.setText(vo.width);
 		height.setText(vo.height);
