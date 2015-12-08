@@ -7,6 +7,7 @@ import org.Client.RMIHelper;
 import org.businesslogic.organizationbl.ManagerSettingBL;
 import org.businesslogicservice.billsblservice.NewSendingBillsBLService;
 import org.dataservice.billsdataservice.BillsDataService;
+import org.dataservice.billsdataservice.NewSendingBillsDataService;
 import org.po.BOXSTYPE;
 import org.po.ResultMessage;
 import org.po.SENDSTYPE;
@@ -69,5 +70,18 @@ public class NewSendingBillsBL implements NewSendingBillsBLService{
 			e.printStackTrace();
 		}
 		return message;
+	}
+
+	public String searchState(String goodNum) {
+		// TODO Auto-generated method stub
+		String answer=null;
+		try {
+			NewSendingBillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewSendingBillsData();
+			answer=billsData.getExpressState(goodNum).getState();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return answer;
 	}	
 }

@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 import org.businesslogic.blFactory.BLFactory;
 import org.po.BILLSTYPE;
+import org.presentation.billsui.BillsStateSearch;
 import org.presentation.billsui.NewCenterArriveBillsUI;
 import org.presentation.billsui.NewHallDispatchBillsUI;
 import org.presentation.billsui.NewInstorageBillsUI;
@@ -25,7 +26,7 @@ public class Client{
     public static void main(String[] args) throws RemoteException
     {
     	RMIHelper.init();
-    	JPanel newUI=new GeneralManagerUI();
+    	JPanel newUI=new BillsStateSearch();
     	BLFactory.init();
     	JFrame frame = new JFrame();
     	ViewController.init(frame);

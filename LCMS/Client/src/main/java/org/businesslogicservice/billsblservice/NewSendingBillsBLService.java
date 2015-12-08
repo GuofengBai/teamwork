@@ -15,4 +15,6 @@ public interface NewSendingBillsBLService {
 	public long getPrice(String SenderLocation, String ReceiverLocation, BOXSTYPE boxtype, 
 			SENDSTYPE sendtype, String length, String width, String height, String weight);
 	
+	public String searchState(String goodNum);
+	
 }
