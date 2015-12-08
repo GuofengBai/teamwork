@@ -143,13 +143,7 @@ public class CommodityData extends UnicastRemoteObject implements
 		for (ComPO p : ComList) {
 			if (p.getGoodsNum().equals(po.getGoodsNum())) {
 				ComList.remove(p);
-
 				String[] info = { "更新信息成功" };
-				for (CenterCom o : totalList) {
-					if (o.centerNum.equals(po.getcenterNum())) {
-						o = new CenterCom(ComList, po.getcenterNum());
-					}
-				}
 				save();
 				ResultMessage ms = new ResultMessage(true, info);
 				return ms;

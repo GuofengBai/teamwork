@@ -6,11 +6,10 @@ import java.util.ArrayList;
 
 
 public class OutstorageBills extends BillsPO{
-	private myDate date;
 	private String centerNum;
 	private ArrayList<ComPO> list;
 	public OutstorageBills(myDate date, String centerNum, String entruckNum, ArrayList<ComPO> list){
-		this.date=date;
+		this.Date=date;
 		this.centerNum=centerNum;
 		this.idNum=entruckNum;
 		this.list=list;
@@ -18,7 +17,7 @@ public class OutstorageBills extends BillsPO{
 		this.Examined=false;
 	}
 	public myDate getdate(){
-		return date;
+		return Date;
 	}
 	
 	public String getcenterNum(){

@@ -30,7 +30,7 @@ public class CheckCommodityBL implements CheckCommodityBLService {
 		/**
 		 * Mock测试
 		 */
-		MockCommodityData mcd = new MockCommodityData();
+		//MockCommodityData mcd = new MockCommodityData();
 
 		Date date = new Date();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
