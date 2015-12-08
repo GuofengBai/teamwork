@@ -252,7 +252,7 @@ public class DistrictChangeUI extends JPanel {
 		}
 		else{
 			JOptionPane.showMessageDialog(null, "调整成功", "",
-					JOptionPane.ERROR_MESSAGE);
+					JOptionPane.OK_OPTION);
 		}
 		String location = QU.getText() + PAI.getText() + JIA.getText()
 				+ WEI.getText();
