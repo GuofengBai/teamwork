@@ -84,9 +84,7 @@ public class UserUI extends JPanel {
 		btnNewButton.setBounds(218, 328, 113, 27);
 		add(btnNewButton);
 
-		JButton button = new JButton("返回");
-		button.setBounds(422, 328, 113, 27);
-		add(button);
+		
 
 		passwordField = new JPasswordField();
 		passwordField.setBounds(192, 157, 152, 21);
