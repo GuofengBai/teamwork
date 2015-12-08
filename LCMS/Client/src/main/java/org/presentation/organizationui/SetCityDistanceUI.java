@@ -71,7 +71,7 @@ public class SetCityDistanceUI extends JPanel{
 			public void tableChanged(TableModelEvent arg0) {
 				int row=arg0.getFirstRow();
 				int column=arg0.getColumn();
-				double distance=(Double) model.getValueAt(row, column);
+				double distance=Double.parseDouble((String)model.getValueAt(row, column));
 				if((Double)model.getValueAt(column,row)!=distance){
 				     model.setValueAt(distance,column,row);
 				}

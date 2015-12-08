@@ -36,6 +36,7 @@ public class ManagerSettingData extends UnicastRemoteObject implements ManagerSe
 
 	private void init() {
 	
+		cad=null;
 		try {
 			FileInputStream fis = new FileInputStream(fileName);
 			BufferedInputStream bis = new BufferedInputStream(fis);  
@@ -54,6 +55,12 @@ public class ManagerSettingData extends UnicastRemoteObject implements ManagerSe
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		if(cad==null){
+			cad=new CityAndDistancePO();
+			efp=new ExpressFeePO();
+			tfp=new TransFeePO();
+		}
+		save();
 		
 	}
 	

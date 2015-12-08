@@ -1,6 +1,8 @@
 package org.po;
 
-public class TransFeePO {
+import java.io.Serializable;
+
+public class TransFeePO implements Serializable{
 
 	private double car;
 	private double train;

@@ -32,7 +32,7 @@ public class CenterData  extends UnicastRemoteObject implements CenterDataServic
 	
 	private void init(){
 		
-		
+		centerList=null;
 		try {
 			FileInputStream fis = new FileInputStream(fileName);
 			BufferedInputStream bis = new BufferedInputStream(fis);  
@@ -52,6 +52,10 @@ public class CenterData  extends UnicastRemoteObject implements CenterDataServic
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		if(centerList==null){
+			centerList=new ArrayList<CenterPO>();
+		}
+		save();
 	}
 
 	public ResultMessage addCenter(CenterPO po) throws RemoteException {

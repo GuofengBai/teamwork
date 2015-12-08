@@ -120,6 +120,7 @@ public class CenterUI extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				CenterVO vo=new CenterVO(Name.getText(),centerNum.getText(),location.getText());
+				System.out.println(vo);
 				CenterBLService centerBL=BLFactory.getCenterBL();
 				if(centerBL.addCenter(vo)){
 					model.addRow(vo);

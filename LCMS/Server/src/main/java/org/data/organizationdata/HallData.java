@@ -30,7 +30,7 @@ public class HallData extends UnicastRemoteObject implements HallDataService{
 	
 	private void init(){
 		
-		
+		hallList=null;
 		try {
 			FileInputStream fis = new FileInputStream(fileName);
 			BufferedInputStream bis = new BufferedInputStream(fis);  
@@ -50,6 +50,10 @@ public class HallData extends UnicastRemoteObject implements HallDataService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		if(hallList==null){
+			hallList=new ArrayList<HallPO>();
+		}
+		save();
 	}
 
 	public ResultMessage addHall(HallPO po) throws RemoteException {
@@ -111,10 +115,13 @@ public class HallData extends UnicastRemoteObject implements HallDataService{
 	}
 
 	public ResultMessage delByCity(String cityNum) throws RemoteException {
-		for(HallPO po:hallList){
+		HallPO po;
+		for(int i=0;i<hallList.size();i++){
+			po=hallList.get(i);
 			if(po.getHallNum().subSequence(0,3).equals(cityNum.substring(0,3))){
 				hallList.remove(po);
 				save();
+				i--;
 			}
 		}
 		return null;

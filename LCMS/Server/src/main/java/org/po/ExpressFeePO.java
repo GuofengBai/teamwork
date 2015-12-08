@@ -1,6 +1,8 @@
 package org.po;
 
-public class ExpressFeePO {
+import java.io.Serializable;
+
+public class ExpressFeePO implements Serializable{
 	private double slow;
 	private double normal;
 	private double fast;

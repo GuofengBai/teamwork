@@ -10,7 +10,7 @@ public class CenterPO implements Serializable {
 	private String CenterNum;// 中转中心编号，城市编号+1位+3位
 	private String name;// 中转中心名称，例如“鼓楼”
 
-	public CenterPO(String name, String CenetrNum, String location) {
+	public CenterPO(String name, String CenterNum, String location) {
 		this.location = location;
 		this.CenterNum = CenterNum;
 		this.name = name;

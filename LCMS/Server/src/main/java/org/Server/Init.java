@@ -8,17 +8,24 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import org.po.BillsPO;
+import org.po.CenterPO;
+import org.po.CityAndDistancePO;
+import org.po.ExpressFeePO;
+import org.po.HallPO;
+import org.po.TransFeePO;
 
-public class InitSBFille {
+public class Init {
 	
 	public static void main(String[] args){
-		String fileName="SerializableData/"+"SB"+".file";
+		String fileName="SerializableData/"+"Center"+".file";
 		try {
-			ArrayList<BillsPO> billsList=new ArrayList<BillsPO>();
-			billsList.add(new BillsPO());
+			ArrayList<CenterPO> List=new ArrayList<CenterPO>();
 			FileOutputStream fos = new FileOutputStream(fileName);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(billsList);
+			oos.writeObject(List);
+//			oos.writeObject(new CityAndDistancePO());
+//			oos.writeObject(new ExpressFeePO());
+//			oos.writeObject(new TransFeePO());
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

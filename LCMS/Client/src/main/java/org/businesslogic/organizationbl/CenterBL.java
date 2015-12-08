@@ -19,16 +19,18 @@ import org.vo.HallVO;
 public class CenterBL implements CenterBLService{
 
 	public boolean addCenter(CenterVO vo) {
+		System.out.println(vo);
 		CenterPO po=new CenterPO(vo.get(0),vo.get(1),vo.get(2));
+		System.out.println("添加中转中心"+po.getname()+po.getCenterNum()+po.getLocation());
 		try {
 			CenterDataService centerData=RMIHelper.getDataFactory().getOrganizationDataFactory().getCenterData();
 			centerData.addCenter(po);
 			
-			ManagerSettingBLService manager=BLFactory.getManagerSettingBL();
-			manager.addCity(po.getname());
+//			ManagerSettingBLService manager=BLFactory.getManagerSettingBL();
+//			manager.addCity(po.getname());
 			
-			CommodityBLService combl=BLFactory.getCommodityBL();
-			combl.addCenter(po.getCenterNum());
+//			CommodityBLService combl=BLFactory.getCommodityBL();
+//			combl.addCenter(po.getCenterNum());
 			
 			
 		    return true;
