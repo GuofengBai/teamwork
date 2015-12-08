@@ -13,19 +13,20 @@ import org.po.CityAndDistancePO;
 import org.po.ExpressFeePO;
 import org.po.HallPO;
 import org.po.TransFeePO;
+import org.po.UserPO;
 
 public class Init {
 	
 	public static void main(String[] args){
-		String fileName="SerializableData/"+"ManagerSetting"+".file";
+		String fileName="SerializableData/"+"User"+".file";
 		try {
-//			ArrayList<CenterPO> List=new ArrayList<CenterPO>();
+			ArrayList<UserPO> List=new ArrayList<UserPO>();
 			FileOutputStream fos = new FileOutputStream(fileName);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
-//			oos.writeObject(List);
-			oos.writeObject(new CityAndDistancePO());
-			oos.writeObject(new ExpressFeePO());
-			oos.writeObject(new TransFeePO());
+			oos.writeObject(List);
+//			oos.writeObject(new CityAndDistancePO());
+//			oos.writeObject(new ExpressFeePO());
+//			oos.writeObject(new TransFeePO());
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

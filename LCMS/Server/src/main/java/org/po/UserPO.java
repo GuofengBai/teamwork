@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 public class UserPO  implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public String account;
 	private String password;
 	private String staffNumber;
