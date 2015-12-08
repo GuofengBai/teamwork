@@ -20,8 +20,9 @@ public class GeneralManagerUI extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public GeneralManagerUI() {
-		
+	public GeneralManagerUI(JPanel su) {
+		super();
+		this.superView=su;
 		setLayout(null);
 		
 		JLabel label = new JLabel("\u603B\u7ECF\u7406\u754C\u9762");
@@ -31,6 +32,13 @@ public class GeneralManagerUI extends JPanel {
 		JButton button = new JButton("\u8FD4\u56DE");
 		button.setBounds(465, 15, 75, 29);
 		add(button);
+		button.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				ViewController.jumpToAnotherView(superView);
+				
+			}
+		});
 		
 		JButton staff = new JButton("\u4EBA\u5458\u7BA1\u7406");
 		staff.setBounds(201, 215, 123, 29);
