@@ -117,17 +117,17 @@ public class UserUI extends JPanel {
 			else if(svo.staffRole.getName().equals("营业厅业务员")){
 				ViewController.jumpToAnotherView(new HallBusinessContralUI(panel));
 			}
-			else if(svo.staffRole.getName().equals("中转中心营业员")){
+			else if(svo.staffRole.getName().equals("中转中心业务员")){
 				ViewController.jumpToAnotherView(new CenterBusinessContralUI(panel));
 			}
-			else if(svo.staffRole.getName().equals("中转中心仓库管理人员")){
+			else if(svo.staffRole.getName().equals("中转中心仓库管理员")){
 				ViewController.jumpToAnotherView(new StorageStaffView(panel));
 			}
 			else if(svo.staffRole.getName().equals("财务人员")){
 				ViewController.jumpToAnotherView(new FinacialStaffView());
 			}
 			else if(svo.staffRole.getName().equals("总经理")){
-				ViewController.jumpToAnotherView(new GeneralManagerUI());
+				ViewController.jumpToAnotherView(new GeneralManagerUI(panel));
 			}
 			else if(svo.staffRole.getName().equals("管理员")){
 				ViewController.jumpToAnotherView(new AdministratorUI(panel));

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 
 public class HallEntruckBills extends BillsPO{
-	private myDate date;
 	private String hallNum;
 	private String aimNum;
 	private String carNum;
@@ -14,7 +13,7 @@ public class HallEntruckBills extends BillsPO{
 	private ArrayList<StateListPO> list;
 	public HallEntruckBills(myDate date, String entruckNum,
 			String hallNum, String aimNum, String carNum, String driverName, ArrayList<StateListPO> list){
-		this.date=date;
+		this.Date=date;
 		this.idNum=entruckNum;
 		this.hallNum=hallNum;
 		this.aimNum=aimNum;
@@ -25,7 +24,7 @@ public class HallEntruckBills extends BillsPO{
 		this.Examined=false;
 	}
 	public myDate getdate(){
-		return date;
+		return Date;
 	}
 	
 	public String getidNum(){

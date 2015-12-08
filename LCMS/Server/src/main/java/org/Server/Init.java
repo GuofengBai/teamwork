@@ -18,12 +18,16 @@ import org.po.UserPO;
 public class Init {
 	
 	public static void main(String[] args){
-		String fileName="SerializableData/"+"User"+".file";
+		String fileName="SerializableData/"+"IB"+".file";
 		try {
-			ArrayList<UserPO> List=new ArrayList<UserPO>();
+			ArrayList<BillsPO> List=new ArrayList<BillsPO>();
+			long ueb=0;
+			ArrayList<BillsPO> ueList=new ArrayList<BillsPO>();
 			FileOutputStream fos = new FileOutputStream(fileName);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(List);
+			oos.writeObject(ueb);
+			oos.writeObject(ueList);
 //			oos.writeObject(new CityAndDistancePO());
 //			oos.writeObject(new ExpressFeePO());
 //			oos.writeObject(new TransFeePO());

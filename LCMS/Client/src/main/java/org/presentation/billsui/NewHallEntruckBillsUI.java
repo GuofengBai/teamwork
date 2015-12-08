@@ -61,6 +61,7 @@ public class NewHallEntruckBillsUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
+				System.out.println(date.toString());
 				NewHallEntruckBillsBLService bl = BLFactory.getNewHallEntruckBillsBL();
 				HEBVO bvo = new HEBVO(date, entruckNum.getText(), hallNum.getText(), aimNum.getText(), carNum.getText(), driverName.getText(), list);
 				bl.addHallEntruckBills(bvo);

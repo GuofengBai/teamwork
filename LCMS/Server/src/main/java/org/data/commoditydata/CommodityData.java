@@ -106,11 +106,11 @@ public class CommodityData extends UnicastRemoteObject implements
 			}
 		}
 		ComList.add(po);
-		for (CenterCom o : totalList) {
-			if (o.centerNum.equals(po.getcenterNum())) {
-				o = new CenterCom(ComList, po.getcenterNum());
-			}
-		}
+//		for (CenterCom o : totalList) {
+//			if (o.centerNum.equals(po.getcenterNum())) {
+//				o = new CenterCom(ComList, po.getcenterNum());
+//			}
+//		}
 		save();
 		return new ResultMessage(true, null);
 	}
