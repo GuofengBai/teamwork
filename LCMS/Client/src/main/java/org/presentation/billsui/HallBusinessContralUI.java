@@ -53,7 +53,7 @@ public class HallBusinessContralUI extends JPanel {
 			}
 		});
 		
-		JButton back = new JButton("返回");
+		JButton back = new JButton("登出");
 		back.setBounds(93, 130, 93, 23);
 		add(back);
 		back.addActionListener(new ActionListener() {

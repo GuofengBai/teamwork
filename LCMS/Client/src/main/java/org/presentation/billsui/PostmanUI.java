@@ -43,12 +43,24 @@ public class PostmanUI extends JPanel {
 		JButton creatreceivebill = new JButton("新建收件单");
 		creatreceivebill.setBounds(36, 98, 220, 23);
 		add(creatreceivebill);
+		
 		creatreceivebill.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				JPanel next = new ReceiveMessageUI(temp);
 				ViewController.jumpToAnotherView(next);
+			}
+		});
+		
+		JButton back = new JButton("登出");
+		back.setBounds(95, 128, 93, 23);
+		add(back);
+		back.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ViewController.jumpToAnotherView(superview);
 			}
 		});
 

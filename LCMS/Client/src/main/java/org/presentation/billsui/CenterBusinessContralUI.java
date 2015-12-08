@@ -65,7 +65,7 @@ public class CenterBusinessContralUI extends JPanel {
 			}
 		});
 		
-		JButton back = new JButton("返回");
+		JButton back = new JButton("登出");
 		back.setBounds(44, 163, 93, 23);
 		add(back);
 		back.addActionListener(new ActionListener() {
