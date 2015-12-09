@@ -185,6 +185,7 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 
 	public ResultMessage changeName(String name, String newname) throws RemoteException{
 		boolean nameExist=false;
+		boolean newNameExist=false;
 		list=new ArrayList<BankAccountPO>();
 		String[] infotemp={"Failed","Exception"};
 		ResultMessage message=new ResultMessage(false,infotemp);
@@ -197,6 +198,18 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 			if(list==null){
 				list=new ArrayList<BankAccountPO>();
 			}
+			
+			for(BankAccountPO accountTemp:list){
+				if(accountTemp.getName().equals(newname)){
+					newNameExist=true;
+					
+					String[] info={"Failed","Account already exists"};
+					message=new ResultMessage(false,info);
+					
+					return message;
+				}
+			}
+			
 			
 			for(BankAccountPO accountTemp:list){
 				if(accountTemp.getName().equals(name)){
@@ -239,6 +252,9 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 		list=new ArrayList<BankAccountPO>();
 		String[] infotemp={"Failed","Exception"};
 		ResultMessage message=new ResultMessage(false,infotemp);
+		
+
+		
 		try {
 			ObjectInputStream is = new ObjectInputStream(new FileInputStream("SerializableData/BankAccount.file"));
 			
@@ -248,13 +264,13 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 			if(list==null){
 				list=new ArrayList<BankAccountPO>();
 			}
-			
 			if(name.equals("")){
 				nameExist=true;
 				BeginAccountDataService ba=new BeginAccountData();
 				name=ba.getBeginAccount().getAccountName();
 				
 			}
+			
 			for(BankAccountPO accountTemp:list){
 				if(accountTemp.getName().equals(name)){
 					nameExist=true;
