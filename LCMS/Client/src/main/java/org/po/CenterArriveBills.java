@@ -1,10 +1,14 @@
 package org.po;
 
-import java.io.Serializable;
+
 import java.util.ArrayList;
 
 
 public class CenterArriveBills extends BillsPO{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String FreightNum;
 	private ArrayList<StateListPO> po;
 	public CenterArriveBills(myDate date, String FreightNum,

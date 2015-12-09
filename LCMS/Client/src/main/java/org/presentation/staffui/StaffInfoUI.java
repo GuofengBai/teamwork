@@ -3,7 +3,6 @@ package org.presentation.staffui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -22,6 +21,10 @@ import org.vo.StaffVO;
 
 public class StaffInfoUI extends JPanel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private StaffListUI superView;
 	private JTextField placeNum;
 	private JTextField year;
@@ -29,17 +32,17 @@ public class StaffInfoUI extends JPanel{
 	private JTextField day;
 	private JTextField location;
 	private JTextField name;
-	private JComboBox gender;
+	private JComboBox<String> gender;
 	private JTextField num;
 	private JTextField account;
 	private JTextField bankAccount;
 	private JTextField phone;
-	private JComboBox payWay;
+	private JComboBox<String> payWay;
 	private JTextField payParameter;
-	private JComboBox role;
+	private JComboBox<?> role;
 	private JButton button;
 	private JButton jump;
-	private JComboBox place;
+	private JComboBox<String> place;
 	private StaffVO vo;
 	
 	
@@ -202,7 +205,7 @@ public class StaffInfoUI extends JPanel{
 		label_1.setBounds(311, 87, 81, 21);
 		add(label_1);
 		
-		gender = new JComboBox();
+		gender = new JComboBox<String>();
 		gender.setBounds(368, 84, 96, 27);
 		gender.addItem("男");
 		gender.addItem("女");
@@ -249,7 +252,7 @@ public class StaffInfoUI extends JPanel{
 		label_6.setBounds(30, 390, 116, 21);
 		add(label_6);
 		
-		payWay = new JComboBox();
+		payWay = new JComboBox<String>();
 		payWay.setBounds(161, 387, 81, 27);
 		payWay.addItem("按月");
 		payWay.addItem("按次");
@@ -272,7 +275,7 @@ public class StaffInfoUI extends JPanel{
 		
 		
 		String[] position={"快递员","营业厅业务员","中转中心业务员","中转中心仓库管理员","财务人员","总经理","管理员"};
-		role = new JComboBox(position);
+		role = new JComboBox<String>(position);
 		role.setBounds(96, 448, 226, 27);
 		role.setSelectedIndex(0);
 		add(role);
@@ -294,7 +297,7 @@ public class StaffInfoUI extends JPanel{
 		});
 		add(jump);
 		
-		place = new JComboBox();
+		place = new JComboBox<String>();
 		place.setBounds(432, 448, 109, 27);
 		place.addItem("总部");
 		place.addItem("中转中心");

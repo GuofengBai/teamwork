@@ -4,7 +4,6 @@ import javax.swing.JPanel;
 
 import org.po.HallDispatchBills;
 import org.po.myDate;
-import org.presentation.billsui.NewCenterEntruckBillsUI;
 import org.presentation.billsui.NewHallDispatchBillsUI;
 
 public class HDBVO implements PanelCreaterService{

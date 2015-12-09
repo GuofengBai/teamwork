@@ -1,12 +1,12 @@
 package org.presentation.commodityui;
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
-import javax.swing.text.View;
 
+
+import org.Client.CurrentStaff;
 import org.presentation.billsui.NewInstorageBillsUI;
 import org.presentation.billsui.NewOutstorageBillsUI;
 import org.presentation.mainui.ViewController;
@@ -17,10 +17,8 @@ import java.awt.event.ActionEvent;
 import java.rmi.RemoteException;
 
 public class StorageStaffView extends JPanel {
-	private String centerNum;
 	private JPanel panel = this;
 	private StaffVO thisstaff;
-	private JFrame frame;
 	/**
 	 * 
 	 */
@@ -93,10 +91,9 @@ public class StorageStaffView extends JPanel {
 	 * @throws RemoteException 
 	 */
 	public StorageStaffView(final JPanel newpanel) throws RemoteException {
-		// thisstaff = CurrentStaff.getStaff();
-		// if (thisstaff.workSpace.type.equals("中转中心"))
-		// this.centerNum = thisstaff.workSpace.num;
-		this.centerNum = "0210001";
+		thisstaff = CurrentStaff.getStaff();
+		if (thisstaff.workSpace.type.equals("中转中心")) {
+		}
 		init();
 		setLayout(null);
 

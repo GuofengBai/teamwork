@@ -11,13 +11,16 @@ import javax.swing.JButton;
 
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.organizationblservice.ManagerSettingBLService;
-import org.po.SENDSTYPE;
 import org.po.TRANSPORTATION;
 import org.presentation.mainui.ViewController;
 
 public class SetTransFeeUI extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField textField;
-	private JComboBox comboBox;
+	private JComboBox<String> comboBox;
 	private JPanel superView;
 	
 	public SetTransFeeUI(JPanel su) {
@@ -26,7 +29,7 @@ public class SetTransFeeUI extends JPanel{
 		
 		setLayout(null);
 		
-		comboBox = new JComboBox();
+		comboBox = new JComboBox<String>();
 		comboBox.setBounds(172, 161, 176, 27);
 		add(comboBox);
 		comboBox.addItem("汽车");

@@ -3,10 +3,8 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.JScrollBar;
 import javax.swing.ListSelectionModel;
 
-import java.awt.Scrollbar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -17,20 +15,21 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
 
-import org.businesslogic.billsbl.NewCenterFreightBillsBL;
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.billsblservice.NewCenterFreightBillsBLService;
-import org.po.BOXSTYPE;
 import org.po.SENDSTYPE;
 import org.po.StateListPO;
 import org.po.myDate;
 import org.presentation.mainui.ViewController;
-import org.vo.CEBVO;
 import org.vo.CFBVO;
 import org.vo.StateListVO;
 
 
 public class NewCenterFreightBillsUI extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel superview;
 	private JTextField newyear;
 	private JTextField newmonth;
@@ -53,8 +52,8 @@ public class NewCenterFreightBillsUI extends JPanel {
 	private JScrollPane scrollPane;
 	DefaultTableModel model;
 	ArrayList<StateListPO> list = new ArrayList<StateListPO>();
-	private JComboBox goodState;
-	private JComboBox SendType;
+	private JComboBox<String> goodState;
+	private JComboBox<String> SendType;
 	private JTextField price;
 	private JButton back;
 
@@ -64,7 +63,7 @@ public class NewCenterFreightBillsUI extends JPanel {
 	 */
 	public NewCenterFreightBillsUI(JPanel superview) {
 		this.superview = superview;
-		
+		panel();
 		JButton submit = new JButton("\u63D0\u4EA4");
 		submit.setBounds(61, 307, 93, 23);
 		add(submit);
@@ -90,6 +89,7 @@ public class NewCenterFreightBillsUI extends JPanel {
 	}
 	public NewCenterFreightBillsUI(JPanel superview,CFBVO vo){
 		this.superview = superview;
+		panel();
 		JButton submit = new JButton("更新");
 		submit.setBounds(113, 307, 93, 23);
 		add(submit);
@@ -282,14 +282,14 @@ public class NewCenterFreightBillsUI extends JPanel {
 			}
 			
 		});
-		goodState = new JComboBox();
+		goodState = new JComboBox<String>();
 		goodState.setBounds(198, 141, 75, 21);
 		add(goodState);
 		goodState.addItem("完整");
 		goodState.addItem("损坏");
 		goodState.addItem("丢失");
 		
-		SendType = new JComboBox();
+		SendType = new JComboBox<String>();
 		SendType.setBounds(198, 63, 75, 21);
 		add(SendType);
 		SendType.addItem("汽运");

@@ -1,10 +1,7 @@
 package org.businesslogicservice.organizationblservice;
 
 import java.util.Vector;
-
-import org.po.CenterPO;
 import org.vo.CenterVO;
-import org.vo.HallVO;
 
 public interface CenterBLService {
 	/**

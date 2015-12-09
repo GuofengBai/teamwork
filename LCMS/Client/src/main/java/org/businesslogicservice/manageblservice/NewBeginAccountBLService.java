@@ -1,6 +1,5 @@
 package org.businesslogicservice.manageblservice;
 
-import org.po.BeginAccountPO;
 import org.po.ResultMessage;
 
 public interface NewBeginAccountBLService {

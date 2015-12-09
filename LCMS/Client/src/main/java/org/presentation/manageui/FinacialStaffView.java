@@ -13,6 +13,10 @@ import org.presentation.mainui.ViewController;
 
 public class FinacialStaffView extends JPanel{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JFrame frame;
 	private JPanel panel = this;
 	private JPanel superview;

@@ -19,6 +19,10 @@ import org.presentation.mainui.ViewController;
 
 public class NewBeginAccountUI extends JPanel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel panel = this;
 	private JFrame frame;
 	private JTextField organizationField;

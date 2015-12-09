@@ -89,7 +89,7 @@ public class StaffBL implements StaffBLService{
 		try {
 			staffData=RMIHelper.getDataFactory().getStaffData();
 			if(staffData==null){
-				String[] info={"连接错误","无法取得staffDataService"};
+				//String[] info={"连接错误","无法取得staffDataService"};
 				return null;
 			}
 			StaffVO vo=new StaffVO(staffData.find(num));

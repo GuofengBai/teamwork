@@ -3,6 +3,10 @@ package org.po;
 import java.io.Serializable;
 
 public class IncomeTableData implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	int income;
 	int payment;
 	int earning;

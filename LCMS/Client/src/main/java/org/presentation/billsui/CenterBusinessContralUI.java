@@ -10,6 +10,10 @@ import org.presentation.mainui.ViewController;
 
 
 public class CenterBusinessContralUI extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel superview;
 	private JPanel temp = this;
 

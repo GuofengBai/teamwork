@@ -5,6 +5,11 @@ import java.util.Vector;
 import org.po.myDate;
 
 public class ExamineVO extends Vector<String> {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public ExamineVO(String area, myDate in, myDate out, int inNum, int outNum,
 			int nowNum) {
 		this.add(area);

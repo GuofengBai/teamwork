@@ -10,14 +10,16 @@ import javax.swing.JButton;
 import org.presentation.mainui.ViewController;
 
 public class PostmanUI extends JPanel {
-	private JPanel superview;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel temp = this;
 
 	/**
 	 * Create the panel.
 	 */
 	public PostmanUI(final JPanel superview) {
-		this.superview = superview;
 		setLayout(null);
 		
 		JLabel label = new JLabel("快递员界面");

@@ -68,8 +68,6 @@ import org.businesslogicservice.organizationblservice.OrganizationBLService;
 import org.businesslogicservice.staffblservice.StaffBLService;
 import org.businesslogicservice.userblservice.UserBLService;
 import org.businesslogicservice.commodityblservice.CheckCommodityBLService;
-import org.po.SENDSTYPE;
-import org.po.TRANSPORTATION;
 
 public class BLFactory {
 

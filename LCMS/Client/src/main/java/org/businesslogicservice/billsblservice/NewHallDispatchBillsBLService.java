@@ -1,7 +1,6 @@
 package org.businesslogicservice.billsblservice;
 
 import org.po.ResultMessage;
-import org.po.myDate;
 import org.vo.HDBVO;
 
 public interface NewHallDispatchBillsBLService {

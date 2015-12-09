@@ -14,7 +14,10 @@ import org.presentation.mainui.ViewController;
 
 
 public class ReceiveMessageUI extends JPanel {
-	private JPanel superview;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField goodNum;
 	private JTextField receiverName;
 	private JTextField newyear;
@@ -26,7 +29,6 @@ public class ReceiveMessageUI extends JPanel {
 	 * Create the panel.
 	 */
 	public ReceiveMessageUI(final JPanel superview) {
-		this.superview = superview;
 		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("快递单号");

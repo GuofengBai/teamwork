@@ -14,20 +14,20 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JComboBox;
 
-import org.businesslogic.billsbl.NewCenterFreightBillsBL;
-import org.businesslogic.billsbl.NewHallEntruckBillsBL;
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.billsblservice.NewHallEntruckBillsBLService;
-import org.po.SENDSTYPE;
 import org.po.StateListPO;
 import org.po.myDate;
 import org.presentation.mainui.ViewController;
-import org.vo.HABVO;
 import org.vo.HEBVO;
 import org.vo.StateListVO;
 
 
 public class NewHallEntruckBillsUI extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel superview;
 	private JTextField newyear;
 	private JTextField newmonth;
@@ -42,7 +42,7 @@ public class NewHallEntruckBillsUI extends JPanel {
 	private JButton submit;
 	DefaultTableModel model;
 	ArrayList<StateListPO> list = new ArrayList<StateListPO>();
-	private JComboBox goodState;
+	private JComboBox<String> goodState;
 	private JButton back;
 
 	/**
@@ -233,7 +233,7 @@ public class NewHallEntruckBillsUI extends JPanel {
 		scrollPane.setBounds(10, 195, 261, 72);
 		add(scrollPane);
 		
-		goodState = new JComboBox();
+		goodState = new JComboBox<String>();
 		goodState.setBounds(198, 138, 73, 21);
 		add(goodState);
 		goodState.addItem("完整");

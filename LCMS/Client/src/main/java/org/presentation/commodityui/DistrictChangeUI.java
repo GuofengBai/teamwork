@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -15,7 +15,7 @@ import javax.swing.JButton;
 
 import org.Client.CurrentStaff;
 import org.businesslogic.blFactory.BLFactory;
-import org.businesslogicservice.commodityblservice.CheckCommodityBLService;
+
 import org.businesslogicservice.commodityblservice.DistrictChangeBLService;
 import org.businesslogicservice.commodityblservice.SettingAlertBLService;
 import org.po.ResultMessage;
@@ -23,7 +23,7 @@ import org.presentation.mainui.ViewController;
 import org.vo.CommodityVO;
 import org.vo.StaffVO;
 
-import java.awt.FlowLayout;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
@@ -39,7 +39,6 @@ public class DistrictChangeUI extends JPanel {
 	 * 
 	 */
 	private JPanel superpanel;
-	private JPanel panel = this;
 	private static final long serialVersionUID = 1L;
 	private JTable table1;
 
@@ -53,7 +52,6 @@ public class DistrictChangeUI extends JPanel {
 	private List<String> list;
 	private String selected1="航运区";
 	private String selected2;
-	private String to;// 移至另一个仓库
 	private String centerNum;
 	private StaffVO thisstaff;
 	private JTextField QU;
@@ -138,8 +136,6 @@ public class DistrictChangeUI extends JPanel {
 		// 添加下拉框
 
 		ComBox2.setBounds(375, 56, 82, 25);
-		JLabel supplierLabel = new JLabel("仓库：");
-
 		this.add(ComBox2);
 	}
 

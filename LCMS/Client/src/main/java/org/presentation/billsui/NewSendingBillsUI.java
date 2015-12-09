@@ -8,7 +8,6 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
-import org.businesslogic.billsbl.NewSendingBillsBL;
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.billsblservice.NewSendingBillsBLService;
 import org.po.BOXSTYPE;
@@ -19,6 +18,10 @@ import org.vo.SBVO;
 
 
 public class NewSendingBillsUI extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel superview;
 	private JTextField sendername;
 	private JTextField senderphone;
@@ -37,8 +40,8 @@ public class NewSendingBillsUI extends JPanel {
 	private JTextField height;
 	private JTextField weight;
 	private JLabel presentvalue;
-	private JComboBox sendtype;
-	private JComboBox boxtype;
+	private JComboBox<String> sendtype;
+	private JComboBox<String> boxtype;
 	private JButton back;
 
 	/**
@@ -215,7 +218,7 @@ public class NewSendingBillsUI extends JPanel {
 		label_8.setBounds(10, 135, 54, 15);
 		add(label_8);
 		
-		sendtype = new JComboBox();
+		sendtype = new JComboBox<String>();
 		sendtype.setBounds(85, 132, 70, 21);
 		add(sendtype);
 		sendtype.addItem("经济");
@@ -226,7 +229,7 @@ public class NewSendingBillsUI extends JPanel {
 		label_9.setBounds(165, 135, 54, 15);
 		add(label_9);
 		
-		boxtype = new JComboBox();
+		boxtype = new JComboBox<String>();
 		boxtype.setBounds(240, 132, 70, 21);
 		add(boxtype);
 		boxtype.addItem("纸袋");

@@ -1,6 +1,5 @@
 package org.businesslogicservice.billsblservice;
 
-import org.po.ResultMessage;
 import org.po.myDate;
 
 public interface ReceiveMessageBLService {

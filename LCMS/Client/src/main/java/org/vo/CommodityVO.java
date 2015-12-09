@@ -7,6 +7,11 @@ import org.po.myDate;
 
 public class CommodityVO extends Vector<String> {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public CommodityVO(String GoodsNum, myDate inDate, String place,
 			String LocationNum, String area, String centerNum) {
 		this.add(GoodsNum);

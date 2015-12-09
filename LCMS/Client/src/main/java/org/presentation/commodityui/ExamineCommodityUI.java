@@ -16,12 +16,12 @@ import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 import org.Client.CurrentStaff;
-import org.Client.RMIHelper;
+
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.commodityblservice.ExamineCommodityBLService;
 import org.po.myDate;
 import org.presentation.mainui.ViewController;
-import org.vo.CommodityVO;
+
 import org.vo.ExamineVO;
 import org.vo.StaffVO;
 
@@ -36,7 +36,6 @@ public class ExamineCommodityUI extends JPanel {
 	 * 
 	 */
 	private JPanel superpanel;
-	private JPanel panel = this;
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	private JTextField textField_1;

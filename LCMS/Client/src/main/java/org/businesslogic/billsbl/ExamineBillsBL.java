@@ -7,7 +7,6 @@ import org.Client.RMIHelper;
 import org.businesslogicservice.billsblservice.ExamineBillsBLService;
 import org.dataservice.billsdataservice.BillsDataService;
 import org.po.BILLSTYPE;
-import org.po.BillsPO;
 import org.po.CenterArriveBills;
 import org.po.CenterEntruckBills;
 import org.po.CenterFreightBills;

@@ -4,23 +4,23 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.ListSelectionModel;
 
-import java.awt.Button;
+
 
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
-import javax.swing.JScrollBar;
 
-import java.awt.ScrollPane;
+
+
 
 import javax.swing.JScrollPane;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.LineBorder;
 
-import java.awt.Color;
 
-import javax.swing.border.TitledBorder;
+
+
+
+
 import javax.swing.UIManager;
-import javax.swing.border.EtchedBorder;
+
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JButton;
 
@@ -31,7 +31,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
 
-import javax.swing.table.DefaultTableColumnModel;
+
 
 import org.Client.CurrentStaff;
 import org.businesslogic.blFactory.BLFactory;
@@ -46,7 +46,6 @@ public class CheckCommodityUI extends JPanel {
 	 * 
 	 */
 	private JPanel superpanel;
-	private JPanel panel = this;
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	CheckCommodityBLService cbs;

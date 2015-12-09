@@ -1,8 +1,10 @@
 package org.po;
 
-import java.io.Serializable;
-
 public class SendingBills extends BillsPO {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String SenderName;
 	private String ReceiverName;
 	private String SenderPhone;

@@ -18,12 +18,15 @@ import org.businesslogicservice.manageblservice.BeginAccountBLService;
 import org.po.BeginAccountPO;
 import org.po.ResultMessage;
 import org.presentation.mainui.ViewController;
-import org.vo.BankAccountVO;
 import org.vo.BeginAccountVO;
 
 
 public class BeginAccountUI extends JPanel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel panel = this;
 	private JFrame frame;
 	private JTable table;

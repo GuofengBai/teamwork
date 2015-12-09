@@ -15,7 +15,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 
 import org.businesslogic.blFactory.BLFactory;
-import org.businesslogic.managebl.IncomeManagementBL;
 import org.businesslogicservice.manageblservice.IncomeManagementBLService;
 import org.po.myDate;
 import org.presentation.mainui.ViewController;
@@ -24,6 +23,10 @@ import org.vo.IncomeBillVO;
 
 public class IncomeManagementUI extends JPanel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel panel = this;
 	private JFrame frame;
 	private JTextField searchDate;

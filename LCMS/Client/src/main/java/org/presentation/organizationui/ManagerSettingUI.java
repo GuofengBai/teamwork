@@ -10,6 +10,10 @@ import javax.swing.JLabel;
 import org.presentation.mainui.ViewController;
 
 public class ManagerSettingUI extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel superView;
 	private JPanel temp;
 	

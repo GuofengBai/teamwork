@@ -22,6 +22,10 @@ import java.awt.event.MouseListener;
 
 public class StaffListUI extends JPanel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public JPanel superView;
 	private JPanel temp=this;
 	
@@ -85,6 +89,11 @@ public class StaffListUI extends JPanel{
 		column.add("工作地点");
 		
 		model=new DefaultTableModel(data,column){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			public boolean isCellEditable(int row, int column)
             {
                 return false;

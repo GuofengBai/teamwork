@@ -4,7 +4,6 @@ import java.rmi.RemoteException;
 import java.util.List;
 import java.util.Vector;
 
-import org.po.ComPO;
 import org.po.ResultMessage;
 import org.vo.CommodityVO;
 

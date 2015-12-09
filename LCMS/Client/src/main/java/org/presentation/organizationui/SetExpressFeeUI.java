@@ -16,8 +16,12 @@ import org.po.SENDSTYPE;
 import org.presentation.mainui.ViewController;
 
 public class SetExpressFeeUI extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField textField_1;
-	private JComboBox comboBox;
+	private JComboBox<String> comboBox;
 	private JPanel superView;
 	
 	public SetExpressFeeUI(JPanel su) {
@@ -42,7 +46,7 @@ public class SetExpressFeeUI extends JPanel{
 		add(textField_1);
 		textField_1.setColumns(10);
 		
-		comboBox = new JComboBox();
+		comboBox = new JComboBox<String>();
 		comboBox.setBounds(144, 113, 154, 27);
 		comboBox.addItem("经济快递");
 		comboBox.addItem("普通快递");

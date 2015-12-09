@@ -6,8 +6,6 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import org.dataservice.DataFactoryService.DataFactoryService;
-import org.dataservice.billsdataservice.BillsDataService;
-import org.dataservice.commoditydataservice.CommodityDataService;
 
 public class RMIHelper {
     private static final String IP = "localhost";//Can be read from config file

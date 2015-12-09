@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 public class TransFeePO implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private double car;
 	private double train;
 	private double plane;

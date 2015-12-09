@@ -12,10 +12,13 @@ import org.presentation.organizationui.HallCarUI;
 import org.presentation.organizationui.HallDriverUI;
 
 public class HallMessageContralUI extends JPanel{
-	private JPanel superview;
-	private JPanel temp = this;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public HallMessageContralUI(final JPanel superview) {
-		this.superview = superview;
+		
 		setLayout(null);
 		
 		JLabel label = new JLabel("请选择管理项");

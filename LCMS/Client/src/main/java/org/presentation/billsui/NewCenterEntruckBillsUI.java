@@ -14,7 +14,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JComboBox;
 
-import org.businesslogic.billsbl.NewCenterEntruckBillsBL;
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.billsblservice.NewCenterEntruckBillsBLService;
 import org.po.StateListPO;
@@ -25,6 +24,10 @@ import org.vo.StateListVO;
 
 
 public class NewCenterEntruckBillsUI extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel superview;
 	ArrayList<StateListPO> list = new ArrayList<StateListPO>();
 	private JTextField newyear;
@@ -69,6 +72,7 @@ public class NewCenterEntruckBillsUI extends JPanel {
 	}
 	public NewCenterEntruckBillsUI(JPanel superview,CEBVO vo){
 		this.superview = superview;
+		panel();
 		submit = new JButton("更新");
 		submit.setBounds(107, 299, 93, 23);
 		add(submit);
@@ -183,7 +187,7 @@ public class NewCenterEntruckBillsUI extends JPanel {
 			
 		});
 		
-		final JComboBox goodState = new JComboBox();
+		final JComboBox<String> goodState = new JComboBox<String>();
 		goodState.setBounds(205, 142, 66, 21);
 		add(goodState);
 		goodState.addItem("完整");

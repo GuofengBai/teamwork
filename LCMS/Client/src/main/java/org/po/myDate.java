@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 public class myDate implements Serializable,Comparable<myDate>{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public int year;
 	public int month;
 	public int day;

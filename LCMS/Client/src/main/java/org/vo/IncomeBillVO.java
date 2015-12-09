@@ -6,6 +6,11 @@ import org.po.HallCollectionBills;
 import org.po.myDate;
 
 public class IncomeBillVO extends Vector<String>{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public IncomeBillVO(myDate date ,String total,String name){
 		this.add(date.toString());
 		this.add(total);

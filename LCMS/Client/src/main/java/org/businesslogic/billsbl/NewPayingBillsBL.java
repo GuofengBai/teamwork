@@ -1,7 +1,7 @@
 package org.businesslogic.billsbl;
 
 import java.rmi.RemoteException;
-import java.util.ArrayList;
+
 
 import org.Client.RMIHelper;
 import org.businesslogicservice.billsblservice.NewPayingBillsBLService;
@@ -9,7 +9,6 @@ import org.dataservice.billsdataservice.BillsDataService;
 import org.dataservice.managedataservice.AccountManagementDataService;
 import org.po.PayingBills;
 import org.po.ResultMessage;
-import org.po.myDate;
 
 public class NewPayingBillsBL implements NewPayingBillsBLService{
 

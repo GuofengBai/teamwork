@@ -1,14 +1,17 @@
 package org.vo;
 
 import java.util.Vector;
-
-import org.po.STAFFROLE;
 import org.po.UserPO;
 
 
 
 public class UserVO extends Vector<String>{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public UserVO(String account,String staffNumber){
 		super();
 		this.add(account);

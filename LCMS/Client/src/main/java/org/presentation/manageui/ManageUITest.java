@@ -3,12 +3,10 @@ package org.presentation.manageui;
 import java.rmi.RemoteException;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+
 
 import org.Client.RMIHelper;
 import org.businesslogic.blFactory.BLFactory;
-import org.presentation.billsui.NewSendingBillsUI;
-import org.presentation.commodityui.SettingAlertUI;
 import org.presentation.mainui.ViewController;
 
 public class ManageUITest {

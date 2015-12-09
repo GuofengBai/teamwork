@@ -1,12 +1,15 @@
 package org.po;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Vector;
 
 
 
 public class HallCollectionBills extends BillsPO{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private String total;
 	private String HallNum;

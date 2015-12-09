@@ -15,6 +15,10 @@ import org.presentation.mainui.ViewController;
 
 public class IncomeTableUI extends JPanel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel panel = this;
 	private JFrame frame;
 	private long income=0;

@@ -6,14 +6,13 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.ListSelectionModel;
 
-import java.awt.Button;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JSplitPane;
+
 import javax.swing.JSeparator;
 
 import org.businesslogic.blFactory.BLFactory;
@@ -26,6 +25,10 @@ import java.util.Vector;
 
 
 public class HallUI extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField hallName;
 	private JTextField hallNum;
 	private JTextField cityName;

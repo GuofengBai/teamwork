@@ -1,11 +1,13 @@
 package org.po;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 
 
 
 public class CenterFreightBills extends BillsPO{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String tramNum;
 	private String caseNum;
 	private String StartPlace;

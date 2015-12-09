@@ -9,7 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.ListSelectionModel;
 
-import java.awt.Button;
+
 import java.awt.Color;
 import java.util.Vector;
 
@@ -19,13 +19,17 @@ import javax.swing.JScrollPane;
 
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.organizationblservice.CenterBLService;
-import org.businesslogicservice.organizationblservice.HallBLService;
+
 import org.presentation.mainui.ViewController;
 import org.vo.CenterVO;
-import org.vo.HallVO;
+
 
 
 public class CenterUI extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField Name;
 	private JTextField centerNum;
 	private JTextField location;

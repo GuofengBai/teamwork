@@ -1,30 +1,30 @@
 package org.presentation.billsui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.rmi.RemoteException;
+
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JTextArea;
 
-import org.Client.RMIHelper;
+
+
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.billsblservice.NewHallDispatchBillsBLService;
-import org.dataservice.billsdataservice.NewSendingBillsDataService;
-import org.po.SendingBills;
-import org.po.StateListPO;
+
 import org.po.myDate;
 import org.presentation.mainui.ViewController;
-import org.vo.HABVO;
+
 import org.vo.HDBVO;
-import org.vo.StateListVO;
+
 
 
 public class NewHallDispatchBillsUI extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel superview;
 	private JTextField newyear;
 	private JTextField newmonth;

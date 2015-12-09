@@ -5,27 +5,17 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
-import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.ScrollPaneConstants;
 
-import java.awt.Label;
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import javax.swing.Box;
-
-import org.businesslogic.billsbl.NewCenterArriveBillsBL;
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.billsblservice.NewCenterArriveBillsBLService;
-import org.dataservice.DataFactoryService.DataFactoryService;
-import org.dataservice.billsdataservice.BillsDataService;
-import org.dataservice.billsdataservice.NewCenterArriveBillsDataService;
 import org.po.StateListPO;
 import org.po.myDate;
 import org.presentation.mainui.ViewController;
@@ -34,6 +24,10 @@ import org.vo.StateListVO;
 
 
 public class NewCenterArriveBillsUI extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel superview;
 	private JTextField newyear;
 	private JTextField CABNum;
@@ -154,7 +148,7 @@ public class NewCenterArriveBillsUI extends JPanel {
 		lblNewLabel_2.setBounds(19, 112, 54, 15);
 		add(lblNewLabel_2);
 		
-		final JComboBox State = new JComboBox();
+		final JComboBox<String> State = new JComboBox<String>();
 		State.setBounds(94, 109, 66, 21);
 		add(State);
 		State.addItem("完整");

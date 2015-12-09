@@ -1,11 +1,8 @@
 package org.businesslogicservice.organizationblservice;
 
 import org.po.CityAndDistancePO;
-import org.po.ResultMessage;
-import org.po.ExpressFeePO;
 import org.po.SENDSTYPE;
 import org.po.TRANSPORTATION;
-import org.po.VehFeePO;
 
 public interface ManagerSettingBLService {
 	/**

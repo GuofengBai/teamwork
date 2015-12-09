@@ -1,7 +1,6 @@
 package org.presentation.billsui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -17,18 +16,18 @@ import javax.swing.JComboBox;
 
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.billsblservice.NewInstorageBillsBLService;
-import org.businesslogicservice.commodityblservice.CommodityInAndOutBLService;
 import org.po.ComPO;
-import org.po.StateListPO;
 import org.po.myDate;
 import org.presentation.mainui.ViewController;
 import org.vo.CommodityVO;
-import org.vo.HABVO;
 import org.vo.IBVO;
-import org.vo.StateListVO;
 
 
 public class NewInstorageBillsUI extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel superview;
 	private JTextField newday;
 	private JTextField newmonth;
@@ -38,7 +37,7 @@ public class NewInstorageBillsUI extends JPanel {
 	private JTextField location;
 	private JTable table;
 	private JButton submit;
-	private JComboBox area;
+	private JComboBox<String> area;
 	DefaultTableModel model;
 	private ArrayList<ComPO> compo = new ArrayList<ComPO>();
 	private JTextField centerNum;
@@ -215,7 +214,7 @@ public class NewInstorageBillsUI extends JPanel {
 		table.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setFillsViewportHeight(true);
 		
-		area = new JComboBox();
+		area = new JComboBox<String>();
 		area.setBounds(450, 102, 77, 25);
 		add(area);
 		area.addItem("汽运区");

@@ -12,21 +12,20 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
-
-import org.businesslogic.billsbl.NewCenterFreightBillsBL;
-import org.businesslogic.billsbl.NewHallCollectBillsBL;
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.billsblservice.NewHallCollectBillsBLService;
-import org.po.SENDSTYPE;
 import org.po.StateListPO;
 import org.po.myDate;
 import org.presentation.mainui.ViewController;
-import org.vo.CEBVO;
 import org.vo.HCBVO;
 import org.vo.StateListVO;
 
 
 public class NewHallCollectionBillsUI extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel superview;
 	private JTextField newyear;
 	private JTextField newmonth;

@@ -1,11 +1,11 @@
 package org.businesslogic.billsbl;
 
 import java.rmi.RemoteException;
-import java.util.ArrayList;
+
 
 import org.Client.RMIHelper;
 import org.businesslogic.organizationbl.ManagerSettingBL;
-import org.businesslogicservice.billsblservice.NewCenterEntruckBillsBLService;
+
 import org.businesslogicservice.billsblservice.NewCenterFreightBillsBLService;
 import org.dataservice.billsdataservice.BillsDataService;
 import org.dataservice.billsdataservice.NewSendingBillsDataService;
@@ -16,9 +16,9 @@ import org.po.SENDSTYPE;
 import org.po.SendingBills;
 import org.po.StateListPO;
 import org.po.TRANSPORTATION;
-import org.po.myDate;
+
 import org.vo.CFBVO;
-import org.vo.StateListVO;
+
 
 public class NewCenterFreightBillsBL implements NewCenterFreightBillsBLService{
 

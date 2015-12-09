@@ -22,6 +22,11 @@ import org.vo.BankAccountVO;
 
 
 public class AccountManageUI extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private JPanel panel=this;
 	
 	private JFrame frame;

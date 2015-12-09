@@ -1,21 +1,13 @@
 package org.businesslogic.organizationbl;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.rmi.RemoteException;
 
 import org.Client.RMIHelper;
 import org.businesslogicservice.organizationblservice.ManagerSettingBLService;
 import org.dataservice.organizationdataservice.ManagerSettingDataService;
-import org.dataservice.organizationdataservice.OrganizationDataService;
 import org.po.CityAndDistancePO;
-import org.po.ResultMessage;
-import org.po.ExpressFeePO;
 import org.po.SENDSTYPE;
 import org.po.TRANSPORTATION;
-import org.po.VehFeePO;
 
 public class ManagerSettingBL implements ManagerSettingBLService{
 

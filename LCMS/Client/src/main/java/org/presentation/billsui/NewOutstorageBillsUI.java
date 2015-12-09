@@ -1,7 +1,7 @@
 package org.presentation.billsui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.rmi.RemoteException;
+
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -14,21 +14,22 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
-import org.Client.RMIHelper;
+
 import org.businesslogic.blFactory.BLFactory;
-import org.businesslogicservice.billsblservice.NewInstorageBillsBLService;
 import org.businesslogicservice.billsblservice.NewOutstorageBillsBLService;
-import org.businesslogicservice.commodityblservice.CommodityInAndOutBLService;
-import org.dataservice.commoditydataservice.CommodityDataService;
+
 import org.po.ComPO;
 import org.po.myDate;
 import org.presentation.mainui.ViewController;
 import org.vo.CommodityVO;
-import org.vo.HABVO;
 import org.vo.OBVO;
 
 
 public class NewOutstorageBillsUI extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel superview;
 	private JTextField newyear;
 	private JTextField newmonth;

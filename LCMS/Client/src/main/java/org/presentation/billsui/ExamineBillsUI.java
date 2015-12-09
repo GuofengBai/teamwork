@@ -11,21 +11,20 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
-import javax.swing.JRadioButton;
-import javax.swing.JLabel;
+
 import javax.swing.JButton;
 import javax.swing.ListSelectionModel;
-
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.billsblservice.ExamineBillsBLService;
-import org.businesslogicservice.staffblservice.StaffBLService;
 import org.presentation.mainui.ViewController;
-import org.presentation.staffui.StaffInfoUI;
 import org.vo.PanelCreaterService;
-import org.vo.StaffVO;
 
 //�������ݵĽ���
 public class ExamineBillsUI extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private DefaultTableModel model;
 	private JPanel superView;
@@ -58,6 +57,11 @@ public class ExamineBillsUI extends JPanel{
 		Vector<Vector<String>> vData=examine.getAllUnExaminedBills();
 		
 		model=new DefaultTableModel(vData,head){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			public boolean isCellEditable(int row, int column)
             {
                 return false;
@@ -130,7 +134,6 @@ public class ExamineBillsUI extends JPanel{
 		JButton button = new JButton("返回");
 		button.setBounds(365, 68, 123, 29);
 		add(button);
-		JPanel temp=this;
 		button.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent arg0) {

@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import org.po.HallCollectionBills;
 import org.po.StateListPO;
 import org.po.myDate;
-import org.presentation.billsui.NewCenterEntruckBillsUI;
 import org.presentation.billsui.NewHallCollectionBillsUI;
 
 public class HCBVO implements PanelCreaterService{

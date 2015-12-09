@@ -1,7 +1,6 @@
 package org.businesslogic.commoditybl;
 
 import java.rmi.RemoteException;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -51,9 +50,8 @@ public class DistrictChangeBL implements DistrictChangeBLService {
 		vdata1 = new Vector<CommodityVO>();
 		ArrayList<ComPO> list = cds.getAllCom(centerNum);
 		for (ComPO po : list) {
-			CommodityVO vo;
 			if (from.equals(po.getArea())) {
-				vdata1.add(vo = new CommodityVO(po.getGoodsNum(), po
+				vdata1.add(new CommodityVO(po.getGoodsNum(), po
 						.getinDate(), po.getplace(), po.LocationNum(), po
 						.getArea(), po.getcenterNum()));
 			}
@@ -69,7 +67,7 @@ public class DistrictChangeBL implements DistrictChangeBLService {
 		CommodityDataService cds = RMIHelper.getDataFactory()
 				.getCommodityData();
 		ComPO po, po1;
-		ResultMessage re;
+
 		String[] used = { "货位已被占用" };
 		String[] su = { "调整成功" };
 		String[] fa = { "调整失败" };
@@ -77,17 +75,17 @@ public class DistrictChangeBL implements DistrictChangeBLService {
 			po = cds.findCom(vo.getGoodsNum());
 			if (po.LocationNum().equals(vo.getLocation())
 					&& po.getArea().equals(vo.getarea())) {
-				return re = new ResultMessage(false, used);
+				return new ResultMessage(false, used);
 			}
 			cds.delCom(po);
 			po1 = new ComPO(vo.getGoodsNum(), po.getinDate(), vo.getplace(),
 					vo.getLocation(), vo.getarea(), po.getcenterNum());
 			cds.addCom(po1);
-			return re = new ResultMessage(true, su);
+			return new ResultMessage(true, su);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return re = new ResultMessage(false, fa);
+			return new ResultMessage(false, fa);
 		}
 		
 

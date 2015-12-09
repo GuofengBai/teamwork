@@ -6,6 +6,11 @@ import org.po.BankAccountPO;
 
 public class BankAccountVO extends Vector<String>{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public BankAccountVO(String name,long balance){
 		this.add(name);
 		this.add(String.valueOf(balance));

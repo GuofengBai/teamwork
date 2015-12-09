@@ -3,7 +3,6 @@ package org.businesslogicservice.billsblservice;
 import org.po.BOXSTYPE;
 import org.po.ResultMessage;
 import org.po.SENDSTYPE;
-import org.po.myDate;
 import org.vo.SBVO;
 
 public interface NewSendingBillsBLService {

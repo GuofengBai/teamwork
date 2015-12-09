@@ -2,9 +2,7 @@ package org.businesslogic.commoditybl;
 
 import java.util.ArrayList;
 import java.util.Vector;
-import java.util.Date;
 import java.rmi.RemoteException;
-import java.text.SimpleDateFormat;
 import org.Client.RMIHelper;
 import org.businesslogicservice.commodityblservice.CheckCommodityBLService;
 import org.dataservice.commoditydataservice.CommodityDataService;
@@ -25,17 +23,6 @@ public class CheckCommodityBL implements CheckCommodityBLService {
 		// TODO Auto-generated method stub
 		CommodityDataService cds = RMIHelper.getDataFactory()
 				.getCommodityData();
-
-
-		Date date = new Date();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
-		String curdate = simpleDateFormat.format(date);
-		int year = Integer.parseInt(curdate.substring(0, 4));
-		int month = Integer.parseInt(curdate.substring(4, 6));
-		int day = Integer.parseInt(curdate.substring(6, 8));
-		myDate today = new myDate(year, month, day);
-
-
 		list = cds.getAllCom(centerNum);
 		return false;
 	}

@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import org.po.ComPO;
 import org.po.InstorageBills;
 import org.po.myDate;
-import org.presentation.billsui.NewCenterEntruckBillsUI;
 import org.presentation.billsui.NewInstorageBillsUI;
 
 public class IBVO implements PanelCreaterService{

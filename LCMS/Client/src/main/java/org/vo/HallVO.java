@@ -6,6 +6,11 @@ import org.po.HallPO;
 
 public class HallVO extends Vector<String>{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public HallVO(String hallName,String hallNum,String cityName,String location){
 		super();
 		this.add(hallName);

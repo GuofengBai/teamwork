@@ -14,6 +14,10 @@ import org.presentation.organizationui.OrganizationUI;
 
 public class GeneralManagerUI extends JPanel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JPanel superView;
 	private JPanel temp=this;
 

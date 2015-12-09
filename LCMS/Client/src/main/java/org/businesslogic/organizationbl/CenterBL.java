@@ -10,11 +10,8 @@ import org.businesslogicservice.commodityblservice.CommodityBLService;
 import org.businesslogicservice.organizationblservice.CenterBLService;
 import org.businesslogicservice.organizationblservice.ManagerSettingBLService;
 import org.dataservice.organizationdataservice.CenterDataService;
-import org.dataservice.organizationdataservice.HallDataService;
 import org.po.CenterPO;
-import org.po.HallPO;
 import org.vo.CenterVO;
-import org.vo.HallVO;
 
 public class CenterBL implements CenterBLService{
 

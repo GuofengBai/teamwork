@@ -7,12 +7,12 @@ import org.businesslogicservice.billsblservice.NewHallDispatchBillsBLService;
 import org.dataservice.billsdataservice.BillsDataService;
 import org.dataservice.billsdataservice.NewSendingBillsDataService;
 import org.po.EXPRESSSTATE;
-import org.po.HallCollectionBills;
+
 import org.po.HallDispatchBills;
 import org.po.ResultMessage;
 import org.po.SendingBills;
-import org.po.StateListPO;
-import org.po.myDate;
+
+
 import org.vo.HDBVO;
 
 public class NewHallDispatchBillsBL implements NewHallDispatchBillsBLService{

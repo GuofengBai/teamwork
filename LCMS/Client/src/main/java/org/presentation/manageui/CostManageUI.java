@@ -4,14 +4,14 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import java.awt.BorderLayout;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
-import javax.swing.JList;
+
 import javax.swing.JLabel;
-import javax.swing.JScrollBar;
+
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -27,6 +27,10 @@ import org.vo.PayingBillVO;
 
 
 public class CostManageUI extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel panel = this;
 	private JFrame frame;
 	private JTable table;

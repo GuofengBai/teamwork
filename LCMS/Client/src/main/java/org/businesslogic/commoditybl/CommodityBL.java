@@ -5,9 +5,7 @@ import java.rmi.RemoteException;
 import org.Client.RMIHelper;
 import org.businesslogicservice.commodityblservice.CommodityBLService;
 import org.dataservice.commoditydataservice.CommodityDataService;
-import org.po.ComPO;
 import org.po.ResultMessage;
-import org.po.myDate;
 
 public class CommodityBL implements CommodityBLService {
 	/**

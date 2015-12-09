@@ -13,6 +13,10 @@ import org.businesslogicservice.billsblservice.NewSendingBillsBLService;
 import org.presentation.mainui.ViewController;
 
 public class BillsStateSearch extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	private JLabel answer;
 	private JPanel superview;

@@ -1,9 +1,6 @@
 package org.businesslogicservice.manageblservice;
 
 import java.util.Vector;
-
-import org.po.HallCollectionBills;
-import org.po.PayingBills;
 import org.po.myDate;
 import org.vo.IncomeBillVO;
 import org.vo.PayingBillVO;

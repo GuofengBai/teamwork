@@ -1,5 +1,4 @@
 package org.businesslogicservice.billsblservice;
-import java.io.Serializable;
 
 import org.po.BOXSTYPE;
 import org.po.ResultMessage;

@@ -10,6 +10,10 @@ import javax.swing.JButton;
 import org.presentation.mainui.ViewController;
 
 public class HallBusinessContralUI extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel superview;
 	private JPanel temp = this;
 

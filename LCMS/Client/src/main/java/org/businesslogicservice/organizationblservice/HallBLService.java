@@ -1,8 +1,6 @@
 package org.businesslogicservice.organizationblservice;
 
 import java.util.Vector;
-
-import org.po.HallPO;
 import org.vo.HallVO;
 
 public interface HallBLService {

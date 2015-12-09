@@ -1,21 +1,20 @@
 package org.businesslogic.billsbl;
 
 import java.rmi.RemoteException;
-import java.util.ArrayList;
+
 
 import org.Client.RMIHelper;
 import org.businesslogicservice.billsblservice.NewCenterArriveBillsBLService;
 import org.dataservice.billsdataservice.BillsDataService;
 import org.dataservice.billsdataservice.NewSendingBillsDataService;
-import org.po.BillsPO;
+
 import org.po.CenterArriveBills;
 import org.po.EXPRESSSTATE;
 import org.po.ResultMessage;
 import org.po.SendingBills;
 import org.po.StateListPO;
-import org.po.myDate;
+
 import org.vo.CABVO;
-import org.vo.StateListVO;
 
 public class NewCenterArriveBillsBL implements NewCenterArriveBillsBLService{
 

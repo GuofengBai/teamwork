@@ -9,6 +9,11 @@ import org.po.myDate;
 import org.presentation.billsui.NewPayingBillsUI;
 
 public class PayingBillVO extends Vector<String> implements PanelCreaterService{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public PayingBillVO(myDate date,long money,String name,String accountName,String item,String remark,boolean examined,String idNum){
 		this.add(date.toString());
 		this.add(String.valueOf(money));

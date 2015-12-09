@@ -4,8 +4,6 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Vector;
-
-import org.po.BILLSTYPE;
 import org.po.BillsPO;
 import org.po.ResultMessage;
 import org.po.myDate;

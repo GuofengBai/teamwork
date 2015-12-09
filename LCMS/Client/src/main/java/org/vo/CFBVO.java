@@ -8,7 +8,6 @@ import org.po.CenterFreightBills;
 import org.po.SENDSTYPE;
 import org.po.StateListPO;
 import org.po.myDate;
-import org.presentation.billsui.NewCenterEntruckBillsUI;
 import org.presentation.billsui.NewCenterFreightBillsUI;
 
 public class CFBVO implements PanelCreaterService{

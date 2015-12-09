@@ -23,21 +23,22 @@ import javax.swing.JSeparator;
 import java.awt.Color;
 
 public class AdministratorUI extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private DefaultTableModel model;
 	private JTextField account;
 	private JTextField password;
 	private JTextField staffNumber;
 	private JPanel superView;
-	private JPanel temp;
-
 	/**
 	 * Create the panel.
 	 */
 	public AdministratorUI(JPanel su) {
 		super();
 		this.superView=su;
-		this.temp=this;
 		setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -94,6 +95,11 @@ public class AdministratorUI extends JPanel {
 		vData=ubs.getList();
 		
 		model=new DefaultTableModel(vData,column){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			public boolean isCellEditable(int row, int column){
                 return false;
             }

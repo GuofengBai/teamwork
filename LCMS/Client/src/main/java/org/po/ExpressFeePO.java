@@ -3,6 +3,10 @@ package org.po;
 import java.io.Serializable;
 
 public class ExpressFeePO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private double slow;
 	private double normal;
 	private double fast;

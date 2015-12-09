@@ -5,7 +5,6 @@ import java.rmi.RemoteException;
 import org.Client.RMIHelper;
 import org.businesslogicservice.billsblservice.ReceiveMessageBLService;
 import org.dataservice.billsdataservice.NewSendingBillsDataService;
-import org.po.ResultMessage;
 import org.po.SendingBills;
 import org.po.myDate;
 

@@ -5,16 +5,14 @@ import java.util.ArrayList;
 
 import org.Client.RMIHelper;
 import org.businesslogic.blFactory.BLFactory;
-import org.businesslogic.commoditybl.CommodityInAndOutBL;
+
 import org.businesslogicservice.billsblservice.NewInstorageBillsBLService;
 import org.businesslogicservice.commodityblservice.CommodityInAndOutBLService;
 import org.dataservice.billsdataservice.BillsDataService;
 import org.po.ComPO;
-import org.po.HallCollectionBills;
+
 import org.po.InstorageBills;
 import org.po.ResultMessage;
-import org.po.myDate;
-import org.vo.CommodityVO;
 import org.vo.IBVO;
 
 public class NewInstorageBillsBL implements NewInstorageBillsBLService {

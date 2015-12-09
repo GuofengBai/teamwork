@@ -68,15 +68,14 @@ public class SettingAlertBL implements SettingAlertBLService {
 		 */
 		AlertPO po = cds.getAlert(centerNum);
 		int nowNum = cds.getComSize(centerNum);
-		ResultMessage re;
 		String[] alert = { "执行入库将超过警报线！" };
 		String[] su = { "入库成功" };
 		double nowline = (nowNum * 1.0 / po.getfullNumber() * 1.0) * 1.0;
 		double alertline = po.getalertline();
 		if (nowline > alertline) {
-			return re = new ResultMessage(false, alert);
+			return  new ResultMessage(false, alert);
 		} else
-			return re = new ResultMessage(true, su);
+			return  new ResultMessage(true, su);
 
 	}
 

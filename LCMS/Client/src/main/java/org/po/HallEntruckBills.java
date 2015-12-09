@@ -1,11 +1,14 @@
 package org.po;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 
 
 public class HallEntruckBills extends BillsPO{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String hallNum;
 	private String aimNum;
 	private String carNum;

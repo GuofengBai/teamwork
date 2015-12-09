@@ -3,9 +3,13 @@ package org.vo;
 import java.util.Vector;
 
 import org.po.CenterPO;
-import org.po.HallPO;
 
 public class CenterVO extends Vector<String>{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	public CenterVO(String Name,String Num,String location){
 		super();
