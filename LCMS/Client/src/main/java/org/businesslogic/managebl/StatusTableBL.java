@@ -10,7 +10,6 @@ import org.dataservice.managedataservice.StatusTableDataService;
 import org.po.HallCollectionBills;
 import org.po.PayingBills;
 import org.po.myDate;
-import org.test.dataservice.manageData.StatusTableData;
 import org.vo.IncomeBillVO;
 import org.vo.PayingBillVO;
 

@@ -9,7 +9,6 @@ import org.businesslogicservice.manageblservice.IncomeManagementBLService;
 import org.dataservice.managedataservice.IncomeManagementDataService;
 import org.po.HallCollectionBills;
 import org.po.myDate;
-import org.test.dataservice.manageData.IncomeManagementData;
 import org.vo.IncomeBillVO;
 
 public class IncomeManagementBL implements IncomeManagementBLService {

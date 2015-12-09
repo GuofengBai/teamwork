@@ -10,7 +10,6 @@ import org.dataservice.managedataservice.AccountManagementDataService;
 import org.po.BankAccountPO;
 import org.po.ResultMessage;
 import org.po.UserPO;
-import org.test.dataservice.manageData.AccountManagementData;
 import org.vo.BankAccountVO;
 
 public class AccountManagementBL implements AccountManagementBLService{

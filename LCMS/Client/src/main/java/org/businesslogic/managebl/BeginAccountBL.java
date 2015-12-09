@@ -9,7 +9,6 @@ import org.businesslogicservice.manageblservice.BeginAccountBLService;
 import org.dataservice.managedataservice.BeginAccountDataService;
 import org.po.BeginAccountPO;
 import org.po.ResultMessage;
-import org.test.dataservice.manageData.BeginAccountData;
 import org.vo.BeginAccountVO;
 
 public class BeginAccountBL implements BeginAccountBLService {

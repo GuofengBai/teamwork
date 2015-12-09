@@ -12,11 +12,4 @@ public interface NewBeginAccountBLService {
 	 */
 	public ResultMessage addBeginAccount(String organization,int people,int car,int storage,String accountname,long balance);
 	
-	/**
-	 * 初始化
-	 * 
-	 * @param BeginAccountPO
-	 * @return 
-	 */
-	public void accountInitilize(BeginAccountPO account);
 }

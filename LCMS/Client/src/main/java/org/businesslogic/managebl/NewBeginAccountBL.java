@@ -7,7 +7,6 @@ import org.businesslogicservice.manageblservice.NewBeginAccountBLService;
 import org.dataservice.managedataservice.BeginAccountDataService;
 import org.po.BeginAccountPO;
 import org.po.ResultMessage;
-import org.test.dataservice.manageData.BeginAccountData;
 
 public class NewBeginAccountBL implements NewBeginAccountBLService {
 	
@@ -31,10 +30,5 @@ public class NewBeginAccountBL implements NewBeginAccountBLService {
 		return message;
 	}
 
-	public void accountInitilize(BeginAccountPO account) {
-		// TODO Auto-generated method stub
-		BeginAccountData bd=new BeginAccountData();
-		bd.Initialize(account);
-	}
 
 }

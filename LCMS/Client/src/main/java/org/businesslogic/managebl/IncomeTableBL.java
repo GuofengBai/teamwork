@@ -5,7 +5,6 @@ import java.rmi.RemoteException;
 import org.Client.RMIHelper;
 import org.businesslogicservice.manageblservice.IncomeTableBLService;
 import org.dataservice.managedataservice.IncomeTableDataService;
-import org.test.dataservice.manageData.IncomeTableData;
 
 
 public class IncomeTableBL implements IncomeTableBLService {
