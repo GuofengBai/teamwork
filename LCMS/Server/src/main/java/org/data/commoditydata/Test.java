@@ -34,7 +34,7 @@ public class Test  implements java.io.Serializable{
 		list1.add(po3);
 		CenterCom center1 = new CenterCom(list1, "0250001");
 
-		ComPO po4 = new ComPO("0000000004", date, "南京市", "0001", "空运区",
+		ComPO po4 = new ComPO("0000000004", date, "南京市", "0001", "航运区",
 				"0100001");// 北京
 		ComPO po5 = new ComPO("0000000005", date, "南京市", "0002", "汽运区",
 				"0100001");
@@ -46,7 +46,7 @@ public class Test  implements java.io.Serializable{
 		list2.add(po6);
 		CenterCom center2 = new CenterCom(list1, "0100001");
 
-		ComPO po7 = new ComPO("0000000007", date, "广州市", "0001", "空运区",
+		ComPO po7 = new ComPO("0000000007", date, "广州市", "0001", "航运区",
 				"0210001");// 上海
 		ComPO po8 = new ComPO("0000000008", date, "广州市", "0002", "汽运区",
 				"0210001");
@@ -58,7 +58,7 @@ public class Test  implements java.io.Serializable{
 		list3.add(po9);
 		CenterCom center3 = new CenterCom(list3, "0210001");
 
-		ComPO po10 = new ComPO("0000000010", date, "上海市", "0001", "空运区",
+		ComPO po10 = new ComPO("0000000010", date, "上海市", "0001", "航运区",
 				"0200001");// 广州
 		ComPO po11 = new ComPO("0000000011", date, "上海市", "0002", "汽运区",
 				"0200001");
