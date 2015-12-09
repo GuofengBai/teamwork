@@ -11,7 +11,7 @@ import org.po.BillsPO;
 public class Init {
 	
 	public static void main(String[] args){
-		String fileName="SerializableData/"+"OB"+".file";
+		String fileName="SerializableData/"+"PB"+".file";
 		try {
 			ArrayList<BillsPO> List=new ArrayList<BillsPO>();
 			long ueb=0;
