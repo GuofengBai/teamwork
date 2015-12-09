@@ -5,8 +5,6 @@ import java.util.Vector;
 import java.util.Date;
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
-
-import org.Client.MockCommodityData;
 import org.Client.RMIHelper;
 import org.businesslogicservice.commodityblservice.CheckCommodityBLService;
 import org.dataservice.commoditydataservice.CommodityDataService;
@@ -27,10 +25,7 @@ public class CheckCommodityBL implements CheckCommodityBLService {
 		// TODO Auto-generated method stub
 		CommodityDataService cds = RMIHelper.getDataFactory()
 				.getCommodityData();
-		/**
-		 * Mock测试
-		 */
-		//MockCommodityData mcd = new MockCommodityData();
+
 
 		Date date = new Date();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
@@ -40,10 +35,7 @@ public class CheckCommodityBL implements CheckCommodityBLService {
 		int day = Integer.parseInt(curdate.substring(6, 8));
 		myDate today = new myDate(year, month, day);
 
-		/**
-		 * Mock测试
-		 */
-		// list = cds.getAllCom(centerNum);
+
 		list = cds.getAllCom(centerNum);
 		return false;
 	}

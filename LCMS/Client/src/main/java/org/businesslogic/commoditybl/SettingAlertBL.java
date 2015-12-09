@@ -1,8 +1,6 @@
 package org.businesslogic.commoditybl;
 
 import java.rmi.RemoteException;
-
-import org.Client.MockCommodityData;
 import org.Client.RMIHelper;
 import org.businesslogicservice.commodityblservice.SettingAlertBLService;
 import org.dataservice.commoditydataservice.CommodityDataService;

@@ -1,8 +1,6 @@
 package org.businesslogic.billsbl;
 
 import java.rmi.RemoteException;
-
-import org.Client.MockManagerSettingBL;
 import org.Client.RMIHelper;
 import org.businesslogic.organizationbl.ManagerSettingBL;
 import org.businesslogicservice.billsblservice.NewSendingBillsBLService;

@@ -3,8 +3,6 @@ package org.businesslogic.billsbl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import org.Client.MockBillsDataService;
-
 import org.Client.RMIHelper;
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogic.commoditybl.CommodityInAndOutBL;

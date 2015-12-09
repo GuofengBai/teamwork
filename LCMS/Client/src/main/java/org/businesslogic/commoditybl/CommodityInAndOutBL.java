@@ -1,8 +1,6 @@
 package org.businesslogic.commoditybl;
 
 import java.rmi.RemoteException;
-
-import org.Client.MockCommodityData;
 import org.Client.RMIHelper;
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.commodityblservice.CommodityInAndOutBLService;
@@ -20,10 +18,7 @@ public class CommodityInAndOutBL implements CommodityInAndOutBLService {
 		// TODO Auto-generated method stub
 		CommodityDataService cds = RMIHelper.getDataFactory()
 				.getCommodityData();
-		/**
-		 * Mock测试
-		 */
-		// MockCommodityData mcd=new MockCommodityData();
+
 
 		SettingAlertBLService sabs = BLFactory.getSettingAlertBL();
 		ResultMessage re;
@@ -37,8 +32,7 @@ public class CommodityInAndOutBL implements CommodityInAndOutBLService {
 		} else if (rem.success && sabs.ALERT(po.getcenterNum()).success) {
 			return re = new ResultMessage(true, su);
 		}
-		// if (cds.addCom(po).success&&sabs.ALERT(po.getcenterNum()).success) {
-		// return re = new ResultMessage(true, fa);
+
 		else
 			return re = new ResultMessage(false, fai);
 	}
@@ -49,10 +43,7 @@ public class CommodityInAndOutBL implements CommodityInAndOutBLService {
 		// TODO Auto-generated method stub
 		CommodityDataService cds = RMIHelper.getDataFactory()
 				.getCommodityData();
-		/**
-		 * Mock测试
-		 */
-		// MockCommodityData mcd=new MockCommodityData();
+
 
 		SettingAlertBLService sabs = BLFactory.getSettingAlertBL();
 		ResultMessage re;
@@ -62,8 +53,6 @@ public class CommodityInAndOutBL implements CommodityInAndOutBLService {
 
 		if (rem.success)
 			return re = new ResultMessage(true, su);
-		// if (cds.delCom(po).success) {
-		// return re = new ResultMessage(true, su);
 		else
 			return re = new ResultMessage(false, fa);
 	}

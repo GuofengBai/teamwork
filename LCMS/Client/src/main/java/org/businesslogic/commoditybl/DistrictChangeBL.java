@@ -5,8 +5,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Vector;
-
-import org.Client.MockCommodityData;
 import org.Client.RMIHelper;
 import org.businesslogicservice.commodityblservice.DistrictChangeBLService;
 import org.dataservice.commoditydataservice.CommodityDataService;
@@ -19,12 +17,10 @@ public class DistrictChangeBL implements DistrictChangeBLService {
 
 	Vector<CommodityVO> vdata1;
 	Vector<CommodityVO> vdata2;
-	MockCommodityData mcd;
 
 	public DistrictChangeBL() {
 		vdata1 = new Vector<CommodityVO>();
 		vdata2 = new Vector<CommodityVO>();
-		//mcd = new MockCommodityData();
 	}
 
 	/**
@@ -33,9 +29,7 @@ public class DistrictChangeBL implements DistrictChangeBLService {
 	public ResultMessage change(String from, String to, int index,
 			String location) throws RemoteException {
 		// TODO Auto-generated method stub
-		/**
-		 * Mock
-		 */
+
 		CommodityVO vo = vdata1.get(index);
 		myDate newdate = new myDate(Integer.parseInt(vo.getyear()),
 				Integer.parseInt(vo.getmonth()), Integer.parseInt(vo.getday()));
@@ -56,7 +50,6 @@ public class DistrictChangeBL implements DistrictChangeBLService {
 				.getCommodityData();
 		vdata1 = new Vector<CommodityVO>();
 		ArrayList<ComPO> list = cds.getAllCom(centerNum);
-		// ArrayList<ComPO> list = cds.getAllCom(centerNum);
 		for (ComPO po : list) {
 			CommodityVO vo;
 			if (from.equals(po.getArea())) {
@@ -107,7 +100,6 @@ public class DistrictChangeBL implements DistrictChangeBLService {
 		CommodityDataService cds = RMIHelper.getDataFactory()
 				.getCommodityData();
 		ArrayList<ComPO> list = cds.getAllCom(centerNum);
-		// ArrayList<ComPO> list = cds.getAllCom(centerNum);
 		String p;
 		List<String> area = new ArrayList<String>();
 		for (ComPO po : list) {
