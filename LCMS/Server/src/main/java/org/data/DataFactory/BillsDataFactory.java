@@ -29,6 +29,10 @@ import org.dataservice.billsdataservice.NewSendingBillsDataService;
 
 public class BillsDataFactory  extends UnicastRemoteObject implements BillsDataFactoryService{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public NewSendingBillsDataService newSendingBillsData;
 	public NewCenterArriveBillsDataService newCenterArriveBillsData;
 	public NewCenterEntruckBillsDataService newCenterEntruckBillsData;

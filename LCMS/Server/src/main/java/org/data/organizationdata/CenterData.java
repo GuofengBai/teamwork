@@ -16,11 +16,14 @@ import org.Server.RMIHelper;
 import org.dataservice.organizationdataservice.CenterDataService;
 import org.dataservice.organizationdataservice.HallDataService;
 import org.po.CenterPO;
-import org.po.HallPO;
 import org.po.ResultMessage;
 
 public class CenterData  extends UnicastRemoteObject implements CenterDataService{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public ArrayList<CenterPO> centerList;
 	private String fileName;
 	
@@ -30,6 +33,7 @@ public class CenterData  extends UnicastRemoteObject implements CenterDataServic
 		init();
 	}
 	
+	@SuppressWarnings("unchecked")
 	private void init(){
 		
 		centerList=null;

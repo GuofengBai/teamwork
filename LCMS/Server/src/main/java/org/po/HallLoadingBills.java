@@ -1,9 +1,11 @@
 package org.po;
 
-import java.io.Serializable;
-
 
 public class HallLoadingBills extends BillsPO{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String HallNum;
 	private String TrafficNum;
 	private String EndPlace;

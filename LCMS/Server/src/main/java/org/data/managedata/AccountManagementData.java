@@ -17,6 +17,10 @@ import org.po.BeginAccountPO;
 import org.po.ResultMessage;
 
 public class AccountManagementData extends UnicastRemoteObject implements AccountManagementDataService {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<BankAccountPO> list;
 	
 	public AccountManagementData() throws RemoteException {
@@ -24,6 +28,7 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 		// TODO Auto-generated constructor stub
 	}
 	
+	@SuppressWarnings("unchecked")
 	public ArrayList<BankAccountPO> getAccountList() throws RemoteException{
 		list=new ArrayList<BankAccountPO>();
 		try {
@@ -50,6 +55,7 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 		return list;
 	}
 
+	@SuppressWarnings("unchecked")
 	public ResultMessage addAccount(BankAccountPO account) throws RemoteException{
 		boolean nameExist=false;
 		String[] infotemp={"Failed","Exception"};
@@ -124,6 +130,7 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	public ResultMessage delAccount(String name) throws RemoteException{
 		list=new ArrayList<BankAccountPO>();
 		boolean nameExist=false;
@@ -154,7 +161,7 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 				}
 			}
 			
-			if(nameExist=true){
+			if(nameExist){
 				ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("SerializableData/BankAccount.file"));
 				os.writeObject(list);
 				os.close();
@@ -183,9 +190,9 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 		return message;
 	}
 
+	@SuppressWarnings("unchecked")
 	public ResultMessage changeName(String name, String newname) throws RemoteException{
 		boolean nameExist=false;
-		boolean newNameExist=false;
 		list=new ArrayList<BankAccountPO>();
 		String[] infotemp={"Failed","Exception"};
 		ResultMessage message=new ResultMessage(false,infotemp);
@@ -201,8 +208,6 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 			
 			for(BankAccountPO accountTemp:list){
 				if(accountTemp.getName().equals(newname)){
-					newNameExist=true;
-					
 					String[] info={"Failed","Account already exists"};
 					message=new ResultMessage(false,info);
 					
@@ -247,6 +252,7 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 
 	}
 
+	@SuppressWarnings("unchecked")
 	public ResultMessage changeBalance(String name, long change) throws RemoteException{
 		boolean nameExist=false;
 		list=new ArrayList<BankAccountPO>();
@@ -308,6 +314,7 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 		return message;
 	}
 
+	@SuppressWarnings("unchecked")
 	public ArrayList<BankAccountPO> search(String namepart) throws RemoteException{
 		list=new ArrayList<BankAccountPO>();
 		ArrayList<BankAccountPO> searchList=new ArrayList<BankAccountPO>();
@@ -338,6 +345,7 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 		return searchList;
 	}
 
+	@SuppressWarnings("unchecked")
 	public ResultMessage setBalance(String name, long balance)
 			throws RemoteException {
 		// TODO Auto-generated method stub
@@ -358,7 +366,6 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 			for(BankAccountPO accountTemp:list){
 				if(accountTemp.getName().equals(name)){
 					nameExist=true;
-					long balancetemp=accountTemp.getBalance();
 					accountTemp.setBalance(balance);
 					break;
 				}

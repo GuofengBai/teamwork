@@ -19,6 +19,10 @@ import org.dataservice.managedataservice.StatusTableDataService;
 
 public class ManageDataFactory extends UnicastRemoteObject implements ManageDataFactoryService{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public AccountManagementDataService accountManagementData;
 	public BeginAccountDataService beginAccountData;
 	public IncomeManagementDataService incomeManagementData;

@@ -4,16 +4,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import org.po.BillsPO;
-import org.po.CenterPO;
-import org.po.CityAndDistancePO;
-import org.po.ExpressFeePO;
-import org.po.HallPO;
-import org.po.TransFeePO;
-import org.po.UserPO;
 
 public class Init {
 	
@@ -24,6 +17,7 @@ public class Init {
 			long ueb=0;
 			ArrayList<BillsPO> ueList=new ArrayList<BillsPO>();
 			FileOutputStream fos = new FileOutputStream(fileName);
+			@SuppressWarnings("resource")
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(List);
 			oos.writeObject(ueb);

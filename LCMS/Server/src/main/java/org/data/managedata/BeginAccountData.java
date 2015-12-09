@@ -12,12 +12,16 @@ import java.util.ArrayList;
 
 import org.dataservice.managedataservice.AccountManagementDataService;
 import org.dataservice.managedataservice.BeginAccountDataService;
-import org.po.BankAccountPO;
 import org.po.BeginAccountPO;
 import org.po.ResultMessage;
 
 public class BeginAccountData extends UnicastRemoteObject implements BeginAccountDataService {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public BeginAccountData() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
@@ -25,6 +29,7 @@ public class BeginAccountData extends UnicastRemoteObject implements BeginAccoun
 
 	private ArrayList<BeginAccountPO> list;
 	
+	@SuppressWarnings("unchecked")
 	public ResultMessage addBeginAccount(BeginAccountPO account) throws RemoteException{
 		// TODO Auto-generated method stub
 		String[] infotemp={"Failed","Exception"};
@@ -71,6 +76,7 @@ public class BeginAccountData extends UnicastRemoteObject implements BeginAccoun
 		
 	}
 	
+	@SuppressWarnings("unchecked")
 	public ArrayList<BeginAccountPO> getBeginAccountList() throws RemoteException{
 		// TODO Auto-generated method stub
 		list=new ArrayList<BeginAccountPO>();
@@ -120,6 +126,7 @@ public class BeginAccountData extends UnicastRemoteObject implements BeginAccoun
 		try {
 			ObjectInputStream is = new ObjectInputStream(new FileInputStream("SerializableData/BeginInfo.file"));
 			beginInfo=(BeginAccountPO) is.readObject();
+			is.close();
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -134,6 +141,7 @@ public class BeginAccountData extends UnicastRemoteObject implements BeginAccoun
 		return beginInfo;
 	}
 
+	@SuppressWarnings("unchecked")
 	public ResultMessage deleteAccount(BeginAccountPO account) throws RemoteException{
 		// TODO Auto-generated method stub
 		list=new ArrayList<BeginAccountPO>();
@@ -165,7 +173,7 @@ public class BeginAccountData extends UnicastRemoteObject implements BeginAccoun
 				}
 			}
 			
-			if(nameExist=true){
+			if(nameExist){
 				ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("SerializableData/BeginAccount.file"));
 				os.writeObject(list);
 				os.close();

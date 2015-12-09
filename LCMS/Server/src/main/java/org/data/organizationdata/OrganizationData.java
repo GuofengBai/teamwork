@@ -13,6 +13,11 @@ import org.po.ResultMessage;
 
 public class OrganizationData extends UnicastRemoteObject implements OrganizationDataService{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public OrganizationData() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub

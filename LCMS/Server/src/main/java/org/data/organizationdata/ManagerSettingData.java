@@ -10,12 +10,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
-
 import org.dataservice.organizationdataservice.ManagerSettingDataService;
 import org.po.CityAndDistancePO;
 import org.po.ExpressFeePO;
-import org.po.HallPO;
 import org.po.ResultMessage;
 import org.po.SENDSTYPE;
 import org.po.TRANSPORTATION;
@@ -23,6 +20,10 @@ import org.po.TransFeePO;
 
 public class ManagerSettingData extends UnicastRemoteObject implements ManagerSettingDataService{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private CityAndDistancePO cad;
 	private ExpressFeePO efp;
 	private TransFeePO tfp;

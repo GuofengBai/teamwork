@@ -14,12 +14,9 @@ import java.util.LinkedList;
 
 import org.dataservice.commoditydataservice.CommodityDataService;
 import org.po.AlertPO;
-import org.po.BillsPO;
 import org.po.CenterCom;
 import org.po.ComPO;
 import org.po.ResultMessage;
-import org.po.StaffPO;
-import org.po.myDate;
 
 public class CommodityData extends UnicastRemoteObject implements
 		CommodityDataService {
@@ -47,19 +44,19 @@ public class CommodityData extends UnicastRemoteObject implements
 
 	public ResultMessage setAlert(String centerNum1, double line)
 			throws RemoteException {
-		ResultMessage re;
 		String[] su = { "更改成功!" };
 		String[] fa = { "更改失败!" };
 		for (CenterCom center : totalList) {
 			if (center.centerNum.equals(centerNum1)) {
 				center.po = new AlertPO(line);
 				save();
-				return re = new ResultMessage(true, su);
+				return new ResultMessage(true, su);
 			}
 		}
-		return re = new ResultMessage(false, fa);
+		return new ResultMessage(false, fa);
 	}
 
+	@SuppressWarnings("unchecked")
 	private void init() {
 
 		String fileName = "SerializableData/Com.file";
@@ -149,12 +146,10 @@ public class CommodityData extends UnicastRemoteObject implements
 				return ms;
 			}
 		}
-		ResultMessage ms;
 		String[] infof = { "删除失败", "没有找到货物项" };
-		return ms = new ResultMessage(false, infof);
+		return new ResultMessage(false, infof);
 
 	}
-	@SuppressWarnings("unchecked")
 	public ComPO findCom(String GoodsNum) throws RemoteException {
 		ArrayList<ComPO> ComList = null;
 

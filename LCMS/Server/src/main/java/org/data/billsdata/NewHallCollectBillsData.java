@@ -4,12 +4,16 @@ import java.rmi.RemoteException;
 import java.util.Vector;
 
 import org.dataservice.billsdataservice.NewHallCollectBillsDataService;
-import org.dataservice.billsdataservice.NewSendingBillsDataService;
 import org.po.BillsPO;
 import org.po.HallCollectionBills;
 import org.po.myDate;
 
 public class NewHallCollectBillsData extends BillsData implements NewHallCollectBillsDataService{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	public NewHallCollectBillsData() throws RemoteException {
 		super("SerializableData/HCB.file");

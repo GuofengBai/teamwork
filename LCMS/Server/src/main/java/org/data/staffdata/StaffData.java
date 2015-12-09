@@ -18,6 +18,10 @@ import org.po.StaffPO;
 
 public class StaffData extends UnicastRemoteObject implements StaffDataService{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<StaffPO> staffList;
 
 	public StaffData() throws RemoteException {
@@ -26,6 +30,7 @@ public class StaffData extends UnicastRemoteObject implements StaffDataService{
 		init();
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void init(){
 		
 		staffList=null;

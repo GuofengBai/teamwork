@@ -14,6 +14,11 @@ import org.po.PayingBills;
 
 public class IncomeTableData extends UnicastRemoteObject implements IncomeTableDataService {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public IncomeTableData() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub

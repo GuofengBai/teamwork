@@ -1,26 +1,20 @@
 package org.data.billsdata;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
-
 import org.dataservice.billsdataservice.NewSendingBillsDataService;
 import org.po.BillsPO;
 import org.po.EXPRESSSTATE;
 import org.po.ResultMessage;
 import org.po.SendingBills;
-import org.po.myDate;
 
 public class NewSendingBillsData extends BillsData implements NewSendingBillsDataService {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public NewSendingBillsData() throws RemoteException {
 		super("SerializableData/SB.file");
 	}

@@ -13,6 +13,10 @@ import org.dataservice.organizationdataservice.ManagerSettingDataService;
 
 public class OrganizationDataFactory extends UnicastRemoteObject implements OrganizationDataFactoryService{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public HallDataService hallData;
 	public CenterDataService centerData;
 	public ManagerSettingDataService managerSettingData;

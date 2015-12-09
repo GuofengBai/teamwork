@@ -15,10 +15,13 @@ import java.util.ArrayList;
 import org.dataservice.organizationdataservice.HallDataService;
 import org.po.HallPO;
 import org.po.ResultMessage;
-import org.po.StaffPO;
 
 public class HallData extends UnicastRemoteObject implements HallDataService{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public ArrayList<HallPO> hallList;
 	private String fileName;
 	
@@ -28,6 +31,7 @@ public class HallData extends UnicastRemoteObject implements HallDataService{
 		init();
 	}
 	
+	@SuppressWarnings("unchecked")
 	private void init(){
 		
 		hallList=null;

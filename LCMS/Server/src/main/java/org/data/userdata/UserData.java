@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 import org.dataservice.userdataservice.UserDataService;
 import org.po.ResultMessage;
-import org.po.StaffPO;
 import org.po.UserPO;
 
 public class UserData extends UnicastRemoteObject implements UserDataService {
@@ -80,16 +79,15 @@ public class UserData extends UnicastRemoteObject implements UserDataService {
 	}
 
 	public ResultMessage confirm(String account,String password) throws RemoteException{
-		ResultMessage re;
 		String[] su={"密码正确","登陆成功"};
 		String[] fa={"密码错误","请重新输入"};
 		String[] nofind={"未找到","请重新输入"};
 		for(UserPO po:UserList){
         	if((po.getAccount().equals(account))&&(po.getPassword().equals(password))){
-        		return re=new ResultMessage(true,su);
+        		return new ResultMessage(true,su);
         	}
         	else if((po.getAccount().equals(account))&&!(po.getPassword().equals(password))){
-        		return re=new ResultMessage(false,fa);
+        		return new ResultMessage(false,fa);
         	}
         }
         return new ResultMessage(false,nofind);

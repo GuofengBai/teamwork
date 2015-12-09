@@ -6,18 +6,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.LinkedList;
-
-import org.data.staffdata.StaffData;
-import org.dataservice.staffdataservice.StaffDataService;
-import org.po.CenterCom;
-import org.po.GENDER;
-import org.po.Payment;
-import org.po.STAFFROLE;
-import org.po.StaffPO;
 import org.po.UserPO;
-import org.po.WorkSpace;
-import org.po.myDate;
 
 public class UserWriter {
 	public static void main(String[] args) throws RemoteException {

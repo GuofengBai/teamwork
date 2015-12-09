@@ -1,11 +1,14 @@
 package org.po;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 
 
 public class OutstorageBills extends BillsPO{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String centerNum;
 	private ArrayList<ComPO> list;
 	public OutstorageBills(myDate date, String centerNum, String entruckNum, ArrayList<ComPO> list){

@@ -6,23 +6,22 @@ import java.rmi.server.UnicastRemoteObject;
 
 
 import org.data.commoditydata.CommodityData;
-import org.data.managedata.ManageData;
-import org.data.organizationdata.OrganizationData;
 import org.data.staffdata.StaffData;
 import org.data.userdata.UserData;
 import org.dataservice.DataFactoryService.BillsDataFactoryService;
 import org.dataservice.DataFactoryService.DataFactoryService;
 import org.dataservice.DataFactoryService.ManageDataFactoryService;
 import org.dataservice.DataFactoryService.OrganizationDataFactoryService;
-import org.dataservice.billsdataservice.BillsDataService;
 import org.dataservice.commoditydataservice.CommodityDataService;
-import org.dataservice.managedataservice.ManageDataService;
-import org.dataservice.organizationdataservice.OrganizationDataService;
 import org.dataservice.staffdataservice.StaffDataService;
 import org.dataservice.userdataservice.UserDataService;
 
 public class DataFactory extends UnicastRemoteObject implements DataFactoryService {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	CommodityDataService commodityData;
 	BillsDataFactoryService billsDataFactory;
 	UserDataService userData;

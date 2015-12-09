@@ -14,7 +14,6 @@ import java.util.Collections;
 import java.util.Vector;
 
 import org.dataservice.billsdataservice.BillsDataService;
-import org.po.BILLSTYPE;
 import org.po.BillsPO;
 import org.po.ResultMessage;
 import org.po.SendingBills;
@@ -22,11 +21,16 @@ import org.po.myDate;
 
 public class BillsData extends UnicastRemoteObject implements BillsDataService{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected ArrayList<BillsPO> list;
 	protected long unExaminedNum;
 	protected ArrayList<BillsPO> unExaminedList;
 	protected String fileName;
 
+	@SuppressWarnings("unchecked")
 	public BillsData(String fileName) throws RemoteException {
 		super();
 		this.fileName=fileName;

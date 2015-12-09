@@ -15,6 +15,11 @@ import org.po.myDate;
 
 public class StatusTableData extends UnicastRemoteObject implements StatusTableDataService {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public StatusTableData() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub

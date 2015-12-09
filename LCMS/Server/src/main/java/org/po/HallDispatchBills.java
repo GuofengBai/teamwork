@@ -1,10 +1,12 @@
 package org.po;
 
-import java.io.Serializable;
-
 
 public class HallDispatchBills extends BillsPO{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private String goodNum;
 	

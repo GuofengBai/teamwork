@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 public class WorkSpace implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public String type;               //类型，分为“总部”、“中转中心”、“营业厅”
 	public String num;
 	

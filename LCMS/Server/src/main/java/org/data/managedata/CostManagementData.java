@@ -1,27 +1,23 @@
 package org.data.managedata;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import org.data.billsdata.NewPayingBillsData;
 import org.dataservice.billsdataservice.BillsDataService;
-import org.dataservice.billsdataservice.NewPayingBillsDataService;
-import org.dataservice.managedataservice.AccountManagementDataService;
 import org.dataservice.managedataservice.CostManagementDataService;
 import org.po.BillsPO;
-import org.po.HallCollectionBills;
 import org.po.PayingBills;
 import org.po.ResultMessage;
 import org.po.myDate;
 
 public class CostManagementData extends UnicastRemoteObject implements CostManagementDataService {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public CostManagementData() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub

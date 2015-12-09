@@ -13,6 +13,11 @@ import org.po.myDate;
 
 public class IncomeManagementData extends UnicastRemoteObject implements IncomeManagementDataService {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public IncomeManagementData() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub

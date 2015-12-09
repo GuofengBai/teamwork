@@ -1,18 +1,11 @@
 package org.data.billsdata;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-
 import org.po.BillsPO;
-import org.po.CenterArriveBills;
-import org.po.myDate;
 
 public class Text {
 	public static void main(String[] args) {

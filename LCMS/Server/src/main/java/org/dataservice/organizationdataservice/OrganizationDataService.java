@@ -5,8 +5,6 @@ import java.rmi.RemoteException;
 
 import org.po.CarPO;
 import org.po.CityAndDistancePO;
-import org.po.HallPO;
-import org.po.CenterPO;
 import org.po.DriverPO;
 import org.po.ResultMessage;
 

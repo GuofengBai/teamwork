@@ -5,7 +5,6 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import org.po.CenterPO;
-import org.po.HallPO;
 import org.po.ResultMessage;
 
 public interface CenterDataService extends Remote{
