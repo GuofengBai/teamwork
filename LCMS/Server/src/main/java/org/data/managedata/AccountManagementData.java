@@ -46,6 +46,10 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 				list=new ArrayList<BankAccountPO>();
 			}
 			
+			for(BankAccountPO account:list){
+				account.setBalance(this.getBalance(account.getName()));
+			}
+			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
