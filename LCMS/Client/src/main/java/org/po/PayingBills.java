@@ -19,6 +19,7 @@ public class PayingBills extends BillsPO{
 		this.money=money;
 		this.remark=remark;
 		this.idNum=idNum;
+		this.type=BILLSTYPE.PB;
 	}
 	
 	public void setIdNum(String s){
