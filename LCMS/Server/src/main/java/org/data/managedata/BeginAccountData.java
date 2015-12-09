@@ -56,8 +56,8 @@ public class BeginAccountData extends UnicastRemoteObject implements BeginAccoun
 			String[] info={"Success","Account saved"};
 			message=new ResultMessage(true,info);
 			
-			AccountManagementDataService am=new AccountManagementData();
-			am.setBalance(account.getAccountName(), account.getBalance());
+//			AccountManagementDataService am=new AccountManagementData();
+//			am.setBalance(account.getAccountName(), account.getBalance());
 
 			
 		} catch (FileNotFoundException e) {

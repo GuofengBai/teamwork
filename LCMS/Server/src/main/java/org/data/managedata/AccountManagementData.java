@@ -10,10 +10,16 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import org.data.billsdata.NewHallCollectBillsData;
+import org.dataservice.billsdataservice.NewHallCollectBillsDataService;
 import org.dataservice.managedataservice.AccountManagementDataService;
 import org.dataservice.managedataservice.BeginAccountDataService;
+import org.dataservice.managedataservice.CostManagementDataService;
 import org.po.BankAccountPO;
 import org.po.BeginAccountPO;
+import org.po.BillsPO;
+import org.po.HallCollectionBills;
+import org.po.PayingBills;
 import org.po.ResultMessage;
 
 public class AccountManagementData extends UnicastRemoteObject implements AccountManagementDataService {
@@ -121,10 +127,38 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 		BeginAccountPO account=begin.getBeginAccount();
 		String beginName=account.getAccountName();
 		
+		ArrayList<BillsPO> billList=new ArrayList<BillsPO>();
+		ArrayList<HallCollectionBills> hcblist=new ArrayList<HallCollectionBills>();
+		ArrayList<PayingBills> pblist=new ArrayList<PayingBills>();
+		
+		NewHallCollectBillsDataService nhcb=new NewHallCollectBillsData();
+		CostManagementDataService cmd=new CostManagementData();
+		
+		/**
+		 * 计算期初账单和收款单金额
+		 */
 		if(name.equals(beginName)){
 			result=result+account.getBalance();
+			
+			billList=nhcb.getAll();	
+			for(BillsPO po:billList){
+				hcblist.add((HallCollectionBills)po);
+			}
+			for(HallCollectionBills bill:hcblist){
+				result=result+Long.parseLong(bill.gettotal());
+			}
 		}
 		
+		/**
+		 * 计算付款单金额
+		 */
+		pblist=cmd.getAllBill();
+		for(PayingBills bill:pblist){
+			if(bill.getAccountName().equals(name)){
+				result=result-bill.getMoney();
+			}
+			
+		}
 		
 		
 		return result;

@@ -20,8 +20,8 @@ public class NewPayingBillsBL implements NewPayingBillsBLService{
 			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewPayingBillsData();
 			message=billsData.addBills(bill);
 			
-			AccountManagementDataService accountData=RMIHelper.getDataFactory().getManageDataFactory().getAccountManagementData();
-			accountData.changeBalance(bill.getAccountName(), (-bill.getMoney()));
+		//	AccountManagementDataService accountData=RMIHelper.getDataFactory().getManageDataFactory().getAccountManagementData();
+		//	accountData.changeBalance(bill.getAccountName(), (-bill.getMoney()));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
