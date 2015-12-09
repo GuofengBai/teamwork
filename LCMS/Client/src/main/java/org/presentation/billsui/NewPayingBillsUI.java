@@ -6,9 +6,6 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollPane;
 
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.billsblservice.NewPayingBillsBLService;
@@ -20,6 +17,10 @@ import org.presentation.manageui.CostManageUI;
 
 
 public class NewPayingBillsUI extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField yearField;
 	private JTextField monthField;
 	private JTextField dayField;
@@ -31,14 +32,12 @@ public class NewPayingBillsUI extends JPanel {
 	private JTextField remarkField;
 	private JButton backButton;
 	private JPanel superView;
-	private JPanel temp;
 	/**
 	 * Create the panel.
 	 */
 	public NewPayingBillsUI(JPanel su) {
 		super();
 		this.superView=su;
-		this.temp=this;
 		setLayout(null);
 		
 		JLabel label = new JLabel("付款日期");
