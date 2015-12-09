@@ -14,11 +14,11 @@ import java.rmi.RemoteException;
 import javax.swing.JPasswordField;
 
 import org.Client.CurrentStaff;
-
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.staffblservice.StaffBLService;
 import org.businesslogicservice.userblservice.UserBLService;
 import org.po.UserPO;
+import org.presentation.billsui.BillsStateSearch;
 import org.presentation.billsui.CenterBusinessContralUI;
 import org.presentation.billsui.HallBusinessContralUI;
 import org.presentation.billsui.PostmanUI;
@@ -82,9 +82,17 @@ public class UserUI extends JPanel {
 		btnNewButton.setBounds(218, 328, 113, 27);
 		add(btnNewButton);
 
-		JButton button = new JButton("返回");
+		JButton button = new JButton("订单查询");
 		button.setBounds(422, 328, 113, 27);
 		add(button);
+		button.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JPanel ui = new BillsStateSearch(panel);
+				ViewController.jumpToAnotherView(ui);
+			}
+		});
 
 		passwordField = new JPasswordField();
 		passwordField.setBounds(192, 157, 152, 21);
