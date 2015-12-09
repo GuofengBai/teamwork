@@ -39,7 +39,7 @@ public class StaffInfoUI extends JPanel{
 	private JTextField phone;
 	private JComboBox<String> payWay;
 	private JTextField payParameter;
-	private JComboBox<?> role;
+	private JComboBox<String> role;
 	private JButton button;
 	private JButton jump;
 	private JComboBox<String> place;
