@@ -18,6 +18,7 @@ import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.organizationblservice.ManagerSettingBLService;
 import org.po.CityAndDistancePO;
 import org.presentation.mainui.ViewController;
+import javax.swing.JTextField;
 
 public class SetCityDistanceUI extends JPanel{
 	
@@ -28,6 +29,10 @@ public class SetCityDistanceUI extends JPanel{
 	private JTable table;
 	private DefaultTableModel model;
 	private JPanel superView;
+	private JTextField cityA;
+	private JTextField cityB;
+	private JTextField newDistance;
+	private JLabel stateBar;
 	
 	public SetCityDistanceUI(JPanel su) {
 		super();
@@ -36,7 +41,7 @@ public class SetCityDistanceUI extends JPanel{
 		setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(43, 128, 441, 280);
+		scrollPane.setBounds(43, 128, 441, 248);
 		add(scrollPane);
 		
 		table = new JTable();
@@ -49,6 +54,37 @@ public class SetCityDistanceUI extends JPanel{
 		JButton button = new JButton("\u8FD4\u56DE");
 		button.setBounds(404, 23, 123, 29);
 		add(button);
+		
+		JLabel lbla = new JLabel("城市A");
+		lbla.setBounds(43, 406, 81, 21);
+		add(lbla);
+		
+		cityA = new JTextField();
+		cityA.setBounds(110, 403, 117, 27);
+		add(cityA);
+		cityA.setColumns(10);
+		
+		JLabel lblb = new JLabel("城市B");
+		lblb.setBounds(262, 406, 81, 21);
+		add(lblb);
+		
+		cityB = new JTextField();
+		cityB.setBounds(325, 403, 129, 27);
+		add(cityB);
+		cityB.setColumns(10);
+		
+		JLabel label_1 = new JLabel("新距离");
+		label_1.setBounds(43, 462, 81, 21);
+		add(label_1);
+		
+		newDistance = new JTextField();
+		newDistance.setBounds(110, 459, 197, 27);
+		add(newDistance);
+		newDistance.setColumns(10);
+		
+		stateBar = new JLabel("");
+		stateBar.setBounds(43, 508, 441, 21);
+		add(stateBar);
 		button.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent arg0) {
@@ -58,6 +94,65 @@ public class SetCityDistanceUI extends JPanel{
 		});
 		
 		initModel();
+		
+		JButton submit = new JButton("修改");
+		submit.setBounds(335, 458, 123, 29);
+		add(submit);
+		submit.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				String city1=cityA.getText();
+				String city2=cityB.getText();
+				
+				
+				int i=-1,j=-1,k;
+				for(k=0;k<model.getColumnCount();k++){
+					if(model.getColumnName(k).equals(city1)){
+						i=k;
+						break;
+					}
+				}
+				if(i<0){
+					stateBar.setText("城市A错误");
+					return;
+				}
+				
+				for(k=0;k<model.getColumnCount();k++){
+					if(model.getColumnName(k).equals(city2)){
+						j=k;
+						break;
+					}
+				}
+				if(j<0){
+					stateBar.setText("城市B错误");
+					return;
+				}
+				
+				if(i==j){
+					stateBar.setText("失败，同一城市内距离默认为30公里");
+					return;
+				}
+				
+				double dis;
+				try{
+					dis=Double.parseDouble(newDistance.getText());
+				}catch(Exception exc){
+					stateBar.setText("新距离距离看可能不是数字，请再输入");
+					return;
+				};
+				
+				ManagerSettingBLService manager=BLFactory.getManagerSettingBL();
+				
+				if(manager.setCityDistance(city1, city2, dis)){
+					stateBar.setText("设置成功");
+					model.setValueAt(dis,i,j);
+					model.setValueAt(dis,j,i);
+				}else{
+					stateBar.setText("设置失败");
+				}
+				
+			}
+		});
 		
 	}
 
@@ -70,24 +165,5 @@ public class SetCityDistanceUI extends JPanel{
 		model.setDataVector(cad.distance,cad.cities);
 		table.setModel(model);
 		
-		model.addTableModelListener(new TableModelListener(){
-
-			public void tableChanged(TableModelEvent arg0) {
-				int row=arg0.getFirstRow();
-				int column=arg0.getColumn();
-				double distance=Double.parseDouble((String)model.getValueAt(row, column));
-				if((Double)model.getValueAt(column,row)!=distance){
-				     model.setValueAt(distance,column,row);
-				}
-				String city1=model.getColumnName(row);
-				String city2=model.getColumnName(column);
-				
-				
-				ManagerSettingBLService manager=BLFactory.getManagerSettingBL();
-				manager.setCityDistance(city1, city2, distance);
-				
-			}
-			
-		});
 	}
 }

@@ -12,11 +12,11 @@ import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
 import javax.swing.JSeparator;
 
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.organizationblservice.HallBLService;
+import org.po.ResultMessage;
 import org.presentation.mainui.ViewController;
 import org.vo.HallVO;
 
@@ -32,9 +32,10 @@ public class HallUI extends JPanel {
 	private JTextField hallName;
 	private JTextField hallNum;
 	private JTextField cityName;
+	private JLabel stateBar;
+	private JTextField location;
 	private JTable table;
 	private DefaultTableModel model;
-	private JTextField location;
 	private JPanel superView;
 
 	/**
@@ -108,6 +109,10 @@ public class HallUI extends JPanel {
 		add(cityName);
 		cityName.setColumns(10);
 		
+		stateBar = new JLabel("");
+		stateBar.setBounds(24, 469, 524, 21);
+		add(stateBar);
+		
 		initModel();
 		initButton();
 
@@ -134,9 +139,14 @@ public class HallUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				HallVO vo=new HallVO(hallName.getText(),hallNum.getText(),cityName.getText(),location.getText());
 				HallBLService hallBL=BLFactory.getHallBL();
-				if(hallBL.addHall(vo)){
+				
+				ResultMessage re=hallBL.addHall(vo);
+				if(re.success){
 					model.addRow(vo);
 					model.fireTableRowsInserted(model.getRowCount(),model.getRowCount());
+					stateBar.setText("添加成功");
+				}else{
+					stateBar.setText(re.info[0]);
 				}
 			}
 			
@@ -152,10 +162,18 @@ public class HallUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				HallBLService hallBL=BLFactory.getHallBL();
 				int row=table.getSelectedRow();
+				if(row<0){
+					stateBar.setText("请选中一行");
+				}
+				
 				String hallnum=(String) model.getValueAt(row,1);
-				hallBL.delHall(hallnum);
-				model.removeRow(row);
-				model.fireTableRowsDeleted(row,row);
+				ResultMessage re=hallBL.delHall(hallnum);
+				if(re.success){
+					model.removeRow(row);
+					model.fireTableRowsDeleted(row,row);
+					stateBar.setText(re.info[0]);
+				}
+				
 			}
 			
 		});

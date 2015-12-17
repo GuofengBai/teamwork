@@ -5,10 +5,13 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 import org.Client.RMIHelper;
+import org.businesslogic.blFactory.BLFactory;
+import org.businesslogicservice.staffblservice.StaffBLService;
 import org.businesslogicservice.userblservice.UserBLService;
 import org.dataservice.userdataservice.UserDataService;
 import org.po.ResultMessage;
 import org.po.UserPO;
+import org.vo.StaffVO;
 import org.vo.UserVO;
 
 public class UserBL implements UserBLService {
@@ -38,14 +41,81 @@ public class UserBL implements UserBLService {
 	 * 
 	 */
 	public ResultMessage addUser(UserPO po) throws RemoteException{
-		UserDataService uds = RMIHelper.getDataFactory().getUserData();
-		ResultMessage re = uds.insert(po);
-		return re;
+		
+		UserDataService uds=null;
+		try{
+			uds = RMIHelper.getDataFactory().getUserData();
+			if(uds==null){
+				String[] info={"网络错误，无法找到UserData"};
+				return new ResultMessage(false,info);
+			}
+		}catch(Exception exc){
+			exc.printStackTrace();
+		}
+		
+		try{
+			UserPO temp=uds.find(po.account);
+			if(temp!=null){
+				String[] info={"添加错误，已存在同名账号"};
+				return new ResultMessage(false,info);
+			}
+		}catch(Exception exc){
+			exc.printStackTrace();
+		}
+		
+		try{
+			StaffBLService staffBL=BLFactory.getStaffBL();
+			StaffVO temp=staffBL.findStaff(po.getNumber());
+			if(temp==null){
+				String[] info={"添加错误，不存在与该编号关联的员工"};
+				return new ResultMessage(false,info);
+			}
+		}catch(Exception exc){
+			exc.printStackTrace();
+		}
+		
+		try{
+			uds.insert(po);
+		}catch(Exception exc){
+			exc.printStackTrace();
+			String[] info={"添加错误，数据端发生错误"};
+			return new ResultMessage(false,info);
+		}
+		
+		return new ResultMessage(true,null);
 	}
 	public ResultMessage delUser(String account) throws RemoteException {
-		UserDataService uds = RMIHelper.getDataFactory().getUserData();
-		ResultMessage re = uds.delete(account);
-		return re;
+		
+		UserDataService uds=null;
+		try{
+			uds = RMIHelper.getDataFactory().getUserData();
+			if(uds==null){
+				String[] info={"网络错误，无法找到UserData"};
+				return new ResultMessage(false,info);
+			}
+		}catch(Exception exc){
+			exc.printStackTrace();
+		}
+		
+		try{
+			UserPO temp=uds.find(account);
+			if(temp==null){
+				String[] info={"删除错误，不存在该账号"};
+				return new ResultMessage(false,info);
+			}
+		}catch(Exception exc){
+			exc.printStackTrace();
+		}
+		
+		try{
+			uds.delete(account);
+		}catch(Exception exc){
+			exc.printStackTrace();
+			String[] info={"删除错误，数据端发生错误"};
+			return new ResultMessage(false,info);
+		}
+		
+		return new ResultMessage(true,null);
 	}
 
 	public Vector<UserVO> getList() {
@@ -55,7 +125,6 @@ public class UserBL implements UserBLService {
 			UserDataService uds = RMIHelper.getDataFactory().getUserData();
 			all=uds.getList();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		for(UserPO po:all){

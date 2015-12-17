@@ -19,9 +19,10 @@ public class SetTransFeeUI extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
+	private JTextField Fee;
 	private JComboBox<String> comboBox;
 	private JPanel superView;
+	private JLabel stateBar;
 	
 	public SetTransFeeUI(JPanel su) {
 		super();
@@ -31,12 +32,15 @@ public class SetTransFeeUI extends JPanel{
 		
 		comboBox = new JComboBox<String>();
 		comboBox.setBounds(172, 161, 176, 27);
-		add(comboBox);
 		comboBox.addItem("汽车");
 		comboBox.addItem("火车");
 		comboBox.addItem("飞机");
+		comboBox.setSelectedIndex(0);
+		add(comboBox);
 		
-		
+		stateBar = new JLabel("");
+		stateBar.setBounds(47, 404, 389, 21);
+		add(stateBar);
 		
 		JLabel label = new JLabel("\u8FD0\u8F93\u5DE5\u5177");
 		label.setBounds(47, 164, 81, 21);
@@ -46,10 +50,10 @@ public class SetTransFeeUI extends JPanel{
 		label_1.setBounds(47, 259, 81, 21);
 		add(label_1);
 		
-		textField = new JTextField();
-		textField.setBounds(172, 256, 176, 27);
-		add(textField);
-		textField.setColumns(10);
+		Fee = new JTextField();
+		Fee.setBounds(172, 256, 176, 27);
+		add(Fee);
+		Fee.setColumns(10);
 		
 		JLabel label_2 = new JLabel("\u8BBE\u7F6E\u8F7D\u5177\u8FD0\u8F93\u8D39\u7528");
 		label_2.setBounds(173, 94, 144, 21);
@@ -61,8 +65,14 @@ public class SetTransFeeUI extends JPanel{
 		button.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-                
-				double fee=Double.parseDouble(textField.getText());
+				
+				double fee;
+				try{
+					fee=Double.parseDouble(Fee.getText());
+				}catch(Exception exc){
+					stateBar.setText("费用输入错误");
+					return;
+				}
 				
 				TRANSPORTATION type;
 				
@@ -76,7 +86,11 @@ public class SetTransFeeUI extends JPanel{
 				
 				ManagerSettingBLService manager=BLFactory.getManagerSettingBL();
 				
-				manager.setTransFee(type, fee);
+				if(manager.setTransFee(type, fee)){
+					stateBar.setText("设置成功");
+				}else{
+					stateBar.setText("设置失败");
+				}
 				
 			}
 		});
@@ -84,6 +98,8 @@ public class SetTransFeeUI extends JPanel{
 		JButton button_1 = new JButton("返回");
 		button_1.setBounds(424, 25, 69, 29);
 		add(button_1);
+		
+		
 		button_1.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {

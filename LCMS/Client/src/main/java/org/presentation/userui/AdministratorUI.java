@@ -16,10 +16,13 @@ import javax.swing.JTextField;
 
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.userblservice.UserBLService;
+import org.po.ResultMessage;
 import org.po.UserPO;
 import org.presentation.mainui.ViewController;
 import org.vo.UserVO;
+
 import javax.swing.JSeparator;
+
 import java.awt.Color;
 
 public class AdministratorUI extends JPanel {
@@ -33,6 +36,8 @@ public class AdministratorUI extends JPanel {
 	private JTextField password;
 	private JTextField staffNumber;
 	private JPanel superView;
+	private JLabel stateBar;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -78,6 +83,10 @@ public class AdministratorUI extends JPanel {
 		JLabel lblNewLabel_2 = new JLabel("管理账号");
 		lblNewLabel_2.setBounds(213, 34, 81, 21);
 		add(lblNewLabel_2);
+		
+		stateBar = new JLabel("");
+		stateBar.setBounds(42, 542, 458, 21);
+		add(stateBar);
 		
 		initModel();
 		initButton();
@@ -134,9 +143,15 @@ public class AdministratorUI extends JPanel {
 				
 				UserBLService ubs=BLFactory.getUserBL();
 				try {
-					ubs.addUser(newPO);
-					model.addRow(new UserVO(newPO));
-					model.fireTableRowsInserted(model.getRowCount()-1,model.getRowCount()-1);
+					ResultMessage re=ubs.addUser(newPO);
+					if(re.success){
+						model.addRow(new UserVO(newPO));
+						model.fireTableRowsInserted(model.getRowCount()-1,model.getRowCount()-1);
+						stateBar.setText("添加账号成功");
+					}else{
+						stateBar.setText(re.info[0]);
+					}
+					
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -157,6 +172,7 @@ public class AdministratorUI extends JPanel {
 		separator_1.setForeground(Color.BLACK);
 		separator_1.setBounds(30, 65, 486, 2);
 		add(separator_1);
+		
 		delUser.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -166,9 +182,15 @@ public class AdministratorUI extends JPanel {
 				
 				UserBLService ubs=BLFactory.getUserBL();
 				try {
-					ubs.delUser(accountToDel);
-					model.removeRow(row);
-					model.fireTableRowsDeleted(row, row);
+					ResultMessage re=ubs.delUser(accountToDel);
+					if(re.success){
+						model.removeRow(row);
+						model.fireTableRowsDeleted(row, row);
+						stateBar.setText("删除成功");
+					}else{
+						stateBar.setText(re.info[0]);
+					}
+					
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

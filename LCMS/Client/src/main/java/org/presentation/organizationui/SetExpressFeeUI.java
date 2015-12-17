@@ -23,6 +23,7 @@ public class SetExpressFeeUI extends JPanel{
 	private JTextField textField_1;
 	private JComboBox<String> comboBox;
 	private JPanel superView;
+	private JLabel stateBar;
 	
 	public SetExpressFeeUI(JPanel su) {
 		super();
@@ -51,7 +52,12 @@ public class SetExpressFeeUI extends JPanel{
 		comboBox.addItem("经济快递");
 		comboBox.addItem("普通快递");
 		comboBox.addItem("次晨特快");
+		comboBox.setSelectedIndex(0);
 		add(comboBox);
+		
+		stateBar = new JLabel("");
+		stateBar.setBounds(53, 328, 332, 21);
+		add(stateBar);
 		
 		JButton button = new JButton("\u63D0\u4EA4");
 		button.setBounds(149, 256, 123, 29);
@@ -60,7 +66,13 @@ public class SetExpressFeeUI extends JPanel{
 
 			public void actionPerformed(ActionEvent e) {
 				
-				double fee=Double.parseDouble(textField_1.getText());
+				double fee;
+				try{
+					fee=Double.parseDouble(textField_1.getText());
+				}catch(Exception exc){
+					stateBar.setText("费用输入错误");
+					return;
+				}
 				
 				SENDSTYPE type;
 				
@@ -74,7 +86,12 @@ public class SetExpressFeeUI extends JPanel{
 				
 				ManagerSettingBLService manager=BLFactory.getManagerSettingBL();
 				
-				manager.setExpressFee(type, fee);
+				if(manager.setExpressFee(type, fee)){
+					stateBar.setText("设置成功");
+				}else{
+					stateBar.setText("设置失败");
+				}
+				
 			}
 			
 		});

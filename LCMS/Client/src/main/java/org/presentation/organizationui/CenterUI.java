@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.ListSelectionModel;
 
 
+
 import java.awt.Color;
 import java.util.Vector;
 
@@ -19,7 +20,7 @@ import javax.swing.JScrollPane;
 
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.organizationblservice.CenterBLService;
-
+import org.po.ResultMessage;
 import org.presentation.mainui.ViewController;
 import org.vo.CenterVO;
 
@@ -36,6 +37,7 @@ public class CenterUI extends JPanel {
 	private JTable table;
 	private DefaultTableModel model;
 	private JPanel superView;
+	private JLabel stateBar;
 
 	/**
 	 * Create the panel.
@@ -99,6 +101,10 @@ public class CenterUI extends JPanel {
 		add(centerNum);
 		centerNum.setColumns(10);
 		
+		stateBar = new JLabel("");
+		stateBar.setBounds(24, 449, 520, 21);
+		add(stateBar);
+		
 		initModel();
 		initButton();
 
@@ -124,11 +130,14 @@ public class CenterUI extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				CenterVO vo=new CenterVO(Name.getText(),centerNum.getText(),location.getText());
-				System.out.println(vo);
 				CenterBLService centerBL=BLFactory.getCenterBL();
-				if(centerBL.addCenter(vo)){
+				ResultMessage re=centerBL.addCenter(vo);
+				if(re.success){
 					model.addRow(vo);
 					model.fireTableRowsInserted(model.getRowCount(),model.getRowCount());
+					stateBar.setText("新增成功");
+				}else{
+					stateBar.setText(re.info[0]);
 				}
 			}
 			
@@ -144,10 +153,21 @@ public class CenterUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				CenterBLService centerBL=BLFactory.getCenterBL();
 				int row=table.getSelectedRow();
+				if(row<0){
+					stateBar.setText("请选中一行");
+					return;
+				}
+				
 				String centernum=(String) model.getValueAt(row,1);
-				centerBL.delCenter(centernum);
-				model.removeRow(row);
-				model.fireTableRowsDeleted(row,row);
+				ResultMessage re=centerBL.delCenter(centernum);
+				if(re.success){
+					model.removeRow(row);
+					model.fireTableRowsDeleted(row,row);
+					stateBar.setText("删除成功");
+				}else{
+					stateBar.setText(re.info[0]);
+				}
+				
 			}
 			
 		});

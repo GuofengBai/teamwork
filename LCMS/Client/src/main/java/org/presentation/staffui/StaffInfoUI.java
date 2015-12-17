@@ -13,6 +13,7 @@ import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.staffblservice.StaffBLService;
 import org.po.GENDER;
 import org.po.Payment;
+import org.po.ResultMessage;
 import org.po.STAFFROLE;
 import org.po.WorkSpace;
 import org.po.myDate;
@@ -44,6 +45,7 @@ public class StaffInfoUI extends JPanel{
 	private JButton jump;
 	private JComboBox<String> place;
 	private StaffVO vo;
+	private JLabel stateBar;
 	
 	
 	/**
@@ -79,12 +81,22 @@ public class StaffInfoUI extends JPanel{
 		        	vo.gender=GENDER.FEMALE;
 		        }
 		        
-		        vo.birthday=new myDate(Integer.parseInt(year.getText()),Integer.parseInt(month.getText()),Integer.parseInt(day.getText()));
+		        try{
+		        	vo.birthday=new myDate(Integer.parseInt(year.getText()),Integer.parseInt(month.getText()),Integer.parseInt(day.getText()));
+		        }catch(Exception exc){
+		        	stateBar.setText("请输入正确的日期格式");
+		        	return;
+		        }
 		        
 				vo.workSpace=new WorkSpace(place.getSelectedItem().toString(),placeNum.getText());
 				
-				vo.payment=new Payment(payWay.getSelectedItem().toString(),Double.parseDouble(payParameter.getText()));
-			
+				try{
+					vo.payment=new Payment(payWay.getSelectedItem().toString(),Double.parseDouble(payParameter.getText()));
+				}catch(Exception exc){
+					stateBar.setText("请输入正确的工资参数");
+					return;
+				}
+				
 				vo.name=name.getText();
 				
 				vo.user=account.getText();
@@ -99,7 +111,13 @@ public class StaffInfoUI extends JPanel{
 				
 				StaffBLService staffBL=BLFactory.getStaffBL();
 				
-				staffBL.newStaff(vo);
+				ResultMessage re=staffBL.newStaff(vo);
+				if(re.success){
+					stateBar.setText("添加成功");
+				}else{
+					stateBar.setText(re.info[0]);
+				}
+				
 				
 			}
 			
@@ -166,7 +184,12 @@ public class StaffInfoUI extends JPanel{
 		        
 				vo.workSpace=new WorkSpace(place.getSelectedItem().toString(),placeNum.getText());
 				
-				vo.payment=new Payment(payWay.getSelectedItem().toString(),Double.parseDouble(payParameter.getText()));
+				try{
+					vo.payment=new Payment(payWay.getSelectedItem().toString(),Double.parseDouble(payParameter.getText()));
+				}catch(Exception exc){
+					stateBar.setText("请输入正确的工资参数");
+					return;
+				}
 				
 				vo.user=account.getText();
 				
@@ -178,7 +201,13 @@ public class StaffInfoUI extends JPanel{
 				
 				StaffBLService staffBL=BLFactory.getStaffBL();
 				
-				staffBL.updateStaff(vo);
+				ResultMessage re=staffBL.updateStaff(vo);
+				
+				if(re.success){
+					stateBar.setText("更新成功");
+				}else{
+					stateBar.setText(re.info[0]);
+				}
 				
 			}
 			
@@ -275,7 +304,10 @@ public class StaffInfoUI extends JPanel{
 		
 		
 		String[] position={"快递员","营业厅业务员","中转中心业务员","中转中心仓库管理员","财务人员","总经理","管理员"};
-		role = new JComboBox<String>(position);
+		role = new JComboBox<String>();
+		for(int i=0;i<position.length;i++){
+			role.addItem(position[i]);
+		}
 		role.setBounds(96, 448, 226, 27);
 		role.setSelectedIndex(0);
 		add(role);
@@ -357,6 +389,10 @@ public class StaffInfoUI extends JPanel{
 		location.setBounds(147, 325, 394, 27);
 		add(location);
 		location.setColumns(10);
+		
+		stateBar = new JLabel("");
+		stateBar.setBounds(30, 607, 511, 21);
+		add(stateBar);
 		
 	}
 }

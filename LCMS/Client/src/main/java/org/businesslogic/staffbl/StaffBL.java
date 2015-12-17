@@ -14,23 +14,40 @@ import org.vo.StaffVO;
 public class StaffBL implements StaffBLService{
 
 	public ResultMessage newStaff(StaffVO vo) {
-		StaffPO po=new StaffPO(vo.staffRole,vo.name,vo.num,vo.gender,vo.birthday,
-				vo.location,vo.phone,vo.user,vo.bankAccount,vo.workSpace,vo.payment);
 		
-		System.out.println(po.getInfo());
 		StaffDataService staffData=null;
 		try {
 			staffData=RMIHelper.getDataFactory().getStaffData();
 			if(staffData==null){
-				String[] info={"连接错误","无法取得staffDataService"};
+				String[] info={"连接错误,无法取得staffDataService"};
 				return new ResultMessage(false,info);
 			}
-			return staffData.add(po);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		
+		try{
+			StaffPO temp=null;
+			temp=staffData.find(vo.num);
+			if(temp==null){
+				String[] info={"添加错误，已存在同编号的员工"};
+				return new ResultMessage(false,info);
+			}
+		}catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		StaffPO po=new StaffPO(vo.staffRole,vo.name,vo.num,vo.gender,vo.birthday,
+				vo.location,vo.phone,vo.user,vo.bankAccount,vo.workSpace,vo.payment);
+		try {
+			staffData.add(po);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			String[] info={"添加失败，数据端发生错误"};
+			return new ResultMessage(false,info);
+		}
+		
+		return new ResultMessage(true,null);
 	}
 
 	public ResultMessage deleteStaff(String num) {
@@ -38,33 +55,70 @@ public class StaffBL implements StaffBLService{
 		try {
 			staffData=RMIHelper.getDataFactory().getStaffData();
 			if(staffData==null){
-				String[] info={"连接错误","无法取得staffDataService"};
+				String[] info={"连接错误,无法取得staffDataService"};
 				return new ResultMessage(false,info);
 			}
-			return staffData.remove(num);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		
+		try{
+			StaffPO temp=null;
+			temp=staffData.find(num);
+			if(temp==null){
+				String[] info={"删除错误，不存在该编号的员工"};
+				return new ResultMessage(false,info);
+			}
+		}catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			staffData.remove(num);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			String[] info={"删除失败，数据端发生错误"};
+			return new ResultMessage(false,info);
+		}
+		
+		return new ResultMessage(true,null);
 	}
 
 	public ResultMessage updateStaff(StaffVO vo) {
-		StaffPO po=new StaffPO(vo.staffRole,vo.name,vo.num,vo.gender,vo.birthday,
-				vo.location,vo.phone,vo.user,vo.bankAccount,vo.workSpace,vo.payment);
+		
 		StaffDataService staffData=null;
 		try {
 			staffData=RMIHelper.getDataFactory().getStaffData();
 			if(staffData==null){
-				String[] info={"连接错误","无法取得staffDataService"};
+				String[] info={"连接错误,无法取得staffDataService"};
 				return new ResultMessage(false,info);
 			}
-			return staffData.update(po);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		
+		try{
+			StaffPO temp=null;
+			temp=staffData.find(vo.num);
+			if(temp==null){
+				String[] info={"更新错误，不存在该编号的员工"};
+				return new ResultMessage(false,info);
+			}
+		}catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		StaffPO po=new StaffPO(vo.staffRole,vo.name,vo.num,vo.gender,vo.birthday,
+				vo.location,vo.phone,vo.user,vo.bankAccount,vo.workSpace,vo.payment);
+		try {
+			staffData.add(po);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			String[] info={"更改失败，数据端发生错误"};
+			return new ResultMessage(false,info);
+		}
+		
+		return new ResultMessage(true,null);
 	}
 
 	public ArrayList<StaffVO> getAllStaff() {

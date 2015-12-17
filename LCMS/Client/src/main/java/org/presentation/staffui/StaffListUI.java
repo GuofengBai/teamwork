@@ -12,6 +12,7 @@ import javax.swing.JButton;
 
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.staffblservice.StaffBLService;
+import org.po.ResultMessage;
 import org.presentation.mainui.ViewController;
 import org.vo.StaffVO;
 
@@ -31,6 +32,7 @@ public class StaffListUI extends JPanel{
 	
 	private JTable table;
 	private DefaultTableModel model;
+	private JLabel stateBar;
 	
 	
 	public StaffListUI(JPanel su) {
@@ -54,6 +56,10 @@ public class StaffListUI extends JPanel{
 		JLabel label = new JLabel("\u5458\u5DE5\u5217\u8868");
 		label.setBounds(42, 37, 81, 21);
 		add(label);
+		
+		stateBar = new JLabel("");
+		stateBar.setBounds(42, 466, 433, 21);
+		add(stateBar);
 		
 		table.repaint();
 		
@@ -176,10 +182,15 @@ public class StaffListUI extends JPanel{
 				StaffBLService staffBL=BLFactory.getStaffBL();
 				int[] sel=table.getSelectedRows();
 				for(int i=sel.length-1;i>-1;i--){
-					System.out.println(sel[i]);
-					staffBL.deleteStaff((String)model.getValueAt(sel[i],2));
-					model.removeRow(sel[i]);
-					model.fireTableRowsDeleted(sel[i],sel[i]);
+					ResultMessage re=staffBL.deleteStaff((String)model.getValueAt(sel[i],2));
+					if(re.success){
+						model.removeRow(sel[i]);
+						model.fireTableRowsDeleted(sel[i],sel[i]);
+						stateBar.setText("删除成功");
+					}else{
+						stateBar.setText("删除失败");
+					}
+					
 				}
 				
 			}
