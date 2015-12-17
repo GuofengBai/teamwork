@@ -10,4 +10,6 @@ public interface NewHallDispatchBillsBLService {
 	public String searchTheGood(String goodNum);
 	
 	public ResultMessage updateHallDispatchBill(HDBVO vo);
+	
+	public String cherk(HDBVO vo);
 }

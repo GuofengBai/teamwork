@@ -8,5 +8,7 @@ public interface NewHallEntruckBillsBLService {
 	public ResultMessage addHallEntruckBills(HEBVO vo);
 	
 	public ResultMessage updateHallEntruckBills(HEBVO vo);
+	
+	public String cherk(HEBVO vo);
 
 }

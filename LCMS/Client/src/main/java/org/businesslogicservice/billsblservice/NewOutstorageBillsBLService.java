@@ -18,5 +18,7 @@ public interface NewOutstorageBillsBLService {
 	public CommodityVO creatVO(String goodNum);
 	
 	public ComPO creatPO(String goodNum);
+	
+	public String cherk(OBVO vo);
 
 }
