@@ -21,9 +21,6 @@ public class SendingBills extends BillsPO {
 	private myDate arriveDate;
 	private String ReceiverNameReal;
 
-	public SendingBills() {
-		super();
-	}
 
 	public SendingBills(String SenderName, String ReceiverName,
 			String SenderPhone, String ReceiverPhone, String SenderLocation,

@@ -10,10 +10,8 @@ import org.businesslogicservice.commodityblservice.CommodityInAndOutBLService;
 import org.dataservice.billsdataservice.BillsDataService;
 import org.dataservice.commoditydataservice.CommodityDataService;
 import org.po.ComPO;
-
 import org.po.OutstorageBills;
 import org.po.ResultMessage;
-
 import org.vo.CommodityVO;
 import org.vo.OBVO;
 
@@ -78,6 +76,20 @@ public class NewOutstorageBillsBL implements NewOutstorageBillsBLService{
 			e.printStackTrace();
 		}
 		return message;
+	}
+	public String cherk(OBVO vo) {
+		BillsDataService billsData;
+		try {
+			billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewOutstorageBillsData();
+			if(billsData.Used(vo.entruckNum)){
+				return "单据号已存在";
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "";
 	}
 
 

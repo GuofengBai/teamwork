@@ -3,16 +3,15 @@ package org.businesslogic.billsbl;
 import java.rmi.RemoteException;
 
 
+
 import org.Client.RMIHelper;
 import org.businesslogicservice.billsblservice.NewHallArriveBillsBLService;
 import org.dataservice.billsdataservice.BillsDataService;
 import org.dataservice.billsdataservice.NewSendingBillsDataService;
-
 import org.po.EXPRESSSTATE;
 import org.po.HallArrivingBills;
 import org.po.ResultMessage;
 import org.po.SendingBills;
-
 import org.po.StateListPO;
 
 
@@ -31,7 +30,7 @@ public class NewHallArriveBillsBL implements NewHallArriveBillsBLService{
 			sendingBillsData = RMIHelper.getDataFactory().getBillsDataFactory().getNewSendingBillsData();
 			for(StateListPO po:vo.list){
 				if(((SendingBills)sendingBillsData.findBills(po.getNum())).getState()==EXPRESSSTATE.TARGETCENTER)
-					((SendingBills)sendingBillsData.findBills(po.getNum())).setExpressState(EXPRESSSTATE.TARGETHALL);					
+					((NewSendingBillsDataService)sendingBillsData).updateExpressState(po.getNum(), EXPRESSSTATE.TARGETHALL);				
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -51,6 +50,21 @@ public class NewHallArriveBillsBL implements NewHallArriveBillsBLService{
 			e.printStackTrace();
 		}
 		return message;
+	}
+
+	public String cherk(HABVO vo) {
+		BillsDataService billsData;
+		try {
+			billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewHallArriveBillsData();
+			if(billsData.Used(vo.idNum)){
+				return "单据号已存在";
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "";
 	}
 
 }

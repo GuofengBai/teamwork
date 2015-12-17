@@ -3,11 +3,10 @@ package org.businesslogic.billsbl;
 import java.rmi.RemoteException;
 
 
-import org.Client.RMIHelper;
 
+import org.Client.RMIHelper;
 import org.businesslogicservice.billsblservice.NewCenterEntruckBillsBLService;
 import org.dataservice.billsdataservice.BillsDataService;
-
 import org.po.CenterEntruckBills;
 import org.po.ResultMessage;
 
@@ -46,6 +45,21 @@ public class NewCenterEntruckBillsBL implements NewCenterEntruckBillsBLService{
 			e.printStackTrace();
 		}
 		return message;
+	}
+
+	public String cherk(CEBVO vo) {
+		BillsDataService billsData;
+		try {
+			billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewCenterEntruckBillsData();
+			if(billsData.Used(vo.TrafficNum)){
+				return "单据号已存在";
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "";
 	}
 
 }

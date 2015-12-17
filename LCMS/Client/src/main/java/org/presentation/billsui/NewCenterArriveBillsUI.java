@@ -37,7 +37,9 @@ public class NewCenterArriveBillsUI extends JPanel {
 	private JTable table;
 	private JTextField GoodNum;
 	private JTextField CenterNum;
+	private JLabel suggest;
 	ArrayList<StateListPO> list = new ArrayList<StateListPO>();
+	NewCenterArriveBillsBLService bl = BLFactory.getNewCenterArriveBillsBL();
 
 	/**
 	 * Create the panel.
@@ -49,14 +51,40 @@ public class NewCenterArriveBillsUI extends JPanel {
 		JButton Submit = new JButton("提交");
 		Submit.setBounds(19, 257, 93, 23);
 		add(Submit);
+		
 		Submit.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				NewCenterArriveBillsBLService bl = BLFactory.getNewCenterArriveBillsBL();
+				
+				
+				//日期判断
+				for(int i=0;i<newyear.getText().length();i++){
+					if(newyear.getText().charAt(i)>'9'||newyear.getText().charAt(i)<'0'||i>=4){
+						suggest.setText("年份输入错误");
+						return;
+					}		
+				}
+				for(int i=0;i<newmonth.getText().length();i++){
+					if(newmonth.getText().charAt(i)>'9'||newmonth.getText().charAt(i)<'0'||i>=2){
+						suggest.setText("月份输入错误");
+						return;
+					}		
+				}
+				for(int i=0;i<newday.getText().length();i++){
+					if(newday.getText().charAt(i)>'9'||newday.getText().charAt(i)<'0'||i>=2){
+						suggest.setText("日期输入错误");
+						return;
+					}					
+				}
+				
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
 				CABVO bvo = new CABVO(date, CABNum.getText(), CenterNum.getText(), list);
-				bl.addCenterArriveBills(bvo);
+				suggest.setText(bl.cherk(bvo));
+				if(suggest.getText().equals("")){
+					bl.addCenterArriveBills(bvo);
+					suggest.setText("添加成功");					
+				}
 			}
 			
 		});
@@ -95,6 +123,10 @@ public class NewCenterArriveBillsUI extends JPanel {
 		JLabel lblNewLabel = new JLabel("\u5230\u8FBE\u65E5\u671F  ");
 		lblNewLabel.setBounds(19, 8, 60, 15);
 		add(lblNewLabel);
+		
+		suggest = new JLabel("");
+		suggest.setBounds(29, 290, 223, 15);
+		add(suggest);
 		
 		newyear = new JTextField();
 		newyear.setBounds(94, 5, 56, 21);
@@ -163,13 +195,17 @@ public class NewCenterArriveBillsUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				String num = GoodNum.getText();
-				String state = State.getSelectedItem().toString();
-				StateListVO item = new StateListVO(num,state);
-				StateListPO po = new StateListPO(num,state);
-				list.add(po);				
-				model.addRow(item);
-				GoodNum.setText("");
-				
+				if(bl.search(CABNum.getText(), GoodNum.getText())){
+					String state = State.getSelectedItem().toString();
+					StateListVO item = new StateListVO(num,state);
+					StateListPO po = new StateListPO(num,state);
+					list.add(po);				
+					model.addRow(item);
+					GoodNum.setText("");
+					suggest.setText("");
+				}else{
+					suggest.setText("输入的单号不存在");
+				}				
 			}
 			
 		});

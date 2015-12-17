@@ -40,6 +40,7 @@ public class NewHallDispatchBillsUI extends JPanel {
 	private JLabel label_6;
 	private JTextField idNum;
 	private JButton back;
+	private JLabel suggest;
 
 	/**
 	 * Create the panel.
@@ -52,14 +53,38 @@ public class NewHallDispatchBillsUI extends JPanel {
 		JButton submit = new JButton("提交");
 		submit.setBounds(20, 194, 93, 23);
 		add(submit);
+		
 		submit.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				NewHallDispatchBillsBLService bl = BLFactory.getNewHallDispatchBillsBL();
+				//日期判断
+				for(int i=0;i<newyear.getText().length();i++){
+					if(newyear.getText().charAt(i)>'9'||newyear.getText().charAt(i)<'0'||i>=4){
+						suggest.setText("年份输入错误");
+						return;
+					}		
+				}
+				for(int i=0;i<newmonth.getText().length();i++){
+					if(newmonth.getText().charAt(i)>'9'||newmonth.getText().charAt(i)<'0'||i>=2){
+						suggest.setText("月份输入错误");
+						return;
+					}		
+				}
+				for(int i=0;i<newday.getText().length();i++){
+					if(newday.getText().charAt(i)>'9'||newday.getText().charAt(i)<'0'||i>=2){
+						suggest.setText("日期输入错误");
+						return;
+					}					
+				}
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
 				HDBVO bvo = new HDBVO(date,idNum.getText(), name.getText(), goodNum.getText());
-				bl.newHallDispatchBill(bvo);
+				suggest.setText(bl.cherk(bvo));
+				if(suggest.getText().equals("")){
+					bl.newHallDispatchBill(bvo);
+					suggest.setText("添加成功");					
+				}
 			}
 			
 		});
@@ -96,6 +121,10 @@ public class NewHallDispatchBillsUI extends JPanel {
 	
 	private void panel(){
 		setLayout(null);
+		
+		suggest = new JLabel("");
+		suggest.setBounds(10, 227, 249, 15);
+		add(suggest);
 		
 		JLabel label = new JLabel("到达日期  ");
 		label.setBounds(10, 13, 60, 15);
@@ -187,10 +216,18 @@ public class NewHallDispatchBillsUI extends JPanel {
 				// TODO Auto-generated method stub
 				NewHallDispatchBillsBLService bl = BLFactory.getNewHallDispatchBillsBL();
 				String message = bl.searchTheGood(goodNum.getText());
+				if(message==null){
+					suggest.setText("托运单号不存在");
+					rname.setText("");
+					rphone.setText("");
+					rlocation.setText("");	
+					return;
+				}
 				String[] str = message.split(" ");
 				rname.setText(str[0]);
 				rphone.setText(str[1]);
-				rlocation.setText(str[2]);				
+				rlocation.setText(str[2]);	
+				suggest.setText("");
 			}
 			
 		});

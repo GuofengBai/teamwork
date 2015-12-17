@@ -7,7 +7,6 @@ import org.businesslogicservice.billsblservice.NewHallDispatchBillsBLService;
 import org.dataservice.billsdataservice.BillsDataService;
 import org.dataservice.billsdataservice.NewSendingBillsDataService;
 import org.po.EXPRESSSTATE;
-
 import org.po.HallDispatchBills;
 import org.po.ResultMessage;
 import org.po.SendingBills;
@@ -25,7 +24,7 @@ public class NewHallDispatchBillsBL implements NewHallDispatchBillsBLService{
 			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewHallDispatchBillsData();
 			message=billsData.addBills(new HallDispatchBills(vo.date,vo.idNum, vo.name, vo.GoodsNum));
 			sendingBillsData = RMIHelper.getDataFactory().getBillsDataFactory().getNewSendingBillsData();
-			((SendingBills)sendingBillsData.findBills(vo.GoodsNum)).setExpressState(EXPRESSSTATE.DISPATCH);				
+			((NewSendingBillsDataService)sendingBillsData).updateExpressState(vo.idNum, EXPRESSSTATE.DISPATCH);			
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -52,6 +51,9 @@ public class NewHallDispatchBillsBL implements NewHallDispatchBillsBLService{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		if(bill==null){
+			return null;
+		}
 		String name = bill.getReceiverName();
 		String phone = bill.getReceiverPhone();
 		String location = bill.getReceiverLocation();
@@ -69,6 +71,21 @@ public class NewHallDispatchBillsBL implements NewHallDispatchBillsBLService{
 			e.printStackTrace();
 		}
 		return message;
+	}
+
+	public String cherk(HDBVO vo) {
+		BillsDataService billsData;
+		try {
+			billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewHallDispatchBillsData();
+			if(billsData.Used(vo.idNum)){
+				return "单据号已存在";
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "";
 	}
 
 }

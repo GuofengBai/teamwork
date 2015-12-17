@@ -42,6 +42,7 @@ public class NewHallArriveBillsUI extends JPanel {
 	ArrayList<StateListPO> list = new ArrayList<StateListPO>();
 	private DefaultTableModel model;
 	private JTextField idNum;
+	private JLabel suggest;
 
 	/**
 	 * Create the panel.
@@ -54,14 +55,38 @@ public class NewHallArriveBillsUI extends JPanel {
 		JButton submit = new JButton("\u63D0\u4EA4");
 		submit.setBounds(20, 277, 93, 23);
 		add(submit);
+		
 		submit.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				//日期判断
+				for(int i=0;i<newyear.getText().length();i++){
+					if(newyear.getText().charAt(i)>'9'||newyear.getText().charAt(i)<'0'||i>=4){
+						suggest.setText("年份输入错误");
+						return;
+					}		
+				}
+				for(int i=0;i<newmonth.getText().length();i++){
+					if(newmonth.getText().charAt(i)>'9'||newmonth.getText().charAt(i)<'0'||i>=2){
+						suggest.setText("月份输入错误");
+						return;
+					}		
+				}
+				for(int i=0;i<newday.getText().length();i++){
+					if(newday.getText().charAt(i)>'9'||newday.getText().charAt(i)<'0'||i>=2){
+						suggest.setText("日期输入错误");
+						return;
+					}					
+				}
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
 				NewHallArriveBillsBLService bl = BLFactory.getNewHallArriveBillsBL();
 				HABVO bvo = new HABVO(date,idNum.getText(),startPlace.getText(),entruckNum.getText(),list);
-				bl.addHallArriveBills(bvo);
+				suggest.setText(bl.cherk(bvo));
+				if(suggest.getText().equals("")){
+					bl.addHallArriveBills(bvo);
+					suggest.setText("添加成功");					
+				}
 			}
 			
 		});
@@ -101,6 +126,10 @@ public class NewHallArriveBillsUI extends JPanel {
 		JLabel label = new JLabel("\u5230\u8FBE\u65E5\u671F  ");
 		label.setBounds(10, 13, 60, 15);
 		add(label);
+		
+		suggest = new JLabel("");
+		suggest.setBounds(10, 310, 249, 15);
+		add(suggest);
 		
 		newyear = new JTextField();
 		newyear.setBounds(75, 10, 66, 21);

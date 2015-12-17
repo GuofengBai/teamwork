@@ -3,9 +3,9 @@ package org.businesslogic.billsbl;
 import java.rmi.RemoteException;
 
 
+
 import org.Client.RMIHelper;
 import org.businesslogic.organizationbl.ManagerSettingBL;
-
 import org.businesslogicservice.billsblservice.NewCenterFreightBillsBLService;
 import org.dataservice.billsdataservice.BillsDataService;
 import org.dataservice.billsdataservice.NewSendingBillsDataService;
@@ -13,10 +13,8 @@ import org.po.CenterFreightBills;
 import org.po.EXPRESSSTATE;
 import org.po.ResultMessage;
 import org.po.SENDSTYPE;
-import org.po.SendingBills;
 import org.po.StateListPO;
 import org.po.TRANSPORTATION;
-
 import org.vo.CFBVO;
 
 
@@ -33,7 +31,7 @@ public class NewCenterFreightBillsBL implements NewCenterFreightBillsBLService{
 					vo.tramNum, vo.StartPlace, vo.EndPlace, vo.caseNum,
 					vo.Scoutername, vo.price, vo.send, vo.po));
 			for(StateListPO po:vo.po){
-				((SendingBills)sendingBillsData.findBills(po.getNum())).setExpressState(EXPRESSSTATE.LOCALTOTARGET);				
+				((NewSendingBillsDataService)sendingBillsData).updateExpressState(po.getNum(), EXPRESSSTATE.LOCALTOTARGET);
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -69,6 +67,21 @@ public class NewCenterFreightBillsBL implements NewCenterFreightBillsBLService{
 			e.printStackTrace();
 		}
 		return message;
+	}
+
+	public String cherk(CFBVO vo) {
+		BillsDataService billsData;
+		try {
+			billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewCenterFreightBillsData();
+			if(billsData.Used(vo.FreightNum)){
+				return "单据号已存在";
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "";
 	}
 
 }

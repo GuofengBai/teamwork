@@ -12,5 +12,7 @@ public interface NewCenterArriveBillsBLService {
 	public ResultMessage updateCenterArriveBills(CABVO vo);
 	
 	public String cherk(CABVO vo);
+	
+	public boolean search(String CABNum , String GoodNum);
 
 }

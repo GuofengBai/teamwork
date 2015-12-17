@@ -161,6 +161,7 @@ public class SendingBills extends BillsPO {
 	}
 	public void setExpressState(EXPRESSSTATE state){
 		this.expressState=state;
+		System.out.println("searvice");
 	}
 	
 	public EXPRESSSTATE getState(){

@@ -47,6 +47,7 @@ public class NewCenterEntruckBillsUI extends JPanel {
 	private JButton submit;
 	DefaultTableModel model;
 	private JButton back;
+	private JLabel suggest;
 
 	/**
 	 * Create the panel.
@@ -58,14 +59,38 @@ public class NewCenterEntruckBillsUI extends JPanel {
 		submit = new JButton("\u63D0\u4EA4");
 		submit.setBounds(10, 299, 93, 23);
 		add(submit);
+		
 		submit.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				NewCenterEntruckBillsBLService bl = BLFactory.getNewCenterEntruckBillsBL();
+				//日期判断
+				for(int i=0;i<newyear.getText().length();i++){
+					if(newyear.getText().charAt(i)>'9'||newyear.getText().charAt(i)<'0'||i>=4){
+						suggest.setText("年份输入错误");
+						return;
+					}		
+				}
+				for(int i=0;i<newmonth.getText().length();i++){
+					if(newmonth.getText().charAt(i)>'9'||newmonth.getText().charAt(i)<'0'||i>=2){
+						suggest.setText("月份输入错误");
+						return;
+					}		
+				}
+				for(int i=0;i<newday.getText().length();i++){
+					if(newday.getText().charAt(i)>'9'||newday.getText().charAt(i)<'0'||i>=2){
+						suggest.setText("日期输入错误");
+						return;
+					}					
+				}
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
 				CEBVO bvo = new CEBVO(date, entruckNum.getText(), hallNum.getText(), carNum.getText(), driverName.getText(), examerName.getText(), list);
-				bl.addCenterEntruckBills(bvo);
+				suggest.setText(bl.cherk(bvo));
+				if(suggest.getText().equals("")){
+					bl.addCenterEntruckBills(bvo);
+					suggest.setText("添加成功");					
+				}
 			}
 			
 		});		
@@ -104,6 +129,12 @@ public class NewCenterEntruckBillsUI extends JPanel {
 	
 	private void panel(){
 		setLayout(null);
+		
+		
+		suggest = new JLabel("");
+		suggest.setBounds(20, 332, 251, 15);
+		add(suggest);
+		
 		
 		JLabel label = new JLabel("\u88C5\u8F66\u65E5\u671F");
 		label.setBounds(10, 13, 48, 15);

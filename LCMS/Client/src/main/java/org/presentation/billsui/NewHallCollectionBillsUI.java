@@ -41,6 +41,7 @@ public class NewHallCollectionBillsUI extends JPanel {
 	private JLabel label_4;
 	private JTextField idNum;
 	private JButton back;
+	private JLabel suggest;
 
 	/**
 	 * Create the panel.
@@ -52,14 +53,38 @@ public class NewHallCollectionBillsUI extends JPanel {
 		submit = new JButton("提交");
 		submit.setBounds(20, 266, 93, 23);
 		add(submit);
+		
 		submit.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				//日期判断
+				for(int i=0;i<newyear.getText().length();i++){
+					if(newyear.getText().charAt(i)>'9'||newyear.getText().charAt(i)<'0'||i>=4){
+						suggest.setText("年份输入错误");
+						return;
+					}		
+				}
+				for(int i=0;i<newmonth.getText().length();i++){
+					if(newmonth.getText().charAt(i)>'9'||newmonth.getText().charAt(i)<'0'||i>=2){
+						suggest.setText("月份输入错误");
+						return;
+					}		
+				}
+				for(int i=0;i<newday.getText().length();i++){
+					if(newday.getText().charAt(i)>'9'||newday.getText().charAt(i)<'0'||i>=2){
+						suggest.setText("日期输入错误");
+						return;
+					}					
+				}
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
 				NewHallCollectBillsBLService bl = BLFactory.getNewHallCollectBillsBL();
 				HCBVO bvo = new HCBVO(date,idNum.getText(), name.getText(),total.getText(),list);
-				bl.addHallCollectionBills(bvo);
+				suggest.setText(bl.cherk(bvo));
+				if(suggest.getText().equals("")){
+					bl.addHallCollectionBills(bvo);
+					suggest.setText("添加成功");					
+				}
 			}
 			
 		});
@@ -95,6 +120,10 @@ public class NewHallCollectionBillsUI extends JPanel {
 	}
 	private void panel(){
 		setLayout(null);
+		
+		suggest = new JLabel("");
+		suggest.setBounds(10, 299, 249, 15);
+		add(suggest);
 		
 		JLabel label = new JLabel("收款日期  ");
 		label.setBounds(10, 13, 60, 15);

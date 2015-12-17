@@ -56,6 +56,7 @@ public class NewCenterFreightBillsUI extends JPanel {
 	private JComboBox<String> SendType;
 	private JTextField price;
 	private JButton back;
+	private JLabel suggest;
 
 	/**
 	 * Create the panel.
@@ -67,6 +68,7 @@ public class NewCenterFreightBillsUI extends JPanel {
 		JButton submit = new JButton("\u63D0\u4EA4");
 		submit.setBounds(61, 307, 93, 23);
 		add(submit);
+		
 		submit.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {
@@ -77,10 +79,33 @@ public class NewCenterFreightBillsUI extends JPanel {
 				}else if(SendType.getSelectedItem().equals("空运")){
 					send = SENDSTYPE.FAST;
 				}
+				
+				//日期判断
+				for(int i=0;i<newyear.getText().length();i++){
+					if(newyear.getText().charAt(i)>'9'||newyear.getText().charAt(i)<'0'||i>=4){
+						suggest.setText("年份输入错误");
+						return;
+					}		
+				}
+				for(int i=0;i<newmonth.getText().length();i++){
+					if(newmonth.getText().charAt(i)>'9'||newmonth.getText().charAt(i)<'0'||i>=2){
+						suggest.setText("月份输入错误");
+						return;
+					}		
+				}
+				for(int i=0;i<newday.getText().length();i++){
+					if(newday.getText().charAt(i)>'9'||newday.getText().charAt(i)<'0'||i>=2){
+						suggest.setText("日期输入错误");
+						return;
+					}					
+				}
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
 				NewCenterFreightBillsBLService bl = BLFactory.getNewCenterFreightBillsBL();
 				CFBVO bvo = new CFBVO(date, freightNum.getText(), craftNum.getText(), startPlace.getText(), endPlace.getText(), caseNum.getText(), personName.getText(),Long.parseLong(price.getText()),send,list);
-				bl.addCenterFreightBills(bvo);
+				if(suggest.getText().equals("")){
+					bl.addCenterFreightBills(bvo);
+					suggest.setText("添加成功");					
+				}
 			}
 			
 		});
@@ -103,10 +128,34 @@ public class NewCenterFreightBillsUI extends JPanel {
 				}else if(SendType.getSelectedItem().equals("空运")){
 					send = SENDSTYPE.FAST;
 				}
+				
+				//日期判断
+				for(int i=0;i<newyear.getText().length();i++){
+					if(newyear.getText().charAt(i)>'9'||newyear.getText().charAt(i)<'0'||i>=4){
+						suggest.setText("年份输入错误");
+						return;
+					}		
+				}
+				for(int i=0;i<newmonth.getText().length();i++){
+					if(newmonth.getText().charAt(i)>'9'||newmonth.getText().charAt(i)<'0'||i>=2){
+						suggest.setText("月份输入错误");
+						return;
+					}		
+				}
+				for(int i=0;i<newday.getText().length();i++){
+					if(newday.getText().charAt(i)>'9'||newday.getText().charAt(i)<'0'||i>=2){
+						suggest.setText("日期输入错误");
+						return;
+					}					
+				}
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
 				NewCenterFreightBillsBLService bl = BLFactory.getNewCenterFreightBillsBL();
 				CFBVO bvo = new CFBVO(date, freightNum.getText(), craftNum.getText(), startPlace.getText(), endPlace.getText(), caseNum.getText(), personName.getText(),Long.parseLong(price.getText()),send,list);
-				bl.updateCenterFreightBills(bvo);
+				suggest.setText(bl.cherk(bvo));
+				if(suggest.getText().equals("")){
+					bl.addCenterFreightBills(bvo);
+					suggest.setText("添加成功");					
+				}
 			}
 			
 		});
@@ -128,6 +177,10 @@ public class NewCenterFreightBillsUI extends JPanel {
 	
 	private void panel(){
 		setLayout(null);
+		
+		suggest = new JLabel("");
+		suggest.setBounds(10, 339, 298, 15);
+		add(suggest);
 		
 		JLabel label = new JLabel("\u88C5\u8F66\u65E5\u671F");
 		label.setBounds(10, 10, 54, 15);
@@ -278,7 +331,7 @@ public class NewCenterFreightBillsUI extends JPanel {
 					send = SENDSTYPE.FAST;
 				}
 				long Price = bl.getPrice(send, startPlace.getText(), endPlace.getText());
-				price.setText(String.valueOf(Price+"元"));
+				price.setText(String.valueOf(Price));
 			}
 			
 		});
