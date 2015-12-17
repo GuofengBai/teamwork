@@ -21,5 +21,6 @@ public interface BillsDataService extends Remote{
 	public Vector<Vector<String>> getAllInfo()throws RemoteException;
 	public ArrayList<BillsPO> getAll()throws RemoteException;
 	public ResultMessage save()throws RemoteException;
+	public boolean Used(String BillNum)throws RemoteException;
 }
  

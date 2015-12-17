@@ -40,6 +40,7 @@ public class NewSendingBillsUI extends JPanel {
 	private JTextField height;
 	private JTextField weight;
 	private JLabel presentvalue;
+	private JLabel suggest;
 	private JComboBox<String> sendtype;
 	private JComboBox<String> boxtype;
 	private JButton back;
@@ -72,10 +73,63 @@ public class NewSendingBillsUI extends JPanel {
 				}else if(sendtype.getSelectedItem().equals("特快")){
 					send = SENDSTYPE.FAST;
 				}
-				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
-				SBVO bvo = new SBVO(sendername.getText(), receivername.getText(), senderphone.getText(), receiverphone.getText(), senderlocation.getText(), receiverlocation.getText(), date, goodsnumber.getText(), box, send, length.getText(), width.getText(), height.getText(), weight.getText());
-				bl2.addSendingBills(bvo);
 				
+				
+				//日期判断
+				for(int i=0;i<newyear.getText().length();i++){
+					if(newyear.getText().charAt(i)>'9'||newyear.getText().charAt(i)<'0'||i>=4){
+						suggest.setText("年份输入错误");
+						return;
+					}		
+				}
+				for(int i=0;i<newmonth.getText().length();i++){
+					if(newmonth.getText().charAt(i)>'9'||newmonth.getText().charAt(i)<'0'||i>=2){
+						suggest.setText("月份输入错误");
+						return;
+					}		
+				}
+				for(int i=0;i<newday.getText().length();i++){
+					if(newday.getText().charAt(i)>'9'||newday.getText().charAt(i)<'0'||i>=2){
+						suggest.setText("日期输入错误");
+						return;
+					}					
+				}
+				
+				//规格判断
+				for(int i=0;i<length.getText().length();i++){
+					if(length.getText().charAt(i)>'9'||length.getText().charAt(i)<'0'){
+						suggest.setText("长度规格输入错误");
+						return;
+					}					
+				}
+				for(int i=0;i<width.getText().length();i++){
+					if(width.getText().charAt(i)>'9'||width.getText().charAt(i)<'0'){
+						suggest.setText("宽度规格输入错误");
+						return;
+					}					
+				}
+				for(int i=0;i<height.getText().length();i++){
+					if(height.getText().charAt(i)>'9'||height.getText().charAt(i)<'0'){
+						suggest.setText("高度规格输入错误");
+						return;
+					}					
+				}
+				for(int i=0;i<weight.getText().length();i++){
+					if(weight.getText().charAt(i)>'9'||weight.getText().charAt(i)<'0'){
+						suggest.setText("重量规格输入错误");
+						return;
+					}					
+				}
+				
+				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
+				SBVO bvo = new SBVO(sendername.getText(), receivername.getText(), senderphone.getText(), receiverphone.getText(), 
+						senderlocation.getText(), receiverlocation.getText(), date, goodsnumber.getText(), box, send, 
+						length.getText(), width.getText(), height.getText(), weight.getText());
+				suggest.setText(bl2.cherk(bvo));
+				if(suggest.getText().equals("")){
+					bl2.addSendingBills(bvo);
+					suggest.setText("添加成功");					
+				}
 			}
 			
 		});
@@ -310,7 +364,7 @@ public class NewSendingBillsUI extends JPanel {
 			}
 			
 		});
-		JLabel suggest = new JLabel("");
+		suggest = new JLabel("");
 		suggest.setBounds(21, 297, 289, 15);
 		add(suggest);
 		

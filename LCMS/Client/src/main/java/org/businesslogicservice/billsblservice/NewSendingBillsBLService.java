@@ -16,4 +16,5 @@ public interface NewSendingBillsBLService {
 	
 	public String searchState(String goodNum);
 	
+	public String cherk(SBVO vo);
 }

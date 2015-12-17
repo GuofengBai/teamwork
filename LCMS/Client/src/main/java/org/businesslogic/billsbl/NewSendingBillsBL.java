@@ -1,6 +1,7 @@
 package org.businesslogic.billsbl;
 
 import java.rmi.RemoteException;
+
 import org.Client.RMIHelper;
 import org.businesslogic.organizationbl.ManagerSettingBL;
 import org.businesslogicservice.billsblservice.NewSendingBillsBLService;
@@ -80,5 +81,20 @@ public class NewSendingBillsBL implements NewSendingBillsBLService{
 			e.printStackTrace();
 		}
 		return answer;
+	}
+
+	public String cherk(SBVO vo) {
+		BillsDataService billsData;
+		try {
+			billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewSendingBillsData();
+			if(billsData.Used(vo.goodsnumber)){
+				return "单据号已存在";
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "";
 	}	
 }

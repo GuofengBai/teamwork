@@ -222,5 +222,21 @@ public class BillsData extends UnicastRemoteObject implements BillsDataService{
 		return allList;
 	}
 
+	public boolean Used(String BillNum) throws RemoteException {
+		for(BillsPO po:list){
+			if(po.idNum.equals(BillNum)){
+				return true;
+			}
+		}
+		
+		for(BillsPO po:unExaminedList){
+			if(po.idNum.equals(BillNum)){
+				return true;
+			}
+		}
+		return false;
+		
+	}
+
 	
 }
