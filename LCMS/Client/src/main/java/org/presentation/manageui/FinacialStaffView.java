@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 
 import org.presentation.mainui.ViewController;
+import org.presentation.userui.UserUI;
 
 
 public class FinacialStaffView extends JPanel{
@@ -82,7 +83,13 @@ public class FinacialStaffView extends JPanel{
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				ViewController.jumpToAnotherView(superview);
+				if(superview==null){
+					UserUI ui=new UserUI();
+					ViewController.jumpToAnotherView(ui);
+				}else{
+					ViewController.jumpToAnotherView(superview);
+				}
+				
 			}
 			
 		});

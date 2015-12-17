@@ -2,6 +2,7 @@ package org.presentation.manageui;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -32,6 +33,7 @@ public class NewBeginAccountUI extends JPanel{
 	private JTextField nameField;
 	private JTextField balanceField;
 
+	private BeginAccountUI superview;
 	/**
 	 * Launch the application.
 	 */
@@ -53,6 +55,11 @@ public class NewBeginAccountUI extends JPanel{
 	 */
 	public NewBeginAccountUI() {
 		initialize();
+	}
+	
+	public NewBeginAccountUI(BeginAccountUI ui) {
+		initialize();
+		this.superview=ui;
 	}
 
 	/**
@@ -159,10 +166,17 @@ public class NewBeginAccountUI extends JPanel{
 			
 			if(message.success){
 				//页面跳转
-				BeginAccountUI ui=new BeginAccountUI();
-				ViewController.jumpToAnotherView(ui);
+//				if(superview==null){
+					BeginAccountUI ui=new BeginAccountUI();
+					ViewController.jumpToAnotherView(ui);
+//				}else{
+//					superview.initialize();
+//					superview.repaint();
+//					ViewController.jumpToAnotherView(superview);
+//				}
 			}else{
-				
+				 JOptionPane.showMessageDialog(null,"期初账单创建失败",null ,
+							JOptionPane.WARNING_MESSAGE);
 			}
 			
 		}
@@ -173,8 +187,15 @@ public class NewBeginAccountUI extends JPanel{
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			BeginAccountUI ui=new BeginAccountUI();
-			ViewController.jumpToAnotherView(ui);
+			
+			if(superview==null){
+				BeginAccountUI ui=new BeginAccountUI();
+				ViewController.jumpToAnotherView(ui);
+			}else{
+				
+				ViewController.jumpToAnotherView(superview);
+			}
+			
 		}
 		
 	}

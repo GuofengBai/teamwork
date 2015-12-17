@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import org.businesslogic.blFactory.BLFactory;
@@ -110,7 +111,11 @@ public class StatusTableUI extends JPanel{
 		Vector<String> paycolumn = new Vector<String>();
 		paycolumn.add("日期");
 		paycolumn.add("金额");
-		paycolumn.add("收款快递员");
+		paycolumn.add("付款人");
+		paycolumn.add("付款账号");
+		paycolumn.add("条目");
+		paycolumn.add("备注");
+		paycolumn.add("审批状态");
 		
 		incomeBillTable = new JTable(){
 			private static final long serialVersionUID = 1L;
@@ -119,6 +124,11 @@ public class StatusTableUI extends JPanel{
 				return false;
 			}
 		};
+		incomemodel=new DefaultTableModel(income,incolumn);
+		incomeBillTable.setModel(incomemodel);
+		incomeBillTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		incomeBillTable.setFillsViewportHeight(true);
+/**
 		incomeBillTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
@@ -129,7 +139,8 @@ public class StatusTableUI extends JPanel{
 				"\u65E5\u671F", "\u91D1\u989D"
 			}
 		));
-		incomeBillTable.setBounds(56, 96, 325, 95);
+*/
+	incomeBillTable.setBounds(56, 96, 325, 95);
 		//panel.add(table);
 		
 		JLabel lblNewLabel = new JLabel("\u6536\u6B3E\u5355");
@@ -151,6 +162,11 @@ public class StatusTableUI extends JPanel{
 				return false;
 			}
 		};
+		paymodel=new DefaultTableModel(payment,paycolumn);
+		PayingBillTable.setModel(paymodel);
+		PayingBillTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		PayingBillTable.setFillsViewportHeight(true);
+/**
 		PayingBillTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
@@ -162,6 +178,7 @@ public class StatusTableUI extends JPanel{
 				"\u65E5\u671F", "\u91D1\u989D"
 			}
 		));
+*/
 		PayingBillTable.setBounds(57, 270, 325, 99);
 		//panel.add(table_1);
 		
@@ -190,10 +207,16 @@ public class StatusTableUI extends JPanel{
 			payment=st.searchPayingBill(date1, date2);
 			
 			for(IncomeBillVO row:income){
-				incomemodel.addRow(row);
+				if(row!=null){
+					incomemodel.addRow(row);
+				}
+				
 			}
 			for(PayingBillVO row:payment){
-				paymodel.addRow(row);
+				if(row!=null){
+					paymodel.addRow(row);
+				}
+				
 			}
 			
 		}

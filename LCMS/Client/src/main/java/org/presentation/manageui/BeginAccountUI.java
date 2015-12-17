@@ -27,7 +27,7 @@ public class BeginAccountUI extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel panel = this;
+	private BeginAccountUI panel = this;
 	private JFrame frame;
 	private JTable table;
 	
@@ -64,7 +64,7 @@ public class BeginAccountUI extends JPanel{
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	public void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -147,7 +147,7 @@ public class BeginAccountUI extends JPanel{
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			NewBeginAccountUI ui=new NewBeginAccountUI();
+			NewBeginAccountUI ui=new NewBeginAccountUI(panel);
 			ViewController.jumpToAnotherView(ui);
 		}
 		

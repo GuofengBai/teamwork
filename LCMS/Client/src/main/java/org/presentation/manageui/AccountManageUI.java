@@ -47,6 +47,7 @@ public class AccountManageUI extends JPanel{
 	private Vector<BankAccountVO> searchtableContent;
 	DefaultTableModel searchmodel;
 	
+	private JPanel superview;
 	
 	
 	
@@ -72,11 +73,16 @@ public class AccountManageUI extends JPanel{
 	public AccountManageUI() {
 		initialize();
 	}
+	public AccountManageUI(JPanel ui) {
+		initialize();
+		this.superview=ui;
+		
+	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	public void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -310,8 +316,13 @@ public class AccountManageUI extends JPanel{
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			FinacialStaffView ui=new FinacialStaffView();
-			ViewController.jumpToAnotherView(ui);
+			if(superview==null){
+				FinacialStaffView ui=new FinacialStaffView();
+				ViewController.jumpToAnotherView(ui);
+			}else{
+				ViewController.jumpToAnotherView(superview);
+			}
+			
 		}
 		
 	}
