@@ -25,6 +25,11 @@ public class HallBL implements HallBLService{
 		    	return new ResultMessage(false,info);
 		    }
 		    
+		    if(vo.get(1).length()!=7){
+		    	String[] info={"编号错误！营业厅编号必须是7位"};
+		    	return new ResultMessage(false,info);
+		    }
+		    
 		    if(vo.get(1).charAt(3)=='0'){
 		    	String[] info={"编号错误！营业厅编号第四位应该是1"};
 		    	return new ResultMessage(false,info);
@@ -36,9 +41,9 @@ public class HallBL implements HallBLService{
 		    boolean isOK=false;
 		    String trueCityName=null;
 		    for(CenterVO co:list){
-		    	if((co.get(1).substring(0,3)).equals(vo.get(1).substring(0, 1))){
+		    	if((co.get(1).substring(0,3)).equals(vo.get(1).substring(0, 3))){
 		    		isOK=true;
-		    		trueCityName=co.get(2);
+		    		trueCityName=co.get(0);
 		    		break;
 		    	}
 		    }
@@ -61,7 +66,7 @@ public class HallBL implements HallBLService{
 			hallData.addHall(po);
 		} catch (RemoteException e) {
 			e.printStackTrace();
-			String[] info={"添加错误，数据段发生错误"};
+			String[] info={"添加错误，数据端发生错误"};
 	    	return new ResultMessage(false,info);
 		}
 		return new ResultMessage(true,null);

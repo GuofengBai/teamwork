@@ -25,11 +25,35 @@ public class CenterBL implements CenterBLService{
 				return new ResultMessage(false,info);
 			}
 			
+			if(vo.get(1).length()!=7){
+				String[] info={"中转中心编号必须是7位！"};
+				return new ResultMessage(false,info);
+			}
+			
+			if(vo.get(1).charAt(3)!='0'){
+				String[] info={"中转中心编号第四位必须是‘0’！"};
+				return new ResultMessage(false,info);
+			}
+			
 			CenterPO temp=centerData.findCenter(vo.get(1));
-			if(temp==null){
+			if(temp!=null){
 				String[] info={"添加错误，已存在该编号的中转中心"};
 				return new ResultMessage(false,info);
 			}
+			
+			Vector<CenterVO> list=getList();
+			for(CenterVO co:list){
+				if(co.get(1).substring(0,3).equals(vo.get(1).substring(0,3))){
+					String[] info={"区号（前三位）显示该城市已有中转中心！"};
+					return new ResultMessage(false,info);
+				}
+				if(co.get(0).equals(vo.get(0))){
+					String[] info={co.get(0)+"已有中转中心！"};
+					return new ResultMessage(false,info);
+				}
+			}
+			
+			
 			
 			CenterPO po=new CenterPO(vo.get(0),vo.get(1),vo.get(2));
 			centerData.addCenter(po);
