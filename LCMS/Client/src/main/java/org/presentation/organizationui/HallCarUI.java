@@ -152,10 +152,6 @@ public class HallCarUI extends JPanel {
 		separator_1.setBounds(24, 177, 849, 2);
 		add(separator_1);
 		
-		JButton jump = new JButton("返回");
-		jump.setBounds(801, 25, 72, 51);
-		add(jump);
-		
 		initModel();
 		initButton();
 

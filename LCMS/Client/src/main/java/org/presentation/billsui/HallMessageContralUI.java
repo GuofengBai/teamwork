@@ -47,7 +47,6 @@ public class HallMessageContralUI extends JPanel{
 		btnNewButton_1.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				JPanel next = new HallCarUI(temp);
 				ViewController.jumpToAnotherView(next);
 			}
