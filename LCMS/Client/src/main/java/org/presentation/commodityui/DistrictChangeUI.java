@@ -33,6 +33,7 @@ import java.util.List;
 import java.util.Vector;
 
 import javax.swing.JTextField;
+import java.awt.Font;
 
 public class DistrictChangeUI extends JPanel {
 	/**
@@ -94,7 +95,7 @@ public class DistrictChangeUI extends JPanel {
 		});
 		// 添加下拉框
 
-		ComBox1.setBounds(62, 56, 82, 25);
+		ComBox1.setBounds(81, 140, 102, 45);
 		this.add(ComBox1);
 	}
 	private void showTable() throws RemoteException{
@@ -135,7 +136,7 @@ public class DistrictChangeUI extends JPanel {
 		});
 		// 添加下拉框
 
-		ComBox2.setBounds(375, 56, 82, 25);
+		ComBox2.setBounds(364, 140, 102, 45);
 		this.add(ComBox2);
 	}
 
@@ -145,7 +146,7 @@ public class DistrictChangeUI extends JPanel {
 				.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setViewportBorder(UIManager.getBorder("Menu.border"));
 		scrollPane.setToolTipText("");
-		scrollPane.setBounds(62, 118, 507, 305);
+		scrollPane.setBounds(81, 375, 688, 447);
 		Vector<String> vColumns = new Vector<String>();
 		vColumns.add("货运编号");
 		vColumns.add("入库日期");
@@ -180,43 +181,43 @@ public class DistrictChangeUI extends JPanel {
 
 	public void initTo() {
 		JLabel label_4 = new JLabel("区");
-		label_4.setBounds(609, 117, 72, 18);
+		label_4.setBounds(81, 229, 72, 18);
 		add(label_4);
 
 		JLabel label_5 = new JLabel("排");
-		label_5.setBounds(609, 172, 72, 18);
+		label_5.setBounds(264, 229, 72, 18);
 		add(label_5);
 
 		JLabel label_6 = new JLabel("架");
-		label_6.setBounds(609, 232, 72, 18);
+		label_6.setBounds(452, 229, 72, 18);
 		add(label_6);
 
 		JLabel label_7 = new JLabel("位");
-		label_7.setBounds(609, 286, 72, 18);
+		label_7.setBounds(644, 229, 72, 18);
 		add(label_7);
 
 		QU = new JTextField();
-		QU.setBounds(696, 114, 86, 24);
+		QU.setBounds(119, 226, 86, 24);
 		add(QU);
 		QU.setColumns(10);
 
 		PAI = new JTextField();
-		PAI.setBounds(696, 169, 86, 24);
+		PAI.setBounds(305, 226, 86, 24);
 		add(PAI);
 		PAI.setColumns(10);
 
 		JIA = new JTextField();
-		JIA.setBounds(696, 229, 86, 24);
+		JIA.setBounds(494, 226, 86, 24);
 		add(JIA);
 		JIA.setColumns(10);
 
 		WEI = new JTextField();
-		WEI.setBounds(696, 286, 86, 24);
+		WEI.setBounds(683, 226, 86, 24);
 		add(WEI);
 		WEI.setColumns(10);
 
 		JLabel label_8 = new JLabel("区排架位各为1位整数");
-		label_8.setBounds(669, 367, 148, 18);
+		label_8.setBounds(81, 297, 148, 18);
 		add(label_8);
 	}
 
@@ -278,7 +279,8 @@ public class DistrictChangeUI extends JPanel {
 		setLayout(null);
 
 		JLabel label = new JLabel("库区调整");
-		label.setBounds(222, 30, 74, 25);
+		label.setFont(new Font("宋体", Font.PLAIN, 40));
+		label.setBounds(354, 25, 160, 118);
 		add(label);
 
 		// JComboBox comboBox = new JComboBox();
@@ -288,18 +290,18 @@ public class DistrictChangeUI extends JPanel {
 		// add(comboBox);
 
 		JLabel label_1 = new JLabel("移至");
-		label_1.setBounds(253, 68, 72, 18);
+		label_1.setBounds(279, 153, 72, 18);
 		add(label_1);
 		String result=null;
 		SettingAlertBLService sabs=BLFactory.getSettingAlertBL();
 		result=String.valueOf(sabs.getAlert(centerNum))+"%";
 		JLabel label_2 = new JLabel("仓库已使用");
-		label_2.setBounds(487, 59, 82, 18);
+		label_2.setBounds(509, 156, 82, 18);
 		add(label_2);
 
 		JLabel label_3 = new JLabel(" ");
 		label_3.setText(result);
-		label_3.setBounds(583, 59, 72, 18);
+		label_3.setBounds(605, 156, 72, 18);
 		add(label_3);
 
 		JButton button = new JButton("返回");
@@ -308,7 +310,7 @@ public class DistrictChangeUI extends JPanel {
 				ViewController.jumpToAnotherView(superpanel);
 			}
 		});
-		button.setBounds(669, 436, 113, 27);
+		button.setBounds(712, 64, 102, 45);
 		add(button);
 
 		JButton btnNewButton = new JButton("确定");
@@ -322,7 +324,7 @@ public class DistrictChangeUI extends JPanel {
 				}
 			}
 		});
-		btnNewButton.setBounds(669, 55, 113, 27);
+		btnNewButton.setBounds(669, 297, 102, 45);
 		add(btnNewButton);
 
 	}

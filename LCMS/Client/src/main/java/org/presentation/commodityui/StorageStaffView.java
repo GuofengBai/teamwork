@@ -15,6 +15,7 @@ import org.vo.StaffVO;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.rmi.RemoteException;
+import java.awt.Font;
 
 public class StorageStaffView extends JPanel {
 	private JPanel panel = this;
@@ -38,7 +39,7 @@ public class StorageStaffView extends JPanel {
 
 			}
 		});
-		btnNewButton.setBounds(135, 88, 113, 27);
+		btnNewButton.setBounds(190, 186, 200, 80);
 		add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("库存盘点");
@@ -48,7 +49,7 @@ public class StorageStaffView extends JPanel {
 				ViewController.jumpToAnotherView(ui);
 			}
 		});
-		btnNewButton_1.setBounds(135, 155, 113, 27);
+		btnNewButton_1.setBounds(190, 353, 200, 80);
 		add(btnNewButton_1);
 
 		JButton btnNewButton_2 = new JButton("设置警报");
@@ -64,7 +65,7 @@ public class StorageStaffView extends JPanel {
 				ViewController.jumpToAnotherView(ui);
 			}
 		});
-		btnNewButton_2.setBounds(135, 222, 113, 27);
+		btnNewButton_2.setBounds(190, 517, 200, 80);
 		add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("库存调整");
@@ -80,7 +81,7 @@ public class StorageStaffView extends JPanel {
 				ViewController.jumpToAnotherView(UI);
 			}
 		});
-		btnNewButton_3.setBounds(398, 222, 113, 27);
+		btnNewButton_3.setBounds(525, 517, 200, 80);
 		add(btnNewButton_3);
 
 		
@@ -98,7 +99,8 @@ public class StorageStaffView extends JPanel {
 		setLayout(null);
 
 		JLabel label = new JLabel("中转中心仓库管理员");
-		label.setBounds(231, 26, 142, 18);
+		label.setFont(new Font("宋体", Font.PLAIN, 40));
+		label.setBounds(264, 26, 360, 147);
 		add(label);
 		
 		JButton btnNewButton_4 = new JButton("入库");
@@ -108,7 +110,7 @@ public class StorageStaffView extends JPanel {
 				ViewController.jumpToAnotherView(ui);
 			}
 		});
-		btnNewButton_4.setBounds(398, 88, 113, 27);
+		btnNewButton_4.setBounds(525, 186, 200, 80);
 		add(btnNewButton_4);
 		
 		JButton button = new JButton("出库");
@@ -118,7 +120,7 @@ public class StorageStaffView extends JPanel {
 				ViewController.jumpToAnotherView(ui);
 			}
 		});
-		button.setBounds(398, 155, 113, 27);
+		button.setBounds(525, 353, 200, 80);
 		add(button);
 
 		JButton button1 = new JButton("登出");
@@ -127,7 +129,7 @@ public class StorageStaffView extends JPanel {
 				ViewController.jumpToAnotherView(newpanel);
 			}
 		});
-		button1.setBounds(429, 334, 113, 27);
+		button1.setBounds(643, 740, 102, 45);
 		add(button1);
 
 	}
