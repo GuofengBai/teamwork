@@ -15,24 +15,28 @@ import org.po.ResultMessage;
 import org.vo.CommodityVO;
 import org.vo.OBVO;
 
-public class NewOutstorageBillsBL implements NewOutstorageBillsBLService{
+public class NewOutstorageBillsBL implements NewOutstorageBillsBLService {
 
 	public ResultMessage addOutstorageBills(OBVO vo) {
 		// TODO Auto-generated method stub
-		ResultMessage message=null;
+		ResultMessage message = null;
 		try {
-			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewOutstorageBillsData();
-			message=billsData.addBills(new OutstorageBills(vo.date, vo.centerNum, vo.entruckNum, vo.list));
+			BillsDataService billsData = RMIHelper.getDataFactory()
+					.getBillsDataFactory().getNewOutstorageBillsData();
+			message = billsData.addBills(new OutstorageBills(vo.date,
+					vo.centerNum, vo.entruckNum, vo.list));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return message;
 	}
-	public void deleteCommodity(ArrayList<ComPO> list){
-		CommodityInAndOutBLService commodityInAndOutBL = BLFactory.getCommodityInAndOutBL();
-		
-		for(int i=0;i<list.size();i++){
+
+	public void deleteCommodity(ArrayList<ComPO> list) {
+		CommodityInAndOutBLService commodityInAndOutBL = BLFactory
+				.getCommodityInAndOutBL();
+
+		for (int i = 0; i < list.size(); i++) {
 			try {
 				commodityInAndOutBL.Commodityout(list.get(i));
 			} catch (RemoteException e1) {
@@ -41,15 +45,19 @@ public class NewOutstorageBillsBL implements NewOutstorageBillsBLService{
 			}
 		}
 	}
+
 	public CommodityVO creatVO(String goodNum) {
-		// TODO Auto-generated method stub		
+		// TODO Auto-generated method stub
 		ComPO cpo = creatPO(goodNum);
-		CommodityVO cvo = new CommodityVO(cpo.getGoodsNum(),cpo.getinDate(),cpo.getplace(),cpo.LocationNum(),cpo.getArea(),cpo.getcenterNum());
+		CommodityVO cvo = new CommodityVO(cpo.getGoodsNum(), cpo.getinDate(),
+				cpo.getplace(), cpo.LocationNum(), cpo.getArea(),
+				cpo.getcenterNum());
 		return cvo;
 	}
+
 	public ComPO creatPO(String goodNum) {
 		// TODO Auto-generated method stub
-		CommodityDataService service=null;
+		CommodityDataService service = null;
 		ComPO cpo = null;
 		try {
 			service = RMIHelper.getDataFactory().getCommodityData();
@@ -65,32 +73,46 @@ public class NewOutstorageBillsBL implements NewOutstorageBillsBLService{
 		}
 		return cpo;
 	}
+
 	public ResultMessage updateOutstorageBills(OBVO vo) {
 		// TODO Auto-generated method stub
-		ResultMessage message=null;
+		ResultMessage message = null;
 		try {
-			BillsDataService billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewOutstorageBillsData();
-			message=billsData.updateBills(vo.centerNum, new OutstorageBills(vo.date, vo.centerNum, vo.entruckNum, vo.list));
+			BillsDataService billsData = RMIHelper.getDataFactory()
+					.getBillsDataFactory().getNewOutstorageBillsData();
+			message = billsData.updateBills(vo.centerNum, new OutstorageBills(
+					vo.date, vo.centerNum, vo.entruckNum, vo.list));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return message;
 	}
+
 	public String cherk(OBVO vo) {
 		BillsDataService billsData;
+		CommodityDataService ComData;
 		try {
-			billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewOutstorageBillsData();
-			if(billsData.Used(vo.entruckNum)){
+			billsData = RMIHelper.getDataFactory().getBillsDataFactory()
+					.getNewOutstorageBillsData();
+			ComData = RMIHelper.getDataFactory().getCommodityData();
+			if (billsData.Used(vo.entruckNum)) {
 				return "单据号已存在";
+			}
+			for (ComPO po : vo.list) {
+				if (!ComData.findCom(po.getGoodsNum()).equals("")
+						&& ComData.findCom(po.getGoodsNum()).getcenterNum()
+								.equals(vo.centerNum)) {
+					return "托运单已经使用过";
+				}
+				return "";
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return "";
 	}
-
 
 }

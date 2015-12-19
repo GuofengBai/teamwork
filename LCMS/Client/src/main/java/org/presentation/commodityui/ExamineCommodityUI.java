@@ -30,6 +30,7 @@ import org.vo.StaffVO;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class ExamineCommodityUI extends JPanel {
 	/**
@@ -103,20 +104,22 @@ public class ExamineCommodityUI extends JPanel {
 
 	public void initDate() {
 		JLabel label = new JLabel("开始日期");
-		label.setBounds(90, 47, 72, 18);
+		label.setFont(new Font("宋体", Font.PLAIN, 22));
+		label.setBounds(126, 162, 110, 41);
 		add(label);
 
 		JLabel label_1 = new JLabel("结束日期");
-		label_1.setBounds(90, 86, 72, 18);
+		label_1.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_1.setBounds(126, 216, 110, 39);
 		add(label_1);
 
 		textField = new JTextField();
-		textField.setBounds(210, 45, 154, 24);
+		textField.setBounds(238, 173, 154, 24);
 		add(textField);
 		textField.setColumns(10);
 
 		textField_1 = new JTextField();
-		textField_1.setBounds(210, 84, 154, 24);
+		textField_1.setBounds(238, 226, 154, 24);
 		add(textField_1);
 		textField_1.setColumns(10);
 	}
@@ -127,7 +130,7 @@ public class ExamineCommodityUI extends JPanel {
 				.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setViewportBorder(UIManager.getBorder("Menu.border"));
 		scrollPane.setToolTipText("");
-		scrollPane.setBounds(90, 121, 482, 218);
+		scrollPane.setBounds(81, 282, 733, 486);
 		Vector<String> vColumns = new Vector<String>();
 		vColumns.add("仓库");
 		vColumns.add("开始日期");
@@ -165,7 +168,8 @@ public class ExamineCommodityUI extends JPanel {
 		setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("库存查看");
-		lblNewLabel.setBounds(249, 10, 74, 25);
+		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 40));
+		lblNewLabel.setBounds(354, 25, 160, 118);
 		add(lblNewLabel);
 
 		JButton button = new JButton("查看");
@@ -179,7 +183,7 @@ public class ExamineCommodityUI extends JPanel {
 				}
 			}
 		});
-		button.setBounds(329, 367, 113, 27);
+		button.setBounds(457, 217, 102, 45);
 		add(button);
 
 		JButton button_1 = new JButton("返回");
@@ -188,11 +192,12 @@ public class ExamineCommodityUI extends JPanel {
 				ViewController.jumpToAnotherView(superpanel);
 			}
 		});
-		button_1.setBounds(500, 367, 113, 27);
+		button_1.setBounds(712, 64, 102, 45);
 		add(button_1);
 
 		JLabel label = new JLabel("格式:2015/1/29");
-		label.setBounds(396, 64, 176, 18);
+		label.setFont(new Font("宋体", Font.PLAIN, 22));
+		label.setBounds(457, 169, 193, 27);
 		add(label);
 
 	}

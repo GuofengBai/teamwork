@@ -40,6 +40,7 @@ import org.po.myDate;
 import org.presentation.mainui.ViewController;
 import org.vo.CommodityVO;
 import org.vo.StaffVO;
+import java.awt.Font;
 
 public class CheckCommodityUI extends JPanel {
 	/**
@@ -76,7 +77,7 @@ public class CheckCommodityUI extends JPanel {
 				.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setViewportBorder(UIManager.getBorder("Menu.border"));
 		scrollPane.setToolTipText("");
-		scrollPane.setBounds(53, 82, 482, 218);
+		scrollPane.setBounds(81, 222, 733, 546);
 		Vector<String> vColumns = new Vector<String>();
 		vColumns.add("货运编号");
 		vColumns.add("入库日期");
@@ -90,6 +91,7 @@ public class CheckCommodityUI extends JPanel {
 		Vector<CommodityVO> vData = new Vector<CommodityVO>();
 
 		model = new DefaultTableModel(vData, vColumns);
+		this.add(scrollPane);
 		table = new JTable(model) {
 			private static final long serialVersionUID = 1L;
 
@@ -97,12 +99,11 @@ public class CheckCommodityUI extends JPanel {
 				return false;
 			}
 		};
+		scrollPane.setViewportView(table);
 		//model.addRow(cvo);
 		table.getSelectionModel().setSelectionMode(
 				ListSelectionModel.SINGLE_SELECTION);
-		scrollPane.getViewport().add(table);
 		table.setFillsViewportHeight(true);
-		this.add(scrollPane);
 	}
 
 	/**
@@ -118,7 +119,8 @@ public class CheckCommodityUI extends JPanel {
 		setLayout(null);
 		initTable();
 		JLabel label = new JLabel("\u5E93\u5B58\u76D8\u70B9");
-		label.setBounds(222, 30, 74, 25);
+		label.setFont(new Font("宋体", Font.PLAIN, 40));
+		label.setBounds(354, 25, 160, 118);
 		add(label);
 
 		JButton btnNewButton = new JButton("返回");
@@ -127,7 +129,7 @@ public class CheckCommodityUI extends JPanel {
 				ViewController.jumpToAnotherView(superpanel);
 			}
 		});
-		btnNewButton.setBounds(422, 328, 113, 27);
+		btnNewButton.setBounds(712, 64, 102, 45);
 		add(btnNewButton);
 
 		JButton button = new JButton("开始");
@@ -141,7 +143,7 @@ public class CheckCommodityUI extends JPanel {
 				}
 			}
 		});
-		button.setBounds(422, 29, 113, 27);
+		button.setBounds(712, 142, 102, 45);
 		add(button);
 
 	}

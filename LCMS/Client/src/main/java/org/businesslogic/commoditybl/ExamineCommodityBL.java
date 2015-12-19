@@ -20,8 +20,7 @@ public class ExamineCommodityBL implements ExamineCommodityBLService {
 	private CommodityDataService cds;
 
 	/**
-	 * 通过检查两个时间内的所有的出库单、入库单和货物信息获得入库数量、出库数量和当前数量 
-	 * 返回可显示格式
+	 * 通过检查两个时间内的所有的出库单、入库单和货物信息获得入库数量、出库数量和当前数量 返回可显示格式
 	 */
 	public Vector<ExamineVO> examineCommodity(myDate timestart, myDate timeend,
 			String centerNum) throws RemoteException {
@@ -47,7 +46,11 @@ public class ExamineCommodityBL implements ExamineCommodityBLService {
 					InstorageBills temp = (InstorageBills) bills;
 					ArrayList<ComPO> list = temp.getlist();
 					for (ComPO po : list) {
-						if (po.getArea().equals(area1))
+						if (po.getArea().equals(area1)
+								&& (po.getinDate().compareTo(timestart) == -1 || po
+										.getinDate().compareTo(timestart) == 0)
+								&& (po.getinDate().compareTo(timeend) == 1 || po
+										.getinDate().compareTo(timestart) == 0))
 							inNum++;
 					}
 				}
@@ -60,7 +63,11 @@ public class ExamineCommodityBL implements ExamineCommodityBLService {
 					OutstorageBills temp = (OutstorageBills) bills;
 					ArrayList<ComPO> list = temp.getlist();
 					for (ComPO po : list) {
-						if (po.getArea().equals(area1))
+						if (po.getArea().equals(area1)
+								&& (po.getinDate().compareTo(timestart) == -1 || po
+										.getinDate().compareTo(timestart) == 0)
+								&& (po.getinDate().compareTo(timeend) == 1 || po
+										.getinDate().compareTo(timestart) == 0))
 							outNum++;
 					}
 				}
@@ -89,8 +96,10 @@ public class ExamineCommodityBL implements ExamineCommodityBLService {
 	public ExamineCommodityBL() throws RemoteException {
 		cds = RMIHelper.getDataFactory().getCommodityData();
 	}
+
 	/**
 	 * 获得当前库区的列表，返回给显示层
+	 * 
 	 * @param centerNum
 	 * @return
 	 * @throws RemoteException
