@@ -75,6 +75,18 @@ public class UserBL implements UserBLService {
 		}
 		
 		try{
+			Vector<UserVO> list=getList();
+			for(UserVO uo:list){
+				if(uo.get(1).equals(po.getNumber())){
+					String[] info={"添加错误，已存在与该员工关联的账号"+uo.get(0)};
+					return new ResultMessage(false,info);
+				}
+			}
+		}catch(Exception exc){
+			exc.printStackTrace();
+		}
+		
+		try{
 			uds.insert(po);
 		}catch(Exception exc){
 			exc.printStackTrace();

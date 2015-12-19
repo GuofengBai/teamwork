@@ -1,5 +1,4 @@
 package org.presentation.manageui;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
@@ -29,6 +28,7 @@ public class StatusTableUI extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel panel = this;
+	private JPanel superView;
 	private JFrame frame;
 	private JTextField beginDateField;
 	private JTextField endDateField;
@@ -40,26 +40,12 @@ public class StatusTableUI extends JPanel{
 	DefaultTableModel paymodel;
 	private Vector<IncomeBillVO> income;
 	private Vector<PayingBillVO> payment;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					StatusTableUI window = new StatusTableUI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the application.
 	 */
-	public StatusTableUI() {
+	public StatusTableUI(JPanel su) {
+		this.superView=su;
 		initialize();
 	}
 
@@ -140,7 +126,7 @@ public class StatusTableUI extends JPanel{
 			}
 		));
 */
-	incomeBillTable.setBounds(56, 96, 325, 95);
+	    incomeBillTable.setBounds(56, 96, 325, 95);
 		//panel.add(table);
 		
 		JLabel lblNewLabel = new JLabel("\u6536\u6B3E\u5355");
@@ -226,9 +212,7 @@ public class StatusTableUI extends JPanel{
 	class backButtonListener implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			FinacialStaffView ui=new FinacialStaffView();
-			ViewController.jumpToAnotherView(ui);
+			ViewController.jumpToAnotherView(superView);
 		}
 		
 	}

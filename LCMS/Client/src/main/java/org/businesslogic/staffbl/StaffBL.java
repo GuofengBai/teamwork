@@ -5,10 +5,16 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 import org.Client.RMIHelper;
+import org.businesslogic.blFactory.BLFactory;
+import org.businesslogicservice.organizationblservice.CenterBLService;
+import org.businesslogicservice.organizationblservice.HallBLService;
 import org.businesslogicservice.staffblservice.StaffBLService;
 import org.dataservice.staffdataservice.StaffDataService;
 import org.po.ResultMessage;
+import org.po.STAFFROLE;
 import org.po.StaffPO;
+import org.vo.CenterVO;
+import org.vo.HallVO;
 import org.vo.StaffVO;
 
 public class StaffBL implements StaffBLService{
@@ -35,6 +41,38 @@ public class StaffBL implements StaffBLService{
 			}
 		}catch (RemoteException e) {
 			e.printStackTrace();
+		}
+		
+		if(vo.staffRole==STAFFROLE.FINANCIALSTAFF||vo.staffRole==STAFFROLE.GENERALMANAGER
+				||vo.staffRole==STAFFROLE.ADMINISTRATOR){
+			if(!vo.workSpace.type.equals("总部")){
+				String[] info={"财务人员、总经理、管理员的工作地点必须是总部（此时忽略地点编号）!"};
+				return new ResultMessage(false,info);
+			}
+		}else if(vo.staffRole==STAFFROLE.COURIER||vo.staffRole==STAFFROLE.HALLSTAFF){
+			if(!vo.workSpace.type.equals("营业厅")){
+				String[] info={"快递员、营业厅业务员的工作地点必须是营业厅!"};
+				return new ResultMessage(false,info);
+			}
+			
+			HallBLService hall=BLFactory.getHallBL();
+			HallVO hv=hall.findHall(vo.workSpace.num);
+			if(hv==null){
+				String[] info={"不存在编号为"+vo.workSpace.num+"的营业厅!"};
+				return new ResultMessage(false,info);
+			}
+		}else{
+			if(!vo.workSpace.type.equals("中转中心")){
+				String[] info={"中转中心业务员、仓库管理员的工作地点必须是中转中心!"};
+				return new ResultMessage(false,info);
+			}
+			
+			CenterBLService center=BLFactory.getCenterBL();
+			CenterVO cv=center.findCenter(vo.workSpace.num);
+			if(cv==null){
+				String[] info={"不存在编号为"+vo.workSpace.num+"的中转中心!"};
+				return new ResultMessage(false,info);
+			}
 		}
 		
 		StaffPO po=new StaffPO(vo.staffRole,vo.name,vo.num,vo.gender,vo.birthday,
@@ -108,6 +146,38 @@ public class StaffBL implements StaffBLService{
 			e.printStackTrace();
 		}
 		
+		if(vo.staffRole==STAFFROLE.FINANCIALSTAFF||vo.staffRole==STAFFROLE.GENERALMANAGER
+				||vo.staffRole==STAFFROLE.ADMINISTRATOR){
+			if(!vo.workSpace.type.equals("总部")){
+				String[] info={"财务人员、总经理、管理员的工作地点必须是总部（此时忽略地点编号）!"};
+				return new ResultMessage(false,info);
+			}
+		}else if(vo.staffRole==STAFFROLE.COURIER||vo.staffRole==STAFFROLE.HALLSTAFF){
+			if(!vo.workSpace.type.equals("营业厅")){
+				String[] info={"快递员、营业厅业务员的工作地点必须是营业厅!"};
+				return new ResultMessage(false,info);
+			}
+			
+			HallBLService hall=BLFactory.getHallBL();
+			HallVO hv=hall.findHall(vo.workSpace.num);
+			if(hv==null){
+				String[] info={"不存在编号为"+vo.workSpace.num+"的营业厅!"};
+				return new ResultMessage(false,info);
+			}
+		}else{
+			if(!vo.workSpace.type.equals("中转中心")){
+				String[] info={"中转中心业务员、仓库管理员的工作地点必须是中转中心!"};
+				return new ResultMessage(false,info);
+			}
+			
+			CenterBLService center=BLFactory.getCenterBL();
+			CenterVO cv=center.findCenter(vo.workSpace.num);
+			if(cv==null){
+				String[] info={"不存在编号为"+vo.workSpace.num+"的中转中心!"};
+				return new ResultMessage(false,info);
+			}
+		}
+		
 		StaffPO po=new StaffPO(vo.staffRole,vo.name,vo.num,vo.gender,vo.birthday,
 				vo.location,vo.phone,vo.user,vo.bankAccount,vo.workSpace,vo.payment);
 		try {
@@ -146,8 +216,12 @@ public class StaffBL implements StaffBLService{
 				//String[] info={"连接错误","无法取得staffDataService"};
 				return null;
 			}
-			StaffVO vo=new StaffVO(staffData.find(num));
-			return vo;
+			StaffPO po=staffData.find(num);
+			if(po!=null){
+				return new StaffVO(po);
+			}else{
+				return null;
+			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

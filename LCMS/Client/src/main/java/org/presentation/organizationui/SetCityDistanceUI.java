@@ -19,6 +19,7 @@ import org.businesslogicservice.organizationblservice.ManagerSettingBLService;
 import org.po.CityAndDistancePO;
 import org.presentation.mainui.ViewController;
 import javax.swing.JTextField;
+import java.awt.Font;
 
 public class SetCityDistanceUI extends JPanel{
 	
@@ -41,49 +42,50 @@ public class SetCityDistanceUI extends JPanel{
 		setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(43, 128, 441, 248);
+		scrollPane.setBounds(63, 178, 780, 367);
 		add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
 		JLabel label = new JLabel("\u8BBE\u7F6E\u57CE\u5E02\u8DDD\u79BB");
-		label.setBounds(190, 72, 117, 21);
+		label.setFont(new Font("宋体", Font.PLAIN, 40));
+		label.setBounds(306, 77, 262, 66);
 		add(label);
 		
 		JButton button = new JButton("\u8FD4\u56DE");
-		button.setBounds(404, 23, 123, 29);
+		button.setBounds(816, 25, 69, 52);
 		add(button);
 		
 		JLabel lbla = new JLabel("城市A");
-		lbla.setBounds(43, 406, 81, 21);
+		lbla.setBounds(262, 599, 81, 21);
 		add(lbla);
 		
 		cityA = new JTextField();
-		cityA.setBounds(110, 403, 117, 27);
+		cityA.setBounds(335, 596, 117, 27);
 		add(cityA);
 		cityA.setColumns(10);
 		
 		JLabel lblb = new JLabel("城市B");
-		lblb.setBounds(262, 406, 81, 21);
+		lblb.setBounds(467, 599, 81, 21);
 		add(lblb);
 		
 		cityB = new JTextField();
-		cityB.setBounds(325, 403, 129, 27);
+		cityB.setBounds(529, 596, 129, 27);
 		add(cityB);
 		cityB.setColumns(10);
 		
 		JLabel label_1 = new JLabel("新距离");
-		label_1.setBounds(43, 462, 81, 21);
+		label_1.setBounds(262, 674, 81, 21);
 		add(label_1);
 		
 		newDistance = new JTextField();
-		newDistance.setBounds(110, 459, 197, 27);
+		newDistance.setBounds(335, 671, 323, 27);
 		add(newDistance);
 		newDistance.setColumns(10);
 		
 		stateBar = new JLabel("");
-		stateBar.setBounds(43, 508, 441, 21);
+		stateBar.setBounds(63, 840, 780, 21);
 		add(stateBar);
 		button.addActionListener(new ActionListener(){
 
@@ -96,7 +98,7 @@ public class SetCityDistanceUI extends JPanel{
 		initModel();
 		
 		JButton submit = new JButton("修改");
-		submit.setBounds(335, 458, 123, 29);
+		submit.setBounds(388, 743, 123, 52);
 		add(submit);
 		submit.addActionListener(new ActionListener() {
 			

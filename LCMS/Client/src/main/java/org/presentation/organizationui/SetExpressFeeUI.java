@@ -14,6 +14,7 @@ import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.organizationblservice.ManagerSettingBLService;
 import org.po.SENDSTYPE;
 import org.presentation.mainui.ViewController;
+import java.awt.Font;
 
 public class SetExpressFeeUI extends JPanel{
 	/**
@@ -31,24 +32,25 @@ public class SetExpressFeeUI extends JPanel{
 		setLayout(null);
 		
 		JLabel label = new JLabel("\u8BBE\u7F6E\u6807\u51C6\u8FD0\u8D39");
-		label.setBounds(153, 45, 119, 21);
+		label.setFont(new Font("宋体", Font.PLAIN, 40));
+		label.setBounds(330, 150, 247, 81);
 		add(label);
 		
 		JLabel label_1 = new JLabel("快递方式");
-		label_1.setBounds(29, 116, 81, 21);
+		label_1.setBounds(270, 441, 81, 21);
 		add(label_1);
 		
 		JLabel label_2 = new JLabel("\u65B0\u8FD0\u8D39");
-		label_2.setBounds(29, 190, 81, 21);
+		label_2.setBounds(270, 549, 81, 21);
 		add(label_2);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(144, 187, 154, 27);
+		textField_1.setBounds(423, 546, 154, 27);
 		add(textField_1);
 		textField_1.setColumns(10);
 		
 		comboBox = new JComboBox<String>();
-		comboBox.setBounds(144, 113, 154, 27);
+		comboBox.setBounds(423, 438, 154, 27);
 		comboBox.addItem("经济快递");
 		comboBox.addItem("普通快递");
 		comboBox.addItem("次晨特快");
@@ -56,11 +58,11 @@ public class SetExpressFeeUI extends JPanel{
 		add(comboBox);
 		
 		stateBar = new JLabel("");
-		stateBar.setBounds(53, 328, 332, 21);
+		stateBar.setBounds(60, 780, 771, 21);
 		add(stateBar);
 		
 		JButton button = new JButton("\u63D0\u4EA4");
-		button.setBounds(149, 256, 123, 29);
+		button.setBounds(377, 637, 123, 63);
 		add(button);
 		button.addActionListener(new ActionListener(){
 
@@ -97,7 +99,7 @@ public class SetExpressFeeUI extends JPanel{
 		});
 		
 		JButton button_1 = new JButton("返回");
-		button_1.setBounds(366, 15, 69, 29);
+		button_1.setBounds(796, 41, 69, 53);
 		add(button_1);
 		button_1.addActionListener(new ActionListener(){
 

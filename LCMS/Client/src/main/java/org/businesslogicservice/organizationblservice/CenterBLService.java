@@ -24,6 +24,13 @@ public interface CenterBLService {
 	 * @return 返回更新是否成功
 	 */
 	public ResultMessage updateCenter(CenterVO vo);
+	
+	/**
+	 * 
+	 * @param CenterNum
+	 * @return
+	 */
+	public CenterVO findCenter(String CenterNum);
 	/**
 	 * 获得中转中心列表
 	 * @return 返回列表

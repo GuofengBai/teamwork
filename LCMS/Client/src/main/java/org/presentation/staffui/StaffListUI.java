@@ -20,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.Font;
 
 public class StaffListUI extends JPanel{
 	
@@ -54,11 +55,12 @@ public class StaffListUI extends JPanel{
         initButton();
 		
 		JLabel label = new JLabel("\u5458\u5DE5\u5217\u8868");
-		label.setBounds(42, 37, 81, 21);
+		label.setFont(new Font("宋体", Font.PLAIN, 40));
+		label.setBounds(357, 111, 169, 74);
 		add(label);
 		
 		stateBar = new JLabel("");
-		stateBar.setBounds(42, 466, 433, 21);
+		stateBar.setBounds(65, 841, 770, 21);
 		add(stateBar);
 		
 		table.repaint();
@@ -71,7 +73,7 @@ public class StaffListUI extends JPanel{
 		System.out.println("初始化table");
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(42, 87, 433, 280);
+		scrollPane.setBounds(65, 234, 770, 479);
 		add(scrollPane);
 		
 		table=new JTable();
@@ -161,7 +163,7 @@ public class StaffListUI extends JPanel{
 			}
 			
 		});
-		button.setBounds(352, 33, 123, 29);
+		button.setBounds(793, 33, 69, 58);
 		add(button);
 		
 		JButton button_1 = new JButton("\u65B0\u589E\u5458\u5DE5");
@@ -171,11 +173,11 @@ public class StaffListUI extends JPanel{
 				ViewController.jumpToAnotherView(next);
 			}
 		});
-		button_1.setBounds(109, 400, 123, 29);
+		button_1.setBounds(236, 757, 123, 51);
 		add(button_1);
 		
 		JButton button_2 = new JButton("\u5220\u9664\u5458\u5DE5");
-		button_2.setBounds(279, 400, 123, 29);
+		button_2.setBounds(531, 757, 123, 51);
 		button_2.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {

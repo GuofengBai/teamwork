@@ -136,4 +136,19 @@ public class HallBL implements HallBLService{
 		return vList;
 	}
 
+	public HallVO findHall(String HallNum) {
+		try {
+			HallDataService hallData=RMIHelper.getDataFactory().getOrganizationDataFactory().getHallData();
+		    HallPO po=hallData.findHall(HallNum);
+		    if(po!=null){
+		    	return new HallVO(po);
+		    }else{
+		    	return null;
+		    }
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

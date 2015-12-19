@@ -145,5 +145,20 @@ public class CenterBL implements CenterBLService{
 		return vList;
 	}
 
+	public CenterVO findCenter(String CenterNum) {
+		try {
+			CenterDataService centerData=RMIHelper.getDataFactory().getOrganizationDataFactory().getCenterData();
+		    CenterPO po=centerData.findCenter(CenterNum);
+		    if(po!=null){
+		    	return new CenterVO(po);
+		    }else{
+		    	return null;
+		    }
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 
 }

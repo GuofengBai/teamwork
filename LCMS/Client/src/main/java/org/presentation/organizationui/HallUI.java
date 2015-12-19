@@ -22,6 +22,7 @@ import org.vo.HallVO;
 
 import java.awt.Color;
 import java.util.Vector;
+import java.awt.Font;
 
 
 public class HallUI extends JPanel {
@@ -53,7 +54,7 @@ public class HallUI extends JPanel {
         setLayout(null);
         
         JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(24, 219, 524, 171);
+		scrollPane.setBounds(60, 387, 775, 362);
 		add(scrollPane);
 		
 		table = new JTable();
@@ -61,56 +62,57 @@ public class HallUI extends JPanel {
 		
 		JSeparator separator = new JSeparator();
 		separator.setForeground(Color.BLACK);
-		separator.setBounds(18, 212, 540, 2);
+		separator.setBounds(18, 370, 856, 2);
 		add(separator);
 		
 		JLabel lblNewLabel_2 = new JLabel("详细地址");
-		lblNewLabel_2.setBounds(24, 139, 81, 21);
+		lblNewLabel_2.setBounds(60, 213, 81, 21);
 		add(lblNewLabel_2);
 		
 		location = new JTextField();
-		location.setBounds(129, 139, 420, 25);
+		location.setBounds(165, 211, 670, 25);
 		add(location);
 		location.setColumns(10);
 		
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setForeground(Color.BLACK);
-		separator_1.setBounds(18, 80, 540, 2);
+		separator_1.setBounds(18, 126, 856, 2);
 		add(separator_1);
 		
 		JLabel lblNewLabel = new JLabel("营业厅管理");
-		lblNewLabel.setBounds(224, 15, 108, 25);
+		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 40));
+		lblNewLabel.setBounds(341, 42, 206, 53);
 		add(lblNewLabel);
 		
 		JLabel label = new JLabel("营业厅名称");
-		label.setBounds(24, 106, 108, 18);
+		label.setBounds(60, 157, 108, 18);
 		add(label);
 		
 		hallName = new JTextField();
-		hallName.setBounds(129, 103, 121, 24);
+		hallName.setBounds(183, 154, 229, 24);
 		add(hallName);
 		hallName.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("营业厅编号");
-		lblNewLabel_1.setBounds(287, 106, 108, 18);
+		lblNewLabel_1.setBounds(439, 157, 108, 18);
 		add(lblNewLabel_1);
 		
 		hallNum = new JTextField();
-		hallNum.setBounds(397, 103, 150, 24);
+		hallNum.setBounds(562, 154, 273, 24);
 		add(hallNum);
 		hallNum.setColumns(10);
 		
 		JLabel label_1 = new JLabel("所在城市");
-		label_1.setBounds(24, 175, 72, 18);
+		label_1.setBounds(60, 269, 72, 18);
 		add(label_1);
 		
 		cityName = new JTextField();
-		cityName.setBounds(129, 172, 121, 24);
+		cityName.setBounds(165, 266, 670, 24);
 		add(cityName);
 		cityName.setColumns(10);
 		
 		stateBar = new JLabel("");
-		stateBar.setBounds(24, 469, 524, 21);
+		stateBar.setBounds(60, 843, 775, 21);
 		add(stateBar);
 		
 		initModel();
@@ -120,7 +122,7 @@ public class HallUI extends JPanel {
 
 	private void initButton() {
 		JButton jump = new JButton("返回");
-		jump.setBounds(416, 37, 114, 28);
+		jump.setBounds(805, 28, 69, 53);
 		add(jump);
 		jump.addActionListener(new ActionListener(){
 
@@ -132,7 +134,7 @@ public class HallUI extends JPanel {
 		});
 		
 		JButton submit = new JButton("新增");
-		submit.setBounds(457, 175, 87, 25);
+		submit.setBounds(748, 311, 87, 44);
 		add(submit);
 		submit.addActionListener(new ActionListener(){
 
@@ -155,7 +157,7 @@ public class HallUI extends JPanel {
 		
 		
 		JButton del = new JButton("删除");
-		del.setBounds(224, 405, 123, 29);
+		del.setBounds(385, 764, 123, 44);
 		add(del);
 		del.addActionListener(new ActionListener(){
 

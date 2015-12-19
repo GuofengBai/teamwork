@@ -24,6 +24,13 @@ public interface HallBLService {
 	 * @return 返回更新是否成功
 	 */
 	public ResultMessage updateHall(HallVO vo);
+	
+	/**
+	 * 
+	 * @param HallNum
+	 * @return
+	 */
+	public HallVO findHall(String HallNum);
 	/**
 	 * 获得营业厅列表
 	 * @return 返回列表

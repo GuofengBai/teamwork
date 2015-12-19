@@ -1,5 +1,4 @@
 package org.presentation.manageui;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,31 +19,17 @@ public class IncomeTableUI extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel panel = this;
+	private JPanel superView;
 	private JFrame frame;
 	private long income=0;
 	private long payment=0;
 	private long earning=0;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					IncomeTableUI window = new IncomeTableUI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the application.
 	 */
-	public IncomeTableUI() {
+	public IncomeTableUI(JPanel su) {
+		this.superView=su;
 		initialize();
 	}
 
@@ -107,8 +92,7 @@ public class IncomeTableUI extends JPanel{
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			FinacialStaffView ui=new FinacialStaffView();
-			ViewController.jumpToAnotherView(ui);
+			ViewController.jumpToAnotherView(superView);
 		}
 		
 	}
