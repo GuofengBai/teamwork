@@ -32,7 +32,7 @@ public class IncomeManagementUI extends JPanel{
 	private JTextField searchDate;
 	private JTextField searchHall;
 	private JTable table;
-	
+	private JPanel superview;
 	
 	private Vector<IncomeBillVO> volist;
 	DefaultTableModel model;
@@ -59,7 +59,10 @@ public class IncomeManagementUI extends JPanel{
 	public IncomeManagementUI() {
 		initialize();
 	}
-
+	public IncomeManagementUI(JPanel ui) {
+		initialize();
+		this.superview=ui;
+	}
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -195,8 +198,12 @@ public class IncomeManagementUI extends JPanel{
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			FinacialStaffView ui=new FinacialStaffView();
-			ViewController.jumpToAnotherView(ui);
+			if(superview==null){
+				FinacialStaffView ui=new FinacialStaffView();
+				ViewController.jumpToAnotherView(ui);
+			}else{
+				ViewController.jumpToAnotherView(superview);
+			}
 		}
 		
 	}

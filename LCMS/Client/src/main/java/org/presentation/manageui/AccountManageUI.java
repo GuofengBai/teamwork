@@ -42,6 +42,7 @@ public class AccountManageUI extends JPanel{
 	private JButton searchButton;
 	private JButton changeButton;
 	
+	private JLabel statusLabel;
 	private Vector<BankAccountVO> tableContent;
 	DefaultTableModel model;
 	private Vector<BankAccountVO> searchtableContent;
@@ -92,6 +93,7 @@ public class AccountManageUI extends JPanel{
 		panel.setBounds(0, 0, 434, 662);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
+		setLayout(null);
 		
 		JLabel label = new JLabel("\u8D26\u6237\u7BA1\u7406");
 		label.setBounds(183, 10, 54, 15);
@@ -174,8 +176,8 @@ public class AccountManageUI extends JPanel{
 		panel.add(label_4);
 		
 		namepartField = new JTextField();
-		namepartField.setText("\u8BF7\u8F93\u5165\u5173\u952E\u5B57");
 		namepartField.setBounds(79, 447, 123, 21);
+		namepartField.setText("\u8BF7\u8F93\u5165\u5173\u952E\u5B57");
 		panel.add(namepartField);
 		namepartField.setColumns(10);
 		
@@ -232,6 +234,11 @@ public class AccountManageUI extends JPanel{
 		changeButton.setBounds(263, 249, 93, 23);
 		panel.add(changeButton);
 		changeButton.addActionListener(new changeButtonListener());
+		
+		statusLabel = new JLabel("");
+		statusLabel.setBounds(114, 393, 123, 15);
+		add(statusLabel);
+		
 	}
 	
 	
@@ -240,14 +247,22 @@ public class AccountManageUI extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			String name=accountNameField.getText();
+			
+			if(name.equals("")){
+				statusLabel.setText("账户名不能为空");
+				return;
+			}
 			BankAccountVO account=new BankAccountVO(name,0);
 			AccountManagementBLService ambl=BLFactory.getAccountManagementBL();
+			
 			ResultMessage message=ambl.addAccount(name);
 			
 			if(message.success){
 				model.addRow(account);
 				accountNameField.setText("");
+				statusLabel.setText("");
 			}else{
+				statusLabel.setText("账户已存在");
 				System.out.println(message.info);
 			}
 			
@@ -268,7 +283,7 @@ public class AccountManageUI extends JPanel{
 			if(message.success){
 				model.removeRow(dex);
 			}else{
-				System.out.println(message.info);
+				statusLabel.setText("账户名不存在");
 			}
 			
 		}
@@ -289,7 +304,7 @@ public class AccountManageUI extends JPanel{
 			if(message.success){
 				model.setValueAt(newName, dex, 0);
 			}else{
-				System.out.println(message.info);
+				statusLabel.setText("账户名已存在");
 			}
 			
 		}
@@ -326,5 +341,4 @@ public class AccountManageUI extends JPanel{
 		}
 		
 	}
-	
 }

@@ -34,6 +34,7 @@ public class StatusTableUI extends JPanel{
 	private JTextField endDateField;
 	private JTable incomeBillTable;
 	private JTable PayingBillTable;
+	private JLabel statusLabel;
 	
 	
 	DefaultTableModel incomemodel;
@@ -61,6 +62,7 @@ public class StatusTableUI extends JPanel{
 		panel.setBounds(0, 0, 434, 412);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
+		setLayout(null);
 		
 		JButton backButton = new JButton("\u8FD4\u56DE");
 		backButton.setBounds(331, 379, 93, 23);
@@ -175,6 +177,10 @@ public class StatusTableUI extends JPanel{
 		JButton searchButton = new JButton("搜索");
 		searchButton.setBounds(168, 75, 93, 23);
 		panel.add(searchButton);
+		
+		statusLabel = new JLabel("");
+		statusLabel.setBounds(168, 105, 141, 15);
+		add(statusLabel);
 		searchButton.addActionListener(new searchButtonListener());
 	}
 	
@@ -182,6 +188,8 @@ public class StatusTableUI extends JPanel{
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
+			if(isValid()){
+			statusLabel.setText("");
 			String beginDate=beginDateField.getText();
 			String endDate=endDateField.getText();
 			
@@ -205,6 +213,30 @@ public class StatusTableUI extends JPanel{
 				
 			}
 			
+			}
+			
+		}
+		public boolean isValid(){
+			boolean valid=true;
+			String date1=beginDateField.getText();
+			String date2=endDateField.getText();
+			if(date1.equals("")||date2.equals("")){
+				statusLabel.setText("日期不应为空");
+				valid=false;
+			}else if(isNum(date1)==false||isNum(date2)==false||date1.length()!=8||date2.length()!=8){
+				statusLabel.setText("日期格式错误");
+				valid=false;
+			}
+			
+			return valid;
+		}
+		public boolean isNum(String s){
+			for(int i=0;i<s.length();i++){
+				if(!(s.charAt(i)<='9'&&s.charAt(i)>='0')){
+					return false;
+				}
+			}
+			return true;
 		}
 		
 	}

@@ -32,6 +32,7 @@ public class NewBeginAccountUI extends JPanel{
 	private JTextField storageField;
 	private JTextField nameField;
 	private JTextField balanceField;
+	private JLabel statusLabel;
 
 	private BeginAccountUI superview;
 	/**
@@ -75,6 +76,7 @@ public class NewBeginAccountUI extends JPanel{
 		panel.setBounds(0, 0, 434, 262);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
+		setLayout(null);
 		
 		JLabel label = new JLabel("\u65B0\u5EFA\u671F\u521D\u8D26\u5355");
 		label.setBounds(172, 10, 78, 15);
@@ -115,6 +117,10 @@ public class NewBeginAccountUI extends JPanel{
 		lblNewLabel_1.setBounds(48, 159, 54, 15);
 		panel.add(lblNewLabel_1);
 		
+		statusLabel = new JLabel("");
+		statusLabel.setBounds(141, 204, 132, 15);
+		panel.add(statusLabel);
+		
 		JLabel label_5 = new JLabel("\u4F59\u989D");
 		label_5.setBounds(231, 159, 54, 15);
 		panel.add(label_5);
@@ -154,6 +160,8 @@ public class NewBeginAccountUI extends JPanel{
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
+			
+			if(isValid()){
 			String organization=organizationField.getText();
 			int people=Integer.parseInt(presonNumField.getText());
 			int car=Integer.parseInt(carNumField.getText());
@@ -166,21 +174,48 @@ public class NewBeginAccountUI extends JPanel{
 			
 			if(message.success){
 				//页面跳转
-//				if(superview==null){
+				if(superview==null){
 					BeginAccountUI ui=new BeginAccountUI();
 					ViewController.jumpToAnotherView(ui);
-//				}else{
-//					superview.initialize();
-//					superview.repaint();
-//					ViewController.jumpToAnotherView(superview);
-//				}
+				}else{
+					BeginAccountUI ui=new BeginAccountUI(superview.superview);
+					ViewController.jumpToAnotherView(ui);
+				}
 			}else{
 				 JOptionPane.showMessageDialog(null,"期初账单创建失败",null ,
 							JOptionPane.WARNING_MESSAGE);
 			}
 			
+			}
 		}
-		
+		public boolean isValid(){
+			boolean valid=true;
+			String organization=organizationField.getText();
+			String people=presonNumField.getText();
+			String car=carNumField.getText();
+			String storage=storageField.getText();
+			String accountName=nameField.getText();
+			String balance=balanceField.getText();
+			
+			if(organization.equals("")||people.equals("")||car.equals("")||storage.equals("")||accountName.equals("")
+					||balance.equals("")){
+				valid=false;
+				statusLabel.setText("有项目为空");
+			}else if(isNum(people)==false||isNum(car)==false||isNum(storage)==false||isNum(balance)==false){
+				valid=false;
+				statusLabel.setText("人员车辆库存金额均应为数字");
+			}
+			
+			return valid;
+		}
+		public boolean isNum(String s){
+			for(int i=0;i<s.length();i++){
+				if(!(s.charAt(i)<='9'&&s.charAt(i)>='0')){
+					return false;
+				}
+			}
+			return true;
+		}
 	}
 	
 	class cancelButtonListener implements ActionListener{

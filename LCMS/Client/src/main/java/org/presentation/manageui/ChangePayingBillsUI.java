@@ -8,8 +8,9 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 
-import org.businesslogic.blFactory.BLFactory;
 
+import org.businesslogic.blFactory.BLFactory;
+import org.businesslogicservice.billsblservice.NewPayingBillsBLService;
 import org.businesslogicservice.manageblservice.CostManagementBLService;
 import org.po.PayingBills;
 import org.po.ResultMessage;
@@ -33,14 +34,17 @@ public class ChangePayingBillsUI extends JPanel {
 	private JButton addButton;
 	private JTextField remarkField;
 	private JButton backButton;
-	
+	private JLabel statusLabel;
 	private String index;
+	
+	private CostManageUI superview;
 	/**
 	 * Create the panel.
 	 */
-	public ChangePayingBillsUI(String index) {
+	public ChangePayingBillsUI(String index,CostManageUI us) {
 		setLayout(null);
 		this.index=index;
+		this.superview=us;
 		
 		JLabel label = new JLabel("付款日期");
 		label.setBounds(10, 13, 48, 15);
@@ -115,6 +119,10 @@ public class ChangePayingBillsUI extends JPanel {
 		remarkField.setBounds(80, 189, 219, 21);
 		add(remarkField);
 		remarkField.setColumns(10);
+		
+		statusLabel = new JLabel("");
+		statusLabel.setBounds(75, 220, 176, 15);
+		add(statusLabel);
 
 	}
 	
@@ -122,6 +130,9 @@ public class ChangePayingBillsUI extends JPanel {
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
+			boolean valid=isValid();
+			if(valid){
+			
 			int year=Integer.parseInt(yearField.getText());
 			int month=Integer.parseInt(monthField.getText());
 			int day=Integer.parseInt(dayField.getText());
@@ -131,18 +142,53 @@ public class ChangePayingBillsUI extends JPanel {
 			String item=itemField.getText();
 			long money=Long.parseLong(moneyField.getText());
 			String remark=remarkField.getText();
+			
 			String idNum=date.toString()+String.valueOf(money);
 			
 			PayingBills bill=new PayingBills(date,name,accountName,item,money,remark,idNum);
 			
-			CostManagementBLService billBL=BLFactory.getCostManagementBL();
+			NewPayingBillsBLService billBL=BLFactory.getNewPayingBillsBL();
 			
-			ResultMessage message=billBL.changeBill(index, bill);
+			ResultMessage message=billBL.addPayingBills(bill);
 			
+
 			CostManageUI ui=new CostManageUI();
 			ViewController.jumpToAnotherView(ui);
+			}else{
+				
+			}
 			
+		}
+		public boolean isValid(){
+			boolean valid=true;
+			String year=yearField.getText();
+			String month=monthField.getText();
+			String day=dayField.getText();
+			String name=nameField.getText();
+			String accountName=accountField.getText();
+			String item=itemField.getText();
+			String money=moneyField.getText();
+			String remark=remarkField.getText();
 			
+			if(year.equals("")||month.equals("")||day.equals("")||name.equals("")||accountName.equals("")
+					||item.equals("")||money.equals("")){
+				valid=false;
+				statusLabel.setText("有项目为空");
+			}else if(isNum(year)==false||isNum(month)==false||isNum(day)==false||isNum(money)==false){
+				valid=false;
+				statusLabel.setText("日期及金额应为数字");
+			}
+			
+			return valid;
+		}
+		
+		public boolean isNum(String s){
+			for(int i=0;i<s.length();i++){
+				if(!(s.charAt(i)<='9'&&s.charAt(i)>='0')){
+					return false;
+				}
+			}
+			return true;
 		}
 		
 	}
@@ -150,7 +196,7 @@ public class ChangePayingBillsUI extends JPanel {
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			CostManageUI ui=new CostManageUI();
+			CostManageUI ui=new CostManageUI(superview.superview);
 			ViewController.jumpToAnotherView(ui);
 		}
 		
