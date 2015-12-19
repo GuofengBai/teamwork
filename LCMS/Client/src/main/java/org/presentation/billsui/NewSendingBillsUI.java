@@ -15,6 +15,8 @@ import org.po.SENDSTYPE;
 import org.po.myDate;
 import org.presentation.mainui.ViewController;
 import org.vo.SBVO;
+import java.awt.Color;
+import java.awt.SystemColor;
 
 
 public class NewSendingBillsUI extends JPanel {
@@ -51,6 +53,7 @@ public class NewSendingBillsUI extends JPanel {
 	 */
 
 	public NewSendingBillsUI(JPanel superview) {
+		setBackground(SystemColor.menu);
 		this.superview = superview;
 		panel();
 		JButton submit = new JButton("\u63D0\u4EA4");
@@ -187,27 +190,27 @@ public class NewSendingBillsUI extends JPanel {
 		setLayout(null);
 		
 		JLabel label = new JLabel("\u5BC4\u4EF6\u4EBA\u59D3\u540D");
-		label.setBounds(10, 10, 65, 15);
+		label.setBounds(10, 10, 80, 15);
 		add(label);
 		
 		JLabel label_1 = new JLabel("\u5BC4\u4EF6\u4EBA\u7535\u8BDD");
-		label_1.setBounds(10, 35, 65, 15);
+		label_1.setBounds(10, 35, 80, 15);
 		add(label_1);
 		
 		JLabel label_2 = new JLabel("\u5BC4\u4EF6\u4EBA\u4F4F\u5740");
-		label_2.setBounds(10, 60, 65, 15);
+		label_2.setBounds(10, 60, 80, 15);
 		add(label_2);
 		
 		JLabel label_3 = new JLabel("\u6536\u4EF6\u4EBA\u59D3\u540D");
-		label_3.setBounds(165, 10, 65, 15);
+		label_3.setBounds(165, 10, 80, 15);
 		add(label_3);
 		
 		JLabel label_4 = new JLabel("\u6536\u4EF6\u4EBA\u7535\u8BDD");
-		label_4.setBounds(165, 35, 65, 15);
+		label_4.setBounds(165, 35, 80, 15);
 		add(label_4);
 		
 		JLabel label_5 = new JLabel("\u6536\u4EF6\u4EBA\u4F4F\u5740");
-		label_5.setBounds(165, 60, 65, 15);
+		label_5.setBounds(165, 60, 80, 15);
 		add(label_5);
 		
 		sendername = new JTextField();
@@ -291,7 +294,7 @@ public class NewSendingBillsUI extends JPanel {
 		boxtype.addItem("木箱");
 		
 		JLabel label_10 = new JLabel("货物大小（装箱）单位：厘米");
-		label_10.setBounds(10, 160, 189, 15);
+		label_10.setBounds(10, 160, 220, 15);
 		add(label_10);
 		
 		JLabel label_11 = new JLabel("\u957F");
@@ -322,7 +325,7 @@ public class NewSendingBillsUI extends JPanel {
 		height.setColumns(10);
 		
 		JLabel label_14 = new JLabel("\u8D27\u7269\u91CD\u91CF");
-		label_14.setBounds(10, 210, 54, 15);
+		label_14.setBounds(10, 210, 65, 15);
 		add(label_14);
 		
 		weight = new JTextField();
