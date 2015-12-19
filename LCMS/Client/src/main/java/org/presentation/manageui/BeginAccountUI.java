@@ -37,7 +37,8 @@ public class BeginAccountUI extends JPanel{
 	
 	private Vector<BeginAccountVO> tableContent;
 	DefaultTableModel model;
-
+	
+	public JPanel superview;
 	/**
 	 * Launch the application.
 	 */
@@ -60,7 +61,10 @@ public class BeginAccountUI extends JPanel{
 	public BeginAccountUI() {
 		initialize();
 	}
-
+	public BeginAccountUI(JPanel ui) {
+		initialize();
+		this.superview=ui;
+	}
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -185,8 +189,12 @@ public class BeginAccountUI extends JPanel{
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			FinacialStaffView ui=new FinacialStaffView();
-			ViewController.jumpToAnotherView(ui);
+			if(superview==null){
+				FinacialStaffView ui=new FinacialStaffView();
+				ViewController.jumpToAnotherView(ui);
+			}else{
+				ViewController.jumpToAnotherView(superview);
+			}
 		}
 		
 	}

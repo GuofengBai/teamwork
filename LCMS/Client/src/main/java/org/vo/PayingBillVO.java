@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import org.po.PayingBills;
 import org.po.myDate;
 import org.presentation.billsui.NewPayingBillsUI;
+import org.presentation.manageui.CostManageUI;
 
 public class PayingBillVO extends Vector<String> implements PanelCreaterService{
 	/**
@@ -48,7 +49,7 @@ public class PayingBillVO extends Vector<String> implements PanelCreaterService{
 	}
 
 	public JPanel careatePanel(JPanel su) {
-		JPanel panel=new NewPayingBillsUI(su);
+		JPanel panel=new NewPayingBillsUI((CostManageUI)su);
 		return panel;
 	}
 	

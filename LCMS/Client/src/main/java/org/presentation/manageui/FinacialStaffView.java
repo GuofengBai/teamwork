@@ -76,7 +76,7 @@ public class FinacialStaffView extends JPanel{
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				IncomeManagementUI ui=new IncomeManagementUI();
+				IncomeManagementUI ui=new IncomeManagementUI(temp);
 				ViewController.jumpToAnotherView(ui);
 			}
 			
@@ -89,7 +89,7 @@ public class FinacialStaffView extends JPanel{
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				CostManageUI ui=new CostManageUI();
+				CostManageUI ui=new CostManageUI(temp);
 				ViewController.jumpToAnotherView(ui);
 			}
 			
@@ -102,7 +102,7 @@ public class FinacialStaffView extends JPanel{
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				BeginAccountUI ui=new BeginAccountUI();
+				BeginAccountUI ui=new BeginAccountUI(temp);
 				ViewController.jumpToAnotherView(ui);
 			}
 			
@@ -115,7 +115,7 @@ public class FinacialStaffView extends JPanel{
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				AccountManageUI ui=new AccountManageUI();
+				AccountManageUI ui=new AccountManageUI(temp);
 				ViewController.jumpToAnotherView(ui);
 			}
 			

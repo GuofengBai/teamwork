@@ -1,31 +1,30 @@
 package org.businesslogicservice.organizationblservice;
 
+import java.util.Vector;
+
 import org.po.CarPO;
-import org.po.myDate;
+import org.po.ResultMessage;
+import org.vo.CarVO;
 
 public interface HallCarBLService {
+	
 	/**
-	 * 启动新增车辆
-	 * @param carNum汽车编号
-	 * @param engineNum引擎编号
-	 * @param chassisNum底盘号
-	 * @param buyTime购买时间
-	 * @param serveTime服役时间
-	 * @number 车牌号
-	 * @return 返回启动是否成功
+	 * 
+	 * @param po 车辆
+	 * @return
 	 */
-	public CarPO HallAddCarbl(int carNum, int engineNum, int chassisNum,
-			myDate buyTime, myDate serveTime, String number);
+	public ResultMessage addCar(CarPO po);
+	
 	/**
-	 * 启动更改车辆信息
-	 * @param carNum 车辆编号
-	 * @return 返回CarPO，包括汽车编号、发动机号、底盘号、购买时间、服役时间、车牌号
+	 * 
+	 * @param CarNum 车辆编号
+	 * @return
 	 */
-	public CarPO HallChaCarbl(int carNum);
+	public ResultMessage delCar(String CarNum);
+	
 	/**
-	 * 启动删除车辆
-	 * @param carNum 车辆编号
-	 * @return 返回启动是否成功
+	 * 
+	 * @return Vector<CarVO>
 	 */
-	public boolean HallDelCarbl(int carNum);
+	public Vector<CarVO> getList();
 }

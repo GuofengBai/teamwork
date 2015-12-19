@@ -31,11 +31,12 @@ public class NewPayingBillsUI extends JPanel {
 	private JButton addButton;
 	private JTextField remarkField;
 	private JButton backButton;
-	private JPanel superView;
+	private CostManageUI superView;
+	private JLabel statusLabel;
 	/**
 	 * Create the panel.
 	 */
-	public NewPayingBillsUI(JPanel su) {
+	public NewPayingBillsUI(CostManageUI su) {
 		super();
 		this.superView=su;
 		setLayout(null);
@@ -45,18 +46,18 @@ public class NewPayingBillsUI extends JPanel {
 		add(label);
 		
 		yearField = new JTextField();
-		yearField.setColumns(10);
 		yearField.setBounds(63, 10, 66, 21);
+		yearField.setColumns(10);
 		add(yearField);
 		
 		monthField = new JTextField();
-		monthField.setColumns(10);
 		monthField.setBounds(134, 10, 66, 21);
+		monthField.setColumns(10);
 		add(monthField);
 		
 		dayField = new JTextField();
-		dayField.setColumns(10);
 		dayField.setBounds(205, 10, 66, 21);
+		dayField.setColumns(10);
 		add(dayField);
 		
 		JLabel label_1 = new JLabel("付款人姓名");
@@ -113,13 +114,22 @@ public class NewPayingBillsUI extends JPanel {
 		remarkField.setBounds(80, 189, 219, 21);
 		add(remarkField);
 		remarkField.setColumns(10);
+		
+		statusLabel = new JLabel("");
+		statusLabel.setBounds(75, 220, 176, 15);
+		add(statusLabel);
 
 	}
+	
+	
 	
 	class addButtonListener implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
+			boolean valid=isValid();
+			if(valid){
+			
 			int year=Integer.parseInt(yearField.getText());
 			int month=Integer.parseInt(monthField.getText());
 			int day=Integer.parseInt(dayField.getText());
@@ -141,15 +151,49 @@ public class NewPayingBillsUI extends JPanel {
 
 			CostManageUI ui=new CostManageUI();
 			ViewController.jumpToAnotherView(ui);
-
+			}else{
+				
+			}
 			
+		}
+		public boolean isValid(){
+			boolean valid=true;
+			String year=yearField.getText();
+			String month=monthField.getText();
+			String day=dayField.getText();
+			String name=nameField.getText();
+			String accountName=accountField.getText();
+			String item=itemField.getText();
+			String money=moneyField.getText();
+			String remark=remarkField.getText();
+			
+			if(year.equals("")||month.equals("")||day.equals("")||name.equals("")||accountName.equals("")
+					||item.equals("")||money.equals("")){
+				valid=false;
+				statusLabel.setText("有项目为空");
+			}else if(isNum(year)==false||isNum(month)==false||isNum(day)==false||isNum(money)==false){
+				valid=false;
+				statusLabel.setText("日期及金额应为数字");
+			}
+			
+			return valid;
+		}
+		
+		public boolean isNum(String s){
+			for(int i=0;i<s.length();i++){
+				if(!(s.charAt(i)<='9'&&s.charAt(i)>='0')){
+					return false;
+				}
+			}
+			return true;
 		}
 		
 	}
 	class backButtonListener implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
-			ViewController.jumpToAnotherView(superView);
+			CostManageUI ui=new CostManageUI(superView.superview);
+			ViewController.jumpToAnotherView(ui);
 		}
 		
 	}

@@ -5,13 +5,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
 
-import javax.swing.JLabel;
 
+import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -31,7 +32,7 @@ public class CostManageUI extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel panel = this;
+	private CostManageUI panel = this;
 	private JFrame frame;
 	private JTable table;
 	
@@ -39,6 +40,7 @@ public class CostManageUI extends JPanel{
 	private JButton delButton;
 	private JButton changeButton;
 	private JButton backButton;
+	public JPanel superview;
 	
 	DefaultTableModel model;
 	private Vector<PayingBillVO> tableContent;
@@ -64,6 +66,10 @@ public class CostManageUI extends JPanel{
 	 */
 	public CostManageUI() {
 		initialize();
+	}
+	public CostManageUI(JPanel ui) {
+		initialize();
+		this.superview=ui;
 	}
 
 	/**
@@ -169,7 +175,7 @@ public class CostManageUI extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			int index=table.getSelectedRow();
-			ChangePayingBillsUI ui=new ChangePayingBillsUI(tableContent.get(index).get(7));
+			ChangePayingBillsUI ui=new ChangePayingBillsUI(tableContent.get(index).get(7),panel);
 			ViewController.jumpToAnotherView(ui);
 		}
 		
@@ -196,8 +202,12 @@ public class CostManageUI extends JPanel{
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			FinacialStaffView ui=new FinacialStaffView();
-			ViewController.jumpToAnotherView(ui);
+			if(superview==null){
+				FinacialStaffView ui=new FinacialStaffView();
+				ViewController.jumpToAnotherView(ui);
+			}else{
+				ViewController.jumpToAnotherView(superview);
+			}
 		}
 		
 	}
