@@ -31,8 +31,9 @@ import org.businesslogic.managebl.NewBeginAccountBL;
 import org.businesslogic.managebl.StatusTableBL;
 import org.businesslogic.organizationbl.CenterBL;
 import org.businesslogic.organizationbl.HallBL;
+import org.businesslogic.organizationbl.HallCarBL;
+import org.businesslogic.organizationbl.HallDriverBL;
 import org.businesslogic.organizationbl.ManagerSettingBL;
-import org.businesslogic.organizationbl.OrganizationBL;
 import org.businesslogic.staffbl.StaffBL;
 import org.businesslogic.userbl.UserBL;
 import org.businesslogicservice.billsblservice.ExamineBillsBLService;
@@ -63,8 +64,9 @@ import org.businesslogicservice.manageblservice.NewBeginAccountBLService;
 import org.businesslogicservice.manageblservice.StatusTableBLService;
 import org.businesslogicservice.organizationblservice.CenterBLService;
 import org.businesslogicservice.organizationblservice.HallBLService;
+import org.businesslogicservice.organizationblservice.HallCarBLService;
+import org.businesslogicservice.organizationblservice.HallDriverBLService;
 import org.businesslogicservice.organizationblservice.ManagerSettingBLService;
-import org.businesslogicservice.organizationblservice.OrganizationBLService;
 import org.businesslogicservice.staffblservice.StaffBLService;
 import org.businesslogicservice.userblservice.UserBLService;
 import org.businesslogicservice.commodityblservice.CheckCommodityBLService;
@@ -76,10 +78,11 @@ public class BLFactory {
 
 	public static StaffBLService staffBL;
 
-	public static OrganizationBLService organizationBL;
 	public static HallBLService hallBL;
 	public static CenterBLService centerBL;
 	public static ManagerSettingBLService managerSettingBL;
+	public static HallCarBLService hallCarBL;
+	public static HallDriverBLService hallDriverBL;
 
 	public static ManageBLService manageBL;
 
@@ -114,10 +117,11 @@ public class BLFactory {
 	public static void init() {
 		commodityBL = null;
 		staffBL = null;
-		organizationBL = null;
 		hallBL=null;
 		centerBL=null;
 		managerSettingBL=null;
+		hallCarBL=null;
+		hallDriverBL=null;
 		manageBL = null;
 		userBL = null;
 		newSendingBillsBL = null;
@@ -205,15 +209,6 @@ public class BLFactory {
 
 		return manageBL;
 	}
-
-	public static OrganizationBLService getOrganizationBL() {
-
-		if (organizationBL == null) {
-			organizationBL = new OrganizationBL();
-		}
-
-		return organizationBL;
-	}
 	
 	public static HallBLService getHallBL() {
 
@@ -229,6 +224,20 @@ public class BLFactory {
 			managerSettingBL=new ManagerSettingBL();
 		}
 		return managerSettingBL;
+	}
+	
+	public static HallCarBLService getHallCarBL(){
+		if(hallCarBL==null){
+			hallCarBL=new HallCarBL();
+		}
+		return hallCarBL;
+	}
+	
+	public static HallDriverBLService getHallDriverBL(){
+		if(hallDriverBL==null){
+			hallDriverBL=new HallDriverBL();
+		}
+		return hallDriverBL;
 	}
 
 	public static NewSendingBillsBLService getNewSendingBillsBL() {

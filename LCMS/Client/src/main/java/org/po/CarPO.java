@@ -6,22 +6,23 @@ public class CarPO implements Serializable {
 	 * 序列化版本号
 	 */
 	private static final long serialVersionUID = 1L;
-	private String carNum;// 车辆代号，3位城市+3位营业厅+3位
+	private String carNum;//车辆编号
 	private String engineNum;// 发动机编号，随意
 	private String chassisNum;// 底盘号，随意
 	private myDate buyTime;// 购买时间
-
-	private myDate serveTime;// 服役时间
+	private String hallNum;
+	private myDate serveTime;// 服役截止时间
 	private String number;// 车牌号
 
 	public CarPO(String carNum, String engineNum, String chassisNum, myDate buyTime,
-			myDate serveTime, String number) {
+			myDate serveTime, String number,String hallNum) {
 		this.carNum = carNum;
 		this.engineNum = engineNum;
 		this.chassisNum = chassisNum;
 		this.buyTime = buyTime;
 		this.serveTime = serveTime;
 		this.number = number;
+		this.hallNum=hallNum;
 	}
 
 	public String getcarNum() {
@@ -38,6 +39,10 @@ public class CarPO implements Serializable {
 
 	public myDate getbuyTime() {
 		return buyTime;
+	}
+	
+	public String getHallNum(){
+		return hallNum;
 	}
 
 	public myDate getserveTime() {

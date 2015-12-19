@@ -9,20 +9,21 @@ public class DriverPO implements Serializable {
 	private String driverNum;
 	private String name;
 	private myDate birthTime;
-	private String ID;
-	private boolean gender;
+	private GENDER gender;
 	private String phoneNum;
-	private int licensePeriod;
+	private String ID;
+	private String hallNum;
+	
 
-	public DriverPO(String driverNum, String name, myDate birthTime, String ID,
-			boolean gender, String phoneNum, int licensePeriod) {
+	public DriverPO(String driverNum, String name, myDate birthTime,
+			GENDER gender, String phoneNum,String ID,String hallNum) {
 		this.driverNum = driverNum;
 		this.name = name;
 		this.birthTime = birthTime;
-		this.ID = ID;
 		this.gender = gender;
 		this.phoneNum = phoneNum;
-		this.licensePeriod = licensePeriod;
+		this.ID=ID;
+		this.hallNum=hallNum;
 	}
 
 	public String getdriverNum() {
@@ -33,55 +34,24 @@ public class DriverPO implements Serializable {
 		return birthTime;
 	}
 
-	public int getlicensePeriod() {
-		return licensePeriod;
-	}
-
 	public String getname() {
 		return name;
 	}
 
-	public String getID() {
-		return ID;
-	}
-
-	public boolean getgender() {
+	public GENDER getgender() {
 		return gender;
 	}
 
 	public String getphoneNum() {
 		return phoneNum;
 	}
-
-	public void setdriverNum(String driverNum) {
-		this.driverNum = driverNum;
-		// 本方法及以下方法在改变司机信息时使用
+	
+	public String getID(){
+		return ID;
+	}
+	
+	public String getHallNum(){
+		return hallNum;
 	}
 
-	public void setdbirthTime(myDate birthTime) {
-		this.birthTime = birthTime;
-	}
-
-	public void setlicensePeriod(int licensePeriod) {
-		this.licensePeriod = licensePeriod;
-	}
-
-	public void setname(String name) {
-		this.name = name;
-	}
-
-	public void setID(String ID) {
-		this.ID = ID;
-	}
-
-	public void setphoneNum(String phoneNum) {
-		this.phoneNum = phoneNum;
-	}
-
-	public void setgender(boolean gender) {
-		this.gender = gender;
-	}
-	public void del(){
-		
-	}
 }
