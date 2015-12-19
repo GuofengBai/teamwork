@@ -35,7 +35,7 @@ public class StaffBL implements StaffBLService{
 		try{
 			StaffPO temp=null;
 			temp=staffData.find(vo.num);
-			if(temp==null){
+			if(temp!=null){
 				String[] info={"添加错误，已存在同编号的员工"};
 				return new ResultMessage(false,info);
 			}
@@ -181,7 +181,7 @@ public class StaffBL implements StaffBLService{
 		StaffPO po=new StaffPO(vo.staffRole,vo.name,vo.num,vo.gender,vo.birthday,
 				vo.location,vo.phone,vo.user,vo.bankAccount,vo.workSpace,vo.payment);
 		try {
-			staffData.add(po);
+			staffData.update(po);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			String[] info={"更改失败，数据端发生错误"};

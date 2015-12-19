@@ -38,19 +38,16 @@ public class UserUI extends JPanel {
 	private JTextField textField;
 	UserBLService ubs;
 	StaffBLService sbs;
-	private JPanel panel=this;
+	private JPanel panel = this;
 
 	/**
 	 * Create the panel.
 	 */
 	public UserUI() {
-		
-		ubs=BLFactory.getUserBL();
-		sbs=BLFactory.getStaffBL();
-		
-		
-		
-		
+
+		ubs = BLFactory.getUserBL();
+		sbs = BLFactory.getStaffBL();
+
 		setLayout(null);
 
 		JLabel label = new JLabel("登录");
@@ -90,7 +87,7 @@ public class UserUI extends JPanel {
 		button.setBounds(492, 623, 113, 53);
 		add(button);
 		button.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				JPanel ui = new BillsStateSearch(panel);
@@ -115,34 +112,34 @@ public class UserUI extends JPanel {
 		String pw = String.valueOf(password);
 
 		if (!ubs.login(account, pw).success)
-			JOptionPane.showMessageDialog(null, ubs.login(account, pw).info[1], ubs.login(account, pw).info[0],
-					JOptionPane.ERROR_MESSAGE);
-		else{
-			UserPO po=ubs.getUser(account);
-			StaffVO svo=sbs.findStaff(po.getNumber());
+			JOptionPane.showMessageDialog(null, ubs.login(account, pw).info[1],
+					ubs.login(account, pw).info[0], JOptionPane.ERROR_MESSAGE);
+		else {
+			UserPO po = ubs.getUser(account);
+			StaffVO svo = sbs.findStaff(po.getNumber());
+			if (svo == null) {
+				JOptionPane.showMessageDialog(null, "该员工被删除", "请重新输入",
+						JOptionPane.ERROR_MESSAGE);
+			}
 			CurrentStaff.setStaff(svo);
-			if(svo.staffRole.getName().equals("快递员")){
+			if (svo.staffRole.getName().equals("快递员")) {
 				ViewController.jumpToAnotherView(new PostmanUI(panel));
-			}
-			else if(svo.staffRole.getName().equals("营业厅业务员")){
-				ViewController.jumpToAnotherView(new HallBusinessContralUI(panel));
-			}
-			else if(svo.staffRole.getName().equals("中转中心业务员")){
-				ViewController.jumpToAnotherView(new CenterBusinessContralUI(panel));
-			}
-			else if(svo.staffRole.getName().equals("中转中心仓库管理员")){
+			} else if (svo.staffRole.getName().equals("营业厅业务员")) {
+				ViewController.jumpToAnotherView(new HallBusinessContralUI(
+						panel));
+			} else if (svo.staffRole.getName().equals("中转中心业务员")) {
+				ViewController.jumpToAnotherView(new CenterBusinessContralUI(
+						panel));
+			} else if (svo.staffRole.getName().equals("中转中心仓库管理员")) {
 				ViewController.jumpToAnotherView(new StorageStaffView(panel));
-			}
-			else if(svo.staffRole.getName().equals("财务人员")){
+			} else if (svo.staffRole.getName().equals("财务人员")) {
 				ViewController.jumpToAnotherView(new FinacialStaffView(panel));
-			}
-			else if(svo.staffRole.getName().equals("总经理")){
+			} else if (svo.staffRole.getName().equals("总经理")) {
 				ViewController.jumpToAnotherView(new GeneralManagerUI(panel));
-			}
-			else if(svo.staffRole.getName().equals("管理员")){
+			} else if (svo.staffRole.getName().equals("管理员")) {
 				ViewController.jumpToAnotherView(new AdministratorUI(panel));
 			}
 		}
-			
+
 	}
 }
