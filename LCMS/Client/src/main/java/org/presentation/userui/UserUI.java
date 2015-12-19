@@ -27,6 +27,7 @@ import org.presentation.mainui.ViewController;
 import org.presentation.manageui.FinacialStaffView;
 import org.presentation.staffui.GeneralManagerUI;
 import org.vo.StaffVO;
+import java.awt.Font;
 
 public class UserUI extends JPanel {
 	/**
@@ -53,15 +54,18 @@ public class UserUI extends JPanel {
 		setLayout(null);
 
 		JLabel label = new JLabel("登录");
-		label.setBounds(222, 30, 72, 25);
+		label.setFont(new Font("宋体", Font.PLAIN, 40));
+		label.setBounds(422, 198, 80, 64);
 		add(label);
 
 		JLabel label_1 = new JLabel("用户名");
-		label_1.setBounds(90, 90, 108, 18);
+		label_1.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_1.setBounds(299, 356, 108, 27);
 		add(label_1);
 
 		JLabel label_2 = new JLabel("密码");
-		label_2.setBounds(90, 160, 72, 18);
+		label_2.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_2.setBounds(299, 451, 72, 27);
 		add(label_2);
 
 		JButton btnNewButton = new JButton("登录");
@@ -79,11 +83,11 @@ public class UserUI extends JPanel {
 				}
 			}
 		});
-		btnNewButton.setBounds(218, 328, 113, 27);
+		btnNewButton.setBounds(299, 623, 113, 53);
 		add(btnNewButton);
 
 		JButton button = new JButton("订单查询");
-		button.setBounds(422, 328, 113, 27);
+		button.setBounds(492, 623, 113, 53);
 		add(button);
 		button.addActionListener(new ActionListener() {
 			
@@ -95,11 +99,11 @@ public class UserUI extends JPanel {
 		});
 
 		passwordField = new JPasswordField();
-		passwordField.setBounds(192, 157, 152, 21);
+		passwordField.setBounds(453, 449, 152, 27);
 		add(passwordField);
 
 		textField = new JTextField();
-		textField.setBounds(192, 87, 152, 24);
+		textField.setBounds(453, 356, 152, 27);
 		add(textField);
 		textField.setColumns(10);
 

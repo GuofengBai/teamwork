@@ -1,9 +1,7 @@
 package org.presentation.manageui;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -14,11 +12,7 @@ import org.presentation.userui.UserUI;
 
 public class FinacialStaffView extends JPanel{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	private JFrame frame;
 	private JPanel panel = this;
 	private JPanel superview;
 	
@@ -29,32 +23,19 @@ public class FinacialStaffView extends JPanel{
 	private JButton accountButton;
 	private JButton earningButton;
 	private JButton statusButton;
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FinacialStaffView window = new FinacialStaffView();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JPanel temp;
 
 	/**
 	 * Create the application.
 	 */
 	public FinacialStaffView() {
+		this.temp=this;
 		initialize();
 	}
 	
 	public FinacialStaffView(JPanel panel) {
 		this.superview=panel;
+		this.temp=this;
 		initialize();
 	}
 
@@ -62,14 +43,8 @@ public class FinacialStaffView extends JPanel{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-//		frame = new JFrame();
-//		frame.setBounds(100, 100, 450, 300);
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		frame.getContentPane().setLayout(null);
-		
 
 		panel.setBounds(0, 0, 434, 262);
-//		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel label = new JLabel("\u8D22\u52A1\u7BA1\u7406");
@@ -153,8 +128,8 @@ public class FinacialStaffView extends JPanel{
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				IncomeTableUI ui=new IncomeTableUI();
-				ViewController.jumpToAnotherView(ui);
+				JPanel next=new IncomeTableUI(temp);
+				ViewController.jumpToAnotherView(next);
 			}
 			
 		});
@@ -166,8 +141,8 @@ public class FinacialStaffView extends JPanel{
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				StatusTableUI ui=new StatusTableUI();
-				ViewController.jumpToAnotherView(ui);
+				JPanel next=new StatusTableUI(temp);
+				ViewController.jumpToAnotherView(next);
 			}
 			
 		});

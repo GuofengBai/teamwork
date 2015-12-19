@@ -11,64 +11,122 @@ import org.businesslogicservice.organizationblservice.CenterBLService;
 import org.businesslogicservice.organizationblservice.ManagerSettingBLService;
 import org.dataservice.organizationdataservice.CenterDataService;
 import org.po.CenterPO;
+import org.po.ResultMessage;
 import org.vo.CenterVO;
 
 public class CenterBL implements CenterBLService{
 
-	public boolean addCenter(CenterVO vo) {
-		System.out.println(vo);
-		CenterPO po=new CenterPO(vo.get(0),vo.get(1),vo.get(2));
-		System.out.println("添加中转中心"+po.getname()+po.getCenterNum()+po.getLocation());
+	public ResultMessage addCenter(CenterVO vo) {
+		
 		try {
 			CenterDataService centerData=RMIHelper.getDataFactory().getOrganizationDataFactory().getCenterData();
+			if(centerData==null){
+				String[] info={"网络错误，无法获得CenterData"};
+				return new ResultMessage(false,info);
+			}
+			
+			if(vo.get(1).length()!=7){
+				String[] info={"中转中心编号必须是7位！"};
+				return new ResultMessage(false,info);
+			}
+			
+			if(vo.get(1).charAt(3)!='0'){
+				String[] info={"中转中心编号第四位必须是‘0’！"};
+				return new ResultMessage(false,info);
+			}
+			
+			CenterPO temp=centerData.findCenter(vo.get(1));
+			if(temp!=null){
+				String[] info={"添加错误，已存在该编号的中转中心"};
+				return new ResultMessage(false,info);
+			}
+			
+			Vector<CenterVO> list=getList();
+			for(CenterVO co:list){
+				if(co.get(1).substring(0,3).equals(vo.get(1).substring(0,3))){
+					String[] info={"区号（前三位）显示该城市已有中转中心！"};
+					return new ResultMessage(false,info);
+				}
+				if(co.get(0).equals(vo.get(0))){
+					String[] info={co.get(0)+"已有中转中心！"};
+					return new ResultMessage(false,info);
+				}
+			}
+			
+			
+			
+			CenterPO po=new CenterPO(vo.get(0),vo.get(1),vo.get(2));
 			centerData.addCenter(po);
 			
-//			ManagerSettingBLService manager=BLFactory.getManagerSettingBL();
-//			manager.addCity(po.getname());
+			ManagerSettingBLService manager=BLFactory.getManagerSettingBL();
+			manager.addCity(po.getname());
 			
-//			CommodityBLService combl=BLFactory.getCommodityBL();
-//			combl.addCenter(po.getCenterNum());
+			CommodityBLService combl=BLFactory.getCommodityBL();
+			combl.addCenter(po.getCenterNum());
 			
-			
-		    return true;
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			String[] info={"添加错误，数据端发生错误"};
+			return new ResultMessage(false,info);
 		}
-		return false;
+		return new ResultMessage(true,null);
 	}
 
-	public boolean delCenter(String CenterNum) {
+	public ResultMessage delCenter(String CenterNum) {
 		try {
+			
 			CenterDataService centerData=RMIHelper.getDataFactory().getOrganizationDataFactory().getCenterData();
-		    CenterPO center=centerData.findCenter(CenterNum);
+			if(centerData==null){
+				String[] info={"网络错误，无法获得CenterData"};
+				return new ResultMessage(false,info);
+			}
+		    
+			CenterPO temp=centerData.findCenter(CenterNum);
+			if(temp==null){
+				String[] info={"删除错误，不存在该编号的中转中心"};
+				return new ResultMessage(false,info);
+			}
+			
 			centerData.delCenter(CenterNum);
 			
 			ManagerSettingBLService manager=BLFactory.getManagerSettingBL();
-			manager.delCity(center.getname());
+			manager.delCity(temp.getname());
 			
 			CommodityBLService combl=BLFactory.getCommodityBL();
-			combl.addCenter(CenterNum);
+			combl.delCenter(CenterNum);
 			
-			return true;
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			String[] info={"添加错误，数据端发生错误"};
+			return new ResultMessage(false,info);
 		}
-		return false;
+		return new ResultMessage(true,null);
 	}
 
-	public boolean updateCenter(CenterVO vo) {
-		CenterPO po=new CenterPO(vo.get(0),vo.get(1),vo.get(2));
+	public ResultMessage updateCenter(CenterVO vo) {
+		
 		try {
 			CenterDataService centerData=RMIHelper.getDataFactory().getOrganizationDataFactory().getCenterData();
-		    centerData.updateCenter(po);
-		    return true;
+			if(centerData==null){
+				String[] info={"网络错误，无法获得CenterData"};
+				return new ResultMessage(false,info);
+			}
+		    
+			CenterPO temp=centerData.findCenter(vo.get(1));
+			if(temp==null){
+				String[] info={"更新错误，不存在该编号的中转中心"};
+				return new ResultMessage(false,info);
+			}
+			
+			CenterPO po=new CenterPO(vo.get(0),vo.get(1),vo.get(2));
+			centerData.updateCenter(po);
+		    
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			String[] info={"添加错误，数据端发生错误"};
+			return new ResultMessage(false,info);
 		}
-		return false;
+		return new ResultMessage(true,null);
 	}
 
 	public Vector<CenterVO> getList() {
@@ -85,6 +143,21 @@ public class CenterBL implements CenterBLService{
 			vList.add(new CenterVO(po));
 		}
 		return vList;
+	}
+
+	public CenterVO findCenter(String CenterNum) {
+		try {
+			CenterDataService centerData=RMIHelper.getDataFactory().getOrganizationDataFactory().getCenterData();
+		    CenterPO po=centerData.findCenter(CenterNum);
+		    if(po!=null){
+		    	return new CenterVO(po);
+		    }else{
+		    	return null;
+		    }
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 

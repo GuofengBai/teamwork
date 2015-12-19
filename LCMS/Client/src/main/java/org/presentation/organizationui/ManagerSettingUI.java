@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import org.presentation.mainui.ViewController;
+import java.awt.Font;
 
 public class ManagerSettingUI extends JPanel{
 	/**
@@ -24,7 +25,7 @@ public class ManagerSettingUI extends JPanel{
 		setLayout(null);
 		
 		JButton jump = new JButton("返回");
-		jump.setBounds(319, 15, 123, 29);
+		jump.setBounds(802, 31, 69, 49);
 		add(jump);
 		jump.addActionListener(new ActionListener() {
 			
@@ -35,11 +36,12 @@ public class ManagerSettingUI extends JPanel{
 		});
 		
 		JLabel label = new JLabel("经营参数设置");
-		label.setBounds(174, 74, 108, 21);
+		label.setFont(new Font("宋体", Font.PLAIN, 40));
+		label.setBounds(308, 91, 268, 64);
 		add(label);
 		
 		JButton cad = new JButton("城市距离设置");
-		cad.setBounds(158, 137, 141, 29);
+		cad.setBounds(355, 278, 174, 109);
 		add(cad);
 		cad.addActionListener(new ActionListener() {
 			
@@ -51,7 +53,7 @@ public class ManagerSettingUI extends JPanel{
 		});
 		
 		JButton exp = new JButton("快递运费设置");
-		exp.setBounds(158, 213, 141, 29);
+		exp.setBounds(355, 475, 174, 109);
 		add(exp);
 		exp.addActionListener(new ActionListener() {
 			
@@ -63,7 +65,7 @@ public class ManagerSettingUI extends JPanel{
 		});
 		
 		JButton trans = new JButton("载具运费设置");
-		trans.setBounds(158, 298, 141, 29);
+		trans.setBounds(355, 671, 174, 109);
 		add(trans);
 		trans.addActionListener(new ActionListener() {
 			

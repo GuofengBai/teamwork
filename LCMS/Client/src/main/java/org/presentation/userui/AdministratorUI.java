@@ -16,11 +16,15 @@ import javax.swing.JTextField;
 
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.userblservice.UserBLService;
+import org.po.ResultMessage;
 import org.po.UserPO;
 import org.presentation.mainui.ViewController;
 import org.vo.UserVO;
+
 import javax.swing.JSeparator;
+
 import java.awt.Color;
+import java.awt.Font;
 
 public class AdministratorUI extends JPanel {
 	/**
@@ -33,6 +37,8 @@ public class AdministratorUI extends JPanel {
 	private JTextField password;
 	private JTextField staffNumber;
 	private JPanel superView;
+	private JLabel stateBar;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -42,42 +48,47 @@ public class AdministratorUI extends JPanel {
 		setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(42, 239, 458, 235);
+		scrollPane.setBounds(79, 332, 748, 422);
 		add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
 		JLabel label = new JLabel("账号名称");
-		label.setBounds(40, 87, 81, 21);
+		label.setBounds(79, 140, 81, 21);
 		add(label);
 		
 		account = new JTextField();
-		account.setBounds(130, 84, 136, 27);
+		account.setBounds(175, 137, 191, 27);
 		add(account);
 		account.setColumns(10);
 		
 		JLabel label_1 = new JLabel("密码");
-		label_1.setBounds(281, 87, 43, 21);
+		label_1.setBounds(381, 140, 43, 21);
 		add(label_1);
 		
 		password = new JTextField();
-		password.setBounds(339, 84, 161, 27);
+		password.setBounds(439, 137, 242, 27);
 		add(password);
 		password.setColumns(10);
 		
 		JLabel label_2 = new JLabel("对应员工编号");
-		label_2.setBounds(42, 131, 117, 21);
+		label_2.setBounds(79, 207, 117, 21);
 		add(label_2);
 		
 		staffNumber = new JTextField();
-		staffNumber.setBounds(174, 128, 326, 27);
+		staffNumber.setBounds(213, 204, 468, 27);
 		add(staffNumber);
 		staffNumber.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("管理账号");
-		lblNewLabel_2.setBounds(213, 34, 81, 21);
+		lblNewLabel_2.setFont(new Font("宋体", Font.PLAIN, 40));
+		lblNewLabel_2.setBounds(352, 51, 173, 57);
 		add(lblNewLabel_2);
+		
+		stateBar = new JLabel("");
+		stateBar.setBounds(79, 846, 748, 21);
+		add(stateBar);
 		
 		initModel();
 		initButton();
@@ -113,7 +124,7 @@ public class AdministratorUI extends JPanel {
 	private void initButton(){
 		
 		JButton jump = new JButton("返回");
-		jump.setBounds(460, 12, 69, 29);
+		jump.setBounds(802, 30, 69, 57);
 		add(jump);
 		jump.addActionListener(new ActionListener() {
 			
@@ -125,7 +136,7 @@ public class AdministratorUI extends JPanel {
 		});
 		
 		JButton newUser = new JButton("新增账号");
-		newUser.setBounds(377, 170, 123, 29);
+		newUser.setBounds(704, 254, 123, 46);
 		add(newUser);
 		newUser.addActionListener(new ActionListener() {
 			
@@ -134,9 +145,15 @@ public class AdministratorUI extends JPanel {
 				
 				UserBLService ubs=BLFactory.getUserBL();
 				try {
-					ubs.addUser(newPO);
-					model.addRow(new UserVO(newPO));
-					model.fireTableRowsInserted(model.getRowCount()-1,model.getRowCount()-1);
+					ResultMessage re=ubs.addUser(newPO);
+					if(re.success){
+						model.addRow(new UserVO(newPO));
+						model.fireTableRowsInserted(model.getRowCount()-1,model.getRowCount()-1);
+						stateBar.setText("添加账号成功");
+					}else{
+						stateBar.setText(re.info[0]);
+					}
+					
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -145,18 +162,19 @@ public class AdministratorUI extends JPanel {
 		});
 		
 		JButton delUser = new JButton("删除账号");
-		delUser.setBounds(377, 489, 123, 29);
+		delUser.setBounds(400, 769, 123, 57);
 		add(delUser);
 		
 		JSeparator separator = new JSeparator();
 		separator.setForeground(Color.BLACK);
-		separator.setBounds(30, 220, 486, 2);
+		separator.setBounds(15, 315, 870, 2);
 		add(separator);
 		
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setForeground(Color.BLACK);
-		separator_1.setBounds(30, 65, 486, 2);
+		separator_1.setBounds(15, 123, 870, 2);
 		add(separator_1);
+		
 		delUser.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -166,9 +184,15 @@ public class AdministratorUI extends JPanel {
 				
 				UserBLService ubs=BLFactory.getUserBL();
 				try {
-					ubs.delUser(accountToDel);
-					model.removeRow(row);
-					model.fireTableRowsDeleted(row, row);
+					ResultMessage re=ubs.delUser(accountToDel);
+					if(re.success){
+						model.removeRow(row);
+						model.fireTableRowsDeleted(row, row);
+						stateBar.setText("删除成功");
+					}else{
+						stateBar.setText(re.info[0]);
+					}
+					
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
