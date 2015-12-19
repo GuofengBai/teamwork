@@ -16,9 +16,13 @@ public class HallMessageContralUI extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private JPanel temp;
+	private JPanel superView;
 
-	public HallMessageContralUI(final JPanel superview) {
-		
+	public HallMessageContralUI(JPanel su) {
+		super();
+		this.superView=su;
+		this.temp=this;
 		setLayout(null);
 		
 		JLabel label = new JLabel("请选择管理项");
@@ -32,8 +36,8 @@ public class HallMessageContralUI extends JPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				HallDriverUI ui = new HallDriverUI();
-				ViewController.jumpToAnotherView(ui);
+				JPanel next = new HallDriverUI(temp);
+				ViewController.jumpToAnotherView(next);
 			}
 		});
 		
@@ -44,8 +48,8 @@ public class HallMessageContralUI extends JPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				HallCarUI ui = new HallCarUI();
-				ViewController.jumpToAnotherView(ui);
+				JPanel next = new HallCarUI(temp);
+				ViewController.jumpToAnotherView(next);
 			}
 		});
 		
@@ -55,8 +59,7 @@ public class HallMessageContralUI extends JPanel{
 		back.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				ViewController.jumpToAnotherView(superview);
+				ViewController.jumpToAnotherView(superView);
 			}
 		});
 	}

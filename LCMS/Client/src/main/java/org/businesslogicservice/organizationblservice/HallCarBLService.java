@@ -4,7 +4,6 @@ import java.util.Vector;
 
 import org.po.CarPO;
 import org.po.ResultMessage;
-import org.po.myDate;
 import org.vo.CarVO;
 
 public interface HallCarBLService {
