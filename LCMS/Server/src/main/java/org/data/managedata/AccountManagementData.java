@@ -373,6 +373,7 @@ public class AccountManagementData extends UnicastRemoteObject implements Accoun
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		list=getAccountList();
 		
 		for(BankAccountPO accountTemp:list){
 			if(accountTemp.getName().contains(namepart)){
