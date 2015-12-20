@@ -55,7 +55,12 @@ public class BillsStateSearch extends JPanel {
 				// TODO Auto-generated method stub
 				NewSendingBillsBLService bl = BLFactory.getNewSendingBillsBL();
 				String ans = bl.searchState(textField.getText());
-				answer.setText(ans);
+				if(ans.equals("")){
+					answer.setText("托运单号不存在");
+				}else{
+					answer.setText(ans);
+				}
+				
 			}
 		});
 		
