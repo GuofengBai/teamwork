@@ -14,6 +14,7 @@ import org.po.ResultMessage;
 import org.po.myDate;
 import org.presentation.mainui.ViewController;
 import org.presentation.manageui.CostManageUI;
+import java.awt.Font;
 
 
 public class NewPayingBillsUI extends JPanel {
@@ -33,6 +34,7 @@ public class NewPayingBillsUI extends JPanel {
 	private JButton backButton;
 	private CostManageUI superView;
 	private JLabel statusLabel;
+	private JLabel label_6;
 	/**
 	 * Create the panel.
 	 */
@@ -40,84 +42,107 @@ public class NewPayingBillsUI extends JPanel {
 		super();
 		this.superView=su;
 		setLayout(null);
+		this.setBounds(0, 0, 900, 700);
 		
 		JLabel label = new JLabel("付款日期");
-		label.setBounds(10, 13, 48, 15);
+		label.setFont(new Font("宋体", Font.PLAIN, 20));
+		label.setBounds(209, 121, 89, 35);
 		add(label);
 		
 		yearField = new JTextField();
-		yearField.setBounds(63, 10, 66, 21);
+		yearField.setFont(new Font("宋体", Font.PLAIN, 15));
+		yearField.setBounds(343, 123, 66, 35);
 		yearField.setColumns(10);
 		add(yearField);
 		
 		monthField = new JTextField();
-		monthField.setBounds(134, 10, 66, 21);
+		monthField.setFont(new Font("宋体", Font.PLAIN, 15));
+		monthField.setBounds(418, 123, 66, 35);
 		monthField.setColumns(10);
 		add(monthField);
 		
 		dayField = new JTextField();
-		dayField.setBounds(205, 10, 66, 21);
+		dayField.setFont(new Font("宋体", Font.PLAIN, 15));
+		dayField.setBounds(494, 123, 66, 35);
 		dayField.setColumns(10);
 		add(dayField);
 		
 		JLabel label_1 = new JLabel("付款人姓名");
-		label_1.setBounds(10, 41, 60, 15);
+		label_1.setFont(new Font("宋体", Font.PLAIN, 20));
+		label_1.setBounds(209, 298, 110, 33);
 		add(label_1);
 		
 		nameField = new JTextField();
-		nameField.setBounds(80, 35, 120, 21);
+		nameField.setFont(new Font("宋体", Font.PLAIN, 15));
+		nameField.setBounds(343, 299, 120, 35);
 		add(nameField);
 		nameField.setColumns(10);
 		
 		JLabel label_2 = new JLabel("付款账号");
-		label_2.setBounds(10, 76, 54, 15);
+		label_2.setFont(new Font("宋体", Font.PLAIN, 20));
+		label_2.setBounds(209, 381, 93, 35);
 		add(label_2);
 		
 		accountField = new JTextField();
-		accountField.setBounds(80, 73, 208, 21);
+		accountField.setFont(new Font("宋体", Font.PLAIN, 15));
+		accountField.setBounds(343, 383, 264, 35);
 		add(accountField);
 		accountField.setColumns(10);
 		
 		JLabel label_3 = new JLabel("款项");
-		label_3.setBounds(21, 120, 37, 15);
+		label_3.setFont(new Font("宋体", Font.PLAIN, 20));
+		label_3.setBounds(209, 214, 54, 35);
 		add(label_3);
 		
 		itemField = new JTextField();
-		itemField.setBounds(80, 117, 219, 21);
+		itemField.setFont(new Font("宋体", Font.PLAIN, 15));
+		itemField.setBounds(343, 216, 217, 35);
 		add(itemField);
 		itemField.setColumns(10);
 		
 		JLabel label_4 = new JLabel("金额");
-		label_4.setBounds(21, 156, 37, 15);
+		label_4.setFont(new Font("宋体", Font.PLAIN, 20));
+		label_4.setBounds(209, 451, 54, 41);
 		add(label_4);
 		
 		moneyField = new JTextField();
-		moneyField.setBounds(80, 153, 77, 21);
+		moneyField.setFont(new Font("宋体", Font.PLAIN, 15));
+		moneyField.setBounds(343, 456, 131, 35);
 		add(moneyField);
 		moneyField.setColumns(10);
 		
 		addButton = new JButton("提交");
-		addButton.setBounds(80, 251, 93, 23);
+		addButton.setFont(new Font("宋体", Font.PLAIN, 15));
+		addButton.setBounds(302, 608, 150, 40);
 		add(addButton);
 		addButton.addActionListener(new addButtonListener());
 		
 		JLabel label_5 = new JLabel("备注");
-		label_5.setBounds(21, 192, 37, 15);
+		label_5.setFont(new Font("宋体", Font.PLAIN, 20));
+		label_5.setBounds(209, 533, 79, 35);
 		add(label_5);
 		
 		backButton = new JButton("取消");
-		backButton.setBounds(223, 251, 93, 23);
+		backButton.setFont(new Font("宋体", Font.PLAIN, 15));
+		backButton.setBounds(573, 608, 150, 40);
 		add(backButton);
 		backButton.addActionListener(new backButtonListener());
 		
 		remarkField = new JTextField();
-		remarkField.setBounds(80, 189, 219, 21);
+		remarkField.setFont(new Font("宋体", Font.PLAIN, 15));
+		remarkField.setBounds(343, 535, 397, 35);
 		add(remarkField);
 		remarkField.setColumns(10);
 		
 		statusLabel = new JLabel("");
-		statusLabel.setBounds(75, 220, 176, 15);
+		statusLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+		statusLabel.setBounds(209, 658, 530, 32);
 		add(statusLabel);
+		
+		label_6 = new JLabel("新建付款单");
+		label_6.setFont(new Font("宋体", Font.PLAIN, 40));
+		label_6.setBounds(375, 10, 218, 41);
+		add(label_6);
 
 	}
 	

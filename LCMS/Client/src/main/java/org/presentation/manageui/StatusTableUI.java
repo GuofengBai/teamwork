@@ -19,6 +19,7 @@ import org.po.myDate;
 import org.presentation.mainui.ViewController;
 import org.vo.IncomeBillVO;
 import org.vo.PayingBillVO;
+import java.awt.Font;
 
 
 public class StatusTableUI extends JPanel{
@@ -35,7 +36,10 @@ public class StatusTableUI extends JPanel{
 	private JTable incomeBillTable;
 	private JTable PayingBillTable;
 	private JLabel statusLabel;
-	
+	private JButton searchButton;
+	private JButton backButton;
+	private JScrollPane scrollPane;
+	private JScrollPane scrollPane_1;
 	
 	DefaultTableModel incomemodel;
 	DefaultTableModel paymodel;
@@ -54,40 +58,40 @@ public class StatusTableUI extends JPanel{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 450);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
 		
-		panel.setBounds(0, 0, 434, 412);
-		frame.getContentPane().add(panel);
+		panel.setBounds(0, 0, 900, 700);
 		panel.setLayout(null);
 		setLayout(null);
 		
-		JButton backButton = new JButton("\u8FD4\u56DE");
-		backButton.setBounds(331, 379, 93, 23);
+		
+		backButton = new JButton("\u8FD4\u56DE");
+		backButton.setFont(new Font("宋体", Font.PLAIN, 15));
+		backButton.setBounds(705, 600, 150, 40);
 		panel.add(backButton);
 		backButton.addActionListener(new backButtonListener());
 		
 		JLabel label = new JLabel("\u7ECF\u8425\u60C5\u51B5\u8868");
-		label.setBounds(184, 10, 66, 15);
+		label.setFont(new Font("宋体", Font.PLAIN, 40));
+		label.setBounds(368, 20, 212, 55);
 		panel.add(label);
 		
 		JLabel label_1 = new JLabel("\u5F00\u59CB\u65E5\u671F");
-		label_1.setBounds(57, 50, 54, 15);
+		label_1.setFont(new Font("宋体", Font.PLAIN, 20));
+		label_1.setBounds(190, 95, 94, 35);
 		panel.add(label_1);
 		
 		JLabel label_2 = new JLabel("\u7ED3\u675F\u65E5\u671F");
-		label_2.setBounds(227, 50, 54, 15);
+		label_2.setFont(new Font("宋体", Font.PLAIN, 20));
+		label_2.setBounds(501, 95, 104, 35);
 		panel.add(label_2);
 		
 		beginDateField = new JTextField();
-		beginDateField.setBounds(121, 47, 66, 21);
+		beginDateField.setBounds(294, 97, 100, 35);
 		panel.add(beginDateField);
 		beginDateField.setColumns(10);
 		
 		endDateField = new JTextField();
-		endDateField.setBounds(303, 47, 66, 21);
+		endDateField.setBounds(615, 97, 100, 35);
 		panel.add(endDateField);
 		endDateField.setColumns(10);
 		
@@ -132,15 +136,17 @@ public class StatusTableUI extends JPanel{
 		//panel.add(table);
 		
 		JLabel lblNewLabel = new JLabel("\u6536\u6B3E\u5355");
-		lblNewLabel.setBounds(57, 105, 54, 15);
+		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 20));
+		lblNewLabel.setBounds(83, 219, 81, 32);
 		panel.add(lblNewLabel);
 		
-		JScrollPane scrollPane = new JScrollPane(incomeBillTable);
-		scrollPane.setBounds(57, 130, 325, 95);
+		scrollPane = new JScrollPane(incomeBillTable);
+		scrollPane.setBounds(83, 261, 325, 300);
 		panel.add(scrollPane);
 		
 		JLabel label_3 = new JLabel("\u4ED8\u6B3E\u5355");
-		label_3.setBounds(57, 235, 54, 15);
+		label_3.setFont(new Font("宋体", Font.PLAIN, 20));
+		label_3.setBounds(455, 219, 79, 32);
 		panel.add(label_3);
 		
 		PayingBillTable = new JTable(){
@@ -170,16 +176,18 @@ public class StatusTableUI extends JPanel{
 		PayingBillTable.setBounds(57, 270, 325, 99);
 		//panel.add(table_1);
 		
-		JScrollPane scrollPane_1 = new JScrollPane(PayingBillTable);
-		scrollPane_1.setBounds(56, 270, 326, 99);
+		scrollPane_1 = new JScrollPane(PayingBillTable);
+		scrollPane_1.setBounds(455, 261, 400, 300);
 		panel.add(scrollPane_1);
 		
-		JButton searchButton = new JButton("搜索");
-		searchButton.setBounds(168, 75, 93, 23);
+		searchButton = new JButton("搜索");
+		searchButton.setFont(new Font("宋体", Font.PLAIN, 15));
+		searchButton.setBounds(352, 152, 150, 40);
 		panel.add(searchButton);
 		
 		statusLabel = new JLabel("");
-		statusLabel.setBounds(168, 105, 141, 15);
+		statusLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+		statusLabel.setBounds(512, 157, 223, 35);
 		add(statusLabel);
 		searchButton.addActionListener(new searchButtonListener());
 	}

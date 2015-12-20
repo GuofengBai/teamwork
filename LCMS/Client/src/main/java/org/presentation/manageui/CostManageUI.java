@@ -25,6 +25,7 @@ import org.po.ResultMessage;
 import org.presentation.billsui.NewPayingBillsUI;
 import org.presentation.mainui.ViewController;
 import org.vo.PayingBillVO;
+import java.awt.Font;
 
 
 public class CostManageUI extends JPanel{
@@ -41,9 +42,11 @@ public class CostManageUI extends JPanel{
 	private JButton changeButton;
 	private JButton backButton;
 	public JPanel superview;
+
 	
 	DefaultTableModel model;
 	private Vector<PayingBillVO> tableContent;
+	private JLabel statusLabel;
 
 	/**
 	 * Launch the application.
@@ -76,37 +79,37 @@ public class CostManageUI extends JPanel{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
 		
-
-		panel.setBounds(0, 0, 434, 262);
-		frame.getContentPane().add(panel);
+		panel.setBounds(0, 0, 900, 700);
 		panel.setLayout(null);
+		setLayout(null);
 		
 		JLabel label = new JLabel("\u6210\u672C\u7BA1\u7406");
-		label.setBounds(187, 10, 54, 15);
+		label.setFont(new Font("宋体", Font.PLAIN, 40));
+		label.setBounds(376, 25, 175, 47);
 		panel.add(label);
 		
 		addButton = new JButton("\u65B0\u5EFA\u4ED8\u6B3E\u5355");
-		addButton.setBounds(23, 199, 93, 23);
+		addButton.setFont(new Font("宋体", Font.PLAIN, 15));
+		addButton.setBounds(114, 506, 150, 40);
 		panel.add(addButton);
 		addButton.addActionListener(new addButtonListener());
 		
 		delButton = new JButton("\u5220\u9664\u4ED8\u6B3E\u5355");
-		delButton.setBounds(303, 199, 93, 23);
+		delButton.setFont(new Font("宋体", Font.PLAIN, 15));
+		delButton.setBounds(629, 506, 150, 40);
 		panel.add(delButton);
 		delButton.addActionListener(new delButtonListener());
 		
 		changeButton = new JButton("\u4FEE\u6539");
-		changeButton.setBounds(171, 199, 70, 23);
+		changeButton.setFont(new Font("宋体", Font.PLAIN, 15));
+		changeButton.setBounds(376, 506, 150, 40);
 		panel.add(changeButton);
 		changeButton.addActionListener(new changeButtonListener());
 		
 		JLabel label_1 = new JLabel("\u4ED8\u6B3E\u5355\u5217\u8868");
-		label_1.setBounds(23, 39, 79, 15);
+		label_1.setFont(new Font("宋体", Font.PLAIN, 20));
+		label_1.setBounds(395, 123, 112, 35);
 		panel.add(label_1);
 		
 		Vector<String> column = new Vector<String>();
@@ -149,12 +152,17 @@ public class CostManageUI extends JPanel{
 */
 		table.setBounds(44, 109, 326, 126);
 		JScrollPane billList = new JScrollPane(table);
-		billList.setBounds(23, 68, 401, 121);
+		billList.setBounds(119, 168, 660, 300);
 		panel.add(billList);
 		
 		backButton = new JButton("\u8FD4\u56DE");
-		backButton.setBounds(330, 229, 79, 23);
+		backButton.setFont(new Font("宋体", Font.PLAIN, 15));
+		backButton.setBounds(700, 600, 150, 40);
 		panel.add(backButton);
+		
+		statusLabel = new JLabel("");
+		statusLabel.setBounds(337, 574, 297, 40);
+		add(statusLabel);
 		backButton.addActionListener(new backButtonListener());
 
 	}
@@ -175,6 +183,10 @@ public class CostManageUI extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			int index=table.getSelectedRow();
+			if(index<0){
+				statusLabel.setText("请选中一个付款单");
+				return;
+			}
 			ChangePayingBillsUI ui=new ChangePayingBillsUI(tableContent.get(index).get(7),panel);
 			ViewController.jumpToAnotherView(ui);
 		}

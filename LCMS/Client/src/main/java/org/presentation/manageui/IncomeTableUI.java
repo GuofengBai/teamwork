@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.manageblservice.IncomeTableBLService;
 import org.presentation.mainui.ViewController;
+import java.awt.Font;
 
 
 public class IncomeTableUI extends JPanel{
@@ -37,35 +38,34 @@ public class IncomeTableUI extends JPanel{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		
-
-		panel.setBounds(0, 0, 434, 262);
-		frame.getContentPane().add(panel);
+		panel.setBounds(0, 0, 900, 700);
 		panel.setLayout(null);
+		setLayout(null);
 		
 		JButton backButton = new JButton("\u8FD4\u56DE");
-		backButton.setBounds(315, 229, 93, 23);
+		backButton.setFont(new Font("宋体", Font.PLAIN, 15));
+		backButton.setBounds(707, 600, 150, 40);
 		panel.add(backButton);
 		backButton.addActionListener(new backButtonListener());
 		
 		JLabel label = new JLabel("\u6210\u672C\u6536\u76CA\u8868");
-		label.setBounds(182, 10, 74, 15);
+		label.setFont(new Font("宋体", Font.PLAIN, 40));
+		label.setBounds(380, 10, 226, 57);
 		panel.add(label);
 		
 		JLabel label_1 = new JLabel("\u603B\u6536\u5165");
-		label_1.setBounds(72, 64, 54, 15);
+		label_1.setFont(new Font("宋体", Font.PLAIN, 35));
+		label_1.setBounds(203, 158, 114, 40);
 		panel.add(label_1);
 		
 		JLabel label_2 = new JLabel("\u603B\u652F\u51FA");
-		label_2.setBounds(182, 64, 54, 15);
+		label_2.setFont(new Font("宋体", Font.PLAIN, 35));
+		label_2.setBounds(422, 154, 122, 48);
 		panel.add(label_2);
 		
 		JLabel label_3 = new JLabel("\u6536\u76CA");
-		label_3.setBounds(293, 64, 54, 15);
+		label_3.setFont(new Font("宋体", Font.PLAIN, 35));
+		label_3.setBounds(638, 150, 93, 56);
 		panel.add(label_3);
 /**	
  */	
@@ -76,15 +76,18 @@ public class IncomeTableUI extends JPanel{
 /*
 */				
 		JLabel incomeLabel = new JLabel(String.valueOf(income));
-		incomeLabel.setBounds(72, 105, 54, 15);
+		incomeLabel.setFont(new Font("宋体", Font.PLAIN, 40));
+		incomeLabel.setBounds(203, 350, 137, 48);
 		panel.add(incomeLabel);
 		
 		JLabel payLabel = new JLabel(String.valueOf(payment));
-		payLabel.setBounds(182, 105, 54, 15);
+		payLabel.setFont(new Font("宋体", Font.PLAIN, 40));
+		payLabel.setBounds(422, 350, 137, 48);
 		panel.add(payLabel);
 		
 		JLabel earnLabel = new JLabel(String.valueOf(earning));
-		earnLabel.setBounds(293, 105, 54, 15);
+		earnLabel.setFont(new Font("宋体", Font.PLAIN, 40));
+		earnLabel.setBounds(651, 353, 122, 43);
 		panel.add(earnLabel);
 	}
 	

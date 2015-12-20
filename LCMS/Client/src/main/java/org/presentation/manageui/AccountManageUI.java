@@ -19,6 +19,7 @@ import org.businesslogicservice.manageblservice.AccountManagementBLService;
 import org.po.ResultMessage;
 import org.presentation.mainui.ViewController;
 import org.vo.BankAccountVO;
+import java.awt.Font;
 
 
 public class AccountManageUI extends JPanel{
@@ -53,8 +54,7 @@ public class AccountManageUI extends JPanel{
 	
 	
 	/**
-	 * Launch the application.
-	 */
+	 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -67,6 +67,7 @@ public class AccountManageUI extends JPanel{
 			}
 		});
 	}
+	*/
 
 	/**
 	 * Create the application.
@@ -84,23 +85,26 @@ public class AccountManageUI extends JPanel{
 	 * Initialize the contents of the frame.
 	 */
 	public void initialize() {
+		/**
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		*/
 		
 //		panel = new JPanel();
-		panel.setBounds(0, 0, 434, 662);
-		frame.getContentPane().add(panel);
+		panel.setBounds(0, 0, 900, 700);
 		panel.setLayout(null);
 		setLayout(null);
 		
-		JLabel label = new JLabel("\u8D26\u6237\u7BA1\u7406");
-		label.setBounds(183, 10, 54, 15);
+		JLabel label = new JLabel("账户管理");
+		label.setBounds(377, 10, 194, 54);
+		label.setFont(new Font("宋体", Font.PLAIN, 40));
 		panel.add(label);
 		
 		JLabel label_1 = new JLabel("\u8D26\u6237\u5217\u8868");
-		label_1.setBounds(40, 49, 54, 15);
+		label_1.setFont(new Font("宋体", Font.PLAIN, 20));
+		label_1.setBounds(189, 103, 81, 29);
 		panel.add(label_1);
 		
 		
@@ -140,49 +144,58 @@ public class AccountManageUI extends JPanel{
 		//panel.add(table);
 		
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(40, 75, 346, 91);
+		scrollPane.setBounds(53, 158, 360, 150);
 		panel.add(scrollPane);
 		
-		backButton = new JButton("\u8FD4\u56DE");
-		backButton.setBounds(293, 629, 93, 23);
+		backButton = new JButton("返回");
+		backButton.setFont(new Font("宋体", Font.PLAIN, 15));
+		backButton.setBounds(750, 600, 120, 40);
 		panel.add(backButton);
 		backButton.addActionListener(new backButtonListener());
 		
 		deleteButton = new JButton("\u5220\u9664");
-		deleteButton.setBounds(40, 176, 93, 23);
+		deleteButton.setFont(new Font("宋体", Font.PLAIN, 15));
+		deleteButton.setBounds(293, 318, 120, 40);
 		panel.add(deleteButton);
 		deleteButton.addActionListener(new deleteButtonListener());
 		
 		JLabel label_2 = new JLabel("\u65B0\u5EFA\u8D26\u6237");
-		label_2.setBounds(171, 323, 54, 15);
+		label_2.setFont(new Font("宋体", Font.PLAIN, 20));
+		label_2.setBounds(156, 498, 81, 29);
 		panel.add(label_2);
 		
 		JLabel label_3 = new JLabel("\u8D26\u6237\u540D");
-		label_3.setBounds(40, 365, 54, 15);
+		label_3.setFont(new Font("宋体", Font.PLAIN, 15));
+		label_3.setBounds(53, 558, 58, 25);
 		panel.add(label_3);
 		
 		accountNameField = new JTextField();
-		accountNameField.setBounds(114, 362, 123, 21);
+		accountNameField.setFont(new Font("宋体", Font.PLAIN, 15));
+		accountNameField.setBounds(130, 553, 150, 35);
 		panel.add(accountNameField);
 		accountNameField.setColumns(10);
 		
 		addButton = new JButton("\u6DFB\u52A0");
-		addButton.setBounds(263, 361, 93, 23);
+		addButton.setFont(new Font("宋体", Font.PLAIN, 15));
+		addButton.setBounds(293, 550, 120, 40);
 		panel.add(addButton);
 		addButton.addActionListener(new addButtonListener());
 		
 		JLabel label_4 = new JLabel("\u5173\u952E\u5B57\u67E5\u627E");
-		label_4.setBounds(171, 422, 76, 15);
+		label_4.setFont(new Font("宋体", Font.PLAIN, 20));
+		label_4.setBounds(640, 103, 107, 29);
 		panel.add(label_4);
 		
 		namepartField = new JTextField();
-		namepartField.setBounds(79, 447, 123, 21);
+		namepartField.setFont(new Font("宋体", Font.PLAIN, 15));
+		namepartField.setBounds(530, 162, 150, 35);
 		namepartField.setText("\u8BF7\u8F93\u5165\u5173\u952E\u5B57");
 		panel.add(namepartField);
 		namepartField.setColumns(10);
 		
 		searchButton = new JButton("\u67E5\u627E");
-		searchButton.setBounds(263, 446, 93, 23);
+		searchButton.setFont(new Font("宋体", Font.PLAIN, 15));
+		searchButton.setBounds(711, 159, 120, 40);
 		panel.add(searchButton);
 		searchButton.addActionListener(new searchButtonListener());
 		
@@ -214,29 +227,34 @@ public class AccountManageUI extends JPanel{
 		//panel.add(table_1);
 		
 		JScrollPane scrollPane_1 = new JScrollPane(searchTable);
-		scrollPane_1.setBounds(52, 489, 304, 130);
+		scrollPane_1.setBounds(510, 230, 360, 250);
 		panel.add(scrollPane_1);
 		
 		JLabel label_5 = new JLabel("修改账户名");
-		label_5.setBounds(171, 208, 66, 15);
+		label_5.setFont(new Font("宋体", Font.PLAIN, 20));
+		label_5.setBounds(163, 399, 107, 40);
 		panel.add(label_5);
 		
 		newNameField = new JTextField();
-		newNameField.setBounds(114, 250, 123, 21);
+		newNameField.setFont(new Font("宋体", Font.PLAIN, 15));
+		newNameField.setBounds(130, 439, 150, 35);
 		panel.add(newNameField);
 		newNameField.setColumns(10);
 		
 		JLabel label_6 = new JLabel("新账户名");
-		label_6.setBounds(40, 253, 54, 15);
+		label_6.setFont(new Font("宋体", Font.PLAIN, 15));
+		label_6.setBounds(53, 444, 67, 25);
 		panel.add(label_6);
 		
 		changeButton = new JButton("修改");
-		changeButton.setBounds(263, 249, 93, 23);
+		changeButton.setFont(new Font("宋体", Font.PLAIN, 15));
+		changeButton.setBounds(293, 436, 120, 40);
 		panel.add(changeButton);
 		changeButton.addActionListener(new changeButtonListener());
 		
 		statusLabel = new JLabel("");
-		statusLabel.setBounds(114, 393, 123, 15);
+		statusLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+		statusLabel.setBounds(129, 610, 284, 42);
 		add(statusLabel);
 		
 	}
@@ -276,6 +294,10 @@ public class AccountManageUI extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			int dex=table.getSelectedRow();
+			if(dex<0){
+				statusLabel.setText("请选中一行");
+				return;
+			}
 			String name=(String) table.getModel().getValueAt(dex, 0);
 			AccountManagementBLService ambl=BLFactory.getAccountManagementBL();
 			ResultMessage message=ambl.delAccount(name);
@@ -296,6 +318,10 @@ public class AccountManageUI extends JPanel{
 			// TODO Auto-generated method stub
 			String newName=newNameField.getText();
 			int dex=table.getSelectedRow();
+			if(dex<0){
+				statusLabel.setText("请选中一行");
+				return;
+			}
 			String name=(String) table.getModel().getValueAt(dex, 0);
 			AccountManagementBLService ambl=BLFactory.getAccountManagementBL();
 			

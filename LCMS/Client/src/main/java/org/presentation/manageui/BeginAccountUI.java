@@ -19,6 +19,7 @@ import org.po.BeginAccountPO;
 import org.po.ResultMessage;
 import org.presentation.mainui.ViewController;
 import org.vo.BeginAccountVO;
+import java.awt.Font;
 
 
 public class BeginAccountUI extends JPanel{
@@ -39,21 +40,7 @@ public class BeginAccountUI extends JPanel{
 	DefaultTableModel model;
 	
 	public JPanel superview;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BeginAccountUI window = new BeginAccountUI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the application.
@@ -69,28 +56,28 @@ public class BeginAccountUI extends JPanel{
 	 * Initialize the contents of the frame.
 	 */
 	public void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+
 		
 		
-		panel.setBounds(0, 0, 434, 262);
-		frame.getContentPane().add(panel);
+		panel.setBounds(0, 0, 900, 700);
 		panel.setLayout(null);
+		setLayout(null);
 		
 		JLabel label = new JLabel("\u671F\u521D\u5EFA\u8D26");
-		label.setBounds(185, 10, 54, 15);
+		label.setFont(new Font("宋体", Font.PLAIN, 40));
+		label.setBounds(371, 10, 185, 55);
 		panel.add(label);
 		
 		backButton = new JButton("\u8FD4\u56DE");
-		backButton.setBounds(306, 229, 93, 23);
+		backButton.setFont(new Font("宋体", Font.PLAIN, 15));
+		backButton.setBounds(740, 600, 150, 40);
 		panel.add(backButton);
 		backButton.addActionListener(new backButtonListener());
 		
 		
 		JLabel label_1 = new JLabel("\u671F\u521D\u8D26\u5355\u5217\u8868");
-		label_1.setBounds(37, 50, 84, 15);
+		label_1.setFont(new Font("宋体", Font.PLAIN, 20));
+		label_1.setBounds(386, 91, 143, 47);
 		panel.add(label_1);
 		
 		Vector<String> column = new Vector<String>();
@@ -132,16 +119,18 @@ public class BeginAccountUI extends JPanel{
 		//panel.add(table);
 		
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(37, 75, 362, 87);
+		scrollPane.setBounds(115, 148, 714, 365);
 		panel.add(scrollPane);
 		
 		addButton = new JButton("\u65B0\u5EFA");
-		addButton.setBounds(37, 185, 93, 23);
+		addButton.setFont(new Font("宋体", Font.PLAIN, 15));
+		addButton.setBounds(203, 556, 150, 40);
 		panel.add(addButton);
 		addButton.addActionListener(new addButtonListener());
 		
 		deleteButton = new JButton("\u5220\u9664");
-		deleteButton.setBounds(165, 185, 93, 23);
+		deleteButton.setFont(new Font("宋体", Font.PLAIN, 15));
+		deleteButton.setBounds(572, 556, 150, 40);
 		panel.add(deleteButton);
 		deleteButton.addActionListener(new deleteButtonListener());
 		

@@ -21,7 +21,7 @@ public class ManageUITest {
 		FinacialStaffView c=new FinacialStaffView();
 
     	JFrame f=new JFrame();
-    	f.setSize(700, 700);
+    	f.setSize(900, 700);
     	f.setContentPane(c);
     	f.setVisible(true);
         ViewController.init(f);

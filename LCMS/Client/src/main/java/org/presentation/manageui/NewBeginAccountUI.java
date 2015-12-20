@@ -16,6 +16,7 @@ import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.manageblservice.NewBeginAccountBLService;
 import org.po.ResultMessage;
 import org.presentation.mainui.ViewController;
+import java.awt.Font;
 
 
 public class NewBeginAccountUI extends JPanel{
@@ -67,91 +68,101 @@ public class NewBeginAccountUI extends JPanel{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		
-
-		panel.setBounds(0, 0, 434, 262);
-		frame.getContentPane().add(panel);
+		panel.setBounds(0, 0, 900, 700);
 		panel.setLayout(null);
 		setLayout(null);
 		
 		JLabel label = new JLabel("\u65B0\u5EFA\u671F\u521D\u8D26\u5355");
-		label.setBounds(172, 10, 78, 15);
+		label.setFont(new Font("宋体", Font.PLAIN, 40));
+		label.setBounds(354, 16, 269, 48);
 		panel.add(label);
 		
 		JButton saveButton = new JButton("\u786E\u5B9A");
+		saveButton.setFont(new Font("宋体", Font.PLAIN, 15));
+		saveButton.setBounds(247, 580, 150, 40);
 		saveButton.addActionListener(new saveButtonListener());
-		saveButton.setBounds(101, 229, 93, 23);
 		panel.add(saveButton);
 
 		
 		JButton cancelButton = new JButton("\u53D6\u6D88");
-		cancelButton.setBounds(240, 229, 93, 23);
+		cancelButton.setFont(new Font("宋体", Font.PLAIN, 15));
+		cancelButton.setBounds(501, 580, 150, 40);
 		panel.add(cancelButton);
 		cancelButton.addActionListener(new cancelButtonListener());
 		
 		JLabel label_1 = new JLabel("\u673A\u6784");
-		label_1.setBounds(48, 43, 54, 15);
+		label_1.setFont(new Font("宋体", Font.PLAIN, 20));
+		label_1.setBounds(205, 176, 54, 32);
 		panel.add(label_1);
 		
 		JLabel label_2 = new JLabel("\u4EBA\u5458");
-		label_2.setBounds(231, 43, 54, 15);
+		label_2.setFont(new Font("宋体", Font.PLAIN, 20));
+		label_2.setBounds(459, 172, 78, 40);
 		panel.add(label_2);
 		
 		JLabel label_3 = new JLabel("\u8F66\u8F86");
-		label_3.setBounds(48, 78, 54, 15);
+		label_3.setFont(new Font("宋体", Font.PLAIN, 20));
+		label_3.setBounds(205, 317, 54, 32);
 		panel.add(label_3);
 		
 		JLabel label_4 = new JLabel("\u5E93\u5B58");
-		label_4.setBounds(231, 78, 54, 15);
+		label_4.setFont(new Font("宋体", Font.PLAIN, 20));
+		label_4.setBounds(459, 317, 52, 32);
 		panel.add(label_4);
 		
 		JLabel lblNewLabel = new JLabel("\u94F6\u884C\u8D26\u6237");
-		lblNewLabel.setBounds(184, 108, 54, 15);
+		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 25));
+		lblNewLabel.setBounds(394, 397, 101, 41);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("\u540D\u79F0");
-		lblNewLabel_1.setBounds(48, 159, 54, 15);
+		lblNewLabel_1.setFont(new Font("宋体", Font.PLAIN, 20));
+		lblNewLabel_1.setBounds(205, 472, 66, 40);
 		panel.add(lblNewLabel_1);
 		
 		statusLabel = new JLabel("");
-		statusLabel.setBounds(141, 204, 132, 15);
+		statusLabel.setFont(new Font("宋体", Font.PLAIN, 15));
+		statusLabel.setBounds(305, 630, 256, 40);
 		panel.add(statusLabel);
 		
 		JLabel label_5 = new JLabel("\u4F59\u989D");
-		label_5.setBounds(231, 159, 54, 15);
+		label_5.setFont(new Font("宋体", Font.PLAIN, 20));
+		label_5.setBounds(459, 475, 54, 35);
 		panel.add(label_5);
 		
 		organizationField = new JTextField();
-		organizationField.setBounds(101, 40, 66, 21);
+		organizationField.setFont(new Font("宋体", Font.PLAIN, 15));
+		organizationField.setBounds(281, 177, 161, 35);
 		panel.add(organizationField);
 		organizationField.setColumns(10);
 		
 		carNumField = new JTextField();
-		carNumField.setBounds(101, 75, 66, 21);
+		carNumField.setFont(new Font("宋体", Font.PLAIN, 15));
+		carNumField.setBounds(281, 318, 116, 35);
 		panel.add(carNumField);
 		carNumField.setColumns(10);
 		
 		presonNumField = new JTextField();
-		presonNumField.setBounds(267, 40, 66, 21);
+		presonNumField.setFont(new Font("宋体", Font.PLAIN, 15));
+		presonNumField.setBounds(523, 177, 116, 35);
 		panel.add(presonNumField);
 		presonNumField.setColumns(10);
 		
 		storageField = new JTextField();
-		storageField.setBounds(267, 75, 66, 21);
+		storageField.setFont(new Font("宋体", Font.PLAIN, 15));
+		storageField.setBounds(521, 318, 116, 35);
 		panel.add(storageField);
 		storageField.setColumns(10);
 		
 		nameField = new JTextField();
-		nameField.setBounds(101, 156, 66, 21);
+		nameField.setFont(new Font("宋体", Font.PLAIN, 15));
+		nameField.setBounds(281, 477, 150, 35);
 		panel.add(nameField);
 		nameField.setColumns(10);
 		
 		balanceField = new JTextField();
-		balanceField.setBounds(267, 156, 66, 21);
+		balanceField.setFont(new Font("宋体", Font.PLAIN, 15));
+		balanceField.setBounds(523, 477, 116, 35);
 		panel.add(balanceField);
 		balanceField.setColumns(10);
 	}
