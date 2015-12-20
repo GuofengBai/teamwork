@@ -91,22 +91,23 @@ public class CostManageUI extends JPanel{
 		
 		addButton = new JButton("\u65B0\u5EFA\u4ED8\u6B3E\u5355");
 		addButton.setFont(new Font("宋体", Font.PLAIN, 15));
-		addButton.setBounds(114, 506, 150, 40);
+		addButton.setBounds(165, 506, 150, 40);
 		panel.add(addButton);
 		addButton.addActionListener(new addButtonListener());
 		
 		delButton = new JButton("\u5220\u9664\u4ED8\u6B3E\u5355");
 		delButton.setFont(new Font("宋体", Font.PLAIN, 15));
-		delButton.setBounds(629, 506, 150, 40);
+		delButton.setBounds(594, 506, 150, 40);
 		panel.add(delButton);
 		delButton.addActionListener(new delButtonListener());
-		
+/**		
 		changeButton = new JButton("\u4FEE\u6539");
 		changeButton.setFont(new Font("宋体", Font.PLAIN, 15));
 		changeButton.setBounds(376, 506, 150, 40);
 		panel.add(changeButton);
 		changeButton.addActionListener(new changeButtonListener());
-		
+*/
+
 		JLabel label_1 = new JLabel("\u4ED8\u6B3E\u5355\u5217\u8868");
 		label_1.setFont(new Font("宋体", Font.PLAIN, 20));
 		label_1.setBounds(395, 123, 112, 35);
