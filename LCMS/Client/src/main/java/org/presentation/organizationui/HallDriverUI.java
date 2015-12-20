@@ -225,6 +225,7 @@ public class HallDriverUI extends JPanel {
 		column.add("司机编号");
 		column.add("姓名");
 		column.add("出生日期");
+		column.add("性別");
 		column.add("电话号码");
 		column.add("身份证号");
 		
