@@ -2,26 +2,25 @@ package org.po;
 
 import java.io.Serializable;
 
-public class Payment implements Serializable{
-	
+public class Payment implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public String type;          // 结算方式
-	public double parameter;     //参数
-	
-	public Payment(){
+	public String type; // 结算方式
+	public double parameter; // 参数
+
+	public Payment() {
 		super();
-		type="按月";
-		parameter=2000;
+		type = "按月";
+		parameter = 2000;
 	}
-	
-	public Payment(String type,double parameter){
+
+	public Payment(String type, double parameter) {
 		super();
-		this.type=type;
-		this.parameter=parameter;
+		this.type = type;
+		this.parameter = parameter;
 	}
 
 }
-
