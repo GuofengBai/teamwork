@@ -199,6 +199,10 @@ public class CostManageUI extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			int dex=table.getSelectedRow();
+			
+			if(dex<0){
+				return;
+			}
 			CostManagementBLService cmbl=BLFactory.getCostManagementBL();
 			ResultMessage message=cmbl.delBill(tableContent.get(dex).get(7));
 			
