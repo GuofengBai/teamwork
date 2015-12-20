@@ -15,7 +15,6 @@ import org.po.SENDSTYPE;
 import org.po.myDate;
 import org.presentation.mainui.ViewController;
 import org.vo.SBVO;
-import java.awt.Color;
 import java.awt.SystemColor;
 
 
@@ -79,6 +78,10 @@ public class NewSendingBillsUI extends JPanel {
 				
 				
 				//日期判断
+				if(newyear.getText().equals("")||newmonth.getText().equals("")||newday.getText().equals("")){
+					suggest.setText("信息未填写完整");
+					return;
+				}
 				for(int i=0;i<newyear.getText().length();i++){
 					if(newyear.getText().charAt(i)>'9'||newyear.getText().charAt(i)<'0'||i>=4){
 						suggest.setText("年份输入错误");

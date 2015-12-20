@@ -10,5 +10,6 @@ public interface NewCenterFreightBillsBLService {
 	public long getPrice(SENDSTYPE send, String StartPlace, String EndPlace);
 	public ResultMessage updateCenterFreightBills(CFBVO vo);
 	public String cherk(CFBVO vo);
+	public String search(String GoodNum);
 
 }

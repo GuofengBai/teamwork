@@ -48,6 +48,7 @@ public class NewCenterEntruckBillsUI extends JPanel {
 	DefaultTableModel model;
 	private JButton back;
 	private JLabel suggest;
+	NewCenterEntruckBillsBLService bl = BLFactory.getNewCenterEntruckBillsBL();
 
 	/**
 	 * Create the panel.
@@ -64,8 +65,11 @@ public class NewCenterEntruckBillsUI extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				NewCenterEntruckBillsBLService bl = BLFactory.getNewCenterEntruckBillsBL();
 				//日期判断
+				if(newyear.getText().equals("")||newmonth.getText().equals("")||newday.getText().equals("")){
+					suggest.setText("信息未填写完整");
+					return;
+				}
 				for(int i=0;i<newyear.getText().length();i++){
 					if(newyear.getText().charAt(i)>'9'||newyear.getText().charAt(i)<'0'||i>=4){
 						suggest.setText("年份输入错误");
@@ -105,7 +109,6 @@ public class NewCenterEntruckBillsUI extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				NewCenterEntruckBillsBLService bl = BLFactory.getNewCenterEntruckBillsBL();
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
 				CEBVO bvo = new CEBVO(date, entruckNum.getText(), hallNum.getText(), carNum.getText(), driverName.getText(), examerName.getText(), list);
 				bl.updateCenterEntruckBills(bvo);
@@ -233,13 +236,18 @@ public class NewCenterEntruckBillsUI extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				String num = goodNum.getText();
-				String state = goodState.getSelectedItem().toString();
-				StateListVO item = new StateListVO(num,state);
-				StateListPO po = new StateListPO(num,state);
-				model.addRow(item);
-				goodNum.setText("");
-				list.add(po);
+				if(bl.search(goodNum.getText()).equals("")){
+					String num = goodNum.getText();
+					String state = goodState.getSelectedItem().toString();
+					StateListVO item = new StateListVO(num,state);
+					StateListPO po = new StateListPO(num,state);
+					model.addRow(item);
+					goodNum.setText("");
+					list.add(po);
+				}else{
+					suggest.setText(bl.search(goodNum.getText()));
+				}
+				
 				
 				
 			}

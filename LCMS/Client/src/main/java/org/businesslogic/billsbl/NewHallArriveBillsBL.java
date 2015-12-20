@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 
 
 
+
 import org.Client.RMIHelper;
 import org.businesslogicservice.billsblservice.NewHallArriveBillsBLService;
 import org.dataservice.billsdataservice.BillsDataService;
@@ -53,7 +54,22 @@ public class NewHallArriveBillsBL implements NewHallArriveBillsBLService{
 	}
 
 	public String cherk(HABVO vo) {
+		if (vo.idNum.equals(""))
+			return "信息未填写完整";
+		if (vo.startPlace.equals(""))
+			return "信息未填写完整";
+		if (vo.entruckNum.equals(""))
+			return "信息未填写完整";
 		BillsDataService billsData;
+		try {
+			billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewCenterEntruckBillsData();
+			if(!billsData.Used(vo.entruckNum)){
+				return "装车单不存在";
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		try {
 			billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewHallArriveBillsData();
 			if(billsData.Used(vo.idNum)){
@@ -64,6 +80,21 @@ public class NewHallArriveBillsBL implements NewHallArriveBillsBLService{
 			e.printStackTrace();
 		}
 		
+		return "";
+	}
+
+	public String search(String GoodNum) {
+		// TODO Auto-generated method stub
+		BillsDataService billsData;
+		try {
+			billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewSendingBillsData();
+			if(!billsData.Used(GoodNum)){
+				return "托运单号不存在";
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "";
 	}
 

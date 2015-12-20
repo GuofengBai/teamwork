@@ -65,6 +65,12 @@ public class NewCenterArriveBillsBL implements NewCenterArriveBillsBLService{
 
 	public String cherk(CABVO vo) {
 		BillsDataService billsData;
+		if(vo.CenterNum.equals("")){
+			return "信息未填写完整";
+		}
+		if(vo.FreightNum.equals("")){
+			return "信息未填写完整";
+		}
 		try {
 			billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewCenterArriveBillsData();
 			if(billsData.Used(vo.CenterNum)){
@@ -78,18 +84,21 @@ public class NewCenterArriveBillsBL implements NewCenterArriveBillsBLService{
 		return "";
 	}
 
-	public boolean search(String CABNum, String GoodNum) {
+	public String search(String CABNum, String GoodNum) {
 		BillsDataService billsData;
 		if(CABNum.charAt(3)=='0'){
 			try {
 				billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewCenterFreightBillsData();
 				BillsPO po = billsData.findBills(CABNum);
+				if(po==null){
+					return "中转单不存在";
+				}
 				if(((CenterFreightBills)po).getpo() == null){
-					return false;
+					return "托运单号不存在";
 				}
 				for(StateListPO list:((CenterFreightBills)po).getpo()){
 					if(list.getNum().equals(GoodNum)){
-						return true;
+						return "";
 					}
 				}				
 			} catch (RemoteException e) {
@@ -100,9 +109,12 @@ public class NewCenterArriveBillsBL implements NewCenterArriveBillsBLService{
 			try {
 				billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewHallEntruckBillsData();
 				BillsPO po = billsData.findBills(CABNum);
+				if(po==null){
+					return "装车单不存在";
+				}
 				for(StateListPO list:((HallEntruckBills)po).getlist()){
 					if(list.getNum().equals(GoodNum)){
-						return true;
+						return "托运单号不存在";
 					}
 				}
 			} catch (RemoteException e) {
@@ -110,7 +122,7 @@ public class NewCenterArriveBillsBL implements NewCenterArriveBillsBLService{
 				e.printStackTrace();
 			}
 		}
-		return false;
+		return "";
 	}
 
 

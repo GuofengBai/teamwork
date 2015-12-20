@@ -16,7 +16,10 @@ public class ReceiveMessageBL implements ReceiveMessageBLService{
 		NewSendingBillsDataService sendingBillsData;
 		try {
 			sendingBillsData = RMIHelper.getDataFactory().getBillsDataFactory().getNewSendingBillsData();
-			SendingBills bill = ((SendingBills)sendingBillsData.findBills(receiverName));			
+			SendingBills bill = ((SendingBills)sendingBillsData.findBills(receiverName));	
+			if(bill==null){
+				return false;
+			}
 			bill.setArriveDate(date);
 			bill.setReceiverNameReal(receiverName);
 		} catch (RemoteException e) {

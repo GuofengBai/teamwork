@@ -12,4 +12,5 @@ public interface NewHallArriveBillsBLService {
 	public ResultMessage updateHallArriveBills(HABVO vo);
 	
 	public String cherk(HABVO vo);
+	public String search(String GoodNum);
 }

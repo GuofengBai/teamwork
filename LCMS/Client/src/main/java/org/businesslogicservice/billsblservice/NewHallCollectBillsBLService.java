@@ -11,5 +11,6 @@ public interface NewHallCollectBillsBLService {
 	public ResultMessage updateHallCollectionBills(HCBVO vo);
 	
 	public String cherk(HCBVO vo);
+	public String search(String GoodNum);
 
 }

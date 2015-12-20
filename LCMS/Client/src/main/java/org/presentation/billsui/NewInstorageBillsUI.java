@@ -71,6 +71,10 @@ public class NewInstorageBillsUI extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				if(newyear.getText().equals("")||newmonth.getText().equals("")||newday.getText().equals("")){
+					suggest.setText("信息未填写完整");
+					return;
+				}
 				for (int i = 0; i < newyear.getText().length(); i++) {
 					if (newyear.getText().charAt(i) > '9'
 							|| newyear.getText().charAt(i) < '0' || i >= 4) {

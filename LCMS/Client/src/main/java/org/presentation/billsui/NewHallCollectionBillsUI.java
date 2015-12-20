@@ -12,6 +12,7 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
+
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.billsblservice.NewHallCollectBillsBLService;
 import org.po.StateListPO;
@@ -42,6 +43,7 @@ public class NewHallCollectionBillsUI extends JPanel {
 	private JTextField idNum;
 	private JButton back;
 	private JLabel suggest;
+	NewHallCollectBillsBLService bl = BLFactory.getNewHallCollectBillsBL();
 
 	/**
 	 * Create the panel.
@@ -59,6 +61,10 @@ public class NewHallCollectionBillsUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				//日期判断
+				if(newyear.getText().equals("")||newmonth.getText().equals("")||newday.getText().equals("")){
+					suggest.setText("信息未填写完整");
+					return;
+				}
 				for(int i=0;i<newyear.getText().length();i++){
 					if(newyear.getText().charAt(i)>'9'||newyear.getText().charAt(i)<'0'||i>=4){
 						suggest.setText("年份输入错误");
@@ -78,7 +84,7 @@ public class NewHallCollectionBillsUI extends JPanel {
 					}					
 				}
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
-				NewHallCollectBillsBLService bl = BLFactory.getNewHallCollectBillsBL();
+				
 				HCBVO bvo = new HCBVO(date,idNum.getText(), name.getText(),total.getText(),list);
 				suggest.setText(bl.cherk(bvo));
 				if(suggest.getText().equals("")){
@@ -100,7 +106,7 @@ public class NewHallCollectionBillsUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
-				NewHallCollectBillsBLService bl = BLFactory.getNewHallCollectBillsBL();
+				
 				HCBVO bvo = new HCBVO(date,idNum.getText(), name.getText(),total.getText(),list);
 				bl.updateHallCollectionBills(bvo);
 			}
@@ -178,15 +184,24 @@ public class NewHallCollectionBillsUI extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				String num = goodNum.getText();
-				String price = pay.getText();
-				total.setText(Integer.parseInt(total.getText())+Integer.parseInt(price)+"");
-				StateListVO item = new StateListVO(num,price);
-				StateListPO po = new StateListPO(num,price);
-				model.addRow(item);
-				goodNum.setText("");
-				pay.setText("");
-				list.add(po);				
+				if(bl.search(goodNum.getText()).equals("")){
+					if(pay.getText().equals("")){
+						suggest.setText("收款金额不能为空");
+						return;
+					}
+					String num = goodNum.getText();
+					String price = pay.getText();
+					total.setText(Integer.parseInt(total.getText())+Integer.parseInt(price)+"");
+					StateListVO item = new StateListVO(num,price);
+					StateListPO po = new StateListPO(num,price);
+					model.addRow(item);
+					goodNum.setText("");
+					pay.setText("");
+					list.add(po);
+				}else{
+					suggest.setText(bl.search(goodNum.getText()));
+				}
+								
 			}
 			
 		});

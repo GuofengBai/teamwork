@@ -13,6 +13,6 @@ public interface NewCenterArriveBillsBLService {
 	
 	public String cherk(CABVO vo);
 	
-	public boolean search(String CABNum , String GoodNum);
+	public String search(String CABNum , String GoodNum);
 
 }

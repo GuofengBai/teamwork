@@ -59,6 +59,10 @@ public class NewCenterArriveBillsUI extends JPanel {
 				
 				
 				//日期判断
+				if(newyear.getText().equals("")||newmonth.getText().equals("")||newday.getText().equals("")){
+					suggest.setText("信息未填写完整");
+					return;
+				}
 				for(int i=0;i<newyear.getText().length();i++){
 					if(newyear.getText().charAt(i)>'9'||newyear.getText().charAt(i)<'0'||i>=4){
 						suggest.setText("年份输入错误");
@@ -195,7 +199,7 @@ public class NewCenterArriveBillsUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				String num = GoodNum.getText();
-				if(bl.search(CABNum.getText(), GoodNum.getText())){
+				if(bl.search(CABNum.getText(), GoodNum.getText()).equals("")){
 					String state = State.getSelectedItem().toString();
 					StateListVO item = new StateListVO(num,state);
 					StateListPO po = new StateListPO(num,state);
@@ -204,7 +208,7 @@ public class NewCenterArriveBillsUI extends JPanel {
 					GoodNum.setText("");
 					suggest.setText("");
 				}else{
-					suggest.setText("输入的单号不存在");
+					suggest.setText(bl.search(CABNum.getText(), GoodNum.getText()));
 				}				
 			}
 			

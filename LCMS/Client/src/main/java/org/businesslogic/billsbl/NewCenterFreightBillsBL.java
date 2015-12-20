@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 
 
 
+
 import org.Client.RMIHelper;
 import org.businesslogic.organizationbl.ManagerSettingBL;
 import org.businesslogicservice.billsblservice.NewCenterFreightBillsBLService;
@@ -71,6 +72,18 @@ public class NewCenterFreightBillsBL implements NewCenterFreightBillsBLService{
 
 	public String cherk(CFBVO vo) {
 		BillsDataService billsData;
+		if (vo.FreightNum.equals(""))
+			return "信息未填写完整";
+		if (vo.tramNum.equals(""))
+			return "信息未填写完整";
+		if (vo.StartPlace.equals(""))
+			return "信息未填写完整";
+		if (vo.EndPlace.equals(""))
+			return "信息未填写完整";
+		if (vo.caseNum.equals(""))
+			return "信息未填写完整";
+		if (vo.Scoutername.equals(""))
+			return "信息未填写完整";
 		try {
 			billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewCenterFreightBillsData();
 			if(billsData.Used(vo.FreightNum)){
@@ -81,6 +94,21 @@ public class NewCenterFreightBillsBL implements NewCenterFreightBillsBLService{
 			e.printStackTrace();
 		}
 		
+		return "";
+	}
+
+	public String search(String GoodNum) {
+		// TODO Auto-generated method stub
+		BillsDataService billsData;
+		try {
+			billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewSendingBillsData();
+			if(!billsData.Used(GoodNum)){
+				return "托运单号不存在";
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "";
 	}
 

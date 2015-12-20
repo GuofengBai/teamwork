@@ -75,6 +75,12 @@ public class NewHallDispatchBillsBL implements NewHallDispatchBillsBLService{
 
 	public String cherk(HDBVO vo) {
 		BillsDataService billsData;
+		if (vo.idNum.equals(""))
+			return "信息未填写完整";
+		if (vo.name.equals(""))
+			return "信息未填写完整";
+		if (vo.GoodsNum.equals(""))
+			return "信息未填写完整";
 		try {
 			billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewHallDispatchBillsData();
 			if(billsData.Used(vo.idNum)){

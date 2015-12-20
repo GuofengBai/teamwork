@@ -17,6 +17,7 @@ import javax.swing.JScrollPane;
 
 
 
+
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.billsblservice.NewHallArriveBillsBLService;
 import org.po.StateListPO;
@@ -43,6 +44,7 @@ public class NewHallArriveBillsUI extends JPanel {
 	private DefaultTableModel model;
 	private JTextField idNum;
 	private JLabel suggest;
+	NewHallArriveBillsBLService bl = BLFactory.getNewHallArriveBillsBL();
 
 	/**
 	 * Create the panel.
@@ -61,6 +63,10 @@ public class NewHallArriveBillsUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				//日期判断
+				if(newyear.getText().equals("")||newmonth.getText().equals("")||newday.getText().equals("")){
+					suggest.setText("信息未填写完整");
+					return;
+				}
 				for(int i=0;i<newyear.getText().length();i++){
 					if(newyear.getText().charAt(i)>'9'||newyear.getText().charAt(i)<'0'||i>=4){
 						suggest.setText("年份输入错误");
@@ -80,7 +86,7 @@ public class NewHallArriveBillsUI extends JPanel {
 					}					
 				}
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
-				NewHallArriveBillsBLService bl = BLFactory.getNewHallArriveBillsBL();
+				
 				HABVO bvo = new HABVO(date,idNum.getText(),startPlace.getText(),entruckNum.getText(),list);
 				suggest.setText(bl.cherk(bvo));
 				if(suggest.getText().equals("")){
@@ -102,7 +108,7 @@ public class NewHallArriveBillsUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
-				NewHallArriveBillsBLService bl = BLFactory.getNewHallArriveBillsBL();
+				
 				HABVO bvo = new HABVO(date,idNum.getText(),startPlace.getText(),entruckNum.getText(),list);
 				bl.updateHallArriveBills(bvo);
 			}
@@ -182,13 +188,17 @@ public class NewHallArriveBillsUI extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				String num = goodNum.getText();
-				String state = goodState.getSelectedItem().toString();
-				StateListVO item = new StateListVO(num,state);
-				StateListPO po = new StateListPO(num,state);
-				model.addRow(item);
-				goodNum.setText("");
-				list.add(po);
+				if(bl.search(goodNum.getText()).equals("")){
+					String num = goodNum.getText();
+					String state = goodState.getSelectedItem().toString();
+					StateListVO item = new StateListVO(num,state);
+					StateListPO po = new StateListPO(num,state);
+					model.addRow(item);
+					goodNum.setText("");
+					list.add(po);
+				}else{
+					suggest.setText(bl.search(goodNum.getText()));
+				}
 				
 			}
 			

@@ -4,13 +4,20 @@ import java.rmi.RemoteException;
 
 
 
+
+
+
 import org.Client.RMIHelper;
 import org.businesslogicservice.billsblservice.NewCenterEntruckBillsBLService;
 import org.dataservice.billsdataservice.BillsDataService;
+import org.dataservice.organizationdataservice.HallDataService;
+import org.po.BillsPO;
 import org.po.CenterEntruckBills;
+import org.po.CenterFreightBills;
 import org.po.ResultMessage;
 
 
+import org.po.StateListPO;
 import org.vo.CEBVO;
 
 
@@ -49,6 +56,26 @@ public class NewCenterEntruckBillsBL implements NewCenterEntruckBillsBLService{
 
 	public String cherk(CEBVO vo) {
 		BillsDataService billsData;
+		HallDataService hallData;
+		if (vo.TrafficNum.equals(""))
+			return "信息未填写完整";
+		if (vo.HallNum.equals(""))
+			return "信息未填写完整";
+		if (vo.Vehicle.equals(""))
+			return "信息未填写完整";
+		if (vo.DriverName.equals(""))
+			return "信息未填写完整";
+		if (vo.ScouterName.equals(""))
+			return "信息未填写完整";
+		try {
+			hallData=RMIHelper.getDataFactory().getOrganizationDataFactory().getHallData();
+			if(hallData.findHall(vo.HallNum)==null){
+				return "营业厅不存在";
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		try {
 			billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewCenterEntruckBillsData();
 			if(billsData.Used(vo.TrafficNum)){
@@ -62,4 +89,18 @@ public class NewCenterEntruckBillsBL implements NewCenterEntruckBillsBLService{
 		return "";
 	}
 
+	public String search(String GoodNum) {
+		// TODO Auto-generated method stub
+		BillsDataService billsData;
+			try {
+				billsData=RMIHelper.getDataFactory().getBillsDataFactory().getNewSendingBillsData();
+				if(!billsData.Used(GoodNum)){
+					return "托运单号不存在";
+				}
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return "";
+	}
 }

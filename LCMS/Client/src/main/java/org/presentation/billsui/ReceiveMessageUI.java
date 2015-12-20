@@ -24,6 +24,7 @@ public class ReceiveMessageUI extends JPanel {
 	private JTextField newmonth;
 	private JTextField newday;
 	private JButton back;
+	private JLabel suggest;
 
 	/**
 	 * Create the panel.
@@ -75,6 +76,10 @@ public class ReceiveMessageUI extends JPanel {
 		back = new JButton("返回");
 		back.setBounds(139, 85, 93, 23);
 		add(back);
+		
+		suggest = new JLabel("");
+		suggest.setBounds(10, 118, 230, 15);
+		add(suggest);
 		back.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -87,8 +92,34 @@ public class ReceiveMessageUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				ReceiveMessageBLService bl = BLFactory.getReceiveMessageBL();
+				if(newyear.getText().equals("")||newmonth.getText().equals("")||newday.getText().equals("")){
+					suggest.setText("信息未填写完整");
+					return;
+				}
+				for(int i=0;i<newyear.getText().length();i++){
+					if(newyear.getText().charAt(i)>'9'||newyear.getText().charAt(i)<'0'||i>=4){
+						suggest.setText("年份输入错误");
+						return;
+					}		
+				}
+				for(int i=0;i<newmonth.getText().length();i++){
+					if(newmonth.getText().charAt(i)>'9'||newmonth.getText().charAt(i)<'0'||i>=2){
+						suggest.setText("月份输入错误");
+						return;
+					}		
+				}
+				for(int i=0;i<newday.getText().length();i++){
+					if(newday.getText().charAt(i)>'9'||newday.getText().charAt(i)<'0'||i>=2){
+						suggest.setText("日期输入错误");
+						return;
+					}					
+				}
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
-				bl.addMessage(goodNum.getText(),receiverName.getText(),date);
+				if(!bl.addMessage(goodNum.getText(),receiverName.getText(),date)){
+					suggest.setText("托运单号不存在");
+				}else{
+					suggest.setText("添加成功");
+				}
 			}
 		});
 

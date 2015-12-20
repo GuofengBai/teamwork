@@ -45,6 +45,7 @@ public class NewHallEntruckBillsUI extends JPanel {
 	private JComboBox<String> goodState;
 	private JButton back;
 	private JLabel suggest;
+	NewHallEntruckBillsBLService bl = BLFactory.getNewHallEntruckBillsBL();
 
 	/**
 	 * Create the panel.
@@ -63,6 +64,10 @@ public class NewHallEntruckBillsUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				//日期判断
+				if(newyear.getText().equals("")||newmonth.getText().equals("")||newday.getText().equals("")){
+					suggest.setText("信息未填写完整");
+					return;
+				}
 				for(int i=0;i<newyear.getText().length();i++){
 					if(newyear.getText().charAt(i)>'9'||newyear.getText().charAt(i)<'0'||i>=4){
 						suggest.setText("年份输入错误");
@@ -83,7 +88,7 @@ public class NewHallEntruckBillsUI extends JPanel {
 				}
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
 				System.out.println(date.toString());
-				NewHallEntruckBillsBLService bl = BLFactory.getNewHallEntruckBillsBL();
+				
 				HEBVO bvo = new HEBVO(date, entruckNum.getText(), hallNum.getText(), aimNum.getText(), carNum.getText(), driverName.getText(), list);
 				suggest.setText(bl.cherk(bvo));
 				if(suggest.getText().equals("")){
@@ -109,7 +114,7 @@ public class NewHallEntruckBillsUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				myDate date = new myDate(Integer.parseInt(newyear.getText()),Integer.parseInt(newmonth.getText()),Integer.parseInt(newday.getText()));
-				NewHallEntruckBillsBLService bl = BLFactory.getNewHallEntruckBillsBL();
+				
 				HEBVO bvo = new HEBVO(date, entruckNum.getText(), hallNum.getText(), aimNum.getText(), carNum.getText(), driverName.getText(), list);
 				bl.updateHallEntruckBills(bvo);
 			}
@@ -217,13 +222,17 @@ public class NewHallEntruckBillsUI extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				String num = goodNum.getText();
-				String state = goodState.getSelectedItem().toString();
-				StateListVO item = new StateListVO(num,state);
-				StateListPO po = new StateListPO(num,state);
-				model.addRow(item);
-				goodNum.setText("");
-				list.add(po);
+				if(bl.search(goodNum.getText()).equals("")){
+					String num = goodNum.getText();
+					String state = goodState.getSelectedItem().toString();
+					StateListVO item = new StateListVO(num,state);
+					StateListPO po = new StateListPO(num,state);
+					model.addRow(item);
+					goodNum.setText("");
+					list.add(po);
+				}else{
+					suggest.setText(bl.search(goodNum.getText()));
+				}
 				
 			}
 			

@@ -80,10 +80,13 @@ public class NewSendingBillsBL implements NewSendingBillsBLService {
 
 	public String searchState(String goodNum) {
 		// TODO Auto-generated method stub
-		String answer = null;
+		String answer = "";
 		try {
 			NewSendingBillsDataService billsData = RMIHelper.getDataFactory()
 					.getBillsDataFactory().getNewSendingBillsData();
+			if(billsData.findBills(goodNum)==null){
+				return answer;
+			}
 			answer = billsData.getExpressState(goodNum).getState();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -94,27 +97,27 @@ public class NewSendingBillsBL implements NewSendingBillsBLService {
 
 	public String cherk(SBVO vo) {
 		BillsDataService billsData;
-		if (vo.sendername == "")
+		if (vo.sendername.equals(""))
 			return "信息未填写完整";
-		if (vo.receivername == "")
+		if (vo.receivername.equals(""))
 			return "信息未填写完整";
-		if (vo.senderphone == "")
+		if (vo.senderphone.equals(""))
 			return "信息未填写完整";
-		if (vo.receiverphone == "")
+		if (vo.receiverphone.equals(""))
 			return "信息未填写完整";
-		if (vo.senderlocation == "")
+		if (vo.senderlocation.equals(""))
 			return "信息未填写完整";
-		if (vo.receiverlocation == "")
+		if (vo.receiverlocation.equals(""))
 			return "信息未填写完整";
-		if (vo.goodsnumber == "")
+		if (vo.goodsnumber.equals(""))
 			return "信息未填写完整";
-		if (vo.length == "")
+		if (vo.length.equals(""))
 			return "信息未填写完整";
-		if (vo.width == "")
+		if (vo.width.equals(""))
 			return "信息未填写完整";
-		if (vo.height == "")
+		if (vo.height.equals(""))
 			return "信息未填写完整";
-		if (vo.weight == "")
+		if (vo.weight.equals(""))
 			return "信息未填写完整";
 		try {
 			billsData = RMIHelper.getDataFactory().getBillsDataFactory()
