@@ -6,10 +6,12 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 
 
+
 import org.Client.CurrentStaff;
 import org.presentation.billsui.NewInstorageBillsUI;
 import org.presentation.billsui.NewOutstorageBillsUI;
 import org.presentation.mainui.ViewController;
+import org.presentation.userui.UserUI;
 import org.vo.StaffVO;
 
 import java.awt.event.ActionListener;
@@ -126,7 +128,7 @@ public class StorageStaffView extends JPanel {
 		JButton button1 = new JButton("登出");
 		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ViewController.jumpToAnotherView(newpanel);
+				ViewController.jumpToAnotherView(new UserUI());
 			}
 		});
 		button1.setBounds(643, 740, 102, 45);

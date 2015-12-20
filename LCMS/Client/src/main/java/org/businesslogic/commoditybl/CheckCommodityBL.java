@@ -24,6 +24,7 @@ public class CheckCommodityBL implements CheckCommodityBLService {
 		CommodityDataService cds = RMIHelper.getDataFactory()
 				.getCommodityData();
 		list = cds.getAllCom(centerNum);
+		System.out.println(cds.getComSize(centerNum));
 		return false;
 	}
 
@@ -37,7 +38,7 @@ public class CheckCommodityBL implements CheckCommodityBLService {
 
 			CommodityVO obj = new CommodityVO(po.getGoodsNum(), po.getinDate(),
 					po.getplace(), po.LocationNum(), po.getArea(),
-					po.getcenterNum());
+					centerNum);
 			comlist.add(obj);
 
 		}

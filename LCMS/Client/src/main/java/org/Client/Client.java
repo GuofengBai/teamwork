@@ -20,6 +20,6 @@ public class Client{
     	ViewController.init(frame);
     	frame.setContentPane(newUI);
     	frame.setVisible(true);
-    	frame.setBounds(500, 100, 900, 900);
+    	frame.setBounds(500, 70, 920, 950);
     }
 }

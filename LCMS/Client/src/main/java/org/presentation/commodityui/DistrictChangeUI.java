@@ -23,7 +23,6 @@ import org.presentation.mainui.ViewController;
 import org.vo.CommodityVO;
 import org.vo.StaffVO;
 
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
@@ -51,7 +50,7 @@ public class DistrictChangeUI extends JPanel {
 	private JComboBox<String> ComBox1;
 	private JComboBox<String> ComBox2;
 	private List<String> list;
-	private String selected1="航运区";
+	private String selected1 = "航运区";
 	private String selected2;
 	private String centerNum;
 	private StaffVO thisstaff;
@@ -59,6 +58,7 @@ public class DistrictChangeUI extends JPanel {
 	private JTextField PAI;
 	private JTextField JIA;
 	private JTextField WEI;
+	private JLabel suggest;
 
 	/**
 	 * Create the panel.
@@ -81,7 +81,7 @@ public class DistrictChangeUI extends JPanel {
 				if (evt.getStateChange() == ItemEvent.SELECTED) {
 					selected1 = (String) ComBox1.getSelectedItem();
 					System.out.println(selected1);
-					
+
 					try {
 						showTable();
 						hideTable(selected1);
@@ -98,23 +98,24 @@ public class DistrictChangeUI extends JPanel {
 		ComBox1.setBounds(81, 140, 102, 45);
 		this.add(ComBox1);
 	}
-	private void showTable() throws RemoteException{
-		cvo1=cbs.getDistrictCommodity(centerNum, selected1);
-		for(CommodityVO vo:cvo1){
+
+	private void showTable() throws RemoteException {
+		cvo1 = cbs.getDistrictCommodity(centerNum, selected1);
+		for (CommodityVO vo : cvo1) {
 			model1.addRow(vo);
 		}
 	}
 
-	private void hideTable(String selected){
-		
-		for(int i=0;i<model1.getRowCount();i++){
-			if(!((String)(model1.getValueAt(i, 3))).equals(selected)){
+	private void hideTable(String selected) {
+
+		for (int i = 0; i < model1.getRowCount(); i++) {
+			if (!((String) (model1.getValueAt(i, 3))).equals(selected)) {
 				model1.removeRow(i);
 				i--;
 			}
 		}
 	}
-	
+
 	private void initToSelecter() throws RemoteException {
 		ComBox2 = new JComboBox<String>();
 		// 获得供应商列表
@@ -160,9 +161,9 @@ public class DistrictChangeUI extends JPanel {
 		Vector<CommodityVO> vData = new Vector<CommodityVO>();
 
 		model1 = new DefaultTableModel(vData, vColumns);
-		//for (CommodityVO vo : cvo1) {
-		//	model1.addRow(vo);
-		//}
+		// for (CommodityVO vo : cvo1) {
+		// model1.addRow(vo);
+		// }
 		this.add(scrollPane);
 		table1 = new JTable(model1) {
 			private static final long serialVersionUID = 1L;
@@ -177,23 +178,25 @@ public class DistrictChangeUI extends JPanel {
 		table1.setFillsViewportHeight(true);
 	}
 
-
-
 	public void initTo() {
 		JLabel label_4 = new JLabel("区");
-		label_4.setBounds(81, 229, 72, 18);
+		label_4.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_4.setBounds(81, 221, 72, 35);
 		add(label_4);
 
 		JLabel label_5 = new JLabel("排");
-		label_5.setBounds(264, 229, 72, 18);
+		label_5.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_5.setBounds(251, 221, 72, 35);
 		add(label_5);
 
 		JLabel label_6 = new JLabel("架");
-		label_6.setBounds(452, 229, 72, 18);
+		label_6.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_6.setBounds(447, 222, 72, 32);
 		add(label_6);
 
 		JLabel label_7 = new JLabel("位");
-		label_7.setBounds(644, 229, 72, 18);
+		label_7.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_7.setBounds(644, 221, 72, 35);
 		add(label_7);
 
 		QU = new JTextField();
@@ -217,7 +220,8 @@ public class DistrictChangeUI extends JPanel {
 		WEI.setColumns(10);
 
 		JLabel label_8 = new JLabel("区排架位各为1位整数");
-		label_8.setBounds(81, 297, 148, 18);
+		label_8.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_8.setBounds(81, 297, 224, 35);
 		add(label_8);
 	}
 
@@ -232,9 +236,13 @@ public class DistrictChangeUI extends JPanel {
 		System.out.println(index);
 		if (QU.getText() == null || PAI.getText() == null
 				|| JIA.getText() == null || WEI.getText() == null) {
-			JOptionPane.showMessageDialog(null, "请输入新的4位数字的位置号！", "",JOptionPane.ERROR_MESSAGE);
+			suggest.setText("请输入新的4位数字的位置号！");
 			return;
-			}
+		}
+		else if(QU.getText().length()>1||PAI.getText().length()>1||JIA.getText().length()>1||WEI.getText().length()>1){
+			suggest.setText("请输入单个数字的4位位置号！");
+			return;
+		}
 		else if (Integer.parseInt(QU.getText()) > 9
 				|| Integer.parseInt(QU.getText()) < 0
 				|| Integer.parseInt(PAI.getText()) > 9
@@ -243,23 +251,20 @@ public class DistrictChangeUI extends JPanel {
 				|| Integer.parseInt(JIA.getText()) < 0
 				|| Integer.parseInt(WEI.getText()) > 9
 				|| Integer.parseInt(WEI.getText()) < 0) {
-			JOptionPane.showMessageDialog(null, "请输入正确的(4位数字)的位置号！", "",
-					JOptionPane.ERROR_MESSAGE);
+			suggest.setText("请输入正确的(4位数字)的位置号！");
 			return;
-		}
-		else{
-			JOptionPane.showMessageDialog(null, "调整成功", "",
-					JOptionPane.OK_OPTION);
+		} else {
+			suggest.setText( "调整成功");
 		}
 		String location = QU.getText() + PAI.getText() + JIA.getText()
 				+ WEI.getText();
-		
-		ResultMessage re=cbs.change(selected1, selected2, index, location);
-		if(re.success){
+
+		ResultMessage re = cbs.change(selected1, selected2, index, location);
+		if (re.success) {
 			table1.remove(index);
 			model1.removeRow(index);
-			}
-		
+		}
+
 		else
 			JOptionPane.showMessageDialog(null, re.info[0], re.info[1],
 					JOptionPane.ERROR_MESSAGE);
@@ -269,8 +274,8 @@ public class DistrictChangeUI extends JPanel {
 		thisstaff = CurrentStaff.getStaff();
 		if (thisstaff.workSpace.type.equals("中转中心"))
 			this.centerNum = thisstaff.workSpace.num;
-		this.superpanel=ui;
-		//this.centerNum="0250001";
+		this.superpanel = ui;
+		// this.centerNum="0250001";
 		cbs = BLFactory.getDistrictChangeBL();
 		initDistrictSelecter();
 		initSelecterTable();
@@ -290,23 +295,26 @@ public class DistrictChangeUI extends JPanel {
 		// add(comboBox);
 
 		JLabel label_1 = new JLabel("移至");
-		label_1.setBounds(279, 153, 72, 18);
+		label_1.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_1.setBounds(251, 142, 84, 35);
 		add(label_1);
-		String result=null;
-		SettingAlertBLService sabs=BLFactory.getSettingAlertBL();
-		result=String.valueOf(sabs.getAlert(centerNum))+"%";
+		String result = null;
+		SettingAlertBLService sabs = BLFactory.getSettingAlertBL();
+		result = String.valueOf(sabs.getAlert(centerNum)) + "%";
 		JLabel label_2 = new JLabel("仓库已使用");
-		label_2.setBounds(509, 156, 82, 18);
+		label_2.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_2.setBounds(509, 140, 125, 39);
 		add(label_2);
 
 		JLabel label_3 = new JLabel(" ");
+		label_3.setFont(new Font("宋体", Font.PLAIN, 22));
 		label_3.setText(result);
-		label_3.setBounds(605, 156, 72, 18);
+		label_3.setBounds(644, 143, 86, 32);
 		add(label_3);
 
 		JButton button = new JButton("返回");
-		button.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				ViewController.jumpToAnotherView(superpanel);
 			}
 		});
@@ -324,8 +332,13 @@ public class DistrictChangeUI extends JPanel {
 				}
 			}
 		});
-		btnNewButton.setBounds(669, 297, 102, 45);
+		btnNewButton.setBounds(364, 295, 102, 45);
 		add(btnNewButton);
+
+		suggest = new JLabel("");
+		suggest.setFont(new Font("宋体", Font.PLAIN, 22));
+		suggest.setBounds(480, 297, 380, 35);
+		add(suggest);
 
 	}
 }

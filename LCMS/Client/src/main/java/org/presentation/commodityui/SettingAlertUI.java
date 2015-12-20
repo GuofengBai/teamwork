@@ -16,6 +16,7 @@ import org.vo.StaffVO;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class SettingAlertUI extends JPanel {
 	/**
@@ -27,6 +28,7 @@ public class SettingAlertUI extends JPanel {
 	private String centerNum;
 	private StaffVO thisstaff;
 	private SettingAlertBLService sabs;
+	private JLabel label;
 
 	/**
 	 * Create the panel.
@@ -35,40 +37,47 @@ public class SettingAlertUI extends JPanel {
 	 */
 	public void showAlertLine() throws RemoteException {
 		JLabel label = new JLabel("当前库存比例");
-		label.setBounds(90, 90, 119, 18);
+		label.setFont(new Font("宋体", Font.PLAIN, 22));
+		label.setBounds(284, 263, 132, 45);
 		add(label);
 		String line = "";
 		line = (String.valueOf(sabs.getAlert(centerNum)));
 		System.out.println(line);
 		JLabel alert = new JLabel(line + "%");
-		alert.setBounds(222, 99, 72, 18);
+		alert.setFont(new Font("宋体", Font.PLAIN, 22));
+		alert.setBounds(474, 276, 72, 18);
 		add(alert);
 	}
 
 	public boolean isNumber(String str) {
 		if (str == null)
 			return false;
-		if (str.length() > 3)
+		if (str.charAt(0) == '-')
 			return false;
 		for (int i = 0; i < str.length(); i++) {
-			if (str.charAt(i) - '0' < 0 || str.charAt(i) - '0' > 9)
+			if ((str.charAt(i) - '0' < 0 || str.charAt(i) - '0' > 9)
+					&& str.charAt(i) != '.')
 				return false;
 
 		}
-		if (str.length() == 3)
-			if (str.charAt(0) == '1' && str.charAt(1) - '0' > 0)
-				return false;
-		return false;
+		return true;
 	}
 
 	public void setAlertLine() throws RemoteException {
 		String line = "";
 		line = textField.getText();
-		if (!isNumber(line)) {
-			JOptionPane.showMessageDialog(null, "请输入一个0-100间的警报值！", "",
-					JOptionPane.ERROR_MESSAGE);
+		double newline = 70;
+		if (isNumber(line)) {
+
+			newline = Double.parseDouble(textField.getText());
 		} else {
-			double newline = Double.parseDouble(textField.getText());
+			label.setText("请输入一个0-100间的警报值！");
+			return;
+		}
+		if ((newline > 100 || newline < 0)) {
+			label.setText("请输入一个0-100间的警报值！");
+		} else {
+			label.setText("设置成功");
 			sabs.settingAlert(centerNum, newline);
 		}
 	}
@@ -78,21 +87,23 @@ public class SettingAlertUI extends JPanel {
 		sabs = BLFactory.getSettingAlertBL();
 		if (thisstaff.workSpace.type.equals("中转中心"))
 			this.centerNum = thisstaff.workSpace.num;
-		this.superpanel=ui;
+		this.superpanel = ui;
 		// this.centerNum = "0210001";
 		showAlertLine();
 		setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("警报设置");
-		lblNewLabel.setBounds(222, 30, 74, 25);
+		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 40));
+		lblNewLabel.setBounds(354, 25, 160, 118);
 		add(lblNewLabel);
 
 		JLabel label_1 = new JLabel("重设警报线");
-		label_1.setBounds(90, 160, 88, 18);
+		label_1.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_1.setBounds(284, 343, 160, 45);
 		add(label_1);
 
 		textField = new JTextField();
-		textField.setBounds(222, 157, 86, 24);
+		textField.setBounds(474, 356, 86, 24);
 		add(textField);
 		textField.setColumns(10);
 
@@ -107,7 +118,7 @@ public class SettingAlertUI extends JPanel {
 				}
 			}
 		});
-		button.setBounds(219, 328, 113, 27);
+		button.setBounds(383, 603, 102, 45);
 		add(button);
 
 		JButton button_1 = new JButton("返回");
@@ -116,8 +127,13 @@ public class SettingAlertUI extends JPanel {
 				ViewController.jumpToAnotherView(superpanel);
 			}
 		});
-		button_1.setBounds(422, 328, 113, 27);
+		button_1.setBounds(716, 64, 102, 45);
 		add(button_1);
+
+		label = new JLabel("");
+		label.setFont(new Font("宋体", Font.PLAIN, 22));
+		label.setBounds(129, 758, 451, 38);
+		add(label);
 
 	}
 }
