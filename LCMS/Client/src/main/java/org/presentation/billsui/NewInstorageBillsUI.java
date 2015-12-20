@@ -2,6 +2,7 @@ package org.presentation.billsui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -15,13 +16,16 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
 
+import org.Client.RMIHelper;
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.billsblservice.NewInstorageBillsBLService;
+import org.dataservice.commoditydataservice.CommodityDataService;
 import org.po.ComPO;
 import org.po.myDate;
 import org.presentation.mainui.ViewController;
 import org.vo.CommodityVO;
 import org.vo.IBVO;
+
 import java.awt.Font;
 
 public class NewInstorageBillsUI extends JPanel {
@@ -209,8 +213,18 @@ public class NewInstorageBillsUI extends JPanel {
 		addGood.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-
+				
 				// TODO Auto-generated method stub
+				try {
+					CommodityDataService ComData=RMIHelper.getDataFactory().getCommodityData();
+					if(ComData.getComSize(centerNum.getText())==-1){
+						suggest.setText("中转中心不存在");
+						return;
+					}
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				String goodNumvo = goodNum.getText();
 				myDate datepo = new myDate(Integer.parseInt(newyear.getText()),
 						Integer.parseInt(newmonth.getText()), Integer

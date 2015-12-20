@@ -70,15 +70,17 @@ public class NewInstorageBillsBL implements NewInstorageBillsBLService {
 			if (billsData.Used(vo.idNum)) {
 				return "单据号已存在";
 			}
-			for (ComPO po : vo.list){
-				if(!ComData.findCom(po.getGoodsNum()).equals("")){
+			if(ComData.getComSize(vo.centerNum)==-1)
+				return "中转中心不存在";
+			//for (ComPO po : vo.list){
+				//if(!ComData.findCom(po.getGoodsNum()).equals("")){
+				//	return "";
+				//}
+				//if(ComData.findCom(po.getGoodsNum()).getcenterNum().equals(vo.centerNum)){
 					return "";
-				}
-				if(ComData.findCom(po.getGoodsNum()).getcenterNum().equals(vo.centerNum)){
-					return "";
-				}
-				return "托运单已经使用过";
-			}
+				//}
+				//return "托运单已经使用过";
+			//}
 				
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

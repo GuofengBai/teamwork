@@ -46,7 +46,7 @@ public class ExamineCommodityBL implements ExamineCommodityBLService {
 					InstorageBills temp = (InstorageBills) bills;
 					ArrayList<ComPO> list = temp.getlist();
 					for (ComPO po : list) {
-						if (po.getArea().equals(area1)
+						if (po.getcenterNum().equals(centerNum)&&po.getArea().equals(area1)
 								&& (po.getinDate().compareTo(timestart) == -1 || po
 										.getinDate().compareTo(timestart) == 0)
 								&& (po.getinDate().compareTo(timeend) == 1 || po
@@ -63,7 +63,7 @@ public class ExamineCommodityBL implements ExamineCommodityBLService {
 					OutstorageBills temp = (OutstorageBills) bills;
 					ArrayList<ComPO> list = temp.getlist();
 					for (ComPO po : list) {
-						if (po.getArea().equals(area1)
+						if (po.getcenterNum().equals(centerNum)&&po.getArea().equals(area1)
 								&& (po.getinDate().compareTo(timestart) == -1 || po
 										.getinDate().compareTo(timestart) == 0)
 								&& (po.getinDate().compareTo(timeend) == 1 || po
@@ -86,6 +86,7 @@ public class ExamineCommodityBL implements ExamineCommodityBLService {
 			 */
 			ExamineVO vo = new ExamineVO(area1, timestart, timeend, inNum,
 					outNum, nowNum);
+			nowNum=0;
 			result.add(vo);
 		}
 

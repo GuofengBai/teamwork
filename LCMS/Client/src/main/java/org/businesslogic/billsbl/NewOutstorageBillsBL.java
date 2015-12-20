@@ -99,14 +99,14 @@ public class NewOutstorageBillsBL implements NewOutstorageBillsBLService {
 			if (billsData.Used(vo.entruckNum)) {
 				return "单据号已存在";
 			}
-			for (ComPO po : vo.list) {
-				if (!ComData.findCom(po.getGoodsNum()).equals("")
-						&& ComData.findCom(po.getGoodsNum()).getcenterNum()
-								.equals(vo.centerNum)) {
-					return "托运单已经使用过";
-				}
+			if(ComData.getComSize(vo.centerNum)==-1)
+				return "中转中心不存在";
+			//for (ComPO po : vo.list) {
+			//	if (ComData.findCom(po.getGoodsNum()).equals("")) {
+				//	return "托运单已经使用过";
+			//	}
 				return "";
-			}
+			//}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

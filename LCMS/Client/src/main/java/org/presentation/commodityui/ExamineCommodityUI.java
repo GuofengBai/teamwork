@@ -90,7 +90,7 @@ public class ExamineCommodityUI extends JPanel {
 		if (compareDates(starttime, endtime)) {
 			myDate timestart=new myDate(Integer.parseInt(starttime[0]),Integer.parseInt(starttime[1]),Integer.parseInt(starttime[2]));
 			myDate timeend=new myDate(Integer.parseInt(endtime[0]),Integer.parseInt(endtime[1]),Integer.parseInt(endtime[2]));
-			evo=ecbs.examineCommodity(timestart, timeend, centerNum);
+			evo=ecbs.examineCommodity(timestart, timeend, this.centerNum);
 		} else {
 			JOptionPane.showMessageDialog(null, "开始日期不得小于结束日期！", "",
 					JOptionPane.ERROR_MESSAGE);

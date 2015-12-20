@@ -2,7 +2,7 @@ package org.presentation.billsui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -15,14 +15,16 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
+import org.Client.RMIHelper;
 import org.businesslogic.blFactory.BLFactory;
 import org.businesslogicservice.billsblservice.NewOutstorageBillsBLService;
-
+import org.dataservice.commoditydataservice.CommodityDataService;
 import org.po.ComPO;
 import org.po.myDate;
 import org.presentation.mainui.ViewController;
 import org.vo.CommodityVO;
 import org.vo.OBVO;
+
 import java.awt.Font;
 
 public class NewOutstorageBillsUI extends JPanel {
@@ -203,6 +205,16 @@ public class NewOutstorageBillsUI extends JPanel {
 		addGood.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				try {
+					CommodityDataService ComData=RMIHelper.getDataFactory().getCommodityData();
+					if(ComData.getComSize(centerNum.getText())==-1){
+						suggest.setText("中转中心不存在");
+						return;
+					}
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				NewOutstorageBillsBLService bl = BLFactory
 						.getNewOutstorageBillsBL();
 				CommodityVO cvo = bl.creatVO(goodNum.getText());
