@@ -196,6 +196,17 @@ public class StatusTableUI extends JPanel{
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
+			
+			//清空列表
+			int n=incomemodel.getRowCount();
+			for(int i=0;i<n;i++){
+				incomemodel.removeRow(0);
+			}
+			n=paymodel.getRowCount();
+			for(int i=0;i<n;i++){
+				paymodel.removeRow(0);
+			}
+			
 			if(isValid()){
 			statusLabel.setText("");
 			String beginDate=beginDateField.getText();

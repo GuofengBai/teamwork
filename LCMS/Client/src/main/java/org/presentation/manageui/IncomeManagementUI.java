@@ -171,6 +171,14 @@ public class IncomeManagementUI extends JPanel{
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
+			
+			//清空列表
+			int n=model.getRowCount();
+			for(int i=0;i<n;i++){
+				model.removeRow(0);
+			}
+			
+			
 			String date=searchDate.getText();
 			String hall=searchHall.getText();
 			myDate mydate;
@@ -223,6 +231,14 @@ public class IncomeManagementUI extends JPanel{
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
+			
+			//清空列表
+			int n=model.getRowCount();
+			for(int i=0;i<n;i++){
+				model.removeRow(0);
+			}
+			
+			
 			IncomeManagementBLService im=BLFactory.getIncomeManagementBL();
 			volist=im.incomeSearch(null, "");
 			for(IncomeBillVO row:volist){

@@ -344,6 +344,13 @@ public class AccountManageUI extends JPanel{
 			String namepart=namepartField.getText();
 			AccountManagementBLService ambl=BLFactory.getAccountManagementBL();
 			
+			//清空列表
+			int n=searchmodel.getRowCount();
+			for(int i=0;i<n;i++){
+				searchmodel.removeRow(0);
+			}
+			
+			
 			Vector<BankAccountVO> result=ambl.accountSearch(namepart);			
 			for(BankAccountVO row:result){
 				searchmodel.addRow(row);
