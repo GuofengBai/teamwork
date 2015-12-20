@@ -46,13 +46,13 @@ public class IncomeManagementData extends UnicastRemoteObject implements IncomeM
 			}
 		}else if(date==null){
 			for(HallCollectionBills bill:list){
-				if(bill.getidNum().equals(hallNumber)){
+				if(bill.getidNum().substring(0, 7).equals(hallNumber)){
 					result.add(bill);
 				}
 			}
 		}else{
 			for(HallCollectionBills bill:list){
-				if(bill.getdate().compareTo(date)==0&&bill.getidNum().equals(hallNumber)){
+				if(bill.getdate().compareTo(date)==0&&bill.getidNum().substring(0, 7).equals(hallNumber)){
 					result.add(bill);
 				}
 			}

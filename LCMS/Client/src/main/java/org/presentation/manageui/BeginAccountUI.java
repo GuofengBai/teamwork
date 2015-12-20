@@ -151,7 +151,9 @@ public class BeginAccountUI extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			int dex=table.getSelectedRow();
-			
+			if(dex<0){
+				return;
+			}
 			String organization=(String) table.getModel().getValueAt(dex, 0);
 			int people=Integer.parseInt((String) table.getModel().getValueAt(dex, 1));
 			int car=Integer.parseInt((String) table.getModel().getValueAt(dex, 2));

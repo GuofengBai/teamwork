@@ -197,10 +197,10 @@ public class IncomeManagementUI extends JPanel{
 			String date=searchDate.getText();
 			String hall=searchHall.getText();
 			
-			if(isNum(date)==false||date.length()!=8){
+			if(!date.equals("")&&(isNum(date)==false||date.length()!=8)){
 				statusLabel.setText("日期格式错误");
 				valid=false;
-			}else if(isNum(hall)==false||date.length()!=7){
+			}else if(!hall.equals("")&&(isNum(hall)==false||hall.length()!=7)){
 				statusLabel.setText("营业厅格式错误");
 				valid=false;
 			}else{
