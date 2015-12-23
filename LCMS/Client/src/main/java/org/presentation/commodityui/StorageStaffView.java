@@ -100,9 +100,9 @@ public class StorageStaffView extends JPanel {
 		init();
 		setLayout(null);
 
-		JLabel label = new JLabel("中转中心仓库管理员");
+		JLabel label = new JLabel("中转中心仓库管理系统");
 		label.setFont(new Font("宋体", Font.PLAIN, 40));
-		label.setBounds(264, 26, 360, 147);
+		label.setBounds(244, 26, 400, 147);
 		add(label);
 		
 		JButton btnNewButton_4 = new JButton("入库");
@@ -128,7 +128,7 @@ public class StorageStaffView extends JPanel {
 		JButton button1 = new JButton("登出");
 		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ViewController.jumpToAnotherView(new UserUI());
+				ViewController.jumpToAnotherView(newpanel);
 			}
 		});
 		button1.setBounds(643, 740, 102, 45);

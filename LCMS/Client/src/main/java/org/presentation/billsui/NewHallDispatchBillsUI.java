@@ -17,6 +17,7 @@ import org.po.myDate;
 import org.presentation.mainui.ViewController;
 
 import org.vo.HDBVO;
+import java.awt.Font;
 
 
 
@@ -41,6 +42,7 @@ public class NewHallDispatchBillsUI extends JPanel {
 	private JTextField idNum;
 	private JButton back;
 	private JLabel suggest;
+	private JLabel label_7;
 
 	/**
 	 * Create the panel.
@@ -51,8 +53,13 @@ public class NewHallDispatchBillsUI extends JPanel {
 		panel();
 		
 		JButton submit = new JButton("提交");
-		submit.setBounds(20, 194, 93, 23);
+		submit.setBounds(409, 746, 102, 45);
 		add(submit);
+		
+		label_7 = new JLabel("新派件单");
+		label_7.setFont(new Font("宋体", Font.PLAIN, 40));
+		label_7.setBounds(354, 25, 160, 118);
+		add(label_7);
 		
 		submit.addActionListener(new ActionListener(){
 
@@ -127,85 +134,95 @@ public class NewHallDispatchBillsUI extends JPanel {
 		setLayout(null);
 		
 		suggest = new JLabel("");
-		suggest.setBounds(10, 227, 249, 15);
+		suggest.setBounds(81, 746, 310, 39);
 		add(suggest);
 		
 		JLabel label = new JLabel("到达日期  ");
-		label.setBounds(10, 13, 60, 15);
+		label.setFont(new Font("宋体", Font.PLAIN, 22));
+		label.setBounds(81, 188, 111, 32);
 		add(label);
 		
 		newyear = new JTextField();
-		newyear.setBounds(75, 10, 66, 21);
+		newyear.setBounds(219, 196, 66, 21);
 		newyear.setColumns(10);
 		add(newyear);
 		
 		newmonth = new JTextField();
-		newmonth.setBounds(146, 10, 54, 21);
+		newmonth.setBounds(313, 196, 66, 21);
 		newmonth.setColumns(8);
 		add(newmonth);
 		
 		newday = new JTextField();
-		newday.setBounds(205, 10, 54, 21);
+		newday.setBounds(407, 196, 66, 21);
 		newday.setColumns(8);
 		add(newday);
 		
 		JLabel label_1 = new JLabel("托运单号");
-		label_1.setBounds(10, 38, 54, 15);
+		label_1.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_1.setBounds(81, 245, 111, 32);
 		add(label_1);
 		
 		goodNum = new JTextField();
-		goodNum.setBounds(75, 35, 93, 21);
+		goodNum.setBounds(248, 253, 161, 21);
 		add(goodNum);
 		goodNum.setColumns(10);
 		
 		JLabel label_3 = new JLabel("快递员姓名");
-		label_3.setBounds(10, 141, 60, 15);
+		label_3.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_3.setBounds(81, 483, 119, 32);
 		add(label_3);
 		
 		name = new JTextField();
-		name.setBounds(75, 138, 174, 21);
+		name.setBounds(248, 491, 161, 21);
 		add(name);
 		name.setColumns(10);
 		
 		JButton search = new JButton("检索");
-		search.setBounds(178, 34, 81, 23);
+		search.setBounds(489, 242, 102, 45);
 		add(search);
 		
 		label_2 = new JLabel("收件人姓名");
-		label_2.setBounds(10, 63, 60, 15);
+		label_2.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_2.setBounds(81, 304, 119, 32);
 		add(label_2);
 		
 		label_4 = new JLabel("收件人电话");
-		label_4.setBounds(10, 85, 60, 15);
+		label_4.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_4.setBounds(81, 359, 119, 32);
 		add(label_4);
 		
 		label_5 = new JLabel("收件人住址");
-		label_5.setBounds(10, 110, 60, 15);
+		label_5.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_5.setBounds(81, 418, 119, 32);
 		add(label_5);
 		
 		rname = new JLabel("");
-		rname.setBounds(85, 63, 174, 15);
+		rname.setFont(new Font("宋体", Font.PLAIN, 22));
+		rname.setBounds(248, 304, 174, 32);
 		add(rname);
 		
 		rphone = new JLabel("");
-		rphone.setBounds(85, 85, 174, 15);
+		rphone.setFont(new Font("宋体", Font.PLAIN, 22));
+		rphone.setBounds(248, 359, 174, 32);
 		add(rphone);
 		
 		rlocation = new JLabel("");
-		rlocation.setBounds(85, 110, 174, 15);
+		rlocation.setFont(new Font("宋体", Font.PLAIN, 22));
+		rlocation.setBounds(248, 418, 174, 32);
 		add(rlocation);
 		
 		label_6 = new JLabel("派件单编号");
-		label_6.setBounds(10, 169, 60, 15);
+		label_6.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_6.setBounds(81, 539, 119, 32);
 		add(label_6);
 		
 		idNum = new JTextField();
-		idNum.setBounds(75, 166, 174, 21);
+		idNum.setBounds(248, 547, 263, 21);
 		add(idNum);
 		idNum.setColumns(10);
 		
 		back = new JButton("返回");
-		back.setBounds(166, 194, 93, 23);
+		back.setBounds(712, 64, 102, 45);
 		add(back);
 		back.addActionListener(new ActionListener() {
 			

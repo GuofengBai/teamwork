@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 
 import org.presentation.mainui.ViewController;
+import java.awt.Font;
 
 public class HallBillsContralUI extends JPanel {
 	/**
@@ -23,11 +24,12 @@ public class HallBillsContralUI extends JPanel {
 		setLayout(null);
 		
 		JLabel label = new JLabel("请选择生成的单据类型");
-		label.setBounds(10, 10, 188, 15);
+		label.setFont(new Font("宋体", Font.PLAIN, 22));
+		label.setBounds(341, 100, 255, 39);
 		add(label);
 		
-		JButton arrive = new JButton("到达单");
-		arrive.setBounds(10, 35, 93, 23);
+		JButton arrive = new JButton("营业厅到达单");
+		arrive.setBounds(190, 186, 200, 80);
 		add(arrive);
 		arrive.addActionListener(new ActionListener() {
 			
@@ -38,8 +40,8 @@ public class HallBillsContralUI extends JPanel {
 			}
 		});
 		
-		JButton entruck = new JButton("装车单");
-		entruck.setBounds(10, 68, 93, 23);
+		JButton entruck = new JButton("营业厅装车单");
+		entruck.setBounds(190, 353, 200, 80);
 		add(entruck);
 		entruck.addActionListener(new ActionListener() {
 			
@@ -50,8 +52,8 @@ public class HallBillsContralUI extends JPanel {
 			}
 		});
 		
-		JButton dispatch = new JButton("派件单");
-		dispatch.setBounds(113, 35, 93, 23);
+		JButton dispatch = new JButton("营业厅派件单");
+		dispatch.setBounds(525, 186, 200, 80);
 		add(dispatch);
 		dispatch.addActionListener(new ActionListener() {
 			
@@ -62,8 +64,8 @@ public class HallBillsContralUI extends JPanel {
 			}
 		});
 		
-		JButton collect = new JButton("收款单");
-		collect.setBounds(113, 68, 93, 23);
+		JButton collect = new JButton("营业厅收款单");
+		collect.setBounds(525, 353, 200, 80);
 		add(collect);
 		
 		collect.addActionListener(new ActionListener() {
@@ -76,7 +78,7 @@ public class HallBillsContralUI extends JPanel {
 		});
 		
 		JButton back = new JButton("返回");
-		back.setBounds(62, 101, 93, 23);
+		back.setBounds(712, 64, 102, 45);
 		add(back);
 		back.addActionListener(new ActionListener() {
 			

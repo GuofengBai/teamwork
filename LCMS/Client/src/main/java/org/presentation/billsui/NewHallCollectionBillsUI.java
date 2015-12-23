@@ -20,6 +20,7 @@ import org.po.myDate;
 import org.presentation.mainui.ViewController;
 import org.vo.HCBVO;
 import org.vo.StateListVO;
+import java.awt.Font;
 
 
 public class NewHallCollectionBillsUI extends JPanel {
@@ -44,6 +45,7 @@ public class NewHallCollectionBillsUI extends JPanel {
 	private JButton back;
 	private JLabel suggest;
 	NewHallCollectBillsBLService bl = BLFactory.getNewHallCollectBillsBL();
+	private JLabel label_5;
 
 	/**
 	 * Create the panel.
@@ -53,8 +55,13 @@ public class NewHallCollectionBillsUI extends JPanel {
 		this.superview = superview;
 		panel();
 		submit = new JButton("提交");
-		submit.setBounds(20, 266, 93, 23);
+		submit.setBounds(409, 746, 102, 45);
 		add(submit);
+		
+		label_5 = new JLabel("新收款单");
+		label_5.setFont(new Font("宋体", Font.PLAIN, 40));
+		label_5.setBounds(354, 25, 160, 118);
+		add(label_5);
 		
 		submit.addActionListener(new ActionListener(){
 
@@ -128,57 +135,62 @@ public class NewHallCollectionBillsUI extends JPanel {
 		setLayout(null);
 		
 		suggest = new JLabel("");
-		suggest.setBounds(10, 299, 249, 15);
+		suggest.setFont(new Font("宋体", Font.PLAIN, 22));
+		suggest.setBounds(81, 746, 310, 39);
 		add(suggest);
 		
 		JLabel label = new JLabel("收款日期  ");
-		label.setBounds(10, 13, 60, 15);
+		label.setFont(new Font("宋体", Font.PLAIN, 22));
+		label.setBounds(81, 187, 119, 32);
 		add(label);
 		
 		newyear = new JTextField();
 		newyear.setColumns(10);
-		newyear.setBounds(75, 10, 66, 21);
+		newyear.setBounds(193, 196, 80, 21);
 		add(newyear);
 		
 		newmonth = new JTextField();
 		newmonth.setColumns(8);
-		newmonth.setBounds(146, 10, 54, 21);
+		newmonth.setBounds(312, 196, 80, 21);
 		add(newmonth);
 		
 		newday = new JTextField();
 		newday.setColumns(8);
-		newday.setBounds(205, 10, 54, 21);
+		newday.setBounds(431, 196, 80, 21);
 		add(newday);
 		
 		JLabel label_1 = new JLabel("收款金额");
-		label_1.setBounds(10, 91, 54, 15);
+		label_1.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_1.setBounds(81, 367, 119, 32);
 		add(label_1);
 		
 		name = new JTextField();
-		name.setBounds(75, 63, 184, 21);
+		name.setBounds(229, 253, 112, 21);
 		add(name);
 		name.setColumns(10);
 		
 		JLabel label_2 = new JLabel("快递员姓名");
-		label_2.setBounds(10, 66, 60, 15);
+		label_2.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_2.setBounds(81, 245, 135, 32);
 		add(label_2);
 		
 		pay = new JTextField();
-		pay.setBounds(75, 88, 184, 21);
+		pay.setBounds(232, 375, 263, 21);
 		add(pay);
 		pay.setColumns(10);
 		
 		JLabel label_3 = new JLabel("托运单号");
-		label_3.setBounds(10, 116, 54, 15);
+		label_3.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_3.setBounds(355, 245, 112, 32);
 		add(label_3);
 		
 		goodNum = new JTextField();
-		goodNum.setBounds(75, 113, 184, 21);
+		goodNum.setBounds(499, 253, 250, 21);
 		add(goodNum);
 		goodNum.setColumns(10);
 		
 		JButton addGood = new JButton("添加");
-		addGood.setBounds(135, 136, 60, 23);
+		addGood.setBounds(647, 364, 102, 45);
 		add(addGood);
 		addGood.addActionListener(new ActionListener(){
 
@@ -207,7 +219,7 @@ public class NewHallCollectionBillsUI extends JPanel {
 		});
 		
 		JButton deleteGood = new JButton("删除");
-		deleteGood.setBounds(199, 136, 60, 23);
+		deleteGood.setBounds(647, 422, 102, 45);
 		add(deleteGood);
 		deleteGood.addActionListener(new ActionListener(){
 
@@ -228,7 +240,7 @@ public class NewHallCollectionBillsUI extends JPanel {
 		model = new DefaultTableModel(vo,str);;
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 168, 249, 88);
+		scrollPane.setBounds(81, 496, 668, 208);
 		add(scrollPane);
 		table = new JTable(model){
 			private static final long serialVersionUID = 1L;
@@ -241,24 +253,27 @@ public class NewHallCollectionBillsUI extends JPanel {
 		table.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setFillsViewportHeight(true);	
 		JLabel lblNewLabel = new JLabel("总金额");
-		lblNewLabel.setBounds(10, 141, 45, 15);
+		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 22));
+		lblNewLabel.setBounds(81, 425, 102, 32);
 		add(lblNewLabel);
 		
 		total = new JLabel("0");
-		total.setBounds(57, 141, 68, 18);
+		total.setFont(new Font("宋体", Font.PLAIN, 22));
+		total.setBounds(184, 425, 84, 32);
 		add(total);
 		
 		label_4 = new JLabel("收款单号");
-		label_4.setBounds(10, 38, 54, 15);
+		label_4.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_4.setBounds(81, 304, 119, 32);
 		add(label_4);
 		
 		idNum = new JTextField();
-		idNum.setBounds(75, 35, 184, 21);
+		idNum.setBounds(232, 312, 263, 21);
 		add(idNum);
 		idNum.setColumns(10);
 		
 		back = new JButton("返回");
-		back.setBounds(146, 266, 93, 23);
+		back.setBounds(712, 64, 102, 45);
 		add(back);
 		back.addActionListener(new ActionListener() {
 			

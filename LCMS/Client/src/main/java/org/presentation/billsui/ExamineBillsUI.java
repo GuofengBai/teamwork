@@ -41,7 +41,7 @@ public class ExamineBillsUI extends JPanel{
 	private void init() {
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(80, 140, 408, 240);
+		scrollPane.setBounds(80, 140, 755, 510);
 		add(scrollPane);
 		
 		table = new JTable();
@@ -111,7 +111,7 @@ public class ExamineBillsUI extends JPanel{
 		
 		
 		JButton btnNewButton = new JButton("审批选中单据");
-		btnNewButton.setBounds(211, 408, 148, 29);
+		btnNewButton.setBounds(375, 691, 200, 80);
 		add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener(){
 
@@ -132,7 +132,7 @@ public class ExamineBillsUI extends JPanel{
 		
 		
 		JButton button = new JButton("返回");
-		button.setBounds(365, 68, 123, 29);
+		button.setBounds(712, 64, 102, 45);
 		add(button);
 		button.addActionListener(new ActionListener(){
 

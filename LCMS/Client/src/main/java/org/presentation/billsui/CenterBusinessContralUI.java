@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 
 import org.presentation.mainui.ViewController;
+import java.awt.Font;
 
 
 public class CenterBusinessContralUI extends JPanel {
@@ -25,15 +26,12 @@ public class CenterBusinessContralUI extends JPanel {
 		setLayout(null);
 		
 		JLabel label = new JLabel("中转中心业务管理系统");
-		label.setBounds(31, 10, 122, 15);
+		label.setFont(new Font("宋体", Font.PLAIN, 40));
+		label.setBounds(244, 26, 400, 147);
 		add(label);
 		
-		JLabel label_1 = new JLabel("您可以选择以下操作");
-		label_1.setBounds(10, 35, 113, 15);
-		add(label_1);
-		
 		JButton creatarrivebill = new JButton("中转中心到达单生成");
-		creatarrivebill.setBounds(20, 60, 141, 23);
+		creatarrivebill.setBounds(190, 186, 200, 80);
 		add(creatarrivebill);
 		creatarrivebill.addActionListener(new ActionListener() {
 			
@@ -45,7 +43,7 @@ public class CenterBusinessContralUI extends JPanel {
 		});
 		
 		JButton creatfreightbill = new JButton("中转中心中转单生成");
-		creatfreightbill.setBounds(20, 93, 141, 23);
+		creatfreightbill.setBounds(525, 186, 200, 80);
 		add(creatfreightbill);
 		creatfreightbill.addActionListener(new ActionListener() {
 			
@@ -57,7 +55,7 @@ public class CenterBusinessContralUI extends JPanel {
 		});
 		
 		JButton createntruckbill = new JButton("中转中心装车单生成");
-		createntruckbill.setBounds(20, 126, 141, 23);
+		createntruckbill.setBounds(190, 353, 200, 80);
 		add(createntruckbill);
 		
 		createntruckbill.addActionListener(new ActionListener() {
@@ -70,7 +68,7 @@ public class CenterBusinessContralUI extends JPanel {
 		});
 		
 		JButton back = new JButton("登出");
-		back.setBounds(44, 163, 93, 23);
+		back.setBounds(643, 740, 102, 45);
 		add(back);
 		back.addActionListener(new ActionListener() {
 			

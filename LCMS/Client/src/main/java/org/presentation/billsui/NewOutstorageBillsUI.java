@@ -165,7 +165,7 @@ public class NewOutstorageBillsUI extends JPanel {
 
 		suggest = new JLabel("");
 		suggest.setFont(new Font("宋体", Font.PLAIN, 22));
-		suggest.setBounds(81, 815, 340, 39);
+		suggest.setBounds(81, 746, 340, 39);
 		add(suggest);
 
 		newyear = new JTextField();

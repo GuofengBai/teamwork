@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 
 import org.presentation.mainui.ViewController;
+import java.awt.Font;
 
 public class HallBusinessContralUI extends JPanel {
 	/**
@@ -24,16 +25,18 @@ public class HallBusinessContralUI extends JPanel {
 		this.superview = view;
 		setLayout(null);
 		
-		JLabel label = new JLabel("营业厅人员主界面");
-		label.setBounds(93, 10, 155, 15);
+		JLabel label = new JLabel("营业厅业务管理系统");
+		label.setFont(new Font("宋体", Font.PLAIN, 40));
+		label.setBounds(273, 26, 371, 147);
 		add(label);
 		
 		JLabel lblNewLabel = new JLabel("请选择以下业务");
-		lblNewLabel.setBounds(10, 39, 102, 15);
+		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 22));
+		lblNewLabel.setBounds(376, 262, 257, 45);
 		add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("信息管理");
-		btnNewButton.setBounds(30, 64, 226, 23);
+		btnNewButton.setBounds(190, 353, 200, 80);
 		add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			
@@ -45,7 +48,7 @@ public class HallBusinessContralUI extends JPanel {
 		});
 		
 		JButton btnNewButton_1 = new JButton("生成单据");
-		btnNewButton_1.setBounds(30, 97, 226, 23);
+		btnNewButton_1.setBounds(525, 353, 200, 80);
 		add(btnNewButton_1);
 		
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -58,7 +61,7 @@ public class HallBusinessContralUI extends JPanel {
 		});
 		
 		JButton back = new JButton("登出");
-		back.setBounds(93, 130, 93, 23);
+		back.setBounds(643, 740, 102, 45);
 		add(back);
 		back.addActionListener(new ActionListener() {
 			

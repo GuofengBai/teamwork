@@ -25,6 +25,7 @@ import org.po.myDate;
 import org.presentation.mainui.ViewController;
 import org.vo.HABVO;
 import org.vo.StateListVO;
+import java.awt.Font;
 
 
 public class NewHallArriveBillsUI extends JPanel {
@@ -55,8 +56,13 @@ public class NewHallArriveBillsUI extends JPanel {
 		panel();
 		
 		JButton submit = new JButton("\u63D0\u4EA4");
-		submit.setBounds(20, 277, 93, 23);
+		submit.setBounds(409, 746, 102, 45);
 		add(submit);
+		
+		JLabel label = new JLabel("新到达单");
+		label.setFont(new Font("宋体", Font.PLAIN, 40));
+		label.setBounds(354, 25, 160, 118);
+		add(label);
 		
 		submit.addActionListener(new ActionListener(){
 
@@ -130,59 +136,64 @@ public class NewHallArriveBillsUI extends JPanel {
 		setLayout(null);
 		
 		JLabel label = new JLabel("\u5230\u8FBE\u65E5\u671F  ");
-		label.setBounds(10, 13, 60, 15);
+		label.setFont(new Font("宋体", Font.PLAIN, 22));
+		label.setBounds(81, 188, 112, 32);
 		add(label);
 		
 		suggest = new JLabel("");
-		suggest.setBounds(10, 310, 249, 15);
+		suggest.setFont(new Font("宋体", Font.PLAIN, 22));
+		suggest.setBounds(81, 746, 340, 39);
 		add(suggest);
 		
 		newyear = new JTextField();
-		newyear.setBounds(75, 10, 66, 21);
+		newyear.setBounds(193, 196, 80, 21);
 		newyear.setColumns(10);
 		add(newyear);
 		
 		newmonth = new JTextField();
-		newmonth.setBounds(146, 10, 54, 21);
+		newmonth.setBounds(312, 196, 80, 21);
 		newmonth.setColumns(8);
 		add(newmonth);
 		
 		newday = new JTextField();
-		newday.setBounds(205, 10, 54, 21);
+		newday.setBounds(431, 196, 80, 21);
 		newday.setColumns(8);
 		add(newday);
 		
 		JLabel label_1 = new JLabel("\u51FA\u53D1\u5730");
-		label_1.setBounds(10, 38, 54, 15);
+		label_1.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_1.setBounds(81, 304, 102, 32);
 		add(label_1);
 		
 		startPlace = new JTextField();
-		startPlace.setBounds(75, 35, 184, 21);
+		startPlace.setBounds(264, 312, 263, 21);
 		add(startPlace);
 		startPlace.setColumns(10);
 		
 		JLabel label_2 = new JLabel("\u88C5\u8F66\u5355\u7F16\u53F7");
-		label_2.setBounds(10, 63, 60, 15);
+		label_2.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_2.setBounds(81, 367, 159, 32);
 		add(label_2);
 		
 		entruckNum = new JTextField();
-		entruckNum.setBounds(75, 60, 184, 21);
+		entruckNum.setBounds(264, 375, 263, 21);
 		add(entruckNum);
 		entruckNum.setColumns(10);
 		
 		JLabel label_3 = new JLabel("托运单号");
-		label_3.setBounds(10, 116, 54, 15);
+		label_3.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_3.setBounds(388, 245, 112, 32);
 		add(label_3);
 		
 		final JComboBox<String> goodState = new JComboBox<String>();
-		goodState.setBounds(199, 113, 60, 21);
+		goodState.setBounds(647, 306, 102, 45);
 		add(goodState);
 		goodState.addItem("完整");
 		goodState.addItem("丢失");
 		goodState.addItem("损坏");
 		
 		JButton addGood = new JButton("添加");
-		addGood.setBounds(10, 141, 93, 23);
+		addGood.setBounds(647, 364, 102, 45);
 		add(addGood);
 		addGood.addActionListener(new ActionListener(){
 
@@ -210,7 +221,7 @@ public class NewHallArriveBillsUI extends JPanel {
 		str.add("货物状态");
 		model = new DefaultTableModel(vo,str);;
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 175, 251, 92);
+		scrollPane.setBounds(81, 496, 668, 208);
 		add(scrollPane);
 		table = new JTable(model){
 			private static final long serialVersionUID = 1L;
@@ -223,25 +234,26 @@ public class NewHallArriveBillsUI extends JPanel {
 		table.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setFillsViewportHeight(true);
 		goodNum = new JTextField();
-		goodNum.setBounds(75, 113, 114, 21);
+		goodNum.setBounds(499, 253, 250, 21);
 		add(goodNum);
 		goodNum.setColumns(10);
 		
 		JButton deleteGood = new JButton("删除");
-		deleteGood.setBounds(113, 141, 93, 23);
+		deleteGood.setBounds(647, 422, 102, 45);
 		add(deleteGood);
 		
 		JLabel label_4 = new JLabel("到达单编号");
-		label_4.setBounds(10, 88, 60, 15);
+		label_4.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_4.setBounds(81, 425, 140, 32);
 		add(label_4);
 		
 		idNum = new JTextField();
-		idNum.setBounds(75, 85, 184, 21);
+		idNum.setBounds(264, 433, 263, 21);
 		add(idNum);
 		idNum.setColumns(10);
 		
 		JButton back = new JButton("返回");
-		back.setBounds(166, 277, 93, 23);
+		back.setBounds(712, 36, 102, 45);
 		add(back);
 		back.addActionListener(new ActionListener() {
 			

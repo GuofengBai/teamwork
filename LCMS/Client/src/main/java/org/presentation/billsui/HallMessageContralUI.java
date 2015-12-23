@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import org.presentation.mainui.ViewController;
 import org.presentation.organizationui.HallCarUI;
 import org.presentation.organizationui.HallDriverUI;
+import java.awt.Font;
 
 public class HallMessageContralUI extends JPanel{
 	/**
@@ -26,11 +27,12 @@ public class HallMessageContralUI extends JPanel{
 		setLayout(null);
 		
 		JLabel label = new JLabel("请选择管理项");
-		label.setBounds(21, 10, 101, 15);
+		label.setFont(new Font("宋体", Font.PLAIN, 22));
+		label.setBounds(403, 100, 193, 39);
 		add(label);
 		
 		JButton btnNewButton = new JButton("司机管理");
-		btnNewButton.setBounds(10, 35, 93, 23);
+		btnNewButton.setBounds(190, 250, 200, 80);
 		add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			
@@ -42,7 +44,7 @@ public class HallMessageContralUI extends JPanel{
 		});
 		
 		JButton btnNewButton_1 = new JButton("车辆管理");
-		btnNewButton_1.setBounds(10, 68, 93, 23);
+		btnNewButton_1.setBounds(525, 250, 200, 80);
 		add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			
@@ -53,7 +55,7 @@ public class HallMessageContralUI extends JPanel{
 		});
 		
 		JButton back = new JButton("返回");
-		back.setBounds(10, 101, 93, 23);
+		back.setBounds(712, 64, 102, 45);
 		add(back);
 		back.addActionListener(new ActionListener() {
 			
