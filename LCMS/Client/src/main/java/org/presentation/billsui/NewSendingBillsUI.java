@@ -16,6 +16,7 @@ import org.po.myDate;
 import org.presentation.mainui.ViewController;
 import org.vo.SBVO;
 import java.awt.SystemColor;
+import java.awt.Font;
 
 
 public class NewSendingBillsUI extends JPanel {
@@ -56,8 +57,13 @@ public class NewSendingBillsUI extends JPanel {
 		this.superview = superview;
 		panel();
 		JButton submit = new JButton("\u63D0\u4EA4");
-		submit.setBounds(40, 264, 93, 23);
+		submit.setBounds(409, 746, 102, 45);
 		add(submit);
+		
+		JLabel label = new JLabel("新寄件单");
+		label.setFont(new Font("宋体", Font.PLAIN, 40));
+		label.setBounds(354, 25, 160, 118);
+		add(label);
 		submit.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {
@@ -193,159 +199,176 @@ public class NewSendingBillsUI extends JPanel {
 		setLayout(null);
 		
 		JLabel label = new JLabel("\u5BC4\u4EF6\u4EBA\u59D3\u540D");
-		label.setBounds(10, 10, 80, 15);
+		label.setFont(new Font("宋体", Font.PLAIN, 22));
+		label.setBounds(81, 157, 117, 32);
 		add(label);
 		
 		JLabel label_1 = new JLabel("\u5BC4\u4EF6\u4EBA\u7535\u8BDD");
-		label_1.setBounds(10, 35, 80, 15);
+		label_1.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_1.setBounds(81, 216, 129, 32);
 		add(label_1);
 		
 		JLabel label_2 = new JLabel("\u5BC4\u4EF6\u4EBA\u4F4F\u5740");
-		label_2.setBounds(10, 60, 80, 15);
+		label_2.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_2.setBounds(81, 272, 141, 32);
 		add(label_2);
 		
 		JLabel label_3 = new JLabel("\u6536\u4EF6\u4EBA\u59D3\u540D");
-		label_3.setBounds(165, 10, 80, 15);
+		label_3.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_3.setBounds(383, 157, 113, 32);
 		add(label_3);
 		
 		JLabel label_4 = new JLabel("\u6536\u4EF6\u4EBA\u7535\u8BDD");
-		label_4.setBounds(165, 35, 80, 15);
+		label_4.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_4.setBounds(383, 216, 128, 32);
 		add(label_4);
 		
 		JLabel label_5 = new JLabel("\u6536\u4EF6\u4EBA\u4F4F\u5740");
-		label_5.setBounds(165, 60, 80, 15);
+		label_5.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_5.setBounds(383, 272, 128, 32);
 		add(label_5);
 		
 		sendername = new JTextField();
-		sendername.setBounds(85, 7, 70, 21);
+		sendername.setBounds(207, 165, 162, 21);
 		add(sendername);
 		sendername.setColumns(10);
 		
 		senderphone = new JTextField();
 		senderphone.setColumns(10);
-		senderphone.setBounds(85, 32, 70, 21);
+		senderphone.setBounds(207, 224, 162, 21);
 		add(senderphone);
 		
 		senderlocation = new JTextField();
 		senderlocation.setColumns(10);
-		senderlocation.setBounds(85, 57, 70, 21);
+		senderlocation.setBounds(207, 280, 162, 21);
 		add(senderlocation);
 		
 		receivername = new JTextField();
 		receivername.setColumns(10);
-		receivername.setBounds(240, 7, 70, 21);
+		receivername.setBounds(510, 165, 162, 21);
 		add(receivername);
 		
 		receiverphone = new JTextField();
 		receiverphone.setColumns(10);
-		receiverphone.setBounds(240, 32, 70, 21);
+		receiverphone.setBounds(510, 224, 162, 21);
 		add(receiverphone);
 		
 		receiverlocation = new JTextField();
 		receiverlocation.setColumns(10);
-		receiverlocation.setBounds(240, 57, 70, 21);
+		receiverlocation.setBounds(510, 280, 162, 21);
 		add(receiverlocation);
 		
 		JLabel label_6 = new JLabel("\u5BC4\u4EF6\u65E5\u671F");
-		label_6.setBounds(10, 85, 54, 15);
+		label_6.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_6.setBounds(81, 324, 89, 32);
 		add(label_6);
 		
 		newyear = new JTextField();
-		newyear.setBounds(85, 82, 80, 21);
+		newyear.setBounds(207, 332, 80, 21);
 		add(newyear);
 		newyear.setColumns(10);
 		
 		newmonth = new JTextField();
-		newmonth.setBounds(175, 82, 62, 21);
+		newmonth.setBounds(312, 332, 80, 21);
 		add(newmonth);
 		newmonth.setColumns(10);
 		
 		newday = new JTextField();
-		newday.setBounds(248, 82, 62, 21);
+		newday.setBounds(416, 332, 80, 21);
 		add(newday);
 		newday.setColumns(10);
 		
 		label_7 = new JLabel("\u6258\u8FD0\u5355\u53F7");
-		label_7.setBounds(10, 110, 54, 15);
+		label_7.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_7.setBounds(81, 391, 96, 32);
 		add(label_7);
 		
 		goodsnumber = new JTextField();
-		goodsnumber.setBounds(85, 107, 225, 21);
+		goodsnumber.setBounds(207, 399, 263, 21);
 		add(goodsnumber);
 		goodsnumber.setColumns(10);
 		
 		label_8 = new JLabel("\u5FEB\u9012\u5F62\u5F0F");
-		label_8.setBounds(10, 135, 54, 15);
+		label_8.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_8.setBounds(81, 447, 108, 32);
 		add(label_8);
 		
 		sendtype = new JComboBox<String>();
-		sendtype.setBounds(85, 132, 70, 21);
+		sendtype.setBounds(208, 444, 102, 45);
 		add(sendtype);
 		sendtype.addItem("经济");
 		sendtype.addItem("一般");
 		sendtype.addItem("特快");
 		
 		JLabel label_9 = new JLabel("\u5305\u88C5\u5F62\u5F0F");
-		label_9.setBounds(165, 135, 54, 15);
+		label_9.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_9.setBounds(345, 447, 89, 32);
 		add(label_9);
 		
 		boxtype = new JComboBox<String>();
-		boxtype.setBounds(240, 132, 70, 21);
+		boxtype.setBounds(470, 444, 102, 45);
 		add(boxtype);
 		boxtype.addItem("纸袋");
 		boxtype.addItem("纸箱");
 		boxtype.addItem("木箱");
 		
 		JLabel label_10 = new JLabel("货物大小（装箱）单位：厘米");
-		label_10.setBounds(10, 160, 220, 15);
+		label_10.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_10.setBounds(81, 511, 288, 32);
 		add(label_10);
 		
 		JLabel label_11 = new JLabel("\u957F");
-		label_11.setBounds(10, 185, 20, 15);
+		label_11.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_11.setBounds(81, 556, 84, 32);
 		add(label_11);
 		
 		length = new JTextField();
-		length.setBounds(40, 182, 65, 21);
+		length.setBounds(145, 564, 65, 21);
 		add(length);
 		length.setColumns(10);
 		
 		JLabel label_12 = new JLabel("\u5BBD");
-		label_12.setBounds(115, 185, 20, 15);
+		label_12.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_12.setBounds(244, 556, 54, 32);
 		add(label_12);
 		
 		width = new JTextField();
-		width.setBounds(145, 182, 65, 21);
+		width.setBounds(312, 564, 65, 21);
 		add(width);
 		width.setColumns(10);
 		
 		JLabel label_13 = new JLabel("\u9AD8");
-		label_13.setBounds(220, 185, 20, 15);
+		label_13.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_13.setBounds(416, 556, 54, 32);
 		add(label_13);
 		
 		height = new JTextField();
-		height.setBounds(245, 182, 65, 21);
+		height.setBounds(472, 564, 65, 21);
 		add(height);
 		height.setColumns(10);
 		
 		JLabel label_14 = new JLabel("\u8D27\u7269\u91CD\u91CF");
-		label_14.setBounds(10, 210, 65, 15);
+		label_14.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_14.setBounds(81, 601, 91, 31);
 		add(label_14);
 		
 		weight = new JTextField();
-		weight.setBounds(74, 207, 66, 21);
+		weight.setBounds(208, 608, 133, 21);
 		add(weight);
 		weight.setColumns(10);
 		
 		JLabel lblKg = new JLabel("KG");
-		lblKg.setBounds(145, 210, 54, 15);
+		lblKg.setFont(new Font("宋体", Font.PLAIN, 22));
+		lblKg.setBounds(380, 600, 54, 32);
 		add(lblKg);
 		
 		presentvalue = new JLabel();
-		presentvalue.setBounds(122, 235, 182, 23);
+		presentvalue.setFont(new Font("宋体", Font.PLAIN, 22));
+		presentvalue.setBounds(240, 666, 210, 45);
 		add(presentvalue);
 		
 		JButton getprice = new JButton("\u8BA1\u7B97\u4EF7\u683C");
-		getprice.setBounds(10, 235, 93, 23);
+		getprice.setBounds(81, 666, 102, 45);
 		add(getprice);
 		
 		getprice.addActionListener(new ActionListener(){
@@ -371,11 +394,12 @@ public class NewSendingBillsUI extends JPanel {
 			
 		});
 		suggest = new JLabel("");
-		suggest.setBounds(21, 297, 289, 15);
+		suggest.setFont(new Font("宋体", Font.PLAIN, 22));
+		suggest.setBounds(81, 746, 310, 39);
 		add(suggest);
 		
 		back = new JButton("返回");
-		back.setBounds(190, 264, 93, 23);
+		back.setBounds(712, 64, 102, 45);
 		add(back);
 		back.addActionListener(new ActionListener() {
 			

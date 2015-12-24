@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 
 import org.presentation.mainui.ViewController;
+import java.awt.Font;
 
 public class PostmanUI extends JPanel {
 	/**
@@ -22,16 +23,18 @@ public class PostmanUI extends JPanel {
 	public PostmanUI(final JPanel superview) {
 		setLayout(null);
 		
-		JLabel label = new JLabel("快递员界面");
-		label.setBounds(121, 10, 67, 15);
+		JLabel label = new JLabel("快递员收发管理系统");
+		label.setFont(new Font("宋体", Font.PLAIN, 40));
+		label.setBounds(267, 26, 361, 147);
 		add(label);
 		
 		JLabel label_1 = new JLabel("请选择以下业务");
-		label_1.setBounds(10, 37, 93, 15);
+		label_1.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_1.setBounds(373, 252, 255, 39);
 		add(label_1);
 		
 		JButton creatsendingbill = new JButton("新建寄件单");
-		creatsendingbill.setBounds(36, 62, 220, 23);
+		creatsendingbill.setBounds(190, 353, 200, 80);
 		add(creatsendingbill);
 		creatsendingbill.addActionListener(new ActionListener() {
 			
@@ -43,7 +46,7 @@ public class PostmanUI extends JPanel {
 		});
 		
 		JButton creatreceivebill = new JButton("新建收件单");
-		creatreceivebill.setBounds(36, 98, 220, 23);
+		creatreceivebill.setBounds(525, 353, 200, 80);
 		add(creatreceivebill);
 		
 		creatreceivebill.addActionListener(new ActionListener() {
@@ -56,7 +59,7 @@ public class PostmanUI extends JPanel {
 		});
 		
 		JButton back = new JButton("登出");
-		back.setBounds(95, 128, 93, 23);
+		back.setBounds(643, 740, 102, 45);
 		add(back);
 		back.addActionListener(new ActionListener() {
 			
