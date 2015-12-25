@@ -128,7 +128,7 @@ public class NewInstorageBillsUI extends JPanel {
 		panel();
 
 		submit = new JButton("更新");
-		submit.setBounds(102, 288, 93, 23);
+		submit.setBounds(409, 746, 102, 45);
 		add(submit);
 		submit.addActionListener(new ActionListener() {
 

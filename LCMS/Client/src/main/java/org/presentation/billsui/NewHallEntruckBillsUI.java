@@ -21,6 +21,7 @@ import org.po.myDate;
 import org.presentation.mainui.ViewController;
 import org.vo.HEBVO;
 import org.vo.StateListVO;
+import java.awt.Font;
 
 
 public class NewHallEntruckBillsUI extends JPanel {
@@ -56,8 +57,13 @@ public class NewHallEntruckBillsUI extends JPanel {
 		panel();
 		
 		submit = new JButton("提交");
-		submit.setBounds(36, 277, 93, 23);
+		submit.setBounds(409, 746, 102, 45);
 		add(submit);
+		
+		JLabel label = new JLabel("新装车单");
+		label.setFont(new Font("宋体", Font.PLAIN, 40));
+		label.setBounds(354, 25, 160, 118);
+		add(label);
 		
 		submit.addActionListener(new ActionListener(){
 
@@ -107,7 +113,7 @@ public class NewHallEntruckBillsUI extends JPanel {
 		panel();
 		
 		submit = new JButton("更新");
-		submit.setBounds(95, 277, 93, 23);
+		submit.setBounds(409, 746, 102, 45);
 		add(submit);
 		submit.addActionListener(new ActionListener(){
 
@@ -139,84 +145,92 @@ public class NewHallEntruckBillsUI extends JPanel {
 		setLayout(null);
 		
 		suggest = new JLabel("");
-		suggest.setBounds(10, 320, 261, 15);
+		suggest.setFont(new Font("宋体", Font.PLAIN, 22));
+		suggest.setBounds(83, 746, 276, 45);
 		add(suggest);
 		
 		JLabel label = new JLabel("装车日期");
-		label.setBounds(10, 13, 48, 15);
+		label.setFont(new Font("宋体", Font.PLAIN, 22));
+		label.setBounds(83, 185, 102, 32);
 		add(label);
 		
 		newyear = new JTextField();
 		newyear.setColumns(10);
-		newyear.setBounds(63, 10, 66, 21);
+		newyear.setBounds(205, 193, 80, 21);
 		add(newyear);
 		
 		newmonth = new JTextField();
 		newmonth.setColumns(10);
-		newmonth.setBounds(134, 10, 66, 21);
+		newmonth.setBounds(319, 193, 80, 21);
 		add(newmonth);
 		
 		newday = new JTextField();
 		newday.setColumns(10);
-		newday.setBounds(205, 10, 66, 21);
+		newday.setBounds(431, 193, 80, 21);
 		add(newday);
 		
 		JLabel label_1 = new JLabel("汽运编号");
-		label_1.setBounds(10, 41, 48, 15);
+		label_1.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_1.setBounds(83, 242, 117, 32);
 		add(label_1);
 		
 		entruckNum = new JTextField();
 		entruckNum.setColumns(10);
-		entruckNum.setBounds(73, 38, 198, 21);
+		entruckNum.setBounds(187, 250, 198, 21);
 		add(entruckNum);
 		
 		JLabel label_2 = new JLabel("营业厅编号");
-		label_2.setBounds(10, 66, 60, 15);
+		label_2.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_2.setBounds(83, 298, 117, 32);
 		add(label_2);
 		
 		hallNum = new JTextField();
-		hallNum.setBounds(83, 63, 188, 21);
+		hallNum.setBounds(294, 306, 188, 21);
 		add(hallNum);
 		hallNum.setColumns(10);
 		
 		JLabel label_3 = new JLabel("目的地编号");
-		label_3.setBounds(10, 91, 60, 15);
+		label_3.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_3.setBounds(83, 356, 110, 32);
 		add(label_3);
 		
 		aimNum = new JTextField();
-		aimNum.setBounds(83, 88, 188, 21);
+		aimNum.setBounds(294, 364, 188, 21);
 		add(aimNum);
 		aimNum.setColumns(10);
 		
 		JLabel label_4 = new JLabel("车辆编号");
-		label_4.setBounds(10, 116, 54, 15);
+		label_4.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_4.setBounds(83, 413, 88, 32);
 		add(label_4);
 		
 		carNum = new JTextField();
-		carNum.setBounds(63, 113, 66, 21);
+		carNum.setBounds(187, 421, 66, 21);
 		add(carNum);
 		carNum.setColumns(10);
 		
 		JLabel label_5 = new JLabel("司机姓名");
-		label_5.setBounds(134, 116, 54, 15);
+		label_5.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_5.setBounds(287, 413, 88, 32);
 		add(label_5);
 		
 		driverName = new JTextField();
-		driverName.setBounds(198, 113, 73, 21);
+		driverName.setBounds(409, 421, 73, 21);
 		add(driverName);
 		driverName.setColumns(10);
 		
 		JLabel label_6 = new JLabel("托运单号");
-		label_6.setBounds(10, 141, 54, 15);
+		label_6.setFont(new Font("宋体", Font.PLAIN, 22));
+		label_6.setBounds(415, 242, 131, 32);
 		add(label_6);
 		
 		goodNum = new JTextField();
-		goodNum.setBounds(63, 138, 125, 21);
+		goodNum.setBounds(518, 250, 231, 21);
 		add(goodNum);
 		goodNum.setColumns(10);
 		
 		JButton addGood = new JButton("添加");
-		addGood.setBounds(122, 162, 66, 23);
+		addGood.setBounds(647, 364, 102, 45);
 		add(addGood);
 		addGood.addActionListener(new ActionListener(){
 
@@ -239,7 +253,7 @@ public class NewHallEntruckBillsUI extends JPanel {
 		});
 		
 		JButton deleteGood = new JButton("删除");
-		deleteGood.setBounds(198, 162, 73, 23);
+		deleteGood.setBounds(647, 422, 102, 45);
 		add(deleteGood);
 		deleteGood.addActionListener(new ActionListener(){
 
@@ -268,18 +282,18 @@ public class NewHallEntruckBillsUI extends JPanel {
 		table.setFillsViewportHeight(true);	
 		
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(10, 195, 261, 72);
+		scrollPane.setBounds(81, 496, 668, 208);
 		add(scrollPane);
 		
 		goodState = new JComboBox<String>();
-		goodState.setBounds(198, 138, 73, 21);
+		goodState.setBounds(647, 306, 102, 45);
 		add(goodState);
 		goodState.addItem("完整");
 		goodState.addItem("损坏");
 		goodState.addItem("丢失");
 		
 		back = new JButton("返回");
-		back.setBounds(166, 277, 93, 23);
+		back.setBounds(712, 64, 102, 45);
 		add(back);
 		back.addActionListener(new ActionListener() {
 			

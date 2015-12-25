@@ -110,7 +110,7 @@ public class NewCenterEntruckBillsUI extends JPanel {
 		this.superview = superview;
 		panel();
 		submit = new JButton("更新");
-		submit.setBounds(107, 299, 93, 23);
+		submit.setBounds(409, 746, 102, 45);
 		add(submit);
 		submit.addActionListener(new ActionListener(){
 

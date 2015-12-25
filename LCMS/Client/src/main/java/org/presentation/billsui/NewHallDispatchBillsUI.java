@@ -107,8 +107,8 @@ public class NewHallDispatchBillsUI extends JPanel {
 		this.superview = superview;
 		panel();
 		
-		JButton submit = new JButton("提交");
-		submit.setBounds(85, 194, 93, 23);
+		JButton submit = new JButton("更新");
+		submit.setBounds(409, 746, 102, 45);
 		add(submit);
 		submit.addActionListener(new ActionListener(){
 
