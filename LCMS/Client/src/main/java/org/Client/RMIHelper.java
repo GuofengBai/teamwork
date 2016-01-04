@@ -41,8 +41,8 @@ public class RMIHelper {
 			FileReader re=new FileReader("Config/IP.txt");
 			BufferedReader br=new BufferedReader(re);
 			IP=br.readLine();
-			if(IP.equals(""));
-			IP="localhost";
+			
+			System.out.println(IP);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
