@@ -25,7 +25,7 @@ public class ManagerSettingBL implements ManagerSettingBLService{
 				}
 			}
 			for(int i=0;i<cad.cities.length;i++){
-				if(cad.cities[i].equals(city1)){
+				if(cad.cities[i].equals(city2)){
 					c2=i;
 					break;
 				}
@@ -57,7 +57,7 @@ public class ManagerSettingBL implements ManagerSettingBLService{
 				}
 			}
 			for(int i=0;i<cad.cities.length;i++){
-				if(cad.cities[i].equals(city1)){
+				if(cad.cities[i].equals(city2)){
 					c2=i;
 					break;
 				}

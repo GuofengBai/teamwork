@@ -47,8 +47,9 @@ public class NewSendingBillsBL implements NewSendingBillsBLService {
 			heavy = size;
 		}
 		ManagerSettingBL managerset = new ManagerSettingBL();
-		double price = managerset.getCityDistance(city1[0] + "市", city2[0]
-				+ "市")
+		System.out.print(city1[0]+city2[0]+managerset.getCityDistance(city1[0], city2[0]));
+		double price = managerset.getCityDistance(city1[0], city2[0]
+				)
 				/ 1000 * managerset.getExpressFee(sendtype) * heavy;
 		int baozhuang = 1;
 		if (boxtype == BOXSTYPE.Paper) {
